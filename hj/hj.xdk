@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "2b05005f-280e-49db-960c-35af8e9a8ee1",
-      "lastModifiedDate": 1469098068799,
+      "lastModifiedDate": 1470463627696,
       "creationDate": 1469085714972
     },
     "XDK-app-designer": "true",
@@ -116,29 +116,20 @@
           "android-signed": true
         },
         "isActive_": true,
+        "certificateId_": "jc7793MM3k6sU6hUg5bxQA2",
         "appName_": "hj",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
-          "mode": "whitelist",
-          "network": [
-            "*"
-          ],
-          "intents": [
-            "http://*/*",
-            "https://*/*",
-            "tel:*",
-            "sms:*",
-            "mailto:*",
-            "geo:*",
-            "market:*"
-          ],
-          "navigation": []
+          "mode": "block",
+          "network": [],
+          "intents": [],
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "AmJ30CWt00OCFAIadOqFVw2",
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "14",
         "appVersion_": "0.0.1",
@@ -155,6 +146,7 @@
           "deployment-target": "8.0"
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -179,7 +171,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "iosProvs_": [],
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "18",
@@ -196,6 +187,7 @@
           "windows-publisher-id": ""
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -211,7 +203,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "18",
         "appVersion_": "0.0.0.1",
@@ -224,6 +215,7 @@
         "name_": "WebApp",
         "preferences_": {},
         "isActive_": false,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -238,7 +230,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1"
       },
@@ -248,6 +239,7 @@
         "name_": "Chrome",
         "preferences_": {},
         "isActive_": false,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -262,7 +254,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1"
       },
@@ -272,6 +263,7 @@
         "name_": "Firefox",
         "preferences_": {},
         "isActive_": false,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -286,7 +278,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1"
       },
@@ -296,6 +287,7 @@
         "name_": "Facebook",
         "preferences_": {},
         "isActive_": false,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -310,7 +302,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appAuthor_": "Intel XDK",
         "appVersion_": "0.0.1"
       },
@@ -320,6 +311,7 @@
         "name_": "WP81",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "hj",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -334,7 +326,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.0.1",
         "cordovaCLIVersion_": "5.4.1",
         "appAuthor_": "Intel XDK"
@@ -342,7 +333,9 @@
     },
     "gameAssetDirectory": "asset",
     "gameMetadata": {},
-    "projectTags": [],
+    "projectTags": [
+      "XDK-disallow-legacy-whitelist"
+    ],
     "testDirectory": "test"
   }
 }
