@@ -16,7 +16,7 @@
   <script src="js/onsenui.js"></script>
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/onsenui.css">
-  <link rel="stylesheet" href="css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/onsen-css-components-dark-theme.css">
 </head>
 
 
@@ -25,7 +25,7 @@
     <div>
       <ons-toolbar>
         <div class="left"><ons-back-button>戻る</ons-back-button></div>
-        <div class="center">タイトル</div>
+        <div class="center">センシング・デバイス選択</div>
       </ons-toolbar>
     </div>
 
@@ -33,45 +33,47 @@
     <div id="message"></div>
     <div class="app">
       <div id="mainPage">
+
         <ul id="deviceList">
-        </ul>
-        <ons-button id="refreshButton">Refresh</ons-button>
-        <ons-button id="deviceButton">専用デバイス</ons-button>
-      </div>
-
-
-
-
-      <div id="detailPage">
-        <div id="resultDiv"></div>
-        <div>
-          <input type="text" id="messageInput" value="Hello"/>
-          <ons-button id="sendButton">Send</ons-button>
-        </div>
-       <!-- <ons-button id="disconnectButton">Disconnect</ons-button>
--->
-        <div id="statusDiv"></div>
-      </div>
-
-
-      <form name= "selectDevice">
-        <select name="selectDevices" onChange="connectDevice()" required>
-          <optgroup label="Bluetooth-Devices" id="bluetoothdevice">
-            <option value="">--------------</option>
-          </optgroup>
-        </select>
-      </form>
-
-
-      <ons-button id="disconnectButton">Disconnect</ons-button>
-      <!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
-      <div class="space-top">
+      </ul>
+    <div class="buttonwrapper">
+      <ons-button id="deviceButton" >専用デバイス</ons-button>
+      <!--ボタン本体に対する処理は未実装-->
+      <ons-button id="refreshButton" >本体</ons-button>
     </div>
-    <ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
-    <option value="One">専用デバイス</option>
-  </ons-select>
--->
+  </div>
+
+
+
+
+  <div id="detailPage">
+  <div id="resultDiv"></div>
+  <div>
+  <input type="text" id="messageInput" value="Hello"/>
+  <ons-button id="sendButton">Send</ons-button>
 </div>
+<!-- <ons-button id="disconnectButton">Disconnect</ons-button>
+--> <div id="statusDiv"></div>
+</div>
+<form name= "selectDevice">
+<select name="selectDevices" onChange="connectDevice()" required>
+<optgroup label="Bluetooth-Devices" id="bluetoothdevice">
+<option value="">--------------</option>
+</optgroup>
+</select>
+</form>
+
+
+<ons-button id="disconnectButton">Disconnect</ons-button>
+ </div>
+
+<!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
+<div class="space-top">
+</div>
+<ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
+<option value="One">専用デバイス</option>
+</ons-select>
+-->
 </ons-page>
 <!-- <ons-template id="popover.html">
 <ons-popover direction="down" cancelable>

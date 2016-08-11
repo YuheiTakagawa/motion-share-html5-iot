@@ -16,7 +16,14 @@ var app = {
 
   },
   onDeviceReady: function() {
-    app.refreshDeviceList();
+    /*起動時に自動ペアリングする*/
+    if(localStorage.id!=""){
+      bluetoothSerial.connect(localStorage.id,function(){
+        alert("sucessa");
+      },app.onError);
+    }
+    //app.refreshDeviceList();
+
   },
   refreshDeviceList: function() {
     bluetoothSerial.list(app.onDeviceList, app.onError);
@@ -96,94 +103,102 @@ var app = {
     bluetoothSerial.write(data, success, failure);
   },
   disconnect: function(event) {
-    bluetoothSerial.disconnect(app.showMainPage, app.onError);
-  },
-  showMainPage: function() {
-    mainPage.style.display = "";
-    detailPage.style.display = "none";
-  },
-  showDetailPage: function() {
-    mainPage.style.display = "none";
-    detailPage.style.display = "";
-  },
-  setStatus: function(message) {
-    console.log(message);
+    bluetoothSerial.disconnect(function(){
+      alert("disconnect");}, app.onError);
+    },
+    showMainPage: function() {
+      mainPage.style.display = "";
+      detailPage.style.display = "none";
+    },
+    showDetailPage: function() {
+      mainPage.style.display = "none";
+      detailPage.style.display = "";
+    },
+    setStatus: function(message) {
+      console.log(message);
 
-    window.clearTimeout(app.statusTimeout);
-    statusDiv.innerHTML = message;
-    statusDiv.className = 'fadein';
+      window.clearTimeout(app.statusTimeout);
+      statusDiv.innerHTML = message;
+      statusDiv.className = 'fadein';
 
-    // automatically clear the status with a timer
-    app.statusTimeout = setTimeout(function () {
-      statusDiv.className = 'fadeout';
-    }, 5000);
-  },
-  onError: function(reason) {
-    alert("ERROR: " + reason); // real apps should use notification.alert
-  },
+      // automatically clear the status with a timer
+      app.statusTimeout = setTimeout(function () {
+        statusDiv.className = 'fadeout';
+      }, 5000);
+    },
+    onError: function(reason) {
+      alert("ERROR: " + reason); // real apps should use notification.alert
+    },
 
-  /*ドロップダウンに検索したデバイスを追加する*/
-  search: function(){
-    bluetoothSerial.list(app.searchDevice, app.onError);
+    /*ドロップダウンに検索したデバイスを追加する*/
+    search: function(){
+      bluetoothSerial.list(app.searchDevice, app.onError);
 
-  },
+    },
 
-  searchDevice: function(devices){
-    var select=document.getElementById('bluetoothdevice');
-    /*ドロップダウンの要素を一度初期化して追加する*/
+    searchDevice: function(devices){
+      var select=document.getElementById('bluetoothdevice');
+      /*ドロップダウンの要素を一度初期化して追加する*/
 
-    if(select.hasChildNodes()){
-      while(select.childNodes.length>2) select.removeChild(select.lastChild);}
+      if(select.hasChildNodes()){
+        while(select.childNodes.length>2) select.removeChild(select.lastChild);}
 
-      devices.forEach(function(device){
-        var name=device.name;
-        var id=device.id;
-        var opt = document.createElement('option');
-        opt.value=id;
-        opt.text=name;
-        //デバイス更新した時に選択した状態にする
-        if(id==obj){
-          opt.selected=true;
+        devices.forEach(function(device){
+          var name=device.name;
+          var id=device.id;
+          var opt = document.createElement('option');
+          opt.value=id;
+          opt.text=name;
+          //デバイス更新した時に選択した状態にする
+          if(id==obj){
+            opt.selected=true;
+          }
+
+          // option要素を追加
+          select.appendChild(opt);
+        });
+
+      },
+      /*Bluetoothで受信した文字列のデータを整数型に分割する*/
+      receiveData: function(){
+        bluetoothSerial.subscribe("\n",app.splitString,app.onError);
+      },
+      splitString: function(data){
+        var acc=[];
+        var gyr=[];
+        var strings=data.split(",");
+        for(var i=0;i<strings.length/2;i++){
+          acc[i]=Number(strings[i]);    //accX,accY,accZ
+          gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
         }
+      }
+    };
 
-        // option要素を追加
-        select.appendChild(opt);
+
+    function connectDevice(){
+      obj = document.selectDevice.selectDevices.value;
+      if(obj!=""){
+        //alert(obj);
+       localStorage.id=obj;   //専用デバイスを端末に登録するためにlocalStorageを利用
+        var kos=localStorage.id;
+        alert("ko"+kos);
+
+
+      }
+      bluetoothSerial.connect(obj, function(){
+        alert("success");
+      }, app.onError);
+
+    }
+
+    /*onsenuiでドロップダウンを実現するために使う？まだ実装できてない*/
+    var module = ons.bootstrap();
+    module.controller('AppController', function($scope) {
+      ons.createPopover('popover.html').then(function(popover) {
+        $scope.popover = popover;
       });
 
-    },
-    /*Bluetoothで受信した文字列のデータを整数型に分割する*/
-    receiveData: function(){
-      bluetoothSerial.subscribe("\n",app.splitString,app.onError);
-    },
-    splitString: function(data){
-      var acc=[];
-      var gyr=[];
-      var strings=data.split(",");
-      for(var i=0;i<strings.length/2;i++){
-        acc[i]=Number(strings[i]);    //accX,accY,accZ
-        gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
-      }
-    }
-  };
-  /*onsenuiでドロップダウンを実現するために使う？まだ実装できてない*/
-  var module = ons.bootstrap();
-  module.controller('AppController', function($scope) {
-    ons.createPopover('popover.html').then(function(popover) {
-      $scope.popover = popover;
+      $scope.show = function(e) {
+        $scope.popover.show(e);
+      };
     });
-
-    $scope.show = function(e) {
-      $scope.popover.show(e);
-    };
-  });
-
-  function connectDevice(){
-    obj = document.selectDevice.selectDevices.value;
-    if(obj!=""){
-      alert(obj);
-    }
-    bluetoothSerial.connect(obj, function(){
-      alert("success");
-    }, app.onError);
-
-  }
