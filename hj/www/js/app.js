@@ -1,4 +1,5 @@
 
+var obj;//選択したデバイスのidを格納する
 var app = {
   initialize: function() {
     this.bindEvents();
@@ -29,7 +30,7 @@ var app = {
     app.setStatus("");
 
     devices.forEach(function(device) {
-//alert(device.id);
+      //alert(device.id);
       var listItem = document.createElement('li'),
       html = '<b>' + device.name + '</b><br/>' + device.id;
 
@@ -121,62 +122,68 @@ var app = {
     alert("ERROR: " + reason); // real apps should use notification.alert
   },
 
-    /*ドロップダウンに検索したデバイスを追加する*/
+  /*ドロップダウンに検索したデバイスを追加する*/
   search: function(){
-       bluetoothSerial.list(app.searchDevice, app.onError);
+    bluetoothSerial.list(app.searchDevice, app.onError);
 
   },
 
   searchDevice: function(devices){
     var select=document.getElementById('bluetoothdevice');
-      /*ドロップダウンの要素を一度初期化して追加する*/
-      if(select.hasChildNodes()){
+    /*ドロップダウンの要素を一度初期化して追加する*/
+
+    if(select.hasChildNodes()){
       while(select.childNodes.length>2) select.removeChild(select.lastChild);}
-    devices.forEach(function(device){
-      var name=device.name;
-      var id=device.id;
-      var opt = document.createElement('option');
+
+      devices.forEach(function(device){
+        var name=device.name;
+        var id=device.id;
+        var opt = document.createElement('option');
         opt.value=id;
         opt.text=name;
+        //デバイス更新した時に選択した状態にする
+        if(id==obj){
+          opt.selected=true;
+        }
 
-      // option要素を追加
-      select.appendChild(opt);
-    });
+        // option要素を追加
+        select.appendChild(opt);
+      });
 
-  },
-  /*Bluetoothで受信した文字列のデータを整数型に分割する*/
-  receiveData: function(){
-    bluetoothSerial.subscribe("\n",app.splitString,app.onError);
-  },
-  splitString: function(data){
-    var acc=[];
-    var gyr=[];
-    var strings=data.split(",");
-    for(var i=0;i<strings.length/2;i++){
-      acc[i]=Number(strings[i]);    //accX,accY,accZ
-      gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
+    },
+    /*Bluetoothで受信した文字列のデータを整数型に分割する*/
+    receiveData: function(){
+      bluetoothSerial.subscribe("\n",app.splitString,app.onError);
+    },
+    splitString: function(data){
+      var acc=[];
+      var gyr=[];
+      var strings=data.split(",");
+      for(var i=0;i<strings.length/2;i++){
+        acc[i]=Number(strings[i]);    //accX,accY,accZ
+        gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
+      }
     }
-  }
   };
   /*onsenuiでドロップダウンを実現するために使う？まだ実装できてない*/
   var module = ons.bootstrap();
   module.controller('AppController', function($scope) {
-  ons.createPopover('popover.html').then(function(popover) {
-    $scope.popover = popover;
-  });
+    ons.createPopover('popover.html').then(function(popover) {
+      $scope.popover = popover;
+    });
 
-  $scope.show = function(e) {
-    $scope.popover.show(e);
-  };
+    $scope.show = function(e) {
+      $scope.popover.show(e);
+    };
   });
 
   function connectDevice(){
-  obj = document.selectDevice.selectDevices.value;
-  if(obj!=""){
-     alert(obj);
-  }
+    obj = document.selectDevice.selectDevices.value;
+    if(obj!=""){
+      alert(obj);
+    }
     bluetoothSerial.connect(obj, function(){
-        alert("success");
+      alert("success");
     }, app.onError);
 
   }

@@ -48,37 +48,41 @@
           <input type="text" id="messageInput" value="Hello"/>
           <ons-button id="sendButton">Send</ons-button>
         </div>
-        <ons-button id="disconnectButton">Disconnect</ons-button>
+       <!-- <ons-button id="disconnectButton">Disconnect</ons-button>
+-->
         <div id="statusDiv"></div>
       </div>
 
 
       <form name= "selectDevice">
-            <select name="selectDevices" onChange="connectDevice()" required>
-              <optgroup label="Bluetooth-Devices" id="bluetoothdevice">
-                  <option value="">--------------</option>
-              </optgroup>
-            </select>
-          </form>
-            <!--　onsenuiでドロップダウンを実現するために一旦コメントアウト
-            <div class="space-top">
-          </div>
-          <ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
-          <option value="One">専用デバイス</option>
-        </ons-select>
-      -->
-      </div>
-      </ons-page>
-      <!-- <ons-template id="popover.html">
-      <ons-popover direction="down" cancelable>
-      <ons-list>
-      <ons-list-item modifier="tappable">Option 1</ons-list-item>
-      </ons-list>
-      </ons-popover>
-      </ons-template>
-      -->
-      <script src="cordova.js" id="xdkJScordova_"></script>
-      <script src="js/app.js"></script>
-      <script>app.initialize();</script>
-      </body>
-      </html>
+        <select name="selectDevices" onChange="connectDevice()" required>
+          <optgroup label="Bluetooth-Devices" id="bluetoothdevice">
+            <option value="">--------------</option>
+          </optgroup>
+        </select>
+      </form>
+
+
+      <ons-button id="disconnectButton">Disconnect</ons-button>
+      <!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
+      <div class="space-top">
+    </div>
+    <ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
+    <option value="One">専用デバイス</option>
+  </ons-select>
+-->
+</div>
+</ons-page>
+<!-- <ons-template id="popover.html">
+<ons-popover direction="down" cancelable>
+<ons-list>
+<ons-list-item modifier="tappable">Option 1</ons-list-item>
+</ons-list>
+</ons-popover>
+</ons-template>
+-->
+<script src="cordova.js" id="xdkJScordova_"></script>
+<script src="js/app.js"></script>
+<script>app.initialize();</script>
+</body>
+</html>
