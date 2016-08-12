@@ -35,40 +35,41 @@
       <div id="mainPage">
 
         <ul id="deviceList">
-      </ul>
-    <div class="buttonwrapper">
-      <ons-button id="deviceButton" >専用デバイス</ons-button>
-      <!--ボタン本体に対する処理は未実装-->
-      <ons-button id="refreshButton" >本体</ons-button>
+        </ul>
+        <div class="buttonwrapper">
+          <ons-button id="deviceButton" >専用デバイス</ons-button>
+          <!--ボタン，ラベル本体に対する処理は未実装-->
+          <ons-button id="refreshButton" >本体</ons-button>
+        </div>
+      </div>
+
+
+
+<!--
+      <div id="detailPage">
+        <div id="resultDiv"></div>
+        <div>
+          <input type="text" id="messageInput" value="Hello"/>
+          <ons-button id="sendButton">Send</ons-button>
+        </div>
+         <ons-button id="disconnectButton">Disconnect</ons-button>
+       <div id="statusDiv"></div>
     </div>
+  -->
+    <form name= "selectDevice">
+      <select name="selectDevices" onChange="connectDevice()" required>
+        <optgroup label="Bluetooth-Devices" id="bluetoothdevice">
+          <option value="">--------------</option>
+        </optgroup>
+      </select>
+    </form>
+
+
+    <ons-button id="disconnectButton">Disconnect</ons-button>
   </div>
 
-
-
-
-  <div id="detailPage">
-  <div id="resultDiv"></div>
-  <div>
-  <input type="text" id="messageInput" value="Hello"/>
-  <ons-button id="sendButton">Send</ons-button>
-</div>
-<!-- <ons-button id="disconnectButton">Disconnect</ons-button>
---> <div id="statusDiv"></div>
-</div>
-<form name= "selectDevice">
-<select name="selectDevices" onChange="connectDevice()" required>
-<optgroup label="Bluetooth-Devices" id="bluetoothdevice">
-<option value="">--------------</option>
-</optgroup>
-</select>
-</form>
-
-
-<ons-button id="disconnectButton">Disconnect</ons-button>
- </div>
-
-<!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
-<div class="space-top">
+  <!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
+  <div class="space-top">
 </div>
 <ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
 <option value="One">専用デバイス</option>
