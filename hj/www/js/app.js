@@ -1,37 +1,54 @@
 
-var obj;                  //選択したデバイスのidを格納する
+var deviceId;                  //選択したデバイスのidを格納する
 var app = {
   initialize: function() {
+    //alert("ok");
     this.bindEvents();
     this.showMainPage();
   },
   bindEvents: function() {
+    //alert("css");
     var TOUCH_START = 'touchstart';
     document.addEventListener('deviceready', this.onDeviceReady, false);
     disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
+    deviceList.addEventListener(TOUCH_START, this.connect, false);
     deviceButton.addEventListener(TOUCH_START,this.search,false);
   },
   onDeviceReady: function() {
     //起動時に自動ペアリングする
-    if((obj=localStorage.id)!=""){
-      bluetoothSerial.connect(obj,function(){
-        alert("suc: "+obj);
+    if((deviceId=localStorage.id)!=""){
+      bluetoothSerial.connect(deviceId,function(){
+        alert("success");
       },app.onError);
-    app.search();
+      app.search();
     }
+  },
+  connect: function(e) {
+  var onConnect = function() {
+    alert("success")
+  // subscribe for incoming data
+  bluetoothSerial.subscribe('\n', app.onData, app.onError);
+  };
+
+  deviceId = e.target.dataset.deviceId;
+  if (!deviceId) { // try the parent
+  deviceId = e.target.parentNode.dataset.deviceId;
+}
+  localStorage.id=deviceId;
+  bluetoothSerial.connect(deviceId, onConnect, app.onError);
   },
 
   disconnect: function(event) {
-    bluetoothSerial.disconnect(function(){
-      alert("disconnect");}, app.onError);
+    bluetoothSerial.disconnect(
+    app.showMainPage, app.onError);
     },
     showMainPage: function() {
       mainPage.style.display = "";
-      detailPage.style.display = "none";
+      selectDevicePage.style.display = "none";
     },
-    showDetailPage: function() {
+    showselectDevicePage: function() {
       mainPage.style.display = "none";
-      detailPage.style.display = "";
+      selectDevicePage.style.display = "";
     },
 
     onError: function(reason) {
@@ -40,11 +57,13 @@ var app = {
 
     //ドロップダウンに検索したデバイスを追加する
     search: function(){
+          app.showselectDevicePage();
       bluetoothSerial.list(app.searchDevice, app.onError);
 
     },
 
-    searchDevice: function(devices){
+  searchDevice: function(devices){
+    /*
       var select=document.getElementById('bluetoothdevice');
       //ドロップダウンの要素を一度初期化して追加する
 
@@ -65,9 +84,33 @@ var app = {
           // option要素を追加
           select.appendChild(opt);
         });
+*/
 
-      },
-      /*Bluetoothで受信した文字列のデータを整数型に分割する*/
+var option;
+// remove existing devices
+deviceList.innerHTML = "";
+
+devices.forEach(function(device) {
+//alert(device.id);
+var listItem = document.createElement('li'),
+html = '<b>' + device.name + '</b>';
+
+listItem.innerHTML = html;
+
+listItem.dataset.deviceId = device.id;
+
+deviceList.appendChild(listItem);
+});
+
+if (devices.length === 0) {
+
+option = document.createElement('option');
+option.innerHTML = "No Bluetooth Devices";
+deviceList.appendChild(option);
+
+      }
+    },
+    /*Bluetoothで受信した文字列のデータを整数型に分割する*/
       receiveData: function(){
         bluetoothSerial.subscribe("\n",app.splitString,app.onError);
       },
@@ -83,17 +126,7 @@ var app = {
     };
 
 
-    function connectDevice(){
-      obj = document.selectDevice.selectDevices.value;
-      if(obj!=""){
-        localStorage.id=obj;   //専用デバイスを端末に登録するためにlocalStorageを利用
-        var kos=localStorage.id;
-      }
-      bluetoothSerial.connect(obj, function(){
-        alert("success");
-      }, app.onError);
 
-    }
 
     /*onsenuiでドロップダウンを実現するために使う？まだ実装できてない*/
     var module = ons.bootstrap();
