@@ -52,20 +52,18 @@ body {
 .buttonwrapper ons-button{
   width:70%;
   font-size:1.0em;
-  padding-left:10%;
   margin-top: 20%;
   margin-left:15%;
+  text-align: center;
 }
 .buttonwrapper p{
   line-height: 1.4em;
-  text-align: left;
-  padding-left:30%;
+  text-align: center;
 }
 .buttonwrapper select{
   width:70%;
   padding:20px;
   font-size:1.0em;
-
   padding-left:10%;
   line-height:40%;
 }

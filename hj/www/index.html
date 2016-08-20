@@ -35,7 +35,7 @@
     <div class="app">
 
       <div class="buttonwrapper">
-        <ons-button id="deviceButton" ><p>専用デバイス<br>deviceId</p></ons-button>
+        <ons-button id="deviceButton" ><p>専用デバイス<br>deviceName</p></ons-button>
         <!--ボタン，ラベル本体に対する処理は未実装-->
         <div id="mainPage">
           <ons-button id="refreshButton" >本体</ons-button>
@@ -52,49 +52,18 @@
     </form>
   -->
   <ul id="deviceLists">
-    <li>Devices
+    <li><div id=devices>Devices</div>
       <ul id=deviceList>
-        <li>test1</li>
+        <li>test1</li> <!--エミュレータ上での表示を確認するため追加-->
       </ul></li>
     </ul>
   </div>
 
-  <!--
-  <div id="detailPage">
-  <div id="resultDiv"></div>
-  <div>
-  <input type="text" id="messageInput" value="Hello"/>
-  <ons-button id="sendButton">Send</ons-button>
-</div>
-<ons-button id="disconnectButton">Disconnect</ons-button>
-<div id="statusDiv"></div>
-</div>
--->
-
-
-<!--<ons-button id="disconnectButton">Disconnect</ons-button>
--->
 </div>
 
 </div>
 
-
-<!-- onsenuiでドロップダウンを実現するために一旦コメントアウト
-<div class="space-top">
-</div>
-<ons-select ng-model="selectedValue" ng-options="collection for collection in listCollection" style="width: 100px">
-<option value="One">専用デバイス</option>
-</ons-select>
--->
 </ons-page>
-<!-- <ons-template id="popover.html">
-<ons-popover direction="down" cancelable>
-<ons-list>
-<ons-list-item modifier="tappable">Option 1</ons-list-item>
-</ons-list>
-</ons-popover>
-</ons-template>
--->
 <script src="cordova.js" id="xdkJScordova_"></script>
 <script src="js/app.js"></script>
 <script>app.initialize();</script>

@@ -1,5 +1,6 @@
 
 var deviceId;                  //選択したデバイスのidを格納する
+var deviceName;
 var app = {
   initialize: function() {
     //alert("ok");
@@ -18,29 +19,34 @@ var app = {
     //起動時に自動ペアリングする
     if((deviceId=localStorage.id)!=""){
       bluetoothSerial.connect(deviceId,function(){
-        alert("success");
+        alert("success:"+localStorage.name);
       },app.onError);
       app.search();
     }
   },
   connect: function(e) {
-  var onConnect = function() {
-    alert("success")
-  // subscribe for incoming data
-  bluetoothSerial.subscribe('\n', app.onData, app.onError);
-  };
+    var onConnect = function() {
+      alert("success");
+      // subscribe for incoming data
+      bluetoothSerial.subscribe('\n', app.onData, app.onError);
+    };
 
-  deviceId = e.target.dataset.deviceId;
-  if (!deviceId) { // try the parent
-  deviceId = e.target.parentNode.dataset.deviceId;
-}
-  localStorage.id=deviceId;
-  bluetoothSerial.connect(deviceId, onConnect, app.onError);
+    deviceId = e.target.dataset.deviceId;
+    deviceName = e.target.dataset.deviceName;
+    if (!deviceId) { // try the parent
+      deviceId = e.target.parentNode.dataset.deviceId;
+    }
+    app.changeButtonName(deviceName);
+    localStorage.name=deviceName;
+    localStorage.id=deviceId;
+    document.getElementById("devices").value=deviceName;
+    bluetoothSerial.connect(deviceId, onConnect, app.onError);
   },
 
   disconnect: function(event) {
+    app.changeButtonName("deviceName");
     bluetoothSerial.disconnect(
-    app.showMainPage, app.onError);
+      app.showMainPage, app.onError);
     },
     showMainPage: function() {
       mainPage.style.display = "";
@@ -55,90 +61,79 @@ var app = {
       alert("ERROR: " + reason); // real apps should use notification.alert
     },
 
+    changeButtonName:function(deviceName){
+      deviceButton.innerHTML="<p>専用デバイス<br>"+deviceName+"</p>";
+    },
     //ドロップダウンに検索したデバイスを追加する
     search: function(){
-          app.showselectDevicePage();
+      app.showselectDevicePage();
       bluetoothSerial.list(app.searchDevice, app.onError);
 
     },
 
-  searchDevice: function(devices){
-    /*
+    searchDevice: function(devices){
+      /*
+      //selectによる実装
       var select=document.getElementById('bluetoothdevice');
       //ドロップダウンの要素を一度初期化して追加する
 
       if(select.hasChildNodes()){
-        while(select.childNodes.length>2) select.removeChild(select.lastChild);}
+      while(select.childNodes.length>2) select.removeChild(select.lastChild);}
 
-        devices.forEach(function(device){
-          var name=device.name;
-          var id=device.id;
-          var opt = document.createElement('option');
-          opt.value=id;
-          opt.text=name;
-          //デバイス更新した時に選択した状態にする
-          if(id==obj){
-            opt.selected=true;
-          }
+      devices.forEach(function(device){
+      var name=device.name;
+      var id=device.id;
+      var opt = document.createElement('option');
+      opt.value=id;
+      opt.text=name;
+      //デバイス更新した時に選択した状態にする
+      if(id==obj){
+      opt.selected=true;
+    }
 
-          // option要素を追加
-          select.appendChild(opt);
-        });
-*/
+    // option要素を追加
+    select.appendChild(opt);
+  });
+  */
+  //listによる実装
+  var option;
+  // remove existing devices
+  deviceList.innerHTML = "";
 
-var option;
-// remove existing devices
-deviceList.innerHTML = "";
+  devices.forEach(function(device) {
+    //alert(device.id);
+    var listItem = document.createElement('li'),
+    html = '<b>' + device.name + '</b>';
 
-devices.forEach(function(device) {
-//alert(device.id);
-var listItem = document.createElement('li'),
-html = '<b>' + device.name + '</b>';
+    listItem.innerHTML = html;
+    listItem.dataset.deviceName=device.name;
+    listItem.dataset.deviceId = device.id;
 
-listItem.innerHTML = html;
+    deviceList.appendChild(listItem);
+  });
 
-listItem.dataset.deviceId = device.id;
+  if (devices.length === 0) {
 
-deviceList.appendChild(listItem);
-});
+    option = document.createElement('option');
+    option.innerHTML = "No Bluetooth Devices";
+    deviceList.appendChild(option);
 
-if (devices.length === 0) {
-
-option = document.createElement('option');
-option.innerHTML = "No Bluetooth Devices";
-deviceList.appendChild(option);
-
-      }
-    },
-    /*Bluetoothで受信した文字列のデータを整数型に分割する*/
-      receiveData: function(){
-        bluetoothSerial.subscribe("\n",app.splitString,app.onError);
-      },
-      splitString: function(data){
-        var acc=[];
-        var gyr=[];
-        var strings=data.split(",");
-        for(var i=0;i<strings.length/2;i++){
-          acc[i]=Number(strings[i]);    //accX,accY,accZ
-          gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
-        }
-      }
-    };
-
-
-
-
-    /*onsenuiでドロップダウンを実現するために使う？まだ実装できてない*/
-    var module = ons.bootstrap();
-    module.controller('AppController', function($scope) {
-      ons.createPopover('popover.html').then(function(popover) {
-        $scope.popover = popover;
-      });
-
-      $scope.show = function(e) {
-        $scope.popover.show(e);
-      };
-    });
+  }
+},
+/*Bluetoothで受信した文字列のデータを整数型に分割する*/
+receiveData: function(){
+  bluetoothSerial.subscribe("\n",app.splitString,app.onError);
+},
+splitString: function(data){
+  var acc=[];
+  var gyr=[];
+  var strings=data.split(",");
+  for(var i=0;i<strings.length/2;i++){
+    acc[i]=Number(strings[i]);    //accX,accY,accZ
+    gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
+  }
+}
+};
 
 
 
@@ -148,22 +143,26 @@ deviceList.appendChild(option);
 
 
 
-    /*
 
-    var obj;//選択したデバイスのidを格納する
-    var app = {
-    initialize: function() {
-    this.bindEvents();
-    this.showMainPage();
-  },
-  bindEvents: function() {
-  var TOUCH_START = 'touchstart';
-  document.addEventListener('deviceready', this.onDeviceReady, false);
-  refreshButton.addEventListener(TOUCH_START, this.refreshDeviceList, false);
-  sendButton.addEventListener(TOUCH_START, this.sendData, false);
-  disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
-  deviceList.addEventListener(TOUCH_START, this.connect, false);
-  deviceButton.addEventListener(TOUCH_START,this.search,false);
+
+
+
+/*
+
+var obj;//選択したデバイスのidを格納する
+var app = {
+initialize: function() {
+this.bindEvents();
+this.showMainPage();
+},
+bindEvents: function() {
+var TOUCH_START = 'touchstart';
+document.addEventListener('deviceready', this.onDeviceReady, false);
+refreshButton.addEventListener(TOUCH_START, this.refreshDeviceList, false);
+sendButton.addEventListener(TOUCH_START, this.sendData, false);
+disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
+deviceList.addEventListener(TOUCH_START, this.connect, false);
+deviceButton.addEventListener(TOUCH_START,this.search,false);
 
 },
 onDeviceReady: function() {
