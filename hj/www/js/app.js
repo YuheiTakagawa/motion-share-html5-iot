@@ -1,25 +1,26 @@
 
 var deviceId;                  //選択したデバイスのidを格納する
 var deviceName;
+var selectiongDevice=0;   //0:本体 1:専用デバイス センサ数値を扱う関数で利用
 var app = {
   initialize: function() {
-    //alert("ok");
     this.bindEvents();
     this.showMainPage();
   },
   bindEvents: function() {
-    //alert("css");
     var TOUCH_START = 'touchstart';
     document.addEventListener('deviceready', this.onDeviceReady, false);
-    disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
-    deviceList.addEventListener(TOUCH_START, this.connect, false);
     deviceButton.addEventListener(TOUCH_START,this.search,false);
+    smartButton.addEventListener(TOUCH_START,this.deviceSelect,false);
+    deviceList.addEventListener(TOUCH_START, this.connect, false);
+    disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
   },
   onDeviceReady: function() {
     //起動時に自動ペアリングする
     if((deviceId=localStorage.id)!=""){
       bluetoothSerial.connect(deviceId,function(){
         alert("success:"+localStorage.name);
+        selectingDevice=1;
       },app.onError);
       app.search();
     }
@@ -40,6 +41,7 @@ var app = {
     localStorage.name=deviceName;
     localStorage.id=deviceId;
     document.getElementById("devices").value=deviceName;
+    selectingDevice=1;
     bluetoothSerial.connect(deviceId, onConnect, app.onError);
   },
 
@@ -64,6 +66,9 @@ var app = {
     changeButtonName:function(deviceName){
       deviceButton.innerHTML="<p>専用デバイス<br>"+deviceName+"</p>";
     },
+    deviceSelect:function(){
+      selectingDevice=0;
+    },
     //ドロップダウンに検索したデバイスを追加する
     search: function(){
       app.showselectDevicePage();
@@ -72,29 +77,7 @@ var app = {
     },
 
     searchDevice: function(devices){
-      /*
-      //selectによる実装
-      var select=document.getElementById('bluetoothdevice');
-      //ドロップダウンの要素を一度初期化して追加する
 
-      if(select.hasChildNodes()){
-      while(select.childNodes.length>2) select.removeChild(select.lastChild);}
-
-      devices.forEach(function(device){
-      var name=device.name;
-      var id=device.id;
-      var opt = document.createElement('option');
-      opt.value=id;
-      opt.text=name;
-      //デバイス更新した時に選択した状態にする
-      if(id==obj){
-      opt.selected=true;
-    }
-
-    // option要素を追加
-    select.appendChild(opt);
-  });
-  */
   //listによる実装
   var option;
   // remove existing devices
