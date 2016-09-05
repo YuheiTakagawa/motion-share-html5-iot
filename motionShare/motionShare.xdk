@@ -117,7 +117,7 @@
         },
         "isActive_": true,
         "certificateId_": "jc7793MM3k6sU6hUg5bxQA2",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
           "mode": "block",
@@ -147,7 +147,7 @@
         },
         "isActive_": true,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
           "mode": "whitelist",
@@ -188,7 +188,7 @@
         },
         "isActive_": true,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
           "mode": "whitelist",
@@ -216,7 +216,7 @@
         "preferences_": {},
         "isActive_": false,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "not.yet.specified",
         "appAccess_": {
           "mode": "legacy",
@@ -240,7 +240,7 @@
         "preferences_": {},
         "isActive_": false,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "not.yet.specified",
         "appAccess_": {
           "mode": "legacy",
@@ -264,7 +264,7 @@
         "preferences_": {},
         "isActive_": false,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "not.yet.specified",
         "appAccess_": {
           "mode": "legacy",
@@ -288,7 +288,7 @@
         "preferences_": {},
         "isActive_": false,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "not.yet.specified",
         "appAccess_": {
           "mode": "legacy",
@@ -312,7 +312,7 @@
         "preferences_": {},
         "isActive_": true,
         "certificateId_": "",
-        "appName_": "hj",
+        "appName_": "motionShare",
         "appID_": "not.yet.specified",
         "appAccess_": {
           "mode": "legacy",
