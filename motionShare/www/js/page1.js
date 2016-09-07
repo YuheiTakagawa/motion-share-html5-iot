@@ -1,6 +1,6 @@
 
 
-var bluetoothFanc = {
+var bluetoothBasicFanc = {
   //初期化
   initialize: function() {
     //alert("a");
@@ -42,23 +42,26 @@ var bluetoothFanc = {
     var deviceId = e.target.dataset.deviceId;
 
     updateTag.changeButtonName(deviceName);
+    //deviceBeanは１スプリント目では使用しない
+    ////setDeviceInfo.setDeviceName(deviceName);
+    ////setDeviceInfo.setDeviceId(deviceId);
     bluetoothSerial.connect(deviceId, function(){
-      alert("success:"+deviceId);}, bluetoothFanc.onError);
+      alert("success:"+deviceId);}, bluetoothBasicFanc.onError);
     },
 
     disconnect: function(event) {
       bluetoothSerial.disconnect(
-        showPages.showMainPage, bluetoothFanc.onError);
+        showPages.showMainPage, bluetoothBasicFanc.onError);
       },
 
       searchDevice: function(){
         showPages.showSelectDevicePage();
         //デバイスを検索する
-        bluetoothSerial.list(updateTag.searchResult, bluetoothFanc.onError);
+        bluetoothSerial.list(updateTag.searchResult, bluetoothBasicFanc.onError);
       },
 
       receiveData: function(){
-        bluetoothSerial.subscribe("\n",bluetoothFanc.splitString,bluetoothFanc.onError);
+        bluetoothSerial.subscribe("\n",bluetoothBasicFanc.splitString,bluetoothBasicFanc.onError);
       },
 
       //受信した文字列を整数に変換する
@@ -75,48 +78,4 @@ var bluetoothFanc = {
       onError: function(reason) {
         alert("ERROR: " + reason);
       }
-    };
-
-
-
-    //page1.htmlの画面内の遷移
-    var showPages={
-      showMainPage: function() {
-        mainPage.style.display = "";
-        selectDevicePage.style.display = "none";
-      },
-
-      showSelectDevicePage: function() {
-        mainPage.style.display = "none";
-        selectDevicePage.style.display = "";
-      },
-    };
-
-
-    //HTML内のタグに関わる操作
-    var updateTag={
-      //検索したデバイスをドロップダウンに反映
-      searchResult: function(devices){
-        //listによる実装
-        //ドロップダウンを一度初期化し再度追加していく
-        deviceList.innerHTML = "";
-        devices.forEach(function(device) {
-          var listItem = document.createElement('li'),
-          html = '<b>' + device.name + '</b>';
-
-          listItem.innerHTML = html;
-          listItem.dataset.deviceName=device.name;
-          listItem.dataset.deviceId = device.id;
-
-          deviceList.appendChild(listItem);
-        });
-      },
-
-      //デバイス選択画面のタグ表示名を変更
-      changeButtonName:function(name){
-        //ドロップダウンのDevicesの表示名を変更
-        devices.innerHTML=name;
-        //専用デバイスボタンの表示名を変更
-        deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
-      },
     };
