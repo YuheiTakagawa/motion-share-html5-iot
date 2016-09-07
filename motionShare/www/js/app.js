@@ -27,7 +27,7 @@ var app = {
   },
   connect: function(e) {
     var onConnect = function() {
-      alert("success");
+      alert("success"+deviceName);
       // subscribe for incoming data
       bluetoothSerial.subscribe('\n', app.onData, app.onError);
     };
@@ -78,65 +78,71 @@ var app = {
 
     searchDevice: function(devices){
 
-  //listによる実装
-  var option;
-  // remove existing devices
-  deviceList.innerHTML = "";
+      //listによる実装
+      var option;
+      // remove existing devices
+      deviceList.innerHTML = "";
 
-  devices.forEach(function(device) {
-    //alert(device.id);
-    var listItem = document.createElement('li'),
-    html = '<b>' + device.name + '</b>';
+      devices.forEach(function(device) {
+        //alert(device.id);
+        var listItem = document.createElement('li'),
+        html = '<b>' + device.name + '</b>';
 
-    listItem.innerHTML = html;
-    listItem.dataset.deviceName=device.name;
-    listItem.dataset.deviceId = device.id;
+        listItem.innerHTML = html;
+        listItem.dataset.deviceName=device.name;
+        listItem.dataset.deviceId = device.id;
 
-    deviceList.appendChild(listItem);
-  });
+        deviceList.appendChild(listItem);
+      });
 
-  if (devices.length === 0) {
+      if (devices.length === 0) {
 
-    option = document.createElement('option');
-    option.innerHTML = "No Bluetooth Devices";
-    deviceList.appendChild(option);
+        option = document.createElement('option');
+        option.innerHTML = "No Bluetooth Devices";
+        deviceList.appendChild(option);
 
-  }
-},
-/*Bluetoothで受信した文字列のデータを整数型に分割する*/
-receiveData: function(){
-  bluetoothSerial.subscribe("\n",app.splitString,app.onError);
-},
-splitString: function(data){
-  var acc=[];
-  var gyr=[];
-  var strings=data.split(",");
-  for(var i=0;i<strings.length/2;i++){
-    acc[i]=Number(strings[i]);    //accX,accY,accZ
-    gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
-  }
-}
-};
+      }
+    },
 
-
-
-
-
-
-
-
+    onData: function(data) { // data received from Arduino
+      console.log(data);
+      resultDiv.innerHTML = resultDiv.innerHTML + "Received: " + data + "<br/>";
+      resultDiv.scrollTop = resultDiv.scrollHeight;
+    },
+    /*Bluetoothで受信した文字列のデータを整数型に分割する*/
+    receiveData: function(){
+      bluetoothSerial.subscribe("\n",app.splitString,app.onError);
+    },
+    splitString: function(data){
+      var acc=[];
+      var gyr=[];
+      var strings=data.split(",");
+      for(var i=0;i<strings.length/2;i++){
+        acc[i]=Number(strings[i]);    //accX,accY,accZ
+        gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
+      }
+    }
+  };
 
 
 
 
 
-/*
 
-var obj;//選択したデバイスのidを格納する
-var app = {
-initialize: function() {
-this.bindEvents();
-this.showMainPage();
+
+
+
+
+
+
+
+  /*
+
+  var obj;//選択したデバイスのidを格納する
+  var app = {
+  initialize: function() {
+  this.bindEvents();
+  this.showMainPage();
 },
 bindEvents: function() {
 var TOUCH_START = 'touchstart';
