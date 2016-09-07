@@ -4,6 +4,7 @@ var deviceName;
 var selectiongDevice=0;   //0:本体 1:専用デバイス センサ数値を扱う関数で利用
 var app = {
   initialize: function() {
+    alert("u");
     this.bindEvents();
     this.showMainPage();
   },

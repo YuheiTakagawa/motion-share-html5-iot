@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blank App Designer Cordova Web App Project Template</title>
+  <title>MotionShare</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  
+
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
   <style>
   @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
@@ -35,7 +35,7 @@
     <div id="message"></div>
     <div class="app">
 
-      <div class="buttonwrapper">
+      <div class="buttonWrapper">
         <ons-button id="deviceButton" ><p>専用デバイス<br>deviceName</p></ons-button>
         <!--ボタン，ラベル本体に対する処理は未実装-->
         <div id="mainPage">
@@ -66,7 +66,12 @@
 
 </ons-page>
 <script src="cordova.js" id="xdkJScordova_"></script>
-<script src="js/app.js"></script>
-<script>app.initialize();</script>
+<script src="js/updateLayout.js"></script>
+<script src="js/deviceBean.js"></script>
+<script src="js/showPages.js"></script>
+<script src="js/bluetoothBasicFanc.js"></script>
+
+<script>bluetoothBasicFanc.initialize();</script>
+
 </body>
 </html>

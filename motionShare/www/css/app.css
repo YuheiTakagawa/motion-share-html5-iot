@@ -44,23 +44,23 @@ body {
 }
 .app{
 }
-.buttonwrapper{
+.buttonWrapper{
   display:block;
   width:100%;
   height:100%;
 }
-.buttonwrapper ons-button{
+.buttonWrapper ons-button{
   width:70%;
   font-size:1.0em;
   margin-top: 20%;
   margin-left:15%;
   text-align: center;
 }
-.buttonwrapper p{
+.buttonWrapper p{
   line-height: 1.4em;
   text-align: center;
 }
-.buttonwrapper select{
+.buttonWrapper select{
   width:70%;
   padding:20px;
   font-size:1.0em;
