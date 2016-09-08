@@ -7,6 +7,7 @@
   $(function () {
     // DeviceMotion Event
     window.addEventListener("devicemotion", devicemotionHandler);
+    window.addEventListener("deviceorientation", deviceorientationHandler);
   });
 
 
@@ -38,4 +39,19 @@
       cnt = 0;
     }
   }
+
+  //角速度変化
+   function deviceorientationHandler(event) {
+    // X軸
+    var beta = event.beta;
+    // Y軸
+    var gamma = event.gamma;
+    // Z軸
+    var alpha = event.alpha;
+
+    document.getElementById('beta').innerHTML = beta;
+    document.getElementById('gamma').innerHTML = gamma;
+    document.getElementById('alpha').innerHTML = alpha;
+   }
+
 })();
