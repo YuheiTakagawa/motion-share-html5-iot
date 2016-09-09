@@ -1,20 +1,19 @@
 
-
-var bluetoothBasicFanc = {
+var bluetoothFanc = {
   //初期化
   initialize: function() {
-    //alert("a");
     this.bindEvents();
-    showPages.showMainPage();
   },
 
   //イベントの管理
   bindEvents: function() {
     var TOUCH_START = 'touchstart';
     document.addEventListener('deviceready', this.onDeviceReady, false);
-    deviceButton.addEventListener(TOUCH_START,this.searchDevice,false);
     deviceList.addEventListener(TOUCH_START, this.connect, false);
-    disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
+    //page1.htmlでonClickを利用するため，以下はコメントアウト
+    //deviceButton.addEventListener(TOUCH_START,this.searchDevice,false);
+    //smartButton.addEventListener(TOUCH_START,this.deviceSelect,false);
+    //disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
   },
 
   onDeviceReady: function() {
@@ -42,26 +41,28 @@ var bluetoothBasicFanc = {
     var deviceId = e.target.dataset.deviceId;
 
     updateTag.changeButtonName(deviceName);
-    //deviceBeanは１スプリント目では使用しない
-    ////setDeviceInfo.setDeviceName(deviceName);
-    ////setDeviceInfo.setDeviceId(deviceId);
     bluetoothSerial.connect(deviceId, function(){
-      alert("success:"+deviceId);}, bluetoothBasicFanc.onError);
+      alert("success:"+deviceId);}, bluetoothFanc.onError);
     },
 
     disconnect: function(event) {
       bluetoothSerial.disconnect(
-        showPages.showMainPage, bluetoothBasicFanc.onError);
+        showPages.showMainPage, bluetoothFanc.onError);
       },
 
       searchDevice: function(){
         showPages.showSelectDevicePage();
         //デバイスを検索する
-        bluetoothSerial.list(updateTag.searchResult, bluetoothBasicFanc.onError);
+        bluetoothSerial.list(updateTag.searchResult, bluetoothFanc.onError);
       },
 
+      deviceSelect: function(){
+
+      },
+
+
       receiveData: function(){
-        bluetoothSerial.subscribe("\n",bluetoothBasicFanc.splitString,bluetoothBasicFanc.onError);
+        bluetoothSerial.subscribe("\n",bluetoothFanc.splitString,bluetoothFanc.onError);
       },
 
       //受信した文字列を整数に変換する
@@ -78,4 +79,46 @@ var bluetoothBasicFanc = {
       onError: function(reason) {
         alert("ERROR: " + reason);
       }
+    };
+
+    //page1.htmlの画面内の遷移
+    var showPages={
+      showMainPage: function() {
+        mainPage.style.display = "";
+        selectDevicePage.style.display = "none";
+      },
+
+      showSelectDevicePage: function() {
+        mainPage.style.display = "none";
+        selectDevicePage.style.display = "";
+      },
+    };
+
+
+    //HTML内のタグに関わる操作
+    var updateTag={
+      //検索したデバイスをドロップダウンに反映
+      searchResult: function(devices){
+        //listによる実装
+        //ドロップダウンを一度初期化し再度追加していく
+        deviceList.innerHTML = "";
+        devices.forEach(function(device) {
+          var listItem = document.createElement('li'),
+          html = '<b>' + device.name + '</b>';
+
+          listItem.innerHTML = html;
+          listItem.dataset.deviceName=device.name;
+          listItem.dataset.deviceId = device.id;
+
+          deviceList.appendChild(listItem);
+        });
+      },
+
+      //デバイス選択画面のタグ表示名を変更
+      changeButtonName:function(name){
+        //ドロップダウンのDevicesの表示名を変更
+        devices.innerHTML=name;
+        //専用デバイスボタンの表示名を変更
+        deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
+      },
     };

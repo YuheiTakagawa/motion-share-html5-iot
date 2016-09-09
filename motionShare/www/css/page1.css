@@ -1,0 +1,74 @@
+
+.buttonwrapper{
+  display:block;
+}
+.buttonwrapper ons-button{
+  width:70%;
+  font-size:1.0em;
+  margin-top: 20%;
+  margin-left:15%;
+  text-align: center;
+}
+.buttonwrapper p{
+  line-height: 1.4em;
+  text-align: center;
+}
+.buttonwrapper select{
+  width:70%;
+  padding:20px;
+  font-size:1.0em;
+  padding-left:10%;
+  line-height:40%;
+}
+
+#deviceLists {
+  width: 70%;
+  height: 60px;
+  margin: 0 auto;
+  padding-left: 0em;
+}
+#deviceLists li {
+  display: block;
+  list-style-type: none;
+  height: 60px;
+  text-align: center;
+  color: #000;
+  font-size: 1.0em;
+  line-height: 60px;
+  background: #fff;
+  transition: 0.5s;
+}
+#deviceLists li ul{
+  position: relative;
+  padding-left: 0em;
+  top: 0;
+  left: 0;
+}
+#deviceLists li ul:before {/*å­«*/
+  position: absolute;
+  content: "";
+  top:-2em;
+  right: 1em;
+  border: 5px solid transparent;
+  border-top: 5px solid #000;
+}
+#deviceLists li ul li {
+  display: block;
+  width:100%;
+  list-style-type: none;
+  overflow: hidden;
+  height: 0;
+  transition: 0.2s;
+}
+#deviceLists li ul li:first-child:before {/*å­«*/
+  position: absolute;
+  content: "";
+  top:0;
+  left:0em;
+  right: 0em;
+  border-top: 1px solid #000;
+}
+#deviceLists li:hover > ul > li {
+  overflow: visible;
+  height: 60px;
+}

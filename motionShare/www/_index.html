@@ -11,7 +11,6 @@
   @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
   </style>
 
-  <script src="components/loader.js"></script>
   <script src="js/onsenui.min.js"></script>
   <script src="js/onsenui.js"></script>
   <script src="js/angular-onsenui.js"></script>
@@ -31,11 +30,12 @@
       </ons-toolbar>
     </div>
 
-
-    <div id="message"></div>
+    <div id="resultDiv">
+    </div>
     <div class="app">
 
-      <div class="buttonWrapper">
+      <div class="buttonwrapper">
+
         <ons-button id="deviceButton" ><p>専用デバイス<br>deviceName</p></ons-button>
         <!--ボタン，ラベル本体に対する処理は未実装-->
         <div id="mainPage">
@@ -52,6 +52,7 @@
       </select>
     </form>
   -->
+
   <ul id="deviceLists">
     <li><div id=devices>Devices</div>
       <ul id=deviceList>
@@ -59,23 +60,15 @@
       </ul></li>
     </ul>
   </div>
+  <div class="center">
+    <a href="index2.html">go index2</a>
+  </div>
 
-</div>
 
-<div class="center">
-  <a href="index2.html">go index2</a>
-</div>
-
-</div>
 
 </ons-page>
 <script src="cordova.js" id="xdkJScordova_"></script>
-<script src="js/updateLayout.js"></script>
-<script src="js/deviceBean.js"></script>
-<script src="js/showPages.js"></script>
-<script src="js/bluetoothBasicFanc.js"></script>
-
-<script>bluetoothBasicFanc.initialize();</script>
-
+<script src="js/app.js"></script>
+<script>app.initialize();</script>
 </body>
 </html>
