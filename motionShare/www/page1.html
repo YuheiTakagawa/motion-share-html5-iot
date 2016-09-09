@@ -1,5 +1,5 @@
 <ons-navigator>
-  <ons-page>
+  <ons-page id="page1">
     <ons-toolbar>
       <div class="left">
         <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
@@ -8,24 +8,28 @@
     </ons-toolbar>
 
     <!-- ここから記述！！ jsは index.html にパスを記述することで、読み込まれる-->
+    <div class="buttonwrapper">
+      <ons-button id="deviceButton" onClick="bluetoothFanc.searchDevice();bluetoothFanc.bindEvents()">
+        <p>専用デバイス<br>deviceName</p></ons-button>
+        <span id="mainPage">
+          <ons-button id="smartButton" onClick="bluetoothFanc.deviceSelect();bluetoothFanc.bindEvents()">
+            本体</ons-button>
+          </span>
 
-    <ons-button id="deviceButton" ><p>専用デバイス<br>deviceName</p></ons-button>
-    <div id="mainPage">
-      <ons-button id="smartButton" >本体</ons-button>
-    </div>
+          <div id="selectDevicePage" style="display:none;">
+            <ul id="deviceLists">
+              <li><div id=devices>Devices</div>
+                <ul id=deviceList>
+                  <li>test1</li> <!--エミュレータ上での表示を確認するため追加-->
+                </ul></li>
+              </ul>
+            </div>
+          </div>
+          <div class="buttonwrapper">
+            <ons-button id="disconnectButton" onClick="bluetoothFanc.disconnect();bluetoothFanc.bindEvents()">
+              解除</ons-button>
+            </div>
+            <!-- ここまで　--->
 
-    <div id="selectDevicePage">
-      <ul id="deviceLists">
-        <li><div id=devices>Devices</div>
-          <ul id=deviceList>
-            <li>test1</li> <!--エミュレータ上での表示を確認するため追加-->
-          </ul></li>
-        </ul>
-      </div>
-
-
-
-      <!-- ここまで　--->
-
-    </ons-page>
-  </ons-navigator>
+          </ons-page>
+        </ons-navigator>
