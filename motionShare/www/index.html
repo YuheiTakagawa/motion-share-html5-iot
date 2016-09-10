@@ -7,7 +7,7 @@
 
 
   <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/font_awesome/css/font-awesome.min.css">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection"/>
 
@@ -46,26 +46,26 @@
 
 </head>
 <body>
-  <nav class="cyan">
-    <a href="#" class="brand-logo center">MotionShare</a>
-    <ul id="slide-out" class="side-nav">
-      <li><div class="userView">
-        <img class="background" src="img/.jpg">
-        <a href="#!user"><img class="circle" src="img/.jpg"></a>
-        <a href="#!name"><span class="name">watanabe takagawa</span></a>
-        <a href="#!email"><span class="email">mirai@fun.ac.jp</span></a>
-      </div></li>
-      <li><div class="divider"></div></li>
-      <li><a onClick="PageControll(0)" href="#">home</a></li>
-      <li><a onClick="PageControll(1)" href="#">ペアリング</a></li>
-      <li><a onClick="PageControll(2)" href="#">握手</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><img src="img/icon/menu.png"</a>
-  </nav>
+    <nav class="cyan">
+      <a href="#" class="brand-logo center">MotionShare</a>
+      <ul id="slide-out" class="side-nav">
+        <li><div class="userView">
+          <img class="background" src="img/.jpg">
+          <a href="#!user"><img class="circle" src="img/.jpg"></a>
+          <a href="#!name"><span class="name">watanabe takagawa</span></a>
+          <a href="#!email"><span class="email">mirai@fun.ac.jp</span></a>
+        </div></li>
+        <li><div class="divider"></div></li>
+        <li><a onClick="PageControll(0)" href="#">home</a></li>
+        <li><a onClick="PageControll(1)" href="#">ペアリング</a></li>
+        <li><a onClick="PageControll(2)" href="#">握手</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-bars"></i></a>
+    </nav>
 
-
-  <div id="view"></div>
-
+  <div class="container" style="margin-top:20px;">
+    <div id="view"></div>
+  </div><!-- .container -->
 
 
   <script>
