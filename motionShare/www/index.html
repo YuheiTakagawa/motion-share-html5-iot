@@ -14,7 +14,7 @@
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
   <script type="text/javascript" src="lib/materialize/js/materialize.js"></script>
-  
+
 
   <script src="js/handshake.js"></script>
   <link rel="stylesheet" href="css/page2.css">
@@ -27,14 +27,17 @@
         case 0:
         $("#view").innerHTML = "<div id='home'></div>";
         $("#view").load("home.html");
+        $(".brand-logo").html("MotionShare");
         break;
         case 1:
         $("#view").innerHTML = "<div id='page1'></div>";
         $("#view").load("page1.html");
+        $(".brand-logo").html("デバイス");
         break;
         case 2:
         $("#view").innerHTML = "<div id='page2'></div>";
         $("#view").load("page2.html");
+        $(".brand-logo").html("握手");
         break;
       }
     });
@@ -44,6 +47,7 @@
 </head>
 <body>
   <nav class="cyan">
+    <a href="#" class="brand-logo center">MotionShare</a>
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
         <img class="background" src="img/.jpg">
