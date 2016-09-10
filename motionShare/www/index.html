@@ -20,7 +20,10 @@
   <link rel="stylesheet" href="css/page2.css">
 
   <script>
-  $(function(){
+
+  $(function() {
+    $("#view").load("home.html");
+  });
     //パーツ読み込み
     function PageControll(PageNum){
       $(function() {
@@ -43,12 +46,6 @@
         }
       });
     }
-
-    //ページを読み込んだらhome.htmlを表示する
-    PageControll(0);
-
-
-  });
   </script>
 
 </head>
