@@ -20,48 +20,55 @@
   <link rel="stylesheet" href="css/page2.css">
 
   <script>
-  //パーツ読み込み
-  function PageControll(PageNum){
-    $(function() {
-      switch(PageNum){
-        case 0:
-        $("#view").innerHTML = "<div id='home'></div>";
-        $("#view").load("home.html");
-        $(".brand-logo").html("MotionShare");
-        break;
-        case 1:
-        $("#view").innerHTML = "<div id='page1'></div>";
-        $("#view").load("page1.html");
-        $(".brand-logo").html("デバイス");
-        break;
-        case 2:
-        $("#view").innerHTML = "<div id='page2'></div>";
-        $("#view").load("page2.html");
-        $(".brand-logo").html("握手");
-        break;
-      }
-    });
-  }
+  $(function(){
+    //パーツ読み込み
+    function PageControll(PageNum){
+      $(function() {
+        switch(PageNum){
+          case 0:
+          $("#view").innerHTML = "<div id='home'></div>";
+          $("#view").load("home.html");
+          $(".brand-logo").html("MotionShare");
+          break;
+          case 1:
+          $("#view").innerHTML = "<div id='page1'></div>";
+          $("#view").load("page1.html");
+          $(".brand-logo").html("デバイス");
+          break;
+          case 2:
+          $("#view").innerHTML = "<div id='page2'></div>";
+          $("#view").load("page2.html");
+          $(".brand-logo").html("握手");
+          break;
+        }
+      });
+    }
+
+    //ページを読み込んだらhome.htmlを表示する
+    PageControll(0);
+
+
+  });
   </script>
 
 </head>
-<body class="blue-grey darken-4">
-    <nav class="cyan">
-      <a href="#" class="brand-logo center">MotionShare</a>
-      <ul id="slide-out" class="side-nav">
-        <li><div class="userView">
-          <img class="background" src="img/.jpg">
-          <a href="#!user"><img class="circle" src="img/.jpg"></a>
-          <a href="#!name"><span class="name">watanabe takagawa</span></a>
-          <a href="#!email"><span class="email">mirai@fun.ac.jp</span></a>
-        </div></li>
-        <li><div class="divider"></div></li>
-        <li><a onClick="PageControll(0)" href="#">home</a></li>
-        <li><a onClick="PageControll(1)" href="#">ペアリング</a></li>
-        <li><a onClick="PageControll(2)" href="#">握手</a></li>
-      </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-bars"></i></a>
-    </nav>
+<body class="blue-grey darken-4 white-text">
+  <nav class="cyan">
+    <a href="#" class="brand-logo center">MotionShare</a>
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+        <img class="background" src="img/.jpg">
+        <a href="#!user"><img class="circle" src="img/.jpg"></a>
+        <a href="#!name"><span class="name">watanabe takagawa</span></a>
+        <a href="#!email"><span class="email">mirai@fun.ac.jp</span></a>
+      </div></li>
+      <li><div class="divider"></div></li>
+      <li><a onClick="PageControll(0)" href="#">home</a></li>
+      <li><a onClick="PageControll(1)" href="#">ペアリング</a></li>
+      <li><a onClick="PageControll(2)" href="#">握手</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-bars"></i></a>
+  </nav>
 
   <div class="container" style="margin-top:20px;">
     <div id="view"></div>
