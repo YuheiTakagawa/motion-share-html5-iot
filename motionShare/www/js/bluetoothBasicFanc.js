@@ -2,41 +2,84 @@
 
 
   $(function(){
-
+    showMainPage();
     $("#deviceButton").click(searchDevice);
+    $("#DeviceSelect").click(connect);
+    $("#disconnectButton").click(disconnect);
   }
 );
+
+
 
 function searchDevice(){
   showSelectDevicePage();
   //デバイスを検索する
   bluetoothSerial.list(searchResult, onError);
 }
-function showSelectDevicePage(){
-  mainPage.style.display = "none";
-  selectDevicePage.style.display = "";
+
+
+
+function connect(e){
+  //接続したデバイスの情報を取得
+  var deviceName = e.target.dataset.deviceName;
+  var deviceId = e.target.dataset.deviceId;
+
+  changeButtonName(deviceName);
+  bluetoothSerial.connect(deviceId, function(){
+    alert("success:"+deviceId);}, bluetoothFanc.onError);
+  }
+
+
+
+  function disconnect(){
+    bluetoothSerial.disconnect(
+    showPages.showMainPage, bluetoothFanc.onError);
+  }
+
+
+function showMainPage(){
+  mainPage.style.display = "";
+  selectDevicePage.style.display = "none";
 }
 
-function searchResult(devices){
-  //listによる実装
-  //ドロップダウンを一度初期化し再度追加していく
-  DeviceSelect.innerHTML = "";
-  devices.forEach(function(device) {
-    var listItem = document.createElement('li'),
-    html = '<b>' + device.name + '</b>';
 
-    listItem.innerHTML = html;
-    listItem.dataset.deviceName=device.name;
-    listItem.dataset.deviceId = device.id;
+  function showSelectDevicePage(){
+    mainPage.style.display = "none";
+    selectDevicePage.style.display = "";
+  }
 
-    DeviceSelect.appendChild(listItem);
-  });
-}
 
-function onError(reason){
 
-  alert("ERROR: " + reason);
-}
+  function searchResult(devices){
+    //listによる実装
+    //ドロップダウンを一度初期化し再度追加していく
+    DeviceSelect.innerHTML = "";
+    devices.forEach(function(device) {
+      var listItem = document.createElement('li'),
+      html = '<a>' + device.name + '</a>';
+
+      listItem.innerHTML = html;
+      listItem.dataset.deviceName=device.name;
+      listItem.dataset.deviceId = device.id;
+
+      DeviceSelect.appendChild(listItem);
+    });
+  }
+
+
+
+  function changeButtonName(name){
+    //ドロップダウンのDevicesの表示名を変更
+    devices.innerHTML=name;
+    //専用デバイスボタンの表示名を変更
+    deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
+  }
+
+
+
+  function onError(reason){
+    alert("ERROR: " + reason);
+  }
 
 })();
 
