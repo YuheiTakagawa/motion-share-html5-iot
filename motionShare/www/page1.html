@@ -1,19 +1,31 @@
-<ons-navigator>
-<ons-page>
-     <ons-toolbar>
-         <div class="left">
-             <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
-         </div>
-         <div class="center">ペアリング</div>
-     </ons-toolbar>
+<!-- page1.html -->
+<div id="DeviceSelectContent" class="center">
 
-     <!-- ここから記述！！ jsは index.html にパスを記述することで、読み込まれる-->
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn-large cyan' href='#' data-activates='DeviceSelect'>
+    <i class="fa fa-fw fa-bluetooth left"></i>Drop Me!
+  </a>
+  <!-- Dropdown Structure -->
+  <ul id='DeviceSelect' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+  </ul>
 
 
 
+</div><!-- #DeviceSelectContent -->
 
-
-     <!-- ここまで　--->
-
-</ons-page>
-</ons-navigator>
+<script>
+$('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+</script>
