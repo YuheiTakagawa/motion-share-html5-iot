@@ -1,31 +1,40 @@
 <!-- page1.html -->
+  <script src="js/bluetoothBasicFanc.js"></script>
 <div id="DeviceSelectContent" class="center">
 
-  <!-- Dropdown Trigger -->
-  <a class='dropdown-button btn-large cyan' href='#' data-activates='DeviceSelect'>
-    <i class="fa fa-fw fa-bluetooth left"></i>Drop Me!
-  </a>
-  <!-- Dropdown Structure -->
-  <ul id='DeviceSelect' class='dropdown-content'>
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
+
+  <button id="deviceButton"><p>専用デバイス<br>deviceName</p></button>
+
+  <div id="mainPage">
+    <button id="smartButton" >本体</button>
+  </div>
+
+  <div id="selectDevicePage">
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button btn-large cyan' href='#' data-activates='DeviceSelect'>
+      <i class="fa fa-fw fa-bluetooth left"></i>Drop Me!
+    </a>
+    <!-- Dropdown Structure -->
+    <ul id='DeviceSelect' class='dropdown-content'>
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
+  </div>
 
 
-
-</div><!-- #DeviceSelectContent -->
-
+</div>
+<!-- #DeviceSelectContent -->
 <script>
 $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrain_width: false, // Does not change width of dropdown to that of the activator
-      hover: true, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: false, // Displays dropdown below the button
-      alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
-  );
+  inDuration: 300,
+  outDuration: 225,
+  constrain_width: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  belowOrigin: false, // Displays dropdown below the button
+  alignment: 'left' // Displays dropdown with edge aligned to the left of button
+}
+);
 </script>
