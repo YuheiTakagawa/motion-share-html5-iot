@@ -6,3 +6,11 @@ display: block;
 line-height: 22px;
 padding: 14px 16px;
 }
+
+.mt{
+  margin-top: 20px;
+}
+
+.btn-large{
+  width:100%;
+}
