@@ -1,9 +1,13 @@
 <!-- page1.html -->
+<script src="js/bluetoothBasicFanc.js"></script>
 <div id="DeviceSelectContent" class="center">
 
+
+
   <!-- Dropdown Trigger -->
-  <a class='dropdown-button btn-large cyan' href='#' data-activates='DeviceSelect'>
-    <i class="fa fa-fw fa-bluetooth left"></i>Drop Me!
+  <div>
+  <a class='dropdown-button btn-large cyan' href='#' id="deviceButton" data-activates='DeviceSelect' >
+    <i class="fa fa-fw fa-bluetooth left"></i>専用デバイス!
   </a>
   <!-- Dropdown Structure -->
   <ul id='DeviceSelect' class='dropdown-content'>
@@ -12,20 +16,26 @@
     <li class="divider"></li>
     <li><a href="#!">three</a></li>
   </ul>
+</div>
 
-
-
-</div><!-- #DeviceSelectContent -->
-
+<div>
+  <a class="btn-large cyan mt" id="smartButton"><i class="fa fa-fw fa-tablet left"></i>本体</a>
+</div>
+<div>
+  <a class='btn-large red darken-3 mt' id="disconnectButton"><i class="fa fa-fw fa-stop-circle-o left"></i>ペアリング解除</a>
+</div>
+</div>
+<!-- #DeviceSelectContent -->
 <script>
 $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrain_width: false, // Does not change width of dropdown to that of the activator
-      hover: true, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: false, // Displays dropdown below the button
-      alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
-  );
+  inDuration: 300,
+  outDuration: 225,
+  constrain_width: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  belowOrigin: false, // Displays dropdown below the button
+  alignment: 'left' // Displays dropdown with edge aligned to the left of button
+}
+);
 </script>
+<script>bluetoothFanc.initialize();</script>
