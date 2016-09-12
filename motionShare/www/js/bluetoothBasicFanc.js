@@ -23,9 +23,9 @@ function connect(e){
   //alert($(e).data('deviceName'));
 //接続したデバイスの情報を取得
 var deviceName = $(e).data('deviceName');
-//var deviceId = $(e).data.('deviceId');
+var deviceId = $(e).data('deviceId');
 
-//alert(deviceName);
+//alert(deviceId);
 changeButtonName(deviceName);
 bluetoothSerial.connect(deviceId, function(){
   alert("success:"+deviceId);}
