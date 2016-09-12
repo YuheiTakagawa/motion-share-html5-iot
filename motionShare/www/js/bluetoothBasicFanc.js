@@ -4,7 +4,7 @@
   $(function(){
     showMainPage();
     $("#deviceButton").click(searchDevice);
-    $("#DeviceSelect").click(connect);
+    $("#DeviceSelect").on('click','li',function(){connect(this);});
     $("#disconnectButton").click(disconnect);
   }
 );
@@ -20,27 +20,30 @@ function searchDevice(){
 
 
 function connect(e){
-  //接続したデバイスの情報を取得
-  var deviceName = e.target.dataset.deviceName;
-  var deviceId = e.target.dataset.deviceId;
+  //alert($(e).data('deviceName'));
+//接続したデバイスの情報を取得
+var deviceName = $(e).data('deviceName');
+//var deviceId = $(e).data.('deviceId');
 
-  changeButtonName(deviceName);
-  bluetoothSerial.connect(deviceId, function(){
-    alert("success:"+deviceId);}, bluetoothFanc.onError);
-  }
+//alert(deviceName);
+changeButtonName(deviceName);
+bluetoothSerial.connect(deviceId, function(){
+  alert("success:"+deviceId);}
+  , bluetoothFanc.onError);
+}
 
 
 
-  function disconnect(){
-    bluetoothSerial.disconnect(
+function disconnect(){
+  bluetoothSerial.disconnect(
     showPages.showMainPage, bluetoothFanc.onError);
   }
 
 
-function showMainPage(){
-  mainPage.style.display = "";
-  selectDevicePage.style.display = "none";
-}
+  function showMainPage(){
+    mainPage.style.display = "";
+    selectDevicePage.style.display = "none";
+  }
 
 
   function showSelectDevicePage(){
@@ -50,19 +53,16 @@ function showMainPage(){
 
 
 
-  function searchResult(devices){
+ function searchResult(devices){
     //listによる実装
     //ドロップダウンを一度初期化し再度追加していく
     DeviceSelect.innerHTML = "";
     devices.forEach(function(device) {
-      var listItem = document.createElement('li'),
-      html = '<a>' + device.name + '</a>';
-
-      listItem.innerHTML = html;
-      listItem.dataset.deviceName=device.name;
-      listItem.dataset.deviceId = device.id;
-
-      DeviceSelect.appendChild(listItem);
+      var listItem = $('<li>').data('deviceName',device.name);
+        $(listItem).data('deviceId',device.id);
+      var html = $('<a>').text(device.name);
+      listItem.append(html);
+      $('#DeviceSelect').append(listItem);
     });
   }
 
@@ -70,7 +70,7 @@ function showMainPage(){
 
   function changeButtonName(name){
     //ドロップダウンのDevicesの表示名を変更
-    devices.innerHTML=name;
+    //devices.innerHTML=name;
     //専用デバイスボタンの表示名を変更
     deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
   }
