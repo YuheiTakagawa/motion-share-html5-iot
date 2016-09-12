@@ -1,10 +1,10 @@
-(function(){
+/*(function(){
 
 
   $(function(){
     showMainPage();
     $("#deviceButton").click(searchDevice);
-    $("#DeviceSelect").on('click','li',function(){connect(this);});
+    $("#DeviceSelect").on('click','li',connect);
     $("#disconnectButton").click(disconnect);
   }
 );
@@ -22,11 +22,11 @@ function searchDevice(){
 function connect(e){
   //alert($(e).data('deviceName'));
 //接続したデバイスの情報を取得
-var deviceName = $(e).data('deviceName');
-var deviceId = $(e).data('deviceId');
+var deviceName = e.target.dataset.deviceName;
+var deviceId = e.target.dataset.deviceId;
 
-//alert(deviceId);
-changeButtonName(deviceName);
+//changeButtonName(deviceName);
+alert(deviceId);
 bluetoothSerial.connect(deviceId, function(){
   alert("success:"+deviceId);}
   , bluetoothFanc.onError);
@@ -58,11 +58,14 @@ function disconnect(){
     //ドロップダウンを一度初期化し再度追加していく
     DeviceSelect.innerHTML = "";
     devices.forEach(function(device) {
-      var listItem = $('<li>').data('deviceName',device.name);
-        $(listItem).data('deviceId',device.id);
-      var html = $('<a>').text(device.name);
-      listItem.append(html);
-      $('#DeviceSelect').append(listItem);
+    var listItem = document.createElement('li'),
+    html = '<b>' + device.name + '</b>';
+
+    listItem.innerHTML = html;
+    listItem.dataset.deviceName=device.name;
+    listItem.dataset.deviceId = device.id;
+
+    DeviceSelect.appendChild(listItem);
     });
   }
 
@@ -81,18 +84,18 @@ function disconnect(){
     alert("ERROR: " + reason);
   }
 
-})();
+})();*/
 
 
 
-/*
+
 
 var bluetoothFanc = {
 //初期化
 initialize: function() {
 //alert("a");
 this.bindEvents();
-showPages.showMainPage();
+//showPages.showMainPage();
 },
 
 //イベントの管理
@@ -100,7 +103,7 @@ bindEvents: function() {
 var TOUCH_START = 'touchstart';
 document.addEventListener('deviceready', this.onDeviceReady, false);
 deviceButton.addEventListener(TOUCH_START,this.searchDevice,false);
-deviceList.addEventListener(TOUCH_START, this.connect, false);
+DeviceSelect.addEventListener(TOUCH_START, this.connect, false);
 disconnectButton.addEventListener(TOUCH_START, this.disconnect, false);
 },
 
@@ -118,7 +121,7 @@ bluetoothSerial.connect(deviceId,function(){
 alert("success:"+localStorage.name);
 //this.receiveData();
 },this.onError);
-updateTag.changeButtonName();
+//updateTag.changeButtonName();
 }
 },
 
@@ -128,18 +131,18 @@ connect: function(e) {
 var deviceName = e.target.dataset.deviceName;
 var deviceId = e.target.dataset.deviceId;
 
-updateTag.changeButtonName(deviceName);
+//updateTag.changeButtonName(deviceName);
 bluetoothSerial.connect(deviceId, function(){
 alert("success:"+deviceId);}, bluetoothFanc.onError);
 },
 
 disconnect: function(event) {
 bluetoothSerial.disconnect(
-showPages.showMainPage, bluetoothFanc.onError);
+function(){alert("ペアリング解除成功")}, bluetoothFanc.onError);
 },
 
 searchDevice: function(){
-showPages.showSelectDevicePage();
+//showPages.showSelectDevicePage();
 //デバイスを検索する
 bluetoothSerial.list(updateTag.searchResult, bluetoothFanc.onError);
 },
@@ -186,16 +189,16 @@ var updateTag={
 searchResult: function(devices){
 //listによる実装
 //ドロップダウンを一度初期化し再度追加していく
-deviceList.innerHTML = "";
+DeviceSelect.innerHTML = "";
 devices.forEach(function(device) {
 var listItem = document.createElement('li'),
-html = '<b>' + device.name + '</b>';
+html =  device.name;
 
 listItem.innerHTML = html;
 listItem.dataset.deviceName=device.name;
 listItem.dataset.deviceId = device.id;
 
-deviceList.appendChild(listItem);
+DeviceSelect.appendChild(listItem);
 });
 },
 
@@ -206,4 +209,4 @@ devices.innerHTML=name;
 //専用デバイスボタンの表示名を変更
 deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
 },
-};*/
+};
