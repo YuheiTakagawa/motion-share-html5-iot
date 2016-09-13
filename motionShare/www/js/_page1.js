@@ -24,12 +24,15 @@ var bluetoothFanc = {
 
   //起動時に自動ペアリングする
   autoConnect: function(){
-    var deviceId=getDeviceInfo.getDeviceId();
+    var deviceId=deviceInfo.getDeviceId();
+    var deviceName=deviceInfo.getDeviceName();
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
-        alert("success:"+localStorage.name);
+        alert("success:"+deviceName);
         //this.receiveData();
       },this.onError);
+    }else{
+      alert("本体を設定しています。")
     }
   },
 
@@ -40,8 +43,12 @@ var bluetoothFanc = {
     var deviceName = e.target.dataset.deviceName;
     var deviceId = e.target.dataset.deviceId;
 
+    deviceInfo.setDeviceId(deviceId);
+    deviceInfo.setDeviceName(deviceName);
+
     bluetoothSerial.connect(deviceId, function(){
-      alert("success:"+deviceId);}, bluetoothFanc.onError);
+      alert("success:"+deviceId);
+    }, bluetoothFanc.onError);
     },
 
 
@@ -87,7 +94,8 @@ var bluetoothFanc = {
         var deviceName="";
         var deviceId="";
         bluetoothFanc.disconnect();
-
+        deviceInfo.setDeviceId("");
+        deviceInfo.setDeviceName("");
       }
     };
 
