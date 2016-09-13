@@ -1,49 +1,33 @@
-(function () {
-  var map;
+//ユーザーの現在の位置情報を取得
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
-  $(function () {
-    // 現在位置の取得
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-  });
+/***** ユーザーの現在の位置情報を取得 *****/
+function successCallback(position) {
+  var gl_text = "緯度：" + position.coords.latitude + "<br>";
+    gl_text += "経度：" + position.coords.longitude + "<br>";
+    gl_text += "高度：" + position.coords.altitude + "<br>";
+    gl_text += "緯度・経度の誤差：" + position.coords.accuracy + "<br>";
+    gl_text += "高度の誤差：" + position.coords.altitudeAccuracy + "<br>";
+    gl_text += "方角：" + position.coords.heading + "<br>";
+    gl_text += "速度：" + position.coords.speed + "<br>";
+  document.getElementById("show_result").innerHTML = gl_text;
+}
 
-  function geoSuccess(position) {
-    // 緯度
-    var lat = position.coords.latitude;
-    // 軽度
-    var lng = position.coords.longitude;
-    // 緯度経度の誤差
-    var accuracy = Math.floor(position.coords.accuracy);
-    $("#accuracy").html("緯度経度の誤差 : " + accuracy + "m");
-
-    setMap(lat, lng);
+/***** 位置情報が取得できない場合 *****/
+function errorCallback(error) {
+  var err_msg = "";
+  switch(error.code)
+  {
+    case 1:
+      err_msg = "位置情報の利用が許可されていません";
+      break;
+    case 2:
+      err_msg = "デバイスの位置が判定できません";
+      break;
+    case 3:
+      err_msg = "タイムアウトしました";
+      break;
   }
-
-  function geoError() {
-    alert("Geolocation Error")
-  }
-
-  function setMap(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    var mapOptions = {
-      zoom: 18,
-      scaleControl: true,
-      streetViewControl: false,
-      panControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      },
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      },
-      center: latlng
-    };
-
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    var marker = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      position: latlng
-    });
-  }
-})();
+  document.getElementById("show_result").innerHTML = err_msg;
+  //デバッグ用→　document.getElementById("show_result").innerHTML = error.message;
+}
