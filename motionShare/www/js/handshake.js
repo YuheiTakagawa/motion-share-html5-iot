@@ -2,6 +2,7 @@
 
   var cnt =0;
   var flag =5;
+  var handshakeBool = false;
 
 
   $(function () {
@@ -31,12 +32,17 @@
     document.getElementById('count').innerHTML = cnt;
 
     var l =27;
-    if(x > l || x < -l) cnt++;
+    if(x > l || x < -l){
+      if(handshakeBool == true){
+      cnt++;
+      }
+    }
 
 
     if(cnt > flag){
       alert('握手');
       cnt = 0;
+      handshakeBool = false;
     }
   }
 
@@ -52,6 +58,13 @@
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
     document.getElementById('alpha').innerHTML = alpha;
-   }
 
+
+        if((gamma >= -90) && (gamma <= -70)){
+          handshakeBool = true;
+        }else{
+          handshakeBool = false;
+        }
+
+   }
 })();

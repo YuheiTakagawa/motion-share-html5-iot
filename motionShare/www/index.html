@@ -5,37 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
 
-  <!-- 全てのページ共通 js css -->
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
 
-  <script src="lib/jquery/jquery-1.11.1.min.js"></script>
-  <script src="lib/jquery/jquery.transit.min.js"></script>
 
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components-dark-theme.css">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- 全てのページ共通 ここまで-->
+  <!--Import Google Icon Font-->
+  <link rel="stylesheet" href="css/font_awesome/css/font-awesome.min.css">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection" />
 
-  <!--page1.html js css-->
+  <!--Import .css-->
+  <link type="text/css" rel="stylesheet" href="css/index.css" />
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="lib/materialize/js/materialize.js"></script>
+
+
+
   <script src="cordova.js" id="xdkJScordova_"></script>
-  <script src="js/page1.js"></script>
-  <link rel="stylesheet" href="css/page1.css">
 
-  <!--page2 js css-->
   <script src="js/handshake.js"></script>
+  <link rel="stylesheet" href="css/page1.css">
 
   <link rel="stylesheet" href="css/page2.css">
 
+  <link rel="stylesheet" href="css/side/style.css"> <!-- Resource style -->
+
 
   <script>
-  ons.bootstrap()
+
+  $(function() {
+    $("#view").load("home.html");
+  });
+  //パーツ読み込み
+  function PageControll(PageNum){
+    $(function() {
+      switch(PageNum){
+        case 0:
+        $("#view").innerHTML = "<div id='home'></div>";
+        $("#view").load("home.html");
+        $(".brand-logo").html("MotionShare");
+        break;
+        case 1:
+        $("#view").innerHTML = "<div id='page1'></div>";
+        $("#view").load("page1.html");
+        $(".brand-logo").html("デバイス");
+        break;
+        case 2:
+        $("#view").innerHTML = "<div id='page2'></div>";
+        $("#view").load("page2.html");
+        $(".brand-logo").html("握手");
+        break;
+      }
+    });
+  }
   </script>
 
 </head>
-<body>
-  <ons-sliding-menu var="app.slidingMenu" menu-page="menu.html" main-page="home.html" side="left" type="overlay" max-slide-distance="200px">
-  </ons-sliding-menu>
+<body class="blue-grey darken-4 white-text">
+
+  <nav class="cyan">
+    <a href="#" class="brand-logo center">MotionShare</a>
+    <ul id="slide-out" class="side-nav blue-grey darken-3">
+      <li><div class="userView">
+        <img class="background" src="img/.jpg">
+        <a href="#!user"><img class="circle" src="img/.jpg"></a>
+        <a href="#!name"><span class="name">watanabe takagawa</span></a>
+        <a href="#!email"><span class="email">mirai@fun.ac.jp</span></a>
+      </div></li>
+      <li><div class="divider"></div></li>
+      <li><a onClick="PageControll(0)" href="#">home</a></li>
+      <li><a onClick="PageControll(1)" href="#">デバイス</a></li>
+      <li><a onClick="PageControll(2)" href="#">握手</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-bars" width="50%"></i></a>
+  </nav>
+
+  <div class="container" style="margin-top:20px;">
+    <div id="view"></div>
+  </div>
+
+  <!--
+  <nav class="cd-side-navigation cyan">
+  <ul>
+  <li><a onClick="PageControll(0)" href="#"><i class="fa fa-home"></i></a></li>
+  <li><a onClick="PageControll(1)" href="#"><i class="fa fa-tablet"></i></a></li>
+  <li><a onClick="PageControll(2)" href="#"><i class="fa fa-hand-paper-o"></i></a></li>
+  <li><a onClick="PageControll(2)" href="#"><i class="fa fa-hand-paper-o"></i></a></li>
+  <li><a onClick="PageControll(2)" href="#"><i class="fa fa-hand-paper-o"></i></a></li>
+  <li><a onClick="PageControll(2)" href="#"><i class="fa fa-hand-paper-o"></i></a></li>
+</ul>
+</nav>
+
+
+<div class="container cd-main" style="margin-top:20px;">
+<section class="cd-section index visible">
+<div class="cd-content" id="index-content">
+<div id="view"></div>
+</div>
+</section>
+</div>
+
+-->
+
+<script>
+$('.button-collapse').sideNav({
+  menuWidth: 210, // Default is 240
+  closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+}
+);
+</script>
+
 </body>
 </html>

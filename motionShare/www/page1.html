@@ -1,35 +1,36 @@
-<ons-navigator>
-  <ons-page id="page1">
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">デバイス</div>
-    </ons-toolbar>
+<!-- page1.html -->
+<script src="js/bluetoothBasicFanc.js"></script>
+<div id="DeviceSelectContent" class="center">
+  <!-- Dropdown Trigger -->
+  <div>
+    <a class='dropdown-button btn-large deviceBtn disabled' href='#' id="deviceButton" data-activates='DeviceSelect' >
+      <i class="fa fa-fw fa-bluetooth left"></i>専用デバイス
+    </a>
+    <!-- Dropdown Structure -->
+    <ul id='DeviceSelect' class='dropdown-content'>
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
+  </div>
 
-    <!-- ここから記述！！ jsは index.html にパスを記述することで、読み込まれる-->
-    <div class="buttonwrapper">
-      <ons-button id="deviceButton" onClick="bluetoothFanc.searchDevice();bluetoothFanc.bindEvents()">
-        <p>専用デバイス<br>deviceName</p></ons-button>
-        <span id="mainPage">
-          <ons-button id="smartButton" onClick="bluetoothFanc.deviceSelect();bluetoothFanc.bindEvents()">
-            本体</ons-button>
-          </span>
+  <a class="btn-large deviceBtn mt disabled" id="smartButton"><i class="fa fa-fw fa-tablet left"></i>本体</a>
+  <a class='btn-large red darken-3 mt' id="disconnectButton"><i class="fa fa-fw fa-stop-circle-o left"></i>ペアリング解除</a>
+</div><!-- / #DeviceSelectContent -->
 
-          <div id="selectDevicePage" style="display:none;">
-            <ul id="deviceLists">
-              <li><div id=devices>Devices</div>
-                <ul id=deviceList>
-                  <li>test1</li> <!--エミュレータ上での表示を確認するため追加-->
-                </ul></li>
-              </ul>
-            </div>
-          </div>
-          <div class="buttonwrapper">
-            <ons-button id="disconnectButton" onClick="bluetoothFanc.disconnect();bluetoothFanc.bindEvents()">
-              解除</ons-button>
-            </div>
-            <!-- ここまで　--->
 
-          </ons-page>
-        </ons-navigator>
+
+<script>
+$('.dropdown-button').dropdown({
+  inDuration: 300,
+  outDuration: 225,
+  constrain_width: false, // Does not change width of dropdown to that of the activator
+  hover: true, // Activate on hover
+  gutter: 0, // Spacing from edge
+  belowOrigin: false, // Displays dropdown below the button
+  alignment: 'left' // Displays dropdown with edge aligned to the left of button
+}
+);
+</script>
+<script>bluetoothFanc.initialize();</script>
