@@ -30,7 +30,6 @@ var bluetoothFanc = {
         alert("success:"+localStorage.name);
         //this.receiveData();
       },this.onError);
-      //updateTag.changeButtonName();
     }
   },
 
@@ -41,7 +40,6 @@ var bluetoothFanc = {
     var deviceName = e.target.dataset.deviceName;
     var deviceId = e.target.dataset.deviceId;
 
-    //updateTag.changeButtonName(deviceName);
     bluetoothSerial.connect(deviceId, function(){
       alert("success:"+deviceId);}, bluetoothFanc.onError);
     },
@@ -80,6 +78,16 @@ var bluetoothFanc = {
 
       onError: function(reason) {
         alert("ERROR: " + reason);
+      },
+
+
+
+      //本体を選んだ時の処理
+      chooseSmart: function(){
+        var deviceName="";
+        var deviceId="";
+        bluetoothFanc.disconnect();
+
       }
     };
 
@@ -114,7 +122,20 @@ var bluetoothFanc = {
 
 
 
-
+var deviceInfo={
+        setDeviceId(id){
+          localStorage.id=id;
+        },
+        getDeviceId(){
+          return localStorage.id;
+        },
+        setDeviceName(name){
+          localStorage.name=name;
+        },
+        getDeviceName(){
+          return localStorage.name;
+        }
+};
 
 
 
