@@ -1,7 +1,9 @@
 (function () {
 
-  var cntX = 0;
-  var cntZ = 0;
+  var handshakeCnt = 0;
+  var gooTouchCnt = 0;
+  var highTouchCnt = 0;
+
   var handshakeBool = false;
   var gooTouchBool = false;
   var highTouchBool = false;
@@ -31,40 +33,49 @@
     document.getElementById('accelerationZ').innerHTML = z;
 
 
-    document.getElementById('countX').innerHTML = cntX;
-    document.getElementById('countZ').innerHTML = cntZ;
+    document.getElementById('handshakeCnt').innerHTML = handshakeCnt;
+    document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
+    document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
 
-    //x軸方向 加速度カウンター処理
+
+    //x軸方向 加速度カウンター処理（握手用）
     var l =27;
     if(x > l || x < -l){
-      if(handshakeBool == true || gooTouchBool == true){
-      cntX++;
+      if(handshakeBool == true){
+        handshakeCnt++;
+      }
+    }
+
+    if(x > l || x <-l){
+      if(gooTouchBool == true){
+        gooTouchCnt++;
       }
     }
 
     //Z軸方向 加速度カウンター処理
     var zl = 8;
     if(z > zl && highTouchBool == true){
-      cntZ++;
+      highTouchCnt++;
     }
 
     //握手ー加速度・ジャイロによる判定
-    if(cntX > 5){
+    if(handshakeCnt > 5){
       alert('握手');
-      cntX = 0;
+      handshakeCnt = 0;
       handshakeBool = false;
     }
 
     //グータッチー加速度・ジャイロによる判定
-    if(cntX >= 1 && gooTouchBool == true){
+    if(gooTouchCnt >= 1 && gooTouchBool == true){
       alert("グータッチ");
-      cntX = 0;
+      gooTouchCnt = 0;
       gooTouchBool = false;
     }
 
-    if(cntZ >= 1 && highTouchBool == true){
+    //ハイタッチー加速度・ジャイロによる判定
+    if(highTouchCnt >= 1 && highTouchBool == true){
       alert("ハイタッチ");
-      cntZ = 0;
+      highTouchCnt = 0;
       highTouchBool = false;
     }
   }
