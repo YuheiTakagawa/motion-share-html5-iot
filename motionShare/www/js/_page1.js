@@ -45,7 +45,7 @@ var bluetoothFanc = {
 
     deviceInfo.setDeviceId(deviceId);
     deviceInfo.setDeviceName(deviceName);
-    
+
     bluetoothSerial.connect(deviceId, function(){
       alert("success:"+deviceId);
     }, bluetoothFanc.onError);
@@ -78,7 +78,7 @@ var bluetoothFanc = {
       var strings=data.split(",");
       for(var i=0;i<strings.length/2;i++){
         acc[i]=Number(strings[i]);    //accX,accY,accZ
-        gyr[i+3]=Number(string[i+3]);  //gyrX,gryY,gryZ
+        gyr[i]=Number(string[i+3]);  //gyrX,gryY,gryZ
       }
     },
 
