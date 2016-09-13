@@ -55,6 +55,11 @@
         $("#view").load("page2.html");
         $(".brand-logo").html("握手");
         break;
+        case 3:
+        $("#view").innerHTML = "<div id='page3'></div>";
+        $("#view").load("page3.html");
+        $(".brand-logo").html("位置情報");
+        break;
       }
     });
   }
@@ -76,6 +81,7 @@
       <li><a onClick="PageControll(0)" href="#">home</a></li>
       <li><a onClick="PageControll(1)" href="#">デバイス</a></li>
       <li><a onClick="PageControll(2)" href="#">握手</a></li>
+      <li><a onClick="PageControll(3)" href="#">位置情報</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-bars" width="50%"></i></a>
   </nav>
