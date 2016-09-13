@@ -3,6 +3,7 @@
   var cnt =0;
   var flag =5;
   var handshakeBool = false;
+  var gooTouchBool = false;
 
 
   $(function () {
@@ -33,7 +34,7 @@
 
     var l =27;
     if(x > l || x < -l){
-      if(handshakeBool == true){
+      if(handshakeBool == true || gooTouchBool == true){
       cnt++;
       }
     }
@@ -43,6 +44,12 @@
       alert('握手');
       cnt = 0;
       handshakeBool = false;
+    }
+
+    if(cnt >=1 && gooTouchBool == true){
+      alert("グータッチ");
+      cnt = 0;
+      gooTouchBool = false;
     }
   }
 
@@ -65,6 +72,22 @@
         }else{
           handshakeBool = false;
         }
+/*
+        if((gamma <= 179) && (gammma >= 165)){
+          //alert("goo!!");
+          gooTouchBool = true;
+        }else{
+          gooTouchBool = false;
+        }
+        */
+
+        if((alpha <= 330) && (alpha >=300)){
+          if((beta <= -160) && (beta >= -179) || (beta <= 179) && (beta >= 170))
+          gooTouchBool = true;
+        }else{
+          gooTouchBool = false;
+        }
+
 
    }
 })();
