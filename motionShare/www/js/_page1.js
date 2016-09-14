@@ -9,7 +9,6 @@ var bluetoothFanc = {
   //イベントの管理
   bindEvents: function() {
     var TOUCH_START = 'touchstart';
-    document.addEventListener('deviceready', this.onDeviceReady, false);
     deviceButton.addEventListener(TOUCH_START,this.searchDevice,false);
     DeviceSelect.addEventListener(TOUCH_START, this.connect, false);
     smartButton.addEventListener(TOUCH_START,this.chooseSmart,false);
@@ -19,7 +18,9 @@ var bluetoothFanc = {
   onDeviceReady: function() {
     //cordovaがOnになった時に行いたい処理を記述
 
-    //this.autoConnect();
+    document.addEventListener('deviceready', function(){
+      bluetoothFanc.autoConnect();
+    }, false);
   },
 
 
@@ -33,7 +34,7 @@ var bluetoothFanc = {
         //this.receiveData();
       },this.onError);
     }else{
-      alert("本体を設定しています。")
+      alert("本体を設定しています。");
     }
   },
 
@@ -56,8 +57,10 @@ var bluetoothFanc = {
 
   //bluetooth端末との接続を解除する
   disconnect: function(event) {
+    deviceInfo.setDeviceId("");
+    deviceInfo.setDeviceName("");
     bluetoothSerial.disconnect(
-      function(){alert("ペアリング解除成功")}, bluetoothFanc.onError);
+      function(){alert("ペアリング解除成功");}, bluetoothFanc.onError);
     },
 
 
@@ -75,43 +78,38 @@ var bluetoothFanc = {
 
     //受信した文字列を整数に変換する
     splitString: function(data){
-      alert("sss");
-      /*
       //var accgyr[];
       var strings=data.split(",");
 
       for(var i=0;i<strings.length;i++){
       //  accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ
       accgyr[i]=1;
-    }*/
-
-      /*
-      var acc=[];
-      var gyr=[];
-      var strings=data.split(",");
-      for(var i=0;i<strings.length/2;i++){
-      acc[i]=Number(strings[i]);    //accX,accY,accZ
-      gyr[i]=Number(string[i+3]);  //gyrX,gryY,gryZ
-    }*/
-  },
-
-
-  onError: function(reason) {
-    alert("ERROR: " + reason);
-  },
+    }
+    /*
+    var acc=[];
+    var gyr=[];
+    var strings=data.split(",");
+    for(var i=0;i<strings.length/2;i++){
+    acc[i]=Number(strings[i]);    //accX,accY,accZ
+    gyr[i]=Number(string[i+3]);  //gyrX,gryY,gryZ
+  }*/
+},
 
 
+onError: function(reason) {
+  alert("ERROR: " + reason);
+},
 
-  //本体を選んだ時の処理
-  chooseSmart: function(){
-    var deviceName="";
-    var deviceId="";
-    deviceInfo.setDeviceId("");
-    deviceInfo.setDeviceName("");
-    bluetoothSerial.disconnect(function(){
-      alert("本体に設定しました。");
-    },bluetoothFanc.onError);
-  }
+
+
+//本体を選んだ時の処理
+chooseSmart: function(){
+  deviceInfo.setDeviceId("");
+  deviceInfo.setDeviceName("");
+  bluetoothSerial.disconnect(function(){
+    alert("本体に設定しました。");
+  },bluetoothFanc.onError);
+}
 };
 
 
