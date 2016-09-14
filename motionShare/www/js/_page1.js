@@ -1,3 +1,4 @@
+var accgyr=[];
 
 var bluetoothFanc = {
   //初期化
@@ -48,6 +49,7 @@ var bluetoothFanc = {
 
     bluetoothSerial.connect(deviceId, function(){
       alert("success:"+deviceId);
+      bluetoothFanc.receiveData();
     }, bluetoothFanc.onError);
   },
 
@@ -73,89 +75,100 @@ var bluetoothFanc = {
 
     //受信した文字列を整数に変換する
     splitString: function(data){
+      alert("sss");
+      /*
+      //var accgyr[];
+      var strings=data.split(",");
+
+      for(var i=0;i<strings.length;i++){
+      //  accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ
+      accgyr[i]=1;
+    }*/
+
+      /*
       var acc=[];
       var gyr=[];
       var strings=data.split(",");
       for(var i=0;i<strings.length/2;i++){
-        acc[i]=Number(strings[i]);    //accX,accY,accZ
-        gyr[i]=Number(string[i+3]);  //gyrX,gryY,gryZ
-      }
-    },
+      acc[i]=Number(strings[i]);    //accX,accY,accZ
+      gyr[i]=Number(string[i+3]);  //gyrX,gryY,gryZ
+    }*/
+  },
 
 
-    onError: function(reason) {
-      alert("ERROR: " + reason);
-    },
-
-
-
-    //本体を選んだ時の処理
-    chooseSmart: function(){
-      var deviceName="";
-      var deviceId="";
-      deviceInfo.setDeviceId("");
-      deviceInfo.setDeviceName("");
-      bluetoothSerial.disconnect(function(){
-        alert("本体に設定しました。");
-      },bluetoothFanc.onError);
-    }
-  };
-
-
-  //HTML内のタグに関わる操作
-  var updateTag={
-    //検索したデバイスをドロップダウンに反映
-    searchResult: function(devices){
-      //listによる実装
-      //ドロップダウンを一度初期化し再度追加していく
-      DeviceSelect.innerHTML = "";
-      devices.forEach(function(device) {
-        var listItem = document.createElement('li'),
-        html =  device.name;
-
-        listItem.innerHTML = html;
-        listItem.dataset.deviceName=device.name;
-        listItem.dataset.deviceId = device.id;
-
-        DeviceSelect.appendChild(listItem);
-      });
-    },
-
-    //デバイス選択画面のタグ表示名を変更
-    changeButtonName:function(name){
-      //ドロップダウンのDevicesの表示名を変更
-      devices.innerHTML=name;
-      //専用デバイスボタンの表示名を変更
-      deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
-    },
-  };
+  onError: function(reason) {
+    alert("ERROR: " + reason);
+  },
 
 
 
-  var deviceInfo={
-    setDeviceId(id){
-      localStorage.id=id;
-    },
-    getDeviceId(){
-      return localStorage.id;
-    },
-    setDeviceName(name){
-      localStorage.name=name;
-    },
-    getDeviceName(){
-      return localStorage.name;
-    }
-  };
+  //本体を選んだ時の処理
+  chooseSmart: function(){
+    var deviceName="";
+    var deviceId="";
+    deviceInfo.setDeviceId("");
+    deviceInfo.setDeviceName("");
+    bluetoothSerial.disconnect(function(){
+      alert("本体に設定しました。");
+    },bluetoothFanc.onError);
+  }
+};
+
+
+//HTML内のタグに関わる操作
+var updateTag={
+  //検索したデバイスをドロップダウンに反映
+  searchResult: function(devices){
+    //listによる実装
+    //ドロップダウンを一度初期化し再度追加していく
+    DeviceSelect.innerHTML = "";
+    devices.forEach(function(device) {
+      var listItem = document.createElement('li'),
+      html =  device.name;
+
+      listItem.innerHTML = html;
+      listItem.dataset.deviceName=device.name;
+      listItem.dataset.deviceId = device.id;
+
+      DeviceSelect.appendChild(listItem);
+    });
+  },
+
+  //デバイス選択画面のタグ表示名を変更
+  changeButtonName:function(name){
+    //ドロップダウンのDevicesの表示名を変更
+    devices.innerHTML=name;
+    //専用デバイスボタンの表示名を変更
+    deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
+  },
+};
 
 
 
-  /*
-  var bluetoothBasicFanc = {
-  //初期化
-  initialize: function() {
-  //alert("a");
-  this.bindEvents();
-  showPages.showMainPage();
+var deviceInfo={
+  setDeviceId(id){
+    localStorage.id=id;
+  },
+  getDeviceId(){
+    return localStorage.id;
+  },
+  setDeviceName(name){
+    localStorage.name=name;
+  },
+  getDeviceName(){
+    return localStorage.name;
+  }
+};
+
+
+
+/*
+var bluetoothBasicFanc = {
+//初期化
+initialize: function() {
+//alert("a");
+this.bindEvents();
+showPages.showMainPage();
 },
 
 //イベントの管理
