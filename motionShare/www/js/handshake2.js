@@ -11,11 +11,6 @@
     window.addEventListener("devicemotion", devicemotionHandler);
     window.addEventListener("deviceorientation", deviceorientationHandler);
 
-    //Storage変更イベント
-/*    window.addEventListener("storage",function(e){
-      alert("asioifoajoijaf");
-  });
-  */
   });
 
 
