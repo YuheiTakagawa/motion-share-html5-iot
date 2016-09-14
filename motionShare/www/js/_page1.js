@@ -28,10 +28,11 @@ var bluetoothFanc = {
   autoConnect: function(){
     var deviceId=deviceInfo.getDeviceId();
     var deviceName=deviceInfo.getDeviceName();
+    alert(deviceId+','+deviceName);
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
         alert("success:"+deviceName);
-        //this.receiveData();
+        bluetoothSerial.receiveData();
       },this.onError);
     }else{
       alert("本体を設定しています。");
@@ -82,8 +83,8 @@ var bluetoothFanc = {
       var strings=data.split(",");
 
       for(var i=0;i<strings.length;i++){
-      //  accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ
-      accgyr[i]=1;
+        accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ
+      //accgyr[i]=1;
     }
     /*
     var acc=[];
