@@ -7,16 +7,21 @@
   var deviceName="";
 
   $(function () {
-    deviceName=localStorage.name;
     // DeviceMotion Event
     window.addEventListener("devicemotion", devicemotionHandler);
     window.addEventListener("deviceorientation", deviceorientationHandler);
+
+    //Storage変更イベント
+/*    window.addEventListener("storage",function(e){
+      alert("asioifoajoijaf");
+  });
+  */
   });
 
 
   // 加速度が変化
   function devicemotionHandler(event) {
-alert("deviceName");
+    deviceName=localStorage.name;
     if(deviceName==""){
       // 加速度
       // X軸
@@ -26,9 +31,10 @@ alert("deviceName");
       // Z軸
       var z = event.acceleration.z;
     }else{
-       var x=0;
-       var y=0;
-       var z=0;
+
+       var x=accgyr[0];
+       var y=accgyr[1];
+       var z=accgyr[2];
     }
 
     document.getElementById('accelerationX').innerHTML = x;
@@ -64,9 +70,9 @@ alert("deviceName");
       // Z軸
       var alpha = event.alpha;
     }else{
-      var beta=0;
-      var gamma=0;
-      var alpha=0;
+      var beta=accgyr[3];
+      var gamma=accgyr[4];
+      var alpha=accgyr[5];
     }
 
     document.getElementById('beta').innerHTML = beta;
