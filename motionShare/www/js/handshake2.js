@@ -62,6 +62,7 @@
   //角速度変化
   function deviceorientationHandler(event) {
 
+      deviceName=localStorage.name;
     if(deviceName==""){
       // X軸
       var beta = event.beta;
