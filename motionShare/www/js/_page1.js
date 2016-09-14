@@ -28,10 +28,9 @@ var bluetoothFanc = {
   autoConnect: function(){
     var deviceId=deviceInfo.getDeviceId();
     var deviceName=deviceInfo.getDeviceName();
-    alert(deviceId+','+deviceName);
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
-        alert("success:"+deviceName);
+        alert("自動接続成功:"+deviceName);
         bluetoothSerial.receiveData();
       },this.onError);
     }else{
