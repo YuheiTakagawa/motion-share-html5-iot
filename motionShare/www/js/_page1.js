@@ -3,6 +3,11 @@ var accgyr=[];
 var bluetoothFanc = {
   //初期化
   initialize: function() {
+    if(deviceInfo.getDeviceName()==""){
+      buttonColor.tmpBtnTrigger(1);
+    }else{
+      buttonColor.tmpBtnTrigger(0);
+    }
     this.bindEvents();
   },
 
@@ -38,7 +43,7 @@ var bluetoothFanc = {
         bluetoothSerial.receiveData();
       },this.onError);
     }else{
-    buttonColor.smartButton();
+      buttonColor.smartButton();
       alert("本体を設定しています。");
     }
   },
@@ -178,19 +183,21 @@ var bluetoothFanc = {
 
     //本体ボタンのトリガー処理
     smartButton: function(){
-      alert("kkk");
       $("#smartButton").addClass("cyan");
       $("#smartButton").removeClass("disabled");
       $("#deviceButton").addClass("disabled");
     },
     tmpBtnTrigger:function(num){
+      alert(num);
       switch (num) {
         case 0://「専用デバイス」選択状態
         $("#deviceButton").addClass("cyan");
+        $("#deviceButton").removeClass("disabled");
         $("#smartButton").addClass("disabled");
         break;
         case 1://「本体」選択状態
         $("#smartButton").addClass("cyan");
+        $("#smartButton").removeClass("disabled");
         $("#deviceButton").addClass("disabled");
         break;
       }
