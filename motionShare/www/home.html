@@ -2,4 +2,22 @@
 <div id="HomeContent" class="center">
   <p style="margin-top: 100px;">MotionShare</p>
   <p>Prototype ver 1st SPRINT</p>
+  <input type="file" id="file">
+  <img src="" id="preview" style="display:none;">
+  <script>
+  $('#file').change(
+      function() {
+          if ( !this.files.length ) {
+              return;
+          }
+
+          var file = $(this).prop('files')[0];
+          var fr = new FileReader();
+          fr.onload = function() {
+              $('#preview').attr('src', fr.result ).css('display','inline');
+          }
+          fr.readAsDataURL(file);
+      }
+  );
+  </script>
 </div><!-- #HomeContent -->
