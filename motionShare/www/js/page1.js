@@ -164,6 +164,7 @@ var bluetoothFanc = {
     }
   };
 
+//接続しているデバイスによってボタンの色を変更する
   var tmpBtnTrigger = function(num){
     switch (num) {
       case 0://「専用デバイス」選択状態
