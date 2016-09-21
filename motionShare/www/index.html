@@ -23,6 +23,16 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 
+  <script src="https://recodemo.herokuapp.com/socket.io/socket.io.js"></script>
+  <!--
+  <script src="js/socket.io.js"></script>
+-->
+
+  <script>
+    var url = "ws://recodemo.herokuapp.com/"; //websocketサーバのURL。
+    var socket = io.connect(url);
+    socket.emit("login_announce_on_myself", {value : "watanabe"});
+  </script>
 
   <script src="cordova.js" id="xdkJScordova_"></script>
 
