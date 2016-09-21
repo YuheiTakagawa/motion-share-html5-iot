@@ -1,9 +1,12 @@
 <!-- schedule.html -->
 <div id="scheduleList" class="center">
   <ul id="scheduleLists">
+    <!--test用のリスト-->
+    <li>テスト</li>
   </ul>
 
   <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt disabled">スケジュール作成</a>
+  <a onClick="schedule()" href="#" class="btn-large deviceBtn mt disabled">テスト用要素追加</a>
 
 </div><!-- #SetSchedule -->
 
@@ -14,5 +17,25 @@ function scheduleCreate(){
     $("#view").load("scheduleCreate.html");
     $(".brand-logo").html("スケジュール作成");
   });
+}
+
+function schedule(){
+  $(function(){
+
+    //listによる実装
+    //ドロップダウンを一度初期化し再度追加していく
+    scheduleLists.innerHTML = "";
+    for(var i=0;i<5;i++){
+      var listItem = document.createElement('li'),
+      html =  "<p>名前</p><p>飲み会 Wed 9 sep 10:00</p>";
+
+      listItem.innerHTML = html;
+
+      scheduleLists.appendChild(listItem);
+    }
+
+
+  });
+
 }
 </script>
