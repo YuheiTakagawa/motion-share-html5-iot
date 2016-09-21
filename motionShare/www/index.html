@@ -34,6 +34,31 @@
 
   <link rel="stylesheet" href="css/side/style.css"> <!-- Resource style -->
 
+  <style>
+
+  html{
+    height: 100%;
+  }
+
+  .colorful {
+    background:
+    -webkit-linear-gradient(45deg, hsla(241, 24%, 20%, 1) 0%, hsla(241, 24%, 20%, 0) 70%),
+    -webkit-linear-gradient(315deg, hsla(227, 100%, 30%, 1) 10%, hsla(227, 100%, 30%, 0) 80%),
+    -webkit-linear-gradient(225deg, hsla(210, 34%, 28%, 1) 10%, hsla(210, 34%, 28%, 0) 80%),
+    -webkit-linear-gradient(135deg, hsla(279, 100%, 21%, 1) 100%, hsla(279, 100%, 21%, 0) 70%);
+    background:
+    linear-gradient(45deg, hsla(241, 24%, 20%, 1) 0%, hsla(241, 24%, 20%, 0) 70%),
+    linear-gradient(135deg, hsla(227, 100%, 30%, 1) 10%, hsla(227, 100%, 30%, 0) 80%),
+    linear-gradient(225deg, hsla(210, 34%, 28%, 1) 10%, hsla(210, 34%, 28%, 0) 80%),
+    linear-gradient(315deg, hsla(279, 100%, 21%, 1) 100%, hsla(279, 100%, 21%, 0) 70%);
+
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    min-height: 100%;
+  }
+  </style>
+
 
   <script>
 
@@ -70,7 +95,7 @@
   </script>
 
 </head>
-<body class="blue-grey darken-4 white-text">
+<body class="colorful white-text">
 
   <nav class="cyan">
     <a href="#" class="brand-logo center">MotionShare</a>
