@@ -17,7 +17,7 @@ var bluetoothFanc = {
     $('#deviceButton').on(TOUCH_START,this.searchDevice);
     $('#DeviceSelect').on(TOUCH_START,this.connect);
     $('#smartButton').on(TOUCH_START,this.chooseSmart);
-    $('#disconnectButton').on(TOUCH_START,this.disconnect);
+  //  $('#disconnectButton').on(TOUCH_START,this.disconnect);
   },
 
   onDeviceReady: function() {
