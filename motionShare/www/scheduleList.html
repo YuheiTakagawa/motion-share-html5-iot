@@ -1,0 +1,18 @@
+<!-- schedule.html -->
+<div id="scheduleList" class="center">
+  <ul id="scheduleLists">
+  </ul>
+
+  <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt disabled">スケジュール作成</a>
+
+</div><!-- #SetSchedule -->
+
+<script>
+function scheduleCreate(){
+  $(function(){
+    $("#view").innerHTML = "<div id='scheduleCreate'></div>";
+    $("#view").load("scheduleCreate.html");
+    $(".brand-logo").html("スケジュール作成");
+  });
+}
+</script>
