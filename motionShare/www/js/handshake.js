@@ -53,8 +53,8 @@
 
     if(cnt > flag){
       alert('握手');
-      //socket.emit("html5_test", 0);
-      socket.emit("login_announce_on_myself", {value : "watanabe"});
+      socket.emit("html5_test", 0);
+      //socket.emit("login_announce_on_myself", {value : "watanabe"});
       cnt = 0;
       handshakeBool = false;
     }
