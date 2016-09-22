@@ -24,22 +24,6 @@ function scheduleCreate(){
   });
 }
 
-function schedule(){
-  $(function(){
-    //listによる実装
-    //ドロップダウンを一度初期化し再度追加していく
-    scheduleLists.innerHTML = "";
-    for(var i=0;i<5;i++){
-      var listItem = document.createElement('li'),
-      html =  "<p>名前</p><p>飲み会 Wed 9 sep 10:00</p>";
-
-      listItem.className="swipe-item";
-      listItem.innerHTML = html;
-
-      scheduleLists.appendChild(listItem);
-    }
-  });
-}
 </script>
 <script>
 scheduleFanc.initialize();</script>
