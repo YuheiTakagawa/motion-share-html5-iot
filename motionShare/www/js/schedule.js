@@ -50,13 +50,15 @@ var schedule=function(){
     scheduleLists.innerHTML = "";
     for(var i=0;i<5;i++){
       var listItem = document.createElement('li'),
-      html =  "<p>名前</p><p>飲み会 Wed 9 sep 10:00</p>";
+      html =  "名前"+
+      "<span class='badge'>　削除　</span>";
 
       listItem.className="swipe-item";
       listItem.innerHTML = html;
-
       scheduleLists.appendChild(listItem);
+
     }
   });
   scheduleFanc.initialize();
+}
 };
