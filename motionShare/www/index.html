@@ -29,7 +29,8 @@
 -->
 
   <script>
-    var url = "ws://recodemo.herokuapp.com/"; //websocketサーバのURL。
+    //recodemo.herokuapp.com
+    var url = "ws://motion-share.herokuapp.com/"; //websocketサーバのURL。
     var socket = io.connect(url);
     socket.emit("login_announce_on_myself", {value : "watanabe"});
   </script>
