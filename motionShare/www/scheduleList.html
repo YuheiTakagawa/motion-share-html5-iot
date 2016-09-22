@@ -1,13 +1,18 @@
 <!-- schedule.html -->
 <div id="scheduleList" class="center">
-  <ul id="scheduleLists">
+  <ul id="scheduleLists" class="list-group">
     <!--test用のリスト-->
-    <li>テスト</li>
+    <li class="swipe-item" title="system">
+      テストスケジュール
+      <span class="badge">　削除　</span>
+    </li>
+    <li class="swipe-item" title="system">
+      テストスケジュール
+      <span class="badge">　削除　</span>
+    </li>
   </ul>
-
   <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt disabled">スケジュール作成</a>
   <a onClick="schedule()" href="#" class="btn-large deviceBtn mt disabled">テスト用要素追加</a>
-
 </div><!-- #SetSchedule -->
 
 <script>
@@ -21,7 +26,6 @@ function scheduleCreate(){
 
 function schedule(){
   $(function(){
-
     //listによる実装
     //ドロップダウンを一度初期化し再度追加していく
     scheduleLists.innerHTML = "";
@@ -29,13 +33,13 @@ function schedule(){
       var listItem = document.createElement('li'),
       html =  "<p>名前</p><p>飲み会 Wed 9 sep 10:00</p>";
 
+      listItem.className="swipe-item";
       listItem.innerHTML = html;
 
       scheduleLists.appendChild(listItem);
     }
-
-
   });
-
 }
 </script>
+<script>
+scheduleFanc.initialize();</script>
