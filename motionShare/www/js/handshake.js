@@ -2,6 +2,7 @@
 
   var cnt =0;
   var flag =5;
+  var changeCnt = 0;
   var handshakeBool = false;
   var changeBool = false;
 
@@ -55,11 +56,19 @@
     }
 
 
-    if (x > 10){
+    if (x > l){
       if (changeBool == true){
-        alert('チェンジ');
+        changeCnt++;
       }
     }
+
+    //チェンジー加速度・ジャイロによる判定
+    if(changeCnt >= 1 && changeBool == true){
+      alert("チェンジ");
+      changeCnt = 0;
+      changeBool = false;
+    }
+
   }
 
   //角速度変化
@@ -90,7 +99,7 @@
       handshakeBool = false;
     }
 
-
+    //
     if ((gamma >= -20) && (gamma <= 20)){
       if ((beta >= 50) && (beta <= 80)){
         changeBool = true;
