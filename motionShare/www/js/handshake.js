@@ -56,7 +56,7 @@
     }
 
 
-    if (x > l){
+    if (x > 12){
       if (changeBool == true){
         changeCnt++;
       }
@@ -100,8 +100,8 @@
     }
 
     //
-    if ((gamma >= -20) && (gamma <= 20)){
-      if ((beta >= 50) && (beta <= 80)){
+    if ((gamma >= -10) && (gamma <= 10)){
+      if ((beta >= 20) && (beta <= 80)){
         changeBool = true;
       }
     }else{
