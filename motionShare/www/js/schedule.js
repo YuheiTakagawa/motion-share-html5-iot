@@ -60,5 +60,5 @@ var schedule=function(){
     }
   });
   scheduleFanc.initialize();
-}
+
 };
