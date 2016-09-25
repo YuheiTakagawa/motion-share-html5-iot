@@ -1,6 +1,7 @@
 var scheduleFanc = {
   //初期化
   initialize: function() {
+    $("#scheduleCreate").hide();
     this.bindEvents();
   },
 
@@ -43,22 +44,17 @@ var scheduleFanc = {
     });
   },
 }
-var schedule=function(){
+var addSchedule=function(){
   $(function(){
-    //listによる実装
-    //ドロップダウンを一度初期化し再度追加していく
-    scheduleLists.innerHTML = "";
-    for(var i=0;i<5;i++){
-      var listItem = document.createElement('li'),
-      html =  "名前"+
-      "<span class='badge'>　削除　</span>";
+    var datetime = $("#scheDatetime").val();
+    var note = $("#scheNote").val();
 
-      listItem.className="swipe-item";
-      listItem.innerHTML = html;
-      scheduleLists.appendChild(listItem);
-
-    }
+    var listItem = document.createElement('li'),
+    html =  note+", "+datetime+
+    "<span class='badge'>　削除　</span>";
+    listItem.className="swipe-item";
+    listItem.innerHTML = html;
+    $("#scheduleLists").append(listItem);
   });
   scheduleFanc.initialize();
-
 };

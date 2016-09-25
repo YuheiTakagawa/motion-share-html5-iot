@@ -1,26 +1,46 @@
 <!-- schedule.html -->
-<div id="scheduleList" class="center">
-  <ul id="scheduleLists" class="list-group">
-    <!--test用のリスト-->
-    <li class="swipe-item" title="system">
-      テストスケジュール
-      <span class="badge">　削除　</span>
-    </li>
-    <li class="swipe-item" title="system">
-      テストスケジュール
-      <span class="badge">　削除　</span>
-    </li>
-  </ul>
-  <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt disabled">スケジュール作成</a>
-  <a onClick="schedule()" href="#" class="btn-large deviceBtn mt disabled">テスト用要素追加</a>
+<div id="schedulePage" class="center">
+
+  <div id="scheduleCreate" class="center">
+    <input id="scheDatetime" type="datetime-local" placeholder="日時">
+    <input id="scheNote" type="text" placeholder="備考">
+
+    <a onClick="scheduleList();" href="#" class="btn-large deviceBtn mt cyan">保存</a>
+
+  </div>
+
+  <div id="scheduleList">
+    <ul id="scheduleLists" class="list-group">
+      <!--test用のリスト-->
+      <li class="swipe-item" title="system">
+        テストスケジュール
+        <span class="badge">　削除　</span>
+      </li>
+      <li class="swipe-item" title="system">
+        テストスケジュール
+        <span class="badge">　削除　</span>
+      </li>
+    </ul>
+    <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt cyan">スケジュール作成</a>
+  </div>
+
 </div><!-- #SetSchedule -->
 
 <script>
 function scheduleCreate(){
   $(function(){
-    $("#view").innerHTML = "<div id='scheduleCreate'></div>";
-    $("#view").load("scheduleCreate.html");
+    $("#scheduleCreate").show();
+    $("#scheduleList").hide();
     $(".brand-logo").html("スケジュール作成");
+  });
+}
+
+function scheduleList(){
+  $(function(){
+    $("#scheduleCreate").hide();
+    $("#scheduleList").show();
+    $(".brand-logo").html("スケジュール");
+    addSchedule();
   });
 }
 
