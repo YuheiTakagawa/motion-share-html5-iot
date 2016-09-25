@@ -38,8 +38,8 @@
     document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
 
 
-    //x軸方向 加速度カウンター処理（握手用）
-    var l = 27; //ハイタッチ用
+    //x軸方向 加速度カウンター処理
+    var l = 27; //握手用
     if(x > l || x < -l){
       if(handshakeBool == true){
         handshakeCnt++;
@@ -54,10 +54,11 @@
     }
 
     //Z軸方向 加速度カウンター処理
-    var zl = 8;
+    var zl = 3;
     if(z > zl && highTouchBool == true){
       highTouchCnt++;
     }
+
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 5){
@@ -74,10 +75,11 @@
     }
 
     //ハイタッチー加速度・ジャイロによる判定
-    if(highTouchCnt >= 1 && highTouchBool == true){
+    if(highTouchCnt >= 1 && tmpHighTouchBool == true && highTouchBool == true){
       alert("ハイタッチ");
       highTouchCnt = 0;
       highTouchBool = false;
+      tmpHighTouchBool = false;
     }
   }
 
@@ -110,15 +112,23 @@
           gooTouchBool = false;
         }
 
+
         //ハイタッチ！処理ージャイロ関係
         /*
-        if((beta >= 70) && (beta <= 120)){
-          if((alpha <= 300) && (alpha >= 200)){
-            highTouchBool = true;
-          }else{
-            highTouchBool = false;
+        var tmpHighTouchBool = false;
+        if((beta >= 70) && (beta <= 115)){
+          if((gamma >= 0) && (gamma <= 20) || (gamma >= -20) && (gamma <= -1)){
+            tmpHighTouchBool = true;
           }
         }
         */
+
+        if((beta >= 70) && (beta <= 115)){
+          if((alpha >= 100) && (alpha <= 180)){
+            highTouchBool = true;
+          }
+        }else{
+          highTouchBool = false;
+        }
    }
 })();
