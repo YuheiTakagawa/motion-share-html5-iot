@@ -16,7 +16,7 @@ var scheduleFanc = {
 
       // [削除]クリックで親要素を非表示
       $("#scheduleLists").on("touchstart",".badge", function(){
-        $(this).parent().slideUp("fast");
+        $(this).parent().slideUp("slow");
       });
 
       // スワイプ処理
@@ -51,7 +51,7 @@ var addSchedule=function(){
 
     var listItem = document.createElement('li'),
     html =  note+", "+datetime+
-    "<span class='badge'>　削除　</span>";
+    "<span class='badge'><i class='fa fa-fw fa-close'></i></span>";
     listItem.innerHTML = html;
     $("#scheduleLists").append(listItem);
     $(".badge").hide();

@@ -13,10 +13,10 @@
     <ul id="scheduleLists" class="list-group">
       <!--test用のリスト-->
       <li>
-        テストスケジュール<span class="badge">　削除　</span>
+        テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
       </li>
       <li>
-        テストスケジュール<span class="badge">　削除　</span>
+        テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
       </li>
     </ul>
     <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right"><i class="fa fa-fw fa-plus"></i></a>
@@ -53,14 +53,19 @@ scheduleFanc.initialize();</script>
 
 }
 #scheduleLists li {
-  display: block;
-  height: 60px;
   text-align: center;
   color: #000;
-  font-size: 1.0em;
-  line-height: 60px;
   background: #fff;
   margin-top:1em;
+  padding:2em;
 }
-
+span.badge{
+  display: block;
+  width:15%;
+  color:#fff;
+  background:#ee2828;
+  margin-top:-10%;
+  padding-top:1.5em;
+  padding-bottom:1.5em;
+}
 </style>
