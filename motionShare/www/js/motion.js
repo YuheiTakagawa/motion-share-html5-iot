@@ -102,12 +102,19 @@
 
 
         //グータッチ処理ージャイロ関係
+        /*
         if((alpha <= 330) && (alpha >=300)){
           if((beta <= -160) && (beta >= -179) || (beta <= 179) && (beta >= 170)){
             gooTouchBool = true;
           }
         }else{
           gooTouchBool = false;
+        }
+        */
+
+        if((beta >= 175) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
+          gooTouchBool = true;
+          alert("裏");
         }
 
         //ハイタッチ！処理ージャイロ関係
