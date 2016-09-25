@@ -15,20 +15,20 @@ var scheduleFanc = {
       $(".badge").hide();
 
       // [削除]クリックで親要素を非表示
-      $(".badge").bind("touchstart", function(){
+      $(".badge").on("touchstart", function(){
         $(this).parent().slideUp("fast");
       });
 
       // スワイプ処理
-      $(".swipe-item").bind("touchstart", function(){
+      $("#scheduleLists").on("touchstart","li", function(){
         tsJqSwipeX = event.changedTouches[0].pageX;
         tsJqSwipeY = event.changedTouches[0].pageY;
       });
-      $(".swipe-item").bind("touchend", function(){
+      $("#scheduleLists").on("touchend","li", function(){
         tsJqSwipeX = -1;
         flag = 0;
       });
-      $(".swipe-item").bind("touchmove", function(){
+      $("#scheduleLists").on("touchmove","li", function(){
         if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
         if (tsJqSwipeX != -1 && Math.abs(event.changedTouches[0].pageX - tsJqSwipeX) > 35) {
           tsJqSwipeX = -1;
@@ -52,9 +52,8 @@ var addSchedule=function(){
     var listItem = document.createElement('li'),
     html =  note+", "+datetime+
     "<span class='badge'>　削除　</span>";
-    listItem.className="swipe-item";
     listItem.innerHTML = html;
     $("#scheduleLists").append(listItem);
+    $(".badge").hide();
   });
-  scheduleFanc.initialize();
 };
