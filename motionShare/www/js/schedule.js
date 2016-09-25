@@ -15,7 +15,7 @@ var scheduleFanc = {
       $(".badge").hide();
 
       // [削除]クリックで親要素を非表示
-      $(".badge").on("touchstart", function(){
+      $("#scheduleLists").on("touchstart",".badge", function(){
         $(this).parent().slideUp("fast");
       });
 
