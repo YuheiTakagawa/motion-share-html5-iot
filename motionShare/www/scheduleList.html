@@ -13,15 +13,13 @@
     <ul id="scheduleLists" class="list-group">
       <!--test用のリスト-->
       <li class="swipe-item" title="system">
-        テストスケジュール
-        <span class="badge">　削除　</span>
+        テストスケジュール<span class="badge">　削除　</span>
       </li>
       <li class="swipe-item" title="system">
-        テストスケジュール
-        <span class="badge">　削除　</span>
+        テストスケジュール<span class="badge">　削除　</span>
       </li>
     </ul>
-    <a onClick="scheduleCreate()" href="#" class="btn-large deviceBtn mt cyan">スケジュール作成</a>
+    <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right"><i class="fa fa-fw fa-plus"></i></a>
   </div>
 
 </div><!-- #SetSchedule -->
@@ -47,3 +45,22 @@ function scheduleList(){
 </script>
 <script>
 scheduleFanc.initialize();</script>
+<style type="text/css">
+#scheduleLists {
+  width:70%;
+  margin: 0 auto;
+  padding-left: 0em;
+
+}
+#scheduleLists li {
+  display: block;
+  height: 60px;
+  text-align: center;
+  color: #000;
+  font-size: 1.0em;
+  line-height: 60px;
+  background: #fff;
+  margin-top:1em;
+}
+
+</style>
