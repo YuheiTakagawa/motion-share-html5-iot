@@ -39,13 +39,14 @@
 
 
     //x軸方向 加速度カウンター処理（握手用）
-    var l =27;
+    var l = 27; //ハイタッチ用
     if(x > l || x < -l){
       if(handshakeBool == true){
         handshakeCnt++;
       }
     }
 
+    var l2 = 20; //グータッチ用
     if(x > l || x <-l){
       if(gooTouchBool == true){
         gooTouchCnt++;
@@ -101,7 +102,6 @@
         }
 
 
-        //グータッチ処理ージャイロ関係
         /*
         if((alpha <= 330) && (alpha >=300)){
           if((beta <= -160) && (beta >= -179) || (beta <= 179) && (beta >= 170)){
@@ -112,12 +112,17 @@
         }
         */
 
-        if((beta >= 175) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
-          gooTouchBool = true;
-          alert("裏");
+        //グータッチ処理ージャイロ関係
+        if((alpha >= 180) && (alpha <= 220)){
+          if((beta >= 175) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
+            gooTouchBool = true;
+          }
+        }else{
+          gooTouchBool = false;
         }
 
         //ハイタッチ！処理ージャイロ関係
+        /*
         if((beta >= 70) && (beta <= 120)){
           if((alpha <= 300) && (alpha >= 200)){
             highTouchBool = true;
@@ -125,5 +130,6 @@
             highTouchBool = false;
           }
         }
+        */
    }
 })();
