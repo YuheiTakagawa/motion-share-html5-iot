@@ -104,8 +104,8 @@
         }
 
         //グータッチ処理ージャイロ関係
-        if((alpha >= 180) && (alpha <= 220)){
-          if((beta >= 175) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
+        if((alpha >= 50) && (alpha <= 110)){
+          if((beta >= 160) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
             gooTouchBool = true;
           }
         }else{
@@ -114,7 +114,7 @@
 
 
         //ハイタッチ！処理ージャイロ関係
-        if((beta >= 70) && (beta <= 115)){
+        if((beta >= 55) && (beta <= 115)){
           if((alpha >= 75) && (alpha <= 220)){
             highTouchBool = true;
           }
