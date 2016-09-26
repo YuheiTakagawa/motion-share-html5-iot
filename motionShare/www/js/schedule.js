@@ -1,9 +1,10 @@
+var scheduleJson={};
+var scheIndex=-1;
 var scheduleFanc = {
   //初期化
   initialize: function() {
     $("#scheduleCreate").hide();
     this.bindEvents();
-    alert(localStorage.schedule);
   },
 
   //イベントの管理
@@ -15,9 +16,10 @@ var scheduleFanc = {
       // 初期状態で[削除]は非表示
       $(".badge").hide();
 
-      // [削除]クリックで親要素を非表示
+      // [削除]クリックで親要素を削除
       $("#scheduleLists").on("touchstart",".badge", function(){
-        $(this).parent().slideUp("slow");
+        scheIndex=$(this).parent().index()+1;
+        $(this).parent().remove();
       });
 
       // スワイプ処理
@@ -50,26 +52,34 @@ var addSchedule=function(){
   $(function(){
     var datetime = $("#scheDatetime").val();
     var note = $("#scheNote").val();
-
     var listItem = document.createElement('li'),
     html =  note+", "+datetime+
     "<span class='badge'><i class='fa fa-fw fa-close'></i></span>";
+
     listItem.innerHTML = html;
     $("#scheduleLists").append(listItem);
     $(".badge").hide();
+
+    //JSONのkeyをスケジュールリストの要素数にする
+    if(scheIndex==-1){
+      scheIndex=$("#scheduleLists li").length;
+    }
     scheduleToJson(datetime,note);
+
+    scheduleShow();
   });
 };
 
 var scheduleToJson = function(date,note){
+
   $(function(){
-    var scheduleJson={
-      "1":{
-        "date":date,
-        "note":note
-      }
+    scheduleJson[scheIndex]={
+      "date":date,
+      "note":note
     };
+
     localStorage.schedule=JSON.stringify(scheduleJson);
     alert(localStorage.schedule);
+    scheIndex=-1;
   });
 };
