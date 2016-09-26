@@ -10,21 +10,37 @@
   </div>
 
   <div id="scheduleList">
+    <div id="scheduleNone">スケジュールはありません</div>
     <ul id="scheduleLists" class="list-group">
       <!--test用のリスト-->
-      <li>
-        テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
-      </li>
-      <li>
-        テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
-      </li>
-    </ul>
-    <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right"><i class="fa fa-fw fa-plus"></i></a>
-  </div>
+      <!--
+      <li value="1">
+      テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
+    </li>
+    <li>
+    テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
+  </li>
+-->
+</ul>
+<a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right"><i class="fa fa-fw fa-plus"></i></a>
+</div>
 
 </div><!-- #SetSchedule -->
 
 <script>
+$(function(){
+  scheduleShow();
+});
+
+function scheduleShow(){
+  if($("#scheduleLists li").length==0){
+    $("#scheduleNone").css('display','');
+    $("#scheduleLists").css('display','none');
+  }else{
+    $("#scheduleNone").css('display','none');
+    $("#scheduleLists").css('display','');
+  }
+}
 function scheduleCreate(){
   $(function(){
     $("#scheduleCreate").show();
