@@ -3,6 +3,7 @@ var scheduleFanc = {
   initialize: function() {
     $("#scheduleCreate").hide();
     this.bindEvents();
+    alert(localStorage.schedule);
   },
 
   //イベントの管理
@@ -43,7 +44,8 @@ var scheduleFanc = {
       });
     });
   },
-}
+};
+
 var addSchedule=function(){
   $(function(){
     var datetime = $("#scheDatetime").val();
@@ -55,5 +57,19 @@ var addSchedule=function(){
     listItem.innerHTML = html;
     $("#scheduleLists").append(listItem);
     $(".badge").hide();
+    scheduleToJson(datetime,note);
+  });
+};
+
+var scheduleToJson = function(date,note){
+  $(function(){
+    var scheduleJson={
+      "1":{
+        "date":date,
+        "note":note
+      }
+    };
+    localStorage.schedule=JSON.stringify(scheduleJson);
+    alert(localStorage.schedule);
   });
 };
