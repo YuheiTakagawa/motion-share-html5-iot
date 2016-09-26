@@ -54,8 +54,8 @@
     }
 
     //Z軸方向 加速度カウンター処理
-    var zl = 3;
-    if(z > zl && highTouchBool == true){
+    var zl = -24;
+    if(z < zl && highTouchBool == true){
       highTouchCnt++;
     }
 
@@ -75,7 +75,7 @@
     }
 
     //ハイタッチー加速度・ジャイロによる判定
-    if(highTouchCnt >= 1 && tmpHighTouchBool == true && highTouchBool == true){
+    if(highTouchCnt >= 1 && highTouchBool == true){
       alert("ハイタッチ");
       highTouchCnt = 0;
       highTouchBool = false;
@@ -114,17 +114,8 @@
 
 
         //ハイタッチ！処理ージャイロ関係
-        /*
-        var tmpHighTouchBool = false;
         if((beta >= 70) && (beta <= 115)){
-          if((gamma >= 0) && (gamma <= 20) || (gamma >= -20) && (gamma <= -1)){
-            tmpHighTouchBool = true;
-          }
-        }
-        */
-
-        if((beta >= 70) && (beta <= 115)){
-          if((alpha >= 100) && (alpha <= 180)){
+          if((alpha >= 75) && (alpha <= 220)){
             highTouchBool = true;
           }
         }else{
