@@ -54,8 +54,8 @@
     }
 
     //Z軸方向 加速度カウンター処理
-    var zl = -24;
-    if(z < zl && highTouchBool == true){
+    var zl = -22;
+    if(z < zl && z < 0 && highTouchBool == true){
       highTouchCnt++;
     }
 
@@ -79,7 +79,6 @@
       alert("ハイタッチ");
       highTouchCnt = 0;
       highTouchBool = false;
-      tmpHighTouchBool = false;
     }
   }
 
@@ -104,7 +103,7 @@
         }
 
         //グータッチ処理ージャイロ関係
-        if((alpha >= 50) && (alpha <= 110)){
+        if((alpha >= 40) && (alpha <= 110)){
           if((beta >= 160) && (beta <= 180) || (beta >= -179) && (beta <= -175)){　//端末が裏になっていることの判別
             gooTouchBool = true;
           }
@@ -115,7 +114,7 @@
 
         //ハイタッチ！処理ージャイロ関係
         if((beta >= 55) && (beta <= 115)){
-          if((alpha >= 75) && (alpha <= 220)){
+          if((alpha >= 90) && (alpha <= 220)){
             highTouchBool = true;
           }
         }else{
