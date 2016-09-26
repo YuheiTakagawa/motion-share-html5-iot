@@ -56,7 +56,7 @@
     }
 
 
-    if (x > 12){
+    if (x > 12 && y > 10){
       if (changeBool == true){
         changeCnt++;
       }
@@ -100,7 +100,7 @@
     }
 
     //
-    if ((gamma >= -10) && (gamma <= 10)){
+    if ((gamma >= -20) && (gamma <= 0)){
       if ((beta >= 20) && (beta <= 80)){
         changeBool = true;
       }
