@@ -46,11 +46,9 @@
       }
     }
 
-    var l2 = 20; //グータッチ用
-    if(x > l || x <-l){
-      if(gooTouchBool == true){
+    //グータッチ用
+    if(x > 12 && gooTouchBool == true){
         gooTouchCnt++;
-      }
     }
 
     //Z軸方向 加速度カウンター処理
