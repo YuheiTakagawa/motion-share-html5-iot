@@ -29,10 +29,11 @@
 
 <script>
 $(function(){
-  scheduleShow();
+  scheduleFanc.initialize();
 });
 
 function scheduleShow(){
+  alert($("#scheduleLists li").length);
   if($("#scheduleLists li").length==0){
     $("#scheduleNone").css('display','');
     $("#scheduleLists").css('display','none');
@@ -60,7 +61,7 @@ function scheduleList(){
 
 </script>
 <script>
-scheduleFanc.initialize();</script>
+</script>
 <style type="text/css">
 #scheduleLists {
   width:70%;

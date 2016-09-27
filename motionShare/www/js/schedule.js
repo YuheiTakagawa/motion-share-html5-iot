@@ -5,6 +5,11 @@ var scheduleFanc = {
   initialize: function() {
     $("#scheduleCreate").hide();
     this.bindEvents();
+    scheduleJson=JSON.parse(localStorage.schedule);
+    for(var i=0;i<Object.keys(scheduleJson).length;i++){
+      scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
+    }
+    scheduleShow();
   },
 
   //イベントの管理
@@ -18,8 +23,16 @@ var scheduleFanc = {
 
       // [削除]クリックで親要素を削除
       $("#scheduleLists").on("touchstart",".badge", function(){
-        scheIndex=$(this).parent().index()+1;
+        //JSONで扱う処理 インデックスの変更とJSONからの削除
+        scheIndex=$(this).parent().val();
+        delete scheduleJson[scheIndex];
+        //スケジュールリストの削除
         $(this).parent().remove();
+        if($("#scheduleLists li").length==0){
+          scheIndex=0;
+        }
+        localStorage.schedule=JSON.stringify(scheduleJson);
+        alert(localStorage.schedule);
       });
 
       // スワイプ処理
@@ -52,23 +65,29 @@ var addSchedule=function(){
   $(function(){
     var datetime = $("#scheDatetime").val();
     var note = $("#scheNote").val();
-    var listItem = document.createElement('li'),
-    html =  note+", "+datetime+
-    "<span class='badge'><i class='fa fa-fw fa-close'></i></span>";
 
-    listItem.innerHTML = html;
-    $("#scheduleLists").append(listItem);
-    $(".badge").hide();
-
-    //JSONのkeyをスケジュールリストの要素数にする
-    if(scheIndex==-1){
-      scheIndex=$("#scheduleLists li").length;
-    }
+      //JSONのkeyをスケジュールリストの要素数にする
+      if(scheIndex==-1){
+        scheIndex=$("#scheduleLists li").length;
+      }
+    scheduleAuto(scheIndex,datetime,note);
     scheduleToJson(datetime,note);
-
-    scheduleShow();
+   scheduleShow();
   });
 };
+
+function scheduleAuto(index,datetime,note){
+  var listItem = document.createElement('li'),
+  html =  note+", "+datetime+
+  "<span class='badge'><i class='fa fa-fw fa-close'></i></span>";
+  listItem.innerHTML = html;
+
+  $(listItem).val(index);
+  $("#scheduleLists").append(listItem);
+
+  $(".badge").hide();
+  //alert($(listItem).val());
+}
 
 var scheduleToJson = function(date,note){
 
