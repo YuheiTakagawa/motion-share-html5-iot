@@ -6,7 +6,7 @@ var scheduleFanc = {
     $("#scheduleCreate").hide();
     this.bindEvents();
     scheduleJson=JSON.parse(localStorage.schedule);
-    for(var i=0;i<Object.keys(scheduleJson).length;i++){
+    for(var i in scheduleJson){
       scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
     }
     scheduleShow();
