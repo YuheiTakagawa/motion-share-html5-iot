@@ -59,7 +59,7 @@
 
 
     //握手ー加速度・ジャイロによる判定
-    if(handshakeCnt > 5){
+    if(handshakeCnt > 3){
       alert('握手');
       handshakeCnt = 0;
       handshakeBool = false;
