@@ -80,14 +80,16 @@
     }
   }
 
+
+
   //角速度変化
    function deviceorientationHandler(event) {
     // X軸
-    var beta = event.beta;
+    var beta = event.beta; //-180 から 180 の範囲の値による度数で表されます。
     // Y軸
-    var gamma = event.gamma;
+    var gamma = event.gamma; //-90 から 90 の範囲の値による度数で表されます。
     // Z軸
-    var alpha = event.alpha;
+    var alpha = event.alpha; //0 から 360 の範囲による度数で表されます。
 
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
