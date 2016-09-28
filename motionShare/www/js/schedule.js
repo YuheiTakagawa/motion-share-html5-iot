@@ -66,13 +66,17 @@ var addSchedule=function(){
     var datetime = $("#scheDatetime").val();
     var note = $("#scheNote").val();
 
-      //JSONのkeyをスケジュールリストの要素数にする
-      if(scheIndex==-1){
-        scheIndex=$("#scheduleLists li").length;
+    //JSONのkeyをスケジュールリストの要素数にする
+    for(var i=0;i<=Object.keys(scheduleJson).length;i++){
+      if(!(i in scheduleJson)){
+        scheIndex=i;
+        break;
       }
+    }
+
     scheduleAuto(scheIndex,datetime,note);
     scheduleToJson(datetime,note);
-   scheduleShow();
+    scheduleShow();
   });
 };
 
@@ -99,6 +103,5 @@ var scheduleToJson = function(date,note){
 
     localStorage.schedule=JSON.stringify(scheduleJson);
     alert(localStorage.schedule);
-    scheIndex=-1;
   });
 };
