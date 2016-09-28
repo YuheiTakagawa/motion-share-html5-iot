@@ -21,11 +21,11 @@
 
     // 加速度
     // X軸
-    var x = event.acceleration.x;
+    var x = Math.round(event.acceleration.x * 10) / 10;
     // Y軸
-    var y = event.acceleration.y;
+    var y = Math.round(event.acceleration.y * 10) / 10;
     // Z軸
-    var z = event.acceleration.z;
+    var z = Math.round(event.acceleration.z * 10) / 10;
 
 
     document.getElementById('accelerationX').innerHTML = x;
@@ -85,11 +85,11 @@
   //角速度変化
    function deviceorientationHandler(event) {
     // X軸
-    var beta = event.beta; //-180 から 180 の範囲の値による度数で表されます。
+    var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
     // Y軸
-    var gamma = event.gamma; //-90 から 90 の範囲の値による度数で表されます。
+    var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
     // Z軸
-    var alpha = event.alpha; //0 から 360 の範囲による度数で表されます。
+    var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
 
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
