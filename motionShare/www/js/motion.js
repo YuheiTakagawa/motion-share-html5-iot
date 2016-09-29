@@ -1,5 +1,7 @@
 (function () {
 
+  var SensorValueLoad = true;
+
   var handshakeCnt = 0;
   var gooTouchCnt = 0;
   var highTouchCnt = 0;
@@ -12,7 +14,6 @@
 
 
   $(function () {
-    // DeviceMotion Event
     window.addEventListener("devicemotion", devicemotionHandler);
     window.addEventListener("deviceorientation", deviceorientationHandler);
   });
@@ -21,23 +22,18 @@
   // 加速度が変化
   function devicemotionHandler(event) {
 
-    // 加速度
-    // X軸
-    var x = Math.round(event.acceleration.x * 10) / 10;
-    // Y軸
-    var y = Math.round(event.acceleration.y * 10) / 10;
-    // Z軸
-    var z = Math.round(event.acceleration.z * 10) / 10;
 
+    if(SensorValueLoad == true){
+      // 加速度
+      var x = Math.round(event.acceleration.x * 10) / 10;
+      var y = Math.round(event.acceleration.y * 10) / 10;
+      var z = Math.round(event.acceleration.z * 10) / 10;
 
-    //回転速度
-    // X軸
-    var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
-    // Y軸
-    var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
-    // Z軸
-    var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
-
+      //回転速度
+      var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
+      var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
+      var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
+    }
 
 
     document.getElementById('accelerationX').innerHTML = x;
@@ -64,32 +60,31 @@
     }
 
     //グータッチ用
-    if(x < -15 && gooTouchBool == true) gooTouchCnt++;
-    if(rotationalpha > 10) rotationalphaCnt++;
+    if(x < -10 && gooTouchBool == true) gooTouchCnt++;
+    if(rotationalpha > 8) rotationalphaCnt++;
     if(rotationalphaCnt > 1) gooTouchRotaBool = true;
 
     if(rotationalphaCnt > 0){
       setTimeout(function(){
         rotationalphaCnt = 0;
         gooTouchCnt = 0;
-      }, 1000);
+      }, 2000);
     }
-
 
 
     //Z軸方向 加速度カウンター処理
-    if(z < -22 && highTouchBool == true){
+    if(z < -18 && highTouchBool == true){
       highTouchCnt++;
     }
-
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       alert('握手');
       handshakeCnt = 0;
       handshakeBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
     }
-
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
@@ -98,52 +93,70 @@
       rotationalphaCnt = 0;
       gooTouchBool = false;
       gooTouchRotaBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
     }
-
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
       alert("ハイタッチ");
       highTouchCnt = 0;
       highTouchBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
     }
   }
 
   //角速度変化
-   function deviceorientationHandler(event) {
-    // X軸
-    var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
-    // Y軸
-    var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
-    // Z軸
-    var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
+  function deviceorientationHandler(event) {
+
+    if(SensorValueLoad == true){
+      //傾き
+      var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
+      var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
+      var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
+    }
+
 
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
     document.getElementById('alpha').innerHTML = alpha;
 
-        //握手処理-ジャイロ関係
-        if((gamma >= -90) && (gamma <= -70)){
-          handshakeBool = true;
-        }else{
-          handshakeBool = false;
-        }
+    //握手処理-ジャイロ関係
+    if((gamma >= -90) && (gamma <= -70)){
+      handshakeBool = true;
+    }else{
+      handshakeBool = false;
+    }
 
-        //グータッチ処理ージャイロ関係
-        if((beta > 160) && (beta < 180) || (beta >= -180) && (beta < -160)){　//端末が裏になっていることの判別
-          gooTouchBool = true;
-        }else{
-          gooTouchBool = false;
-        }
+    //グータッチ処理ージャイロ関係
+    if((beta > 160) && (beta < 180) || (beta >= -180) && (beta < -160)){　//端末が裏になっていることの判別
+      gooTouchBool = true;
+    }else{
+      gooTouchBool = false;
+    }
 
 
-        //ハイタッチ！処理ージャイロ関係
-        if((beta >= 55) && (beta <= 115)){
-          if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
-            highTouchBool = true;
-          }
-        }else{
-          highTouchBool = false;
-        }
-   }
+    //ハイタッチ！処理ージャイロ関係
+    if((beta >= 55) && (beta <= 115)){
+      if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
+        highTouchBool = true;
+      }
+    }else{
+      highTouchBool = false;
+    }
+  }
+
+
+  //モーション判別後 2s後にセンサー値を再度取得する
+  function SensorValueLoadControl(){
+
+    if(SensorValueLoad == false){
+      setTimeout(function(){
+        SensorValueLoad = true;
+      }, 2000);
+    }
+
+  }
+
 })();
