@@ -1,77 +1,57 @@
-var scheduleJson={};
-var scheIndex=-1;
+var scheduleJson={};  //保存するスケジュールを格納するためのJSON
+var scheIndex=-1;     //スケジュールのリストの要素番号を管理する変数
+
 var scheduleFanc = {
   //初期化
   initialize: function() {
-    $("#scheduleCreate").hide();
-    this.bindEvents();
+    //ローカルストレージに保存されているスケジュール用のJSONを格納する
     scheduleJson=JSON.parse(localStorage.schedule);
+    //保存されたスケジュールからリストを作成する
     for(var i in scheduleJson){
       scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
     }
+    //スケジュール一覧画面の更新
+    $("#scheduleCreate").hide();
     scheduleShow();
+    this.bindEvents();
   },
 
   //イベントの管理
   bindEvents: function() {
-    var tsJqSwipeX = -1;
-    var tsJqSwipeY = -1;
 
     $(function(){
       // 初期状態で[削除]は非表示
       $(".badge").hide();
 
       // [削除]クリックで親要素を削除
-      $("#scheduleLists").on("touchstart",".badge", function(){
-        //JSONで扱う処理 インデックスの変更とJSONからの削除
-        scheIndex=$(this).parent().val();
-        delete scheduleJson[scheIndex];
-        //スケジュールリストの削除
-        $(this).parent().remove();
-        if($("#scheduleLists li").length==0){
-          scheIndex=0;
-          scheduleShow();
-        }
-        localStorage.schedule=JSON.stringify(scheduleJson);
-        //alert(localStorage.schedule);
-      });
+      $("#scheduleLists").on("touchstart",".badge", deleteSchedule);
 
-      // スワイプ処理
-      $("#scheduleLists").on("touchstart","li", function(){
-        tsJqSwipeX = event.changedTouches[0].pageX;
-        tsJqSwipeY = event.changedTouches[0].pageY;
-      });
-      $("#scheduleLists").on("touchend","li", function(){
-        tsJqSwipeX = -1;
-        flag = 0;
-      });
-      $("#scheduleLists").on("touchmove","li", function(){
-        if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
-        if (tsJqSwipeX != -1 && (event.changedTouches[0].pageX - tsJqSwipeX) < -35) {
-          tsJqSwipeX = -1;
-          // スワイプられた時の処理
-          if ($(this).children("span").is(':visible')) {
-            $(".badge").hide();
-          } else {
-            $(".badge").hide();
-            $(this).children("span").show();
-          }
-        }
-      });
-      window.addEventListener("devicemotion",function(){
-        if(scheShake>5 && $("#scheduleCreate").is(":visible")){
-          alert("保存しました。")
-          scheduleList();
-          scheShake=0;
-        }else if($("#scheduleCreate").is(":hidden")){
-          scheShake=0;
-        }
-      });
+      //スワイプイベントをまとめた関数
+      badgeSwipe();
+
+      //加速度の変化タイミングを利用してスケジュールを自動で保存する
+      window.addEventListener("devicemotion",scheduleAutoSave);
     });
   },
 };
+//スケジュールを削除する関数
+function deleteSchedule(){
+  //JSONで扱う処理 インデックスの変更とJSONからの削除
+  scheIndex=$(this).parent().val();
+  delete scheduleJson[scheIndex];
+  //スケジュールリストの削除
+  $(this).parent().remove();
+  //スケジュール数が0になった時の処理
+  if($("#scheduleLists li").length==0){
+    scheIndex=0;
+    scheduleShow();
+  }
+  //削除した状態のJSONをローカルストレージに保存する
+  localStorage.schedule=JSON.stringify(scheduleJson);
+}
 
-var addSchedule=function(){
+//スケジュールを追加する関数
+function addSchedule(){
   $(function(){
     var datetime = $("#scheDatetime").val();
     var note = $("#scheNote").val();
@@ -89,7 +69,7 @@ var addSchedule=function(){
     scheduleShow();
   });
 };
-
+//スケジュールをリスト化する関数
 function scheduleAuto(index,datetime,note){
   var listItem = document.createElement('li'),
   html =  note+", "+datetime+
@@ -100,10 +80,9 @@ function scheduleAuto(index,datetime,note){
   $("#scheduleLists").append(listItem);
 
   $(".badge").hide();
-  //alert($(listItem).val());
 }
-
-var scheduleToJson = function(date,note){
+//スケジュールをJSONに変換して保存する関数
+function scheduleToJson(date,note){
 
   $(function(){
     scheduleJson[scheIndex]={
@@ -112,6 +91,42 @@ var scheduleToJson = function(date,note){
     };
 
     localStorage.schedule=JSON.stringify(scheduleJson);
-    //alert(localStorage.schedule);
   });
 };
+//スワイプ処理の関数
+function badgeSwipe(){
+  //スワイプイベントを管理する変数
+  var tsJqSwipeX = -1;
+  var tsJqSwipeY = -1;
+  // スワイプ処理
+  $("#scheduleLists").on("touchstart","li", function(){
+    tsJqSwipeX = event.changedTouches[0].pageX;
+    tsJqSwipeY = event.changedTouches[0].pageY;
+  });
+  $("#scheduleLists").on("touchend","li", function(){
+    tsJqSwipeX = -1;
+  });
+  $("#scheduleLists").on("touchmove","li", function(){
+    if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
+    if (tsJqSwipeX != -1 && (event.changedTouches[0].pageX - tsJqSwipeX) < -35) {
+      tsJqSwipeX = -1;
+      // スワイプられた時の処理
+      if ($(this).children("span").is(':visible')) {
+        $(".badge").hide();
+      } else {
+        $(".badge").hide();
+        $(this).children("span").show();
+      }
+    }
+  });
+}
+//スケジュール保存のトリガーをモーションにした時の関数
+function scheduleAutoSave(){
+  if(scheShake>5 && $("#scheduleCreate").is(":visible")){
+    alert("保存しました。")
+    scheduleList();
+    scheShake=0;
+  }else if($("#scheduleCreate").is(":hidden")){
+    scheShake=0;
+  }
+}
