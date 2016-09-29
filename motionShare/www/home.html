@@ -2,4 +2,15 @@
 <div id="HomeContent" class="center">
   <p style="margin-top: 100px;">MotionShare</p>
   <p>Prototype ver 1st SPRINT</p>
+
+  <a class="waves-effect btn" onclick="capturePhoto();">camera</a>
+
+<!--
+  <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+-->
+  <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+  <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+  <img style="display:none;width:100%;" id="smallImage" src="" />
+  <img style="display:none;" id="largeImage" src="" />
+
 </div><!-- #HomeContent -->
