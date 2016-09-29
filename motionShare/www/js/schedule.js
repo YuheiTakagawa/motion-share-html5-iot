@@ -32,7 +32,7 @@ var scheduleFanc = {
           scheIndex=0;
         }
         localStorage.schedule=JSON.stringify(scheduleJson);
-        alert(localStorage.schedule);
+        //alert(localStorage.schedule);
       });
 
       // スワイプ処理
@@ -102,6 +102,6 @@ var scheduleToJson = function(date,note){
     };
 
     localStorage.schedule=JSON.stringify(scheduleJson);
-    alert(localStorage.schedule);
+    //alert(localStorage.schedule);
   });
 };

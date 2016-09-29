@@ -9,7 +9,7 @@
 
   </div>
 
-  <div id="scheduleList">
+  <div id="scheduleList" class="list-list">
     <div id="scheduleNone">スケジュールはありません</div>
     <ul id="scheduleLists" class="list-group">
       <!--test用のリスト-->
@@ -22,7 +22,7 @@
   </li>
 -->
 </ul>
-<a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right"><i class="fa fa-fw fa-plus"></i></a>
+<a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
 </div>
 
 </div><!-- #SetSchedule -->
@@ -33,7 +33,7 @@ $(function(){
 });
 
 function scheduleShow(){
-  alert($("#scheduleLists li").length);
+  //alert($("#scheduleLists li").length);
   if($("#scheduleLists li").length==0){
     $("#scheduleNone").css('display','');
     $("#scheduleLists").css('display','none');
@@ -85,4 +85,13 @@ span.badge{
   padding-top:1.5em;
   padding-bottom:1.5em;
 }
+.right-bottom{
+  position:fixed;
+  bottom: 5%;
+  right:5%;
+}
+.list-list{
+  margin-bottom:25%;
+}
+
 </style>
