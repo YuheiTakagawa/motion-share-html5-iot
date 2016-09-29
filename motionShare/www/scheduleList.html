@@ -1,7 +1,10 @@
-<!-- schedule.html -->
+<!-- scheduleList.html -->
 <div id="schedulePage" class="center">
 
+  <!--スケジュール作成・一覧の管理を一つのhtml内で表示非表示を用いて行う-->
+  <!--スケジュールの作成をする画面-->
   <div id="scheduleCreate" class="center">
+
     <input id="scheDatetime" type="datetime-local" placeholder="日時">
     <input id="scheNote" type="text" placeholder="備考">
 
@@ -9,21 +12,22 @@
 
   </div>
 
+
+
+  <!--スケジュールの一覧を表示する画面-->
   <div id="scheduleList" class="list-list">
+
+    <!--保存されているスケジュールがない時に表示する-->
     <div id="scheduleNone">スケジュールはありません</div>
+
+
     <ul id="scheduleLists" class="list-group">
-      <!--test用のリスト-->
-      <!--
-      <li value="1">
-      テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
-    </li>
-    <li>
-    テストスケジュール<span class="badge"><i class="fa fa-fw fa-close"></i></span>
-  </li>
--->
-</ul>
-<a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
-</div>
+    </ul>
+
+    <!--スケジュールを新規作成するボタン　画面の右下に固定-->
+    <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
+
+  </div>
 
 </div><!-- #SetSchedule -->
 
@@ -31,6 +35,8 @@
 $(function(){
   scheduleFanc.initialize();
 });
+
+//画面レイアウトに関する関数
 
 function scheduleShow(){
   //alert($("#scheduleLists li").length);
@@ -60,8 +66,7 @@ function scheduleList(){
 }
 
 </script>
-<script>
-</script>
+<!--scheduleList.html用のcss　のちに別のcssファイルに書き込む必要あり-->
 <style type="text/css">
 #scheduleLists {
   width:70%;
