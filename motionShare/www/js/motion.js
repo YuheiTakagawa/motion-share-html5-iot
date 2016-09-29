@@ -39,7 +39,7 @@
 
 
     //x軸方向 加速度カウンター処理
-    var l = 27; //握手用
+    var l = 24; //握手用
     if(x > l || x < -l){
       if(handshakeBool == true){
         handshakeCnt++;
