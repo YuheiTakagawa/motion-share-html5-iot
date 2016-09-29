@@ -1,9 +1,12 @@
 <!-- home.html -->
 <div id="HomeContent" class="center">
-  
+
   <img style="display:none;width:100%;" id="smallImage" src="" />
   <a class="btn-large" onclick="capturePhoto();">camera</a>
   <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
   <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+
+
+  <input type="file" accept="image/*;capture=camera" />
 
 </div><!-- #HomeContent -->
