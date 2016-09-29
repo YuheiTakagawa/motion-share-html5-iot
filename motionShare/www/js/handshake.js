@@ -2,10 +2,10 @@
 
   var cnt =0;
   var flag =5;
-  var changeCnt = 0;
   var handshakeBool = false;
-  var changeBool = false;
 
+  var changeCnt=0;
+  var changeBool=false;
   var deviceName="";
 
   $(function () {
@@ -27,6 +27,14 @@
       var y = event.acceleration.y;
       // Z軸
       var z = event.acceleration.z;
+
+      //回転速度
+      //ｘ軸
+      var rotationalpha=event.rotationRate.alpha;
+      // y軸
+      var rotationbeta=event.rotationRate.beta;
+      //z軸
+      var rotationgamma=event.rotationRate.gamma;
     }else{
 
       var x=accgyr[0];
@@ -38,9 +46,13 @@
     document.getElementById('accelerationY').innerHTML = y;
     document.getElementById('accelerationZ').innerHTML = z;
 
+    document.getElementById('rotationalpha').innerHTML = rotationalpha;
+    document.getElementById('rotationbeta').innerHTML = rotationbeta;
+    document.getElementById('rotationgamma').innerHTML = rotationgamma;
+
 
     document.getElementById('count').innerHTML = cnt;
-
+    document.getElementById('count2').innerHTML = changeCnt;
     var l =27;
     if(x > l || x < -l){
       if(handshakeBool == true){
@@ -56,19 +68,22 @@
     }
 
 
-    if (x > 12 && y > 10){
-      if (changeBool == true){
+    var kl=15
+    if(changeBool==true){
+      if (rotationbeta <= -kl && changeCnt==0){
+        changeCnt++;
+      }
+      if(rotationbeta >=kl && changeCnt==1){
         changeCnt++;
       }
     }
 
     //チェンジー加速度・ジャイロによる判定
-    if(changeCnt >= 1 && changeBool == true){
+    if(changeCnt > 1){
       alert("チェンジ");
       changeCnt = 0;
       changeBool = false;
     }
-
   }
 
   //角速度変化
@@ -99,13 +114,15 @@
       handshakeBool = false;
     }
 
-    //
-    if ((gamma >= -20) && (gamma <= 0)){
-      if ((beta >= 20) && (beta <= 80)){
-        changeBool = true;
-      }
+
+
+    if(beta >= 60 && beta < 80){
+
+        changeBool=true;
+        //alert(alpha+","+beta+","+gamma)
+      
     }else{
-      changeBool = false;
+      changeBool=false;
     }
 
   }
