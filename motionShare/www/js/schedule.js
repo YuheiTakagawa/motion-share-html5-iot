@@ -30,6 +30,7 @@ var scheduleFanc = {
         $(this).parent().remove();
         if($("#scheduleLists li").length==0){
           scheIndex=0;
+          scheduleShow();
         }
         localStorage.schedule=JSON.stringify(scheduleJson);
         //alert(localStorage.schedule);
@@ -55,6 +56,15 @@ var scheduleFanc = {
             $(".badge").hide();
             $(this).children("span").show();
           }
+        }
+      });
+      window.addEventListener("devicemotion",function(){
+        if(scheShake>5 && $("#scheduleCreate").is(":visible")){
+          alert("保存しました。")
+          scheduleList();
+          scheShake=0;
+        }else if($("#scheduleCreate").is(":hidden")){
+          scheShake=0;
         }
       });
     });

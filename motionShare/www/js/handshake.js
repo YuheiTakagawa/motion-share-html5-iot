@@ -1,3 +1,4 @@
+var scheShake=0; //スケジュールを保存するために扱う変数
 (function () {
 
   var cnt =0;
@@ -27,28 +28,32 @@
       var z = event.acceleration.z;
     }else{
 
-       var x=accgyr[0];
-       var y=accgyr[1];
-       var z=accgyr[2];
+      var x=accgyr[0];
+      var y=accgyr[1];
+      var z=accgyr[2];
     }
 
-    document.getElementById('accelerationX').innerHTML = x;
-    document.getElementById('accelerationY').innerHTML = y;
-    document.getElementById('accelerationZ').innerHTML = z;
+    if($(".brand-logo").html()=='握手'){
+
+      document.getElementById('accelerationX').innerHTML = x;
+      document.getElementById('accelerationY').innerHTML = y;
+      document.getElementById('accelerationZ').innerHTML = z;
 
 
-    document.getElementById('count').innerHTML = cnt;
-
+      document.getElementById('count').innerHTML = cnt;
+    }
     var l =27;
     if(x > l || x < -l){
       if(handshakeBool == true){
         cnt++;
+
       }
     }
 
 
     if(cnt > flag){
       alert('握手');
+      scheShake=cnt;
       cnt = 0;
       handshakeBool = false;
     }
@@ -57,7 +62,7 @@
   //角速度変化
   function deviceorientationHandler(event) {
 
-      deviceName=localStorage.name;
+    deviceName=localStorage.name;
     if(deviceName==""){
       // X軸
       var beta = event.beta;
@@ -71,10 +76,12 @@
       var alpha=accgyr[5];
     }
 
-    document.getElementById('beta').innerHTML = beta;
-    document.getElementById('gamma').innerHTML = gamma;
-    document.getElementById('alpha').innerHTML = alpha;
+    if($(".brand-logo").html()=='握手'){
 
+      document.getElementById('beta').innerHTML = beta;
+      document.getElementById('gamma').innerHTML = gamma;
+      document.getElementById('alpha').innerHTML = alpha;
+    }
 
     if((gamma >= -90) && (gamma <= -70)){
       handshakeBool = true;
@@ -90,72 +97,72 @@
 /*
 (function () {
 
-  var cnt =0;
-  var flag =5;
-  var handshakeBool = false;
+var cnt =0;
+var flag =5;
+var handshakeBool = false;
 
 
-  $(function () {
-    // DeviceMotion Event
-    window.addEventListener("devicemotion", devicemotionHandler);
-    window.addEventListener("deviceorientation", deviceorientationHandler);
-  });
+$(function () {
+// DeviceMotion Event
+window.addEventListener("devicemotion", devicemotionHandler);
+window.addEventListener("deviceorientation", deviceorientationHandler);
+});
 
 
-  // 加速度が変化
-  function devicemotionHandler(event) {
+// 加速度が変化
+function devicemotionHandler(event) {
 
-    // 加速度
-    // X軸
-    var x = event.acceleration.x;
-    // Y軸
-    var y = event.acceleration.y;
-    // Z軸
-    var z = event.acceleration.z;
-
-
-    document.getElementById('accelerationX').innerHTML = x;
-    document.getElementById('accelerationY').innerHTML = y;
-    document.getElementById('accelerationZ').innerHTML = z;
+// 加速度
+// X軸
+var x = event.acceleration.x;
+// Y軸
+var y = event.acceleration.y;
+// Z軸
+var z = event.acceleration.z;
 
 
-    document.getElementById('count').innerHTML = cnt;
-
-    var l =27;
-    if(x > l || x < -l){
-      if(handshakeBool == true){
-      cnt++;
-      }
-    }
+document.getElementById('accelerationX').innerHTML = x;
+document.getElementById('accelerationY').innerHTML = y;
+document.getElementById('accelerationZ').innerHTML = z;
 
 
-    if(cnt > flag){
-      alert('握手');
-      cnt = 0;
-      handshakeBool = false;
-    }
-  }
+document.getElementById('count').innerHTML = cnt;
 
-  //角速度変化
-   function deviceorientationHandler(event) {
-    // X軸
-    var beta = event.beta;
-    // Y軸
-    var gamma = event.gamma;
-    // Z軸
-    var alpha = event.alpha;
-
-    document.getElementById('beta').innerHTML = beta;
-    document.getElementById('gamma').innerHTML = gamma;
-    document.getElementById('alpha').innerHTML = alpha;
+var l =27;
+if(x > l || x < -l){
+if(handshakeBool == true){
+cnt++;
+}
+}
 
 
-        if((gamma >= -90) && (gamma <= -70)){
-          handshakeBool = true;
-        }else{
-          handshakeBool = false;
-        }
+if(cnt > flag){
+alert('握手');
+cnt = 0;
+handshakeBool = false;
+}
+}
 
-   }
+//角速度変化
+function deviceorientationHandler(event) {
+// X軸
+var beta = event.beta;
+// Y軸
+var gamma = event.gamma;
+// Z軸
+var alpha = event.alpha;
+
+document.getElementById('beta').innerHTML = beta;
+document.getElementById('gamma').innerHTML = gamma;
+document.getElementById('alpha').innerHTML = alpha;
+
+
+if((gamma >= -90) && (gamma <= -70)){
+handshakeBool = true;
+}else{
+handshakeBool = false;
+}
+
+}
 })();
 */
