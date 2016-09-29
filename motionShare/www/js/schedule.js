@@ -46,7 +46,7 @@ var scheduleFanc = {
       });
       $("#scheduleLists").on("touchmove","li", function(){
         if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
-        if (tsJqSwipeX != -1 && Math.abs(event.changedTouches[0].pageX - tsJqSwipeX) > 35) {
+        if (tsJqSwipeX != -1 && (event.changedTouches[0].pageX - tsJqSwipeX) < -35) {
           tsJqSwipeX = -1;
           // スワイプられた時の処理
           if ($(this).children("span").is(':visible')) {
