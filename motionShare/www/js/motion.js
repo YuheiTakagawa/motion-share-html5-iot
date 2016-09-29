@@ -3,9 +3,11 @@
   var handshakeCnt = 0;
   var gooTouchCnt = 0;
   var highTouchCnt = 0;
+  var rotationalphaCnt = 0;
 
   var handshakeBool = false;
   var gooTouchBool = false;
+  var gooTouchRotaBool = false;
   var highTouchBool = false;
 
 
@@ -28,14 +30,29 @@
     var z = Math.round(event.acceleration.z * 10) / 10;
 
 
+    //回転速度
+    // X軸
+    var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
+    // Y軸
+    var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
+    // Z軸
+    var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
+
+
+
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
     document.getElementById('accelerationZ').innerHTML = z;
+
+    document.getElementById('rotationalpha').innerHTML = rotationalpha;
+    document.getElementById('rotationbeta').innerHTML = rotationbeta;
+    document.getElementById('rotationgamma').innerHTML = rotationgamma;
 
 
     document.getElementById('handshakeCnt').innerHTML = handshakeCnt;
     document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
     document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
+    document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
 
 
     //x軸方向 加速度カウンター処理
@@ -47,9 +64,18 @@
     }
 
     //グータッチ用
-    if(x > 20 && gooTouchBool == true){
-        gooTouchCnt++;
+    if(x < -15 && gooTouchBool == true) gooTouchCnt++;
+    if(rotationalpha > 10) rotationalphaCnt++;
+    if(rotationalphaCnt > 1) gooTouchRotaBool = true;
+
+    if(rotationalphaCnt > 0){
+      setTimeout(function(){
+        rotationalphaCnt = 0;
+        gooTouchCnt = 0;
+      }, 1000);
     }
+
+
 
     //Z軸方向 加速度カウンター処理
     if(z < -22 && highTouchBool == true){
@@ -64,12 +90,16 @@
       handshakeBool = false;
     }
 
+
     //グータッチー加速度・ジャイロによる判定
-    if(gooTouchCnt >= 1 && gooTouchBool == true){
+    if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       alert("グータッチ");
       gooTouchCnt = 0;
+      rotationalphaCnt = 0;
       gooTouchBool = false;
+      gooTouchRotaBool = false;
     }
+
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
@@ -78,8 +108,6 @@
       highTouchBool = false;
     }
   }
-
-
 
   //角速度変化
    function deviceorientationHandler(event) {
@@ -102,10 +130,8 @@
         }
 
         //グータッチ処理ージャイロ関係
-        if((alpha >= 40) && (alpha <= 110)){
-          if((beta > 160) && (beta < 180) || (beta > -180) && (beta < -160)){　//端末が裏になっていることの判別
-            gooTouchBool = true;
-          }
+        if((beta > 160) && (beta < 180) || (beta >= -180) && (beta < -160)){　//端末が裏になっていることの判別
+          gooTouchBool = true;
         }else{
           gooTouchBool = false;
         }
