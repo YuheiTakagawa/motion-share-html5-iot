@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "2b05005f-280e-49db-960c-35af8e9a8ee1",
-      "lastModifiedDate": 1475199972193,
+      "lastModifiedDate": 1475216211830,
       "creationDate": 1469085714972
     },
     "XDK-app-designer": "true",
@@ -85,13 +85,12 @@
         "originType": "repo",
         "origin": "https://github.com/don/BluetoothSerial.git",
         "gitref": "",
-        "subdir": ".",
         "paramvals": {},
         "sourceLocation": "plugins/cordova-plugin-bluetooth-serial",
         "selectedState": "Included",
         "checksum": "247a58cb",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.BLUETOOTH",
@@ -117,7 +116,7 @@
         "dependsOn": [
           "cordova-plugin-compat"
         ],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.ACCESS_COARSE_LOCATION",
@@ -140,7 +139,7 @@
         "selectedState": "Included",
         "checksum": "1fdd7f27",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.WRITE_EXTERNAL_STORAGE"
@@ -166,7 +165,7 @@
         "dependsOn": [
           "cordova-plugin-file"
         ],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.WRITE_EXTERNAL_STORAGE"
@@ -212,7 +211,7 @@
         "selectedState": "Included",
         "checksum": "9d8331a4",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.ACCESS_NETWORK_STATE"
@@ -229,13 +228,12 @@
         "originType": "repo",
         "origin": "https://github.com/apache/cordova-plugin-whitelist.git",
         "gitref": "",
-        "subdir": ".",
         "paramvals": {},
         "sourceLocation": "plugins/cordova-plugin-whitelist",
         "selectedState": "Included",
         "checksum": "3e0d25e",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "cordovaVersion": ">=3.0.0",
         "permissions": {},
         "description": "Cordova Network Whitelist Plugin",
@@ -276,7 +274,7 @@
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
           "android-signed": false,
-          "Fullscreen": true
+          "Fullscreen": false
         },
         "isActive_": true,
         "certificateId_": "jc7793MM3k6sU6hUg5bxQA2",

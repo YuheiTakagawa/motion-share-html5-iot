@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: blob: filesystem: ws: gap: file: cdvfile: https://ssl.gstatic.com *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src *
+    data: 'unsafe-inline'; connect-src * 'unsafe-inline'; child-src *; ">
 
 
   <!--Import Google Icon Font-->
@@ -23,18 +23,7 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 
-  <script src="https://motion-share.herokuapp.com/socket.io/socket.io.js"></script>
-  <!--
-  <script src="js/socket.io.js"></script>
--->
-
-  <script>
-    //recodemo.herokuapp.com
-    var url = "ws://motion-share.herokuapp.com/"; //websocketサーバのURL。
-    var socket = io.connect(url);
-    //socket.emit("login_announce_on_myself", {value : "watanabe"});
-    socket.emit("html5_test", 0);
-  </script>
+  <!--<script src="https://motion-share.herokuapp.com/socket.io/socket.io.js"></script>-->
 
   <script src="cordova.js" id="xdkJScordova_"></script>
 
@@ -109,6 +98,21 @@
     });
   }
   </script>
+
+
+
+  <script src="js/socket.io.js"></script>
+
+  <script>
+    //recodemo.herokuapp.com
+    var url = "https://motion-share.herokuapp.com"; //websocketサーバのURL。
+    var socket = io.connect(url);
+    socket.on("connect", function() {
+      alert("connected");
+      socket.emit("html5_test", 0);
+    });
+  </script>
+
 
 </head>
 <body class="colorful white-text">
