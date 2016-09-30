@@ -80,6 +80,7 @@
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       alert('握手');
+      socket.emit("html5_test", 0);
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -89,6 +90,7 @@
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       alert("グータッチ");
+      socket.emit("html5_test", 1);
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
@@ -100,6 +102,7 @@
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
       alert("ハイタッチ");
+      socket.emit("html5_test", 2);
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
