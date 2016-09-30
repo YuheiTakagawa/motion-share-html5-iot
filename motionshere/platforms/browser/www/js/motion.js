@@ -83,7 +83,7 @@
       socket.emit("html5_test", 0);
       handshakeCnt = 0;
       handshakeBool = false;
-      SensorValueLoad = false;
+      //SensorValueLoad = false;
       //SensorValueLoadControl();
     }
 
@@ -95,7 +95,7 @@
       rotationalphaCnt = 0;
       gooTouchBool = false;
       gooTouchRotaBool = false;
-      SensorValueLoad = false;
+      //SensorValueLoad = false;
       //SensorValueLoadControl();
     }
 
@@ -105,7 +105,7 @@
       socket.emit("html5_test", 2);
       highTouchCnt = 0;
       highTouchBool = false;
-      SensorValueLoad = false;
+      //SensorValueLoad = false;
       //SensorValueLoadControl();
     }
   }
