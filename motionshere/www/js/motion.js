@@ -84,7 +84,7 @@
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
-      SensorValueLoadControl();
+      //SensorValueLoadControl();
     }
 
     //グータッチー加速度・ジャイロによる判定
@@ -96,7 +96,7 @@
       gooTouchBool = false;
       gooTouchRotaBool = false;
       SensorValueLoad = false;
-      SensorValueLoadControl();
+      //SensorValueLoadControl();
     }
 
     //ハイタッチー加速度・ジャイロによる判定
@@ -106,7 +106,7 @@
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
-      SensorValueLoadControl();
+      //SensorValueLoadControl();
     }
   }
 
