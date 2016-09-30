@@ -602,6 +602,22 @@ module.exports = [
             "navigator.notification",
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-bluetooth-serial/www/bluetoothSerial.js",
+        "id": "cordova-plugin-bluetooth-serial.bluetoothSerial",
+        "pluginId": "cordova-plugin-bluetooth-serial",
+        "clobbers": [
+            "window.bluetoothSerial"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-bluetooth-serial/src/browser/bluetoothSerial.js",
+        "id": "cordova-plugin-bluetooth-serial.BluetoothSerial_browser",
+        "pluginId": "cordova-plugin-bluetooth-serial",
+        "clobbers": [
+            "window.bluetoothSerial"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -627,7 +643,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-vibration": "2.1.2",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "cordova-plugin-bluetooth-serial": "0.4.6"
 }
 // BOTTOM OF METADATA
 });
