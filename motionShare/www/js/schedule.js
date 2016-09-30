@@ -5,10 +5,12 @@ var scheduleFanc = {
   //初期化
   initialize: function() {
     //ローカルストレージに保存されているスケジュール用のJSONを格納する
-    scheduleJson=JSON.parse(localStorage.schedule);
-    //保存されたスケジュールからリストを作成する
-    for(var i in scheduleJson){
-      scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
+    if(!(localStorage.schedule===void 0)){
+      scheduleJson=JSON.parse(localStorage.schedule);
+      //保存されたスケジュールからリストを作成する
+      for(var i in scheduleJson){
+        scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
+      }
     }
     //スケジュール一覧画面の更新
     $("#scheduleCreate").hide();
@@ -91,6 +93,8 @@ function scheduleToJson(date,note){
     };
 
     localStorage.schedule=JSON.stringify(scheduleJson);
+    //削除コマンド デバッグ用
+    //localStorage.removeItem("schedule");
   });
 };
 //スワイプ処理の関数
