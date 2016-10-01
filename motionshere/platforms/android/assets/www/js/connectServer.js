@@ -13,3 +13,21 @@ $(document).ready(function(){
          upload(file);//ファイルを送る関数
       });
 });
+
+function upload(file){
+     var fileReader = new FileReader();
+     var send_file = file;
+     //var type = send_file.type;
+     var data = {};
+
+     fileReader.readAsBinaryString(send_file);
+
+     fileReader.onload = function(event) {
+
+         data.file = event.target.result;
+         data.name = "uploadFile";
+         //data.type = type;//
+
+         socket.emit('upload',data);
+     }
+}
