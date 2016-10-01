@@ -6,12 +6,12 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>Hello World</name>
+    <name>Motion Shere</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        人間の直感的な動きを加えた新しいデータ交換
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="b1014146@fun.ac.jp" href="http://phonegap.com">
+        Future Phone Project 2016 MS-HTML5
     </author>
     <content src="index.html" />
     <icon src="icon.png" />
