@@ -89,5 +89,7 @@ nav .button-collapse i{
 .card{
   /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);*/
   box-shadow: 0 0 0 0 rgba(0,0,0,0.0),0 0 0 0 rgba(0,0,0,0.0);
+  border-left: 7px solid #00bcd4;
 }
 .card .card-content { padding: 10px;}
+.card .card-image img{ border-radius: 0 0 0 0; }
