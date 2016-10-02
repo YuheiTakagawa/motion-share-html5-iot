@@ -8,6 +8,9 @@ body {
     color: #32332f;
 }
 
+.mt10 { margin-top: 10px; }
+.mt30 { margin-top: 30px; }
+
 .colorful {
   background:
   -webkit-linear-gradient(45deg, hsla(241, 24%, 20%, 1) 0%, hsla(241, 24%, 20%, 0) 70%),
@@ -50,7 +53,9 @@ body {
   margin-top: -100px;
   margin-left: -100px;
   text-align: center;
-  color: #000;
+  color: #32332f;
+  font-size: 14px;
+  font-weight: 600;
   z-index: 2;
 }
 
