@@ -4,7 +4,8 @@ html{
 }
 
 body {
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
+    background-color: #eceff1;
     color: #32332f;
 }
 
@@ -30,7 +31,7 @@ body {
 }
 
 
-.fa-black:before{color: black;}
+.fa-cyan:before{color: #00bcd4;}
 .fa-white:before{color: white;}
 
 #loader-bg {
