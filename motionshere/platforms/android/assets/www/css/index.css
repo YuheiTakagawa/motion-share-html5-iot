@@ -9,6 +9,8 @@ body {
     color: #32332f;
 }
 
+.text-col{ color: #32332f;}
+
 .mt10 { margin-top: 10px; }
 .mt30 { margin-top: 30px; }
 
@@ -83,3 +85,5 @@ nav .button-collapse i{
   height: 50px;
   line-height: 50px;
 }
+
+.card .card-content { padding: 10px;}
