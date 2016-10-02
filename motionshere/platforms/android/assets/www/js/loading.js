@@ -6,8 +6,8 @@ $(function() {
 });
 
 $(window).load(function () { //全ての読み込みが完了したら実行
-  $('#loader-bg').delay(900).fadeOut(800);
-  $('#loader').delay(600).fadeOut(300);
+  $('#loader-bg').delay(1300).fadeOut(800);
+  $('#loader').delay(1000).fadeOut(300);
   $('#wrap').css('display', 'block');
 });
 
