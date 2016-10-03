@@ -6,10 +6,10 @@ html{
 body {
     /*background-color: #fcfcfc;*/
     background-color: #cfd8dc;
-    color: #32332f;
+    color: #616161;
 }
 
-.text-col{ color: #32332f;}
+.text-col{ color: #616161;}
 
 .mt10 { margin-top: 10px; }
 .mt30 { margin-top: 30px; }
@@ -63,7 +63,7 @@ body {
 }
 
 .side-nav a{
-  color: #fff;
+  color: #616161;
 }
 
 #slide-out div.divider{
