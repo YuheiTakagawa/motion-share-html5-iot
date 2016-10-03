@@ -2,9 +2,9 @@ $(function() {
   $("#view").load("home.html");
 });
 //パーツ読み込み
-function PageControll(PageNum){
+function PageControll(val){
   $(function() {
-    switch(PageNum){
+    switch(val){
       case 0:
       $("#view").innerHTML = "<div id='home'></div>";
       $("#view").load("home.html");
