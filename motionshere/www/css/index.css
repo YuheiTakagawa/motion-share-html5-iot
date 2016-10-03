@@ -9,6 +9,10 @@ body {
     color: #616161;
 }
 
+.btn-large{
+  width:70%;
+}
+
 .text-col{ color: #616161;}
 
 .mt10 { margin-top: 10px; }
