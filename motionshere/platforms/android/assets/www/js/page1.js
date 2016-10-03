@@ -1,5 +1,4 @@
 var accgyr=[];
-
 var bluetoothFanc = {
   //初期化
   initialize: function() {
@@ -8,16 +7,28 @@ var bluetoothFanc = {
     }else{
       tmpBtnTrigger(0);
     }
+    $('select').material_select();
+    this.searchDevice();
     this.bindEvents();
   },
 
   //イベントの管理
   bindEvents: function() {
     var TOUCH_START = 'touchstart';
-    $('#deviceButton').on(TOUCH_START,this.searchDevice);
-    $('#DeviceSelect').on(TOUCH_START,this.connect);
+    //$('#deviceButton').on(TOUCH_START,this.searchDevice);
+    //$('#DeviceSelect').on(TOUCH_START,this.connect);
+    $('#DeviceSelects').on('change',this.connect);
     $('#smartButton').on(TOUCH_START,this.chooseSmart);
     $('#disconnectButton').on(TOUCH_START,this.disconnect);
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    });
   },
 
   onDeviceReady: function() {
@@ -47,8 +58,8 @@ var bluetoothFanc = {
   //デバイスに接続した時の処理
   connect: function(e) {
     //接続したデバイスの情報を取得
-    var deviceName = e.target.dataset.deviceName;
-    var deviceId = e.target.dataset.deviceId;
+    var deviceName = document.DeviceSelects.value;
+    var deviceId = document.DeviceSelects.text;
 
     deviceInfo.setDeviceId(deviceId);
     deviceInfo.setDeviceName(deviceName);
@@ -75,7 +86,8 @@ var bluetoothFanc = {
 
     //デバイスを検索する
     searchDevice: function(){
-      bluetoothSerial.list(updateTag.searchResult, bluetoothFanc.onError);
+      updateTag.searchResult("aaaaa");
+    //  bluetoothSerial.list(updateTag.searchResult, bluetoothFanc.onError);
     },
 
 
@@ -107,11 +119,11 @@ var bluetoothFanc = {
     chooseSmart: function(){
       deviceInfo.setDeviceId("");
       deviceInfo.setDeviceName("");
-      tmpBtnTrigger(1);
       bluetoothSerial.disconnect(function(){
         alert("本体に設定しました。");
+        tmpBtnTrigger(1);
       },bluetoothFanc.onError);
-    }
+    },
   };
 
 
@@ -119,19 +131,27 @@ var bluetoothFanc = {
   var updateTag={
     //検索したデバイスをドロップダウンに反映
     searchResult: function(devices){
-      //listによる実装
-      //ドロップダウンを一度初期化し再度追加していく
-      DeviceSelect.innerHTML = "";
-      devices.forEach(function(device) {
-        var listItem = document.createElement('li'),
-        html =  device.name;
+      var select=document.getElementById('DeviceSelects');
+      /*ドロップダウンの要素を一度初期化して追加する*/
+      /*if(select.hasChildNodes()){
+        while(select.childNodes.length>2)
+        select.removeChild(select.lastChild);
+      }
+      devices.forEach(function(device){
+        var name=device.name;
+        var id=device.id;
+        var opt = document.createElement('option');
+        opt.value=id;
+        opt.text=name;
 
-        listItem.innerHTML = html;
-        listItem.dataset.deviceName=device.name;
-        listItem.dataset.deviceId = device.id;
+        // option要素を追加
+        select.appendChild(opt);
+      });*/
+      var opt = document.createElement('option');
+      opt.value="aaa";
+      opt.text="jfj";
+      select.appendChild(opt);
 
-        DeviceSelect.appendChild(listItem);
-      });
     },
 
     //デバイス選択画面のタグ表示名を変更
@@ -164,7 +184,7 @@ var bluetoothFanc = {
     }
   };
 
-//接続しているデバイスによってボタンの色を変更する
+  //接続しているデバイスによってボタンの色を変更する
   var tmpBtnTrigger = function(num){
     switch (num) {
       case 0://「専用デバイス」選択状態
@@ -180,13 +200,13 @@ var bluetoothFanc = {
     }
   };
 
-/*
-var bluetoothBasicFanc = {
-//初期化
-initialize: function() {
-//alert("a");
-this.bindEvents();
-showPages.showMainPage();
+  /*
+  var bluetoothBasicFanc = {
+  //初期化
+  initialize: function() {
+  //alert("a");
+  this.bindEvents();
+  showPages.showMainPage();
 },
 
 //イベントの管理
@@ -271,29 +291,29 @@ $("#smartButton").on("click", smartButton);
 
 
 function tmpBtnTrigger(num){
-  switch (num) {
-    case 0://「専用デバイス」選択状態
-    $("#deviceButton").addClass("cyan");
-    $("#smartButton").addClass("disabled");
-    break;
-    case 1://「本体」選択状態
-    $("#smartButton").addClass("cyan");
-    $("#deviceButton").addClass("disabled");
-    break;
-  }
+switch (num) {
+case 0://「専用デバイス」選択状態
+$("#deviceButton").addClass("cyan");
+$("#smartButton").addClass("disabled");
+break;
+case 1://「本体」選択状態
+$("#smartButton").addClass("cyan");
+$("#deviceButton").addClass("disabled");
+break;
+}
 }
 
 
 //専用デバイスボタンのトリガー処理
 function deviceButton(){
-  $("#deviceButton").addClass("cyan");
-  $("#deviceButton").removeClass("disabled");
-  $("#smartButton").addClass("disabled");
+$("#deviceButton").addClass("cyan");
+$("#deviceButton").removeClass("disabled");
+$("#smartButton").addClass("disabled");
 }
 
 //本体ボタンのトリガー処理
 function smartButton(){
-  $("#smartButton").removeClass("disabled");
-  $("#deviceButton").addClass("disabled");
+$("#smartButton").removeClass("disabled");
+$("#deviceButton").addClass("disabled");
 }
 */

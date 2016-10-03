@@ -18,59 +18,61 @@
 -->
 <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-  <link rel="stylesheet" type="text/css" href="lib/materialize/css/materialize.min.css"  media="screen,projection" />
-  <link rel="stylesheet" type="text/css" href="css/font_awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <link rel="stylesheet" type="text/css" href="css/page1.css">
-  <link rel="stylesheet" type="text/css" href="css/page2.css">
+<link rel="stylesheet" type="text/css" href="lib/materialize/css/materialize.min.css"  media="screen,projection" />
+<link rel="stylesheet" type="text/css" href="css/font_awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/page1.css">
+<link rel="stylesheet" type="text/css" href="css/page2.css">
 
 
-  <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
-  <script type="text/javascript" src="lib/materialize/js/materialize.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="https://motion-share.herokuapp.com/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript" src="js/loading.js"></script>
-  <script type="text/javascript"> app.initialize(); </script>
-  <script type="text/javascript" src="js/geolocation.js"></script>
-  <script type="text/javascript" src="js/connectServer.js"></script>
-  <script type="text/javascript" src="js/page1.js"></script>
-  <script type="text/javascript" src="js/motion.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="lib/materialize/js/materialize.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="https://motion-share.herokuapp.com/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/loading.js"></script>
+<script type="text/javascript"> app.initialize(); </script>
+<script type="text/javascript" src="js/geolocation.js"></script>
+<script type="text/javascript" src="js/connectServer.js"></script>
+<script type="text/javascript" src="js/page1.js"></script>
+<script type="text/javascript" src="js/motion.js"></script>
 
 
-  <script>
+<script>
+$(function() {
+  $("#view").load("home.html");
+});
+//パーツ読み込み
+function PageControll(PageNum){
   $(function() {
-    $("#view").load("home.html");
-  });
-  //パーツ読み込み
-  function PageControll(PageNum){
-    $(function() {
-      switch(PageNum){
-        case 0:
-        $("#view").innerHTML = "<div id='home'></div>";
-        $("#view").load("home.html");
-        $(".brand-logo").html("MotionShare");
-        break;
-        case 1:
+    switch(PageNum){
+      case 0:
+      $("#view").innerHTML = "<div id='home'></div>";
+      $("#view").load("home.html");
+      $(".brand-logo").html("MotionShare");
+      break;
+      case 1:
         $("#view").innerHTML = "<div id='page1'></div>";
-        $("#view").load("page1.html");
+        $("#view").load("page1.html",function(){
+          bluetoothFanc.initialize();
+        });
         $(".brand-logo").html("デバイス");
-        break;
-        case 2:
-        $("#view").innerHTML = "<div id='page2'></div>";
-        $("#view").load("page2.html");
-        $(".brand-logo").html("握手");
-        break;
-        case 3:
-        $("#view").innerHTML = "<div id='page3'></div>";
-        $("#view").load("page3.html");
-        $(".brand-logo").html("位置情報");
-        break;
-      }
-    });
-  }
-  </script>
-  <title>Hello World</title>
+      break;
+      case 2:
+      $("#view").innerHTML = "<div id='page2'></div>";
+      $("#view").load("page2.html");
+      $(".brand-logo").html("握手");
+      break;
+      case 3:
+      $("#view").innerHTML = "<div id='page3'></div>";
+      $("#view").load("page3.html");
+      $(".brand-logo").html("位置情報");
+      break;
+    }
+  });
+}
+</script>
+<title>Hello World</title>
 </head>
 
 <body class="colorful white-text">
@@ -115,6 +117,6 @@
   });
   </script>
   <script type="text/javascript" src="cordova.js"></script>
-  <script>bluetoothFanc.onDeviceReady();</script>
+  <script>bluetoothFanc.autoConnect();</script>
 </body>
 </html>
