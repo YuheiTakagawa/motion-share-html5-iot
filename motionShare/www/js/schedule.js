@@ -7,11 +7,15 @@ var scheduleFanc = {
     //ローカルストレージに保存されているスケジュール用のJSONを格納する
     if(!(localStorage.schedule===void 0)){
       scheduleJson=JSON.parse(localStorage.schedule);
-
+      for(var key in scheduleJson){
+        if(getTimestamp(scheduleJson[key].date)<$.now()){
+          delete scheduleJson[key];
+        }
+      }
       scheduleJson = sortObject(scheduleJson, function(a, b){
-        a = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
-        b = getTimestamp(b.date); //上に同じ
-        return a - b; //降順にソートする場合、変数aとbの位置を逆にする
+        var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
+        var bt = getTimestamp(b.date); //上に同じ
+        return at - bt; //降順にソートする場合、変数aとbの位置を逆にする
       });
 
       //保存されたスケジュールからリストを作成する
