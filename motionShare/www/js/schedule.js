@@ -23,6 +23,8 @@ var scheduleFanc = {
         return at - bt; //降順にソートする場合、変数aとbの位置を逆にする
       });
 
+      //削除・ソート状態のJSONをローカルストレージに保存する
+      localStorage.schedule=JSON.stringify(scheduleJson);
       //保存されたスケジュールからリストを作成する
       for(var i in scheduleJson){
         scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
@@ -169,7 +171,8 @@ function getTimestamp(dateStr){
     +dateMatch[2] - 1, //月
     +dateMatch[3],     //日
     +dateMatch[4],     //時
-    +0     //分
+    +dateMatch[5],     //分
+    +0                 //秒
   );
   //日付に対応する数値を取得し、出力
   return dateObj.getTime();
