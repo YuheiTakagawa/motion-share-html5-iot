@@ -1,6 +1,10 @@
 var scheShake=0; //スケジュールを保存するために扱う変数
 (function () {
 
+ //var client = require('socket.io-client');
+ //var socket = client.connect('https://recodemo.herokuapp.com/');
+
+
   var cnt =0;
   var flag =5;
   var handshakeBool = false;
@@ -53,7 +57,8 @@ var scheShake=0; //スケジュールを保存するために扱う変数
 
     if(cnt > flag){
       alert('握手');
-      scheShake=cnt;
+      socket.emit("html5_test", 0);
+      //socket.emit("login_announce_on_myself", {value : "watanabe"});
       cnt = 0;
       handshakeBool = false;
     }
