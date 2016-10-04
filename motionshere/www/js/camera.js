@@ -1,4 +1,11 @@
 
+$(function(){
+  document.addEventListener("deviceready",
+  function(){
+    $('#cameraBase64').attr('href', 'javascript:getCameraBase64()');
+  },
+  false);
+})
 
 
 // カメラから画像を取得して、Base64形式で取得する
