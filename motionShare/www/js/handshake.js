@@ -5,6 +5,8 @@ var scheShake=0; //スケジュールを保存するために扱う変数
   var flag =5;
   var handshakeBool = false;
 
+  var changeCnt=0;
+  var changeBool=false;
   var deviceName="";
 
   $(function () {
@@ -26,6 +28,14 @@ var scheShake=0; //スケジュールを保存するために扱う変数
       var y = event.acceleration.y;
       // Z軸
       var z = event.acceleration.z;
+
+      //回転速度
+      //ｘ軸
+      var rotationalpha=event.rotationRate.alpha;
+      // y軸
+      var rotationbeta=event.rotationRate.beta;
+      //z軸
+      var rotationgamma=event.rotationRate.gamma;
     }else{
 
       var x=accgyr[0];
@@ -40,8 +50,10 @@ var scheShake=0; //スケジュールを保存するために扱う変数
       document.getElementById('accelerationZ').innerHTML = z;
 
 
-      document.getElementById('count').innerHTML = cnt;
     }
+
+
+    document.getElementById('count').innerHTML = cnt;
     var l =27;
     if(x > l || x < -l){
       if(handshakeBool == true){
@@ -56,6 +68,23 @@ var scheShake=0; //スケジュールを保存するために扱う変数
       scheShake=cnt;
       cnt = 0;
       handshakeBool = false;
+    }
+
+    var kl=15
+    if(changeBool==true){
+      if (rotationbeta <= -kl && changeCnt==0){
+        changeCnt++;
+      }
+      if(rotationbeta >=kl && changeCnt==1){
+        changeCnt++;
+      }
+    }
+
+    //チェンジー加速度・ジャイロによる判定
+    if(changeCnt > 1){
+      alert("チェンジ");
+      changeCnt = 0;
+      changeBool = false;
     }
   }
 
@@ -87,6 +116,13 @@ var scheShake=0; //スケジュールを保存するために扱う変数
       handshakeBool = true;
     }else{
       handshakeBool = false;
+    }
+
+
+    if(beta >= 60 && beta < 80){
+        changeBool=true;
+    }else{
+      changeBool=false;
     }
 
   }
