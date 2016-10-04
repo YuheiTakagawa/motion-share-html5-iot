@@ -1,8 +1,28 @@
 <!-- home.html -->
 <div id="HomeContent" class="center">
+
   <p style="margin-top: 100px;">MotionShare</p>
   <p>Prototype ver 1st SPRINT</p>
+
+  
   <a onClick="showSchedule()" href="#" class="btn-large deviceBtn mt disabled">スケジュール</a>
+
+
+
+
+  <img style="display:none;width:100%;" id="smallImage" src="" />
+  <a class="btn-large" onclick="capturePhoto();">camera</a>
+  <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+  <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+
+
+  <input type="file" accept="image/*;capture=camera" />
+
+
+
+
+  <input type="file" id="files" name="files[]" multiple />
+  <output id="list"></output>
 </div><!-- #HomeContent -->
 
 <script>

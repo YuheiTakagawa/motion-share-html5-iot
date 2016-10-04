@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "2b05005f-280e-49db-960c-35af8e9a8ee1",
-      "lastModifiedDate": 1473768692096,
+      "lastModifiedDate": 1475216211830,
       "creationDate": 1469085714972
     },
     "XDK-app-designer": "true",
@@ -29,7 +29,7 @@
       {
         "id": "cordova-plugin-statusbar",
         "name": "StatusBar",
-        "version": "2.1.0",
+        "version": "2.1.3",
         "originType": "cordova.io",
         "origin": "cordova-plugin-statusbar",
         "gitref": "",
@@ -42,11 +42,11 @@
         "description": "Cordova StatusBar Plugin",
         "data": {},
         "dependedBy": [],
-        "checksum": "858cc583"
+        "checksum": "c0146fbc"
       },
       {
         "id": "cordova-plugin-device",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "selectedState": "Included",
         "data": {},
         "paramvals": {},
@@ -59,11 +59,11 @@
         "gitref": "",
         "name": "Device",
         "description": "Cordova Device Plugin",
-        "checksum": "927290ca"
+        "checksum": "2373ccea"
       },
       {
         "id": "cordova-plugin-splashscreen",
-        "version": "3.2.0",
+        "version": "3.2.2",
         "selectedState": "Included",
         "data": {},
         "paramvals": {},
@@ -76,7 +76,7 @@
         "gitref": "",
         "name": "Splashscreen",
         "description": "Cordova Splashscreen Plugin",
-        "checksum": "452a4659"
+        "checksum": "47137083"
       },
       {
         "id": "cordova-plugin-bluetooth-serial",
@@ -85,13 +85,12 @@
         "originType": "repo",
         "origin": "https://github.com/don/BluetoothSerial.git",
         "gitref": "",
-        "subdir": ".",
         "paramvals": {},
         "sourceLocation": "plugins/cordova-plugin-bluetooth-serial",
         "selectedState": "Included",
         "checksum": "247a58cb",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.BLUETOOTH",
@@ -106,16 +105,18 @@
       {
         "id": "cordova-plugin-geolocation",
         "name": "Geolocation",
-        "version": "2.1.0",
+        "version": "2.2.0",
         "originType": "cordova.io",
         "origin": "cordova-plugin-geolocation",
         "gitref": "",
         "paramvals": {},
         "sourceLocation": "plugins/cordova-plugin-geolocation",
         "selectedState": "Included",
-        "checksum": "aa7be91c",
-        "dependsOn": [],
-        "topLevel": true,
+        "checksum": "ec466374",
+        "dependsOn": [
+          "cordova-plugin-compat"
+        ],
+        "topLevel": false,
         "permissions": {
           "android:name": [
             "android.permission.ACCESS_COARSE_LOCATION",
@@ -125,6 +126,142 @@
         "description": "Cordova Geolocation Plugin",
         "data": {},
         "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-file",
+        "name": "File",
+        "version": "4.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-file",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-file",
+        "selectedState": "Included",
+        "checksum": "1fdd7f27",
+        "dependsOn": [],
+        "topLevel": false,
+        "permissions": {
+          "android:name": [
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "Cordova File Plugin",
+        "data": {},
+        "dependedBy": [
+          "cordova-plugin-file-transfer"
+        ]
+      },
+      {
+        "id": "cordova-plugin-file-transfer",
+        "name": "File Transfer",
+        "version": "1.5.1",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-file-transfer",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-file-transfer",
+        "selectedState": "Included",
+        "checksum": "dbdc1f18",
+        "dependsOn": [
+          "cordova-plugin-file"
+        ],
+        "topLevel": false,
+        "permissions": {
+          "android:name": [
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "Cordova File Transfer Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-camera",
+        "name": "Camera",
+        "version": "2.2.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-camera",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-camera",
+        "selectedState": "Included",
+        "checksum": "ec9311a8",
+        "dependsOn": [
+          "cordova-plugin-compat"
+        ],
+        "topLevel": true,
+        "permissions": {
+          "android:name": [
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "Cordova Camera Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-network-information",
+        "name": "Network Information",
+        "version": "1.2.1",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-network-information",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-network-information",
+        "selectedState": "Included",
+        "checksum": "9d8331a4",
+        "dependsOn": [],
+        "topLevel": false,
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Cordova Network Information Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-whitelist",
+        "name": "Whitelist",
+        "version": "1.3.1-dev",
+        "originType": "repo",
+        "origin": "https://github.com/apache/cordova-plugin-whitelist.git",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-whitelist",
+        "selectedState": "Included",
+        "checksum": "3e0d25e",
+        "dependsOn": [],
+        "topLevel": false,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "description": "Cordova Network Whitelist Plugin",
+        "data": {},
+        "dependedBy": [],
+        "custom": "true"
+      },
+      {
+        "id": "cordova-plugin-compat",
+        "name": "Compat",
+        "version": "1.0.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-compat",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-compat",
+        "selectedState": "Included",
+        "checksum": "61c62eb",
+        "dependsOn": [],
+        "topLevel": false,
+        "permissions": {},
+        "description": "Cordova Compatibility Plugin",
+        "data": {},
+        "dependedBy": [
+          "cordova-plugin-camera",
+          "cordova-plugin-geolocation"
+        ],
+        "custom": "true"
       }
     ],
     "buildConfigurations": {
@@ -136,26 +273,31 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": false,
+          "Fullscreen": false
         },
         "isActive_": true,
         "certificateId_": "jc7793MM3k6sU6hUg5bxQA2",
         "appName_": "motionShare",
         "appID_": "xdk.intel.blank.ad.template.crosswalk",
         "appAccess_": {
-          "mode": "block",
-          "network": [],
-          "intents": [],
+          "mode": "whitelist",
+          "network": [
+            "*"
+          ],
+          "intents": [
+            "*"
+          ],
           "navigation": [],
           "properties": {}
         },
         "icons_": [],
         "splashes_": [],
-        "addlPermissions_": "",
+        "addlPermissions_": "INTERNET",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "5.4.1",
-        "crosswalkVersion_": "14",
-        "appVersion_": "0.0.1",
+        "cordovaCLIVersion_": "6.2.0",
+        "crosswalkVersion_": "19",
+        "appVersion_": "1.0.0",
         "appAuthor_": "Intel XDK",
         "appDescription_": "Template to develop a Cordova mobile web app using the App Designer UI editor.",
         "appVersionCode_": "1"
@@ -195,7 +337,7 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "5.4.1",
+        "cordovaCLIVersion_": "6.2.0",
         "crosswalkVersion_": "18",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK",
@@ -226,7 +368,7 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "5.4.1",
+        "cordovaCLIVersion_": "6.2.0",
         "crosswalkVersion_": "18",
         "appVersion_": "0.0.0.1",
         "appAuthor_": "Intel XDK",
@@ -350,7 +492,7 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "appVersion_": "0.0.0.1",
-        "cordovaCLIVersion_": "5.4.1",
+        "cordovaCLIVersion_": "6.2.0",
         "appAuthor_": "Intel XDK"
       }
     },
