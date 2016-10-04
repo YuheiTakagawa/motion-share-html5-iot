@@ -2,4 +2,15 @@
 <div id="HomeContent" class="center">
   <p style="margin-top: 100px;">MotionShare</p>
   <p>Prototype ver 1st SPRINT</p>
+  <a onClick="showSchedule()" href="#" class="btn-large deviceBtn mt disabled">スケジュール</a>
 </div><!-- #HomeContent -->
+
+<script>
+function showSchedule(){
+  $(function(){
+    $("#view").innerHTML = "<div id='schedulePage'></div>";
+    $("#view").load("scheduleList.html");
+    $(".brand-logo").html("スケジュール");
+  });
+}
+</script>

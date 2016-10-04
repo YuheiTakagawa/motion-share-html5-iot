@@ -1,0 +1,102 @@
+<!-- scheduleList.html -->
+<div id="schedulePage" class="center">
+
+  <!--スケジュール作成・一覧の管理を一つのhtml内で表示非表示を用いて行う-->
+  <!--スケジュールの作成をする画面-->
+  <div id="scheduleCreate" class="center">
+
+    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T13:00">
+    <input id="scheNote" type="text" placeholder="備考">
+
+    <a onClick="scheduleList();" href="#" class="btn-large deviceBtn mt cyan">保存</a>
+
+  </div>
+
+
+
+  <!--スケジュールの一覧を表示する画面-->
+  <div id="scheduleList" class="list-list">
+
+    <!--保存されているスケジュールがない時に表示する-->
+    <div id="scheduleNone">スケジュールはありません</div>
+
+
+    <ul id="scheduleLists" class="list-group">
+    </ul>
+
+    <!--スケジュールを新規作成するボタン　画面の右下に固定-->
+    <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
+
+  </div>
+
+</div><!-- #SetSchedule -->
+
+<script>
+$(function(){
+  scheduleFanc.initialize();
+});
+
+//画面レイアウトに関する関数
+
+function scheduleShow(){
+  //alert($("#scheduleLists li").length);
+  if($("#scheduleLists li").length==0){
+    $("#scheduleNone").css('display','');
+    $("#scheduleLists").css('display','none');
+  }else{
+    $("#scheduleNone").css('display','none');
+    $("#scheduleLists").css('display','');
+  }
+}
+function scheduleCreate(){
+  $(function(){
+    $("#scheduleCreate").show();
+    $("#scheduleList").hide();
+    $(".brand-logo").html("スケジュール作成");
+  });
+}
+
+function scheduleList(){
+  $(function(){
+    $("#scheduleCreate").hide();
+    $("#scheduleList").show();
+    $(".brand-logo").html("スケジュール");
+    addSchedule();
+  });
+}
+
+</script>
+<!--scheduleList.html用のcss　のちに別のcssファイルに書き込む必要あり-->
+<style type="text/css">
+#scheduleLists {
+  width:70%;
+  margin: 0 auto;
+  padding-left: 0em;
+
+}
+#scheduleLists li {
+  text-align: center;
+  color: #000;
+  background: #fff;
+  margin-top:1em;
+  padding:2em;
+}
+span.badge{
+  display: block;
+  width:15%;
+  color:#fff;
+  background:#ee2828;
+  margin-top:-10%;
+  padding-top:1.5em;
+  padding-bottom:1.5em;
+}
+.right-bottom{
+  position:fixed;
+  bottom: 5%;
+  right:5%;
+}
+.list-list{
+  margin-bottom:25%;
+}
+
+</style>
