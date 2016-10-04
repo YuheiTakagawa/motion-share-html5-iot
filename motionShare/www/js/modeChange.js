@@ -1,9 +1,8 @@
-(function(){
+
   var mode = 0;
   $(function(){
-    modeBtn.addEventListener('touchstart',modeChange);
+    $("#modeBtn").on('touchstart',modeChange);
   });
-
   function modeChange(){
     if(mode==0){
       mode = 1;
@@ -14,4 +13,3 @@
 
     }
   }
-})();

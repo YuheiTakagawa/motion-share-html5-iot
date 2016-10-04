@@ -140,6 +140,7 @@ if(changeCnt > 1){
   changeCnt = 0;
   changeBool = false;
   SensorValueLoad = false;
+  modeChange();
   SensorValueLoadControl();
 }
 }
