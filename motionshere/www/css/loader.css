@@ -25,6 +25,13 @@
   z-index: 2;
 }
 
+.info{
+  position: fixed;
+  top: 90%;
+  color: #e0e0e0;
+  font-weight: 300;
+}
+
 
 .loader,
 .loader:before,
