@@ -1,5 +1,17 @@
+
+$(function(){
+  document.addEventListener("deviceready",
+  function(){
+    alert("kkk");
+    $('#cameraBase64').attr('href', 'javascript:getCameraBase64()');
+  },
+  false);
+})
+
+
 // カメラから画像を取得して、Base64形式で取得する
 function getCameraBase64(){
+  alert("test");
   navigator.camera.getPicture(
     function(imageData){
       // cameraSuccess
