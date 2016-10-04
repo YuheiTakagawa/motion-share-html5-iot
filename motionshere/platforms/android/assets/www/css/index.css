@@ -80,10 +80,10 @@ nav .button-collapse i{
 a{color: #00e5ff;}
 
 .btn-circle{
-  width: 70px;
-  height: 70px;
+  width: 25%;
+  height: 20%;
   padding: 10px 16px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.33;
   border-radius: 35px;
   background-color: #eceff1;
