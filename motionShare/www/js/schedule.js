@@ -7,11 +7,16 @@ var scheduleFanc = {
     //ローカルストレージに保存されているスケジュール用のJSONを格納する
     if(!(localStorage.schedule===void 0)){
       scheduleJson=JSON.parse(localStorage.schedule);
+
+      //過ぎたスケジュールを削除する
       for(var key in scheduleJson){
         if(getTimestamp(scheduleJson[key].date)<$.now()){
+          alert(scheduleJson[key].date+"に予定だった"+scheduleJson[key].note+"を削除しました");
           delete scheduleJson[key];
         }
       }
+
+      //スケジュールをソートした結果を格納
       scheduleJson = sortObject(scheduleJson, function(a, b){
         var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
         var bt = getTimestamp(b.date); //上に同じ
