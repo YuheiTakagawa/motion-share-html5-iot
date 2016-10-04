@@ -8,15 +8,12 @@ var scheduleFanc = {
     if(!(localStorage.schedule===void 0)){
       scheduleJson=JSON.parse(localStorage.schedule);
 
-      //alert(JSON.stringify(scheduleJson));
       scheduleJson = sortObject(scheduleJson, function(a, b){
-        //alert(a.date+","+b.date);
         a = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
         b = getTimestamp(b.date); //上に同じ
         return a - b; //降順にソートする場合、変数aとbの位置を逆にする
       });
 
-      //alert(JSON.stringify(scheduleJson));
       //保存されたスケジュールからリストを作成する
       for(var i in scheduleJson){
         scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
@@ -66,6 +63,7 @@ function deleteSchedule(){
 function addSchedule(){
   $(function(){
     var datetime = $("#scheDatetime").val();
+    if(datetime=="")datetime="0000-00-00T00:00"
     var note = $("#scheNote").val();
 
     //JSONのkeyをスケジュールリストの要素数にする
@@ -104,7 +102,6 @@ function scheduleToJson(date,note){
       "note":note
     };
     scheduleJson = sortObject(scheduleJson, function(a, b){
-      //alert(a.date+","+b.date);
       a = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
       b = getTimestamp(b.date); //上に同じ
       return a - b; //降順にソートする場合、変数aとbの位置を逆にする
@@ -180,18 +177,10 @@ function sortObject(obj,callback){
     };
   }
   sort_arr.sort(function(a,b){
-    //alert(a.key);
-    //alert(b.key);
     return callback(a,b);
   });
   for(var i=0,c=sort_arr.length;i<c;i++){
-    //alert(sort_arr[i].property.date);
-    //alert(sort_arr[i].key);
-    //sort_arr[i].key=i;
-    //alert(sort_arr[i].key);
-    //alert(sort_arr[i].date);
     new_obj[i]=sort_arr[i];
-    //alert(JSON.stringify(new_obj[i])+":::::"+JSON.stringify(sort_arr[i]));
   }
   return new_obj;
 }
