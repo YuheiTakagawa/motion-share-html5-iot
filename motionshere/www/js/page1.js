@@ -39,7 +39,9 @@ var bluetoothFanc = {
         bluetoothSerial.receiveData();
       },this.onError);
     }else{
-      alert("本体を設定しています。");
+      //alert("本体を設定しています。");
+      $(".info2").text('<br>sensor from this device ...OK');
+
     }
   },
 
