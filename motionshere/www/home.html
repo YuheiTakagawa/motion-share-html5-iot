@@ -10,13 +10,59 @@
     <div class="card-content white-text">
       <span class="card-title">10/20, 20:00</span>
       <p>I am a very simple card. I am good at containing small bits of information.</p>
-      </div>
-      <div class="card-action">
-        <a href="#"><i class="fa fa-fw fa-list-ul fa-cyan mr10"></i>Chack the schedule</a>
-      </div>
     </div>
+    <div class="card-action">
+      <a href="#"><i class="fa fa-fw fa-list-ul fa-cyan mr10"></i>Chack the schedule</a>
+    </div>
+  </div>
 
-    <div class="center animated fadeInUp">
-        <button onclick="getCameraURI();" type="button" class="btn btn-default btn-circle"><i class="fa fa-fw fa-camera fa-cyan"></i></button>
-    </div>
-  </div><!-- #HomeContent -->
+  <div class="center animated fadeInUp">
+    <button onclick="getCameraBase64();" type="button" class="btn btn-default btn-circle"><i class="fa fa-fw fa-camera fa-cyan"></i></button>
+  </div>
+
+  <img style="display:none;width:100%" id="camera_pic" src="" />
+
+
+  <div>
+       <button id="camera">カメラ起動</button>
+   </div>
+   <div>
+       <img id="image" width="200">
+   </div>
+</div><!-- #HomeContent -->
+
+<script>
+$(function() {
+    $('#camera').on('click', function() {
+      alert("camera OK");
+
+        // カメラのチェク
+        if (!navigator.camera) {
+            alert("Camera API not supported", "Error");
+            return;
+        }
+
+        // カメラ起動時のオプション
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: 1,     // 0:Photo Library, 1=Camera, 2=Saved Album
+            encodingType: 0     // 0=JPG 1=PNG
+        };
+
+        // カメラを起動
+        navigator.camera.getPicture(
+            function(imgData) {
+                alert(imgData);
+                socket.emit("html5_test", imgData);
+                $('#image').attr('src', "data:image/jpeg;base64,"+imgData);
+            },
+            function() {
+                alert('Error taking picture', 'Error');
+            },
+            options
+        );
+
+    });
+});
+</script>
