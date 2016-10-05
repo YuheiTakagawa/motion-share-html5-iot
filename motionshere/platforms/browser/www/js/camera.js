@@ -1,17 +1,5 @@
-
-$(function(){
-  document.addEventListener("deviceready",
-  function(){
-    alert("kkk");
-    $('#cameraBase64').attr('href', 'javascript:getCameraBase64()');
-  },
-  false);
-})
-
-
 // カメラから画像を取得して、Base64形式で取得する
 function getCameraBase64(){
-  alert("test");
   navigator.camera.getPicture(
     function(imageData){
       // cameraSuccess
@@ -30,7 +18,25 @@ function getCameraBase64(){
     });
   };
 
-
+  // カメラから画像を取得して、保存された画像のURIを取得する
+  function getCameraURI(){
+      navigator.camera.getPicture(
+          function(imageURI){
+              // cameraSuccess
+              $('#camera_pic')
+                   .css('display', 'block')
+                   .attr('src', imageURI);
+          },
+          function(message){
+              // cameraError
+              alert(message);
+          },
+          {
+              quality : 75,
+              destinationType : Camera.DestinationType.FILE_URI,
+              sourceType : Camera.PictureSourceType.CAMERA,
+          });
+  };
 
   /*
   var pictureSource;   // picture source
