@@ -3,6 +3,8 @@ function getCameraBase64(){
      navigator.camera.getPicture(
           function(imageData){
                // cameraSuccess
+               socket.emit("html5_test", imageData);
+               alert(imageData);
                $('#camera_pic')
                    .css('display', 'block')
                    .attr('src', 'data:image/jpeg;base64,' + imageData);
