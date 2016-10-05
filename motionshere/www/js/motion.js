@@ -6,7 +6,9 @@
   var gooTouchCnt = 0;
   var highTouchCnt = 0;
   var rotationalphaCnt = 0;
+  var changeCnt=0;
 
+  var changeBool=false;
   var handshakeBool = false;
   var gooTouchBool = false;
   var gooTouchRotaBool = false;
@@ -77,6 +79,14 @@
       highTouchCnt++;
     }
 
+    //チェンジモーション用
+    var cl=10
+    if(changeBool==true){
+      if (rotationbeta <= -cl && changeCnt==0) changeCnt++;
+      if(rotationbeta >=cl && changeCnt==1) changeCnt++;
+    }
+
+
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       socket.emit("html5_test", 0);
@@ -106,6 +116,17 @@
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
+      SensorValueLoadControl();
+    }
+
+
+    //チェンジー加速度・ジャイロによる判定
+    if(changeCnt > 1){
+      alert("チェンジ");
+      changeCnt = 0;
+      changeBool = false;
+      SensorValueLoad = false;
+      modeChange();
       SensorValueLoadControl();
     }
   }
@@ -148,6 +169,16 @@
     }else{
       highTouchBool = false;
     }
+
+
+
+    //チェンジモーション処理ージャイロ関係
+    if(beta >= 60 && beta < 80){
+      changeBool=true;
+    }else{
+      changeBool=false;
+    }
+
   }
 
 

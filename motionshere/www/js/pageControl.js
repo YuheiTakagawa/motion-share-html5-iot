@@ -17,7 +17,9 @@ function PageControll(val){
       break;
       case 1:
       $("#view").innerHTML = "<div id='page1'></div>";
-      $("#view").load("page1.html");
+      $("#view").load("page1.html",function(){
+        bluetoothFanc.initialize();
+      });
       removeAnimationClass();
       $(".brand-logo").html("デバイス");
       break;
