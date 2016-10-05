@@ -1,5 +1,7 @@
 $(function() {
-  $("#view").load("home.html");
+  $("#view").load("home.html",function(){
+    homeInitilize();
+  });
 });
 //パーツ読み込み
 function PageControll(val){
@@ -7,7 +9,9 @@ function PageControll(val){
     switch(val){
       case 0:
       $("#view").innerHTML = "<div id='home'></div>";
-      $("#view").load("home.html");
+      $("#view").load("home.html",function(){
+        homeInitilize();
+      });
       removeAnimationClass();
       $(".brand-logo").html("MotionShare");
       break;

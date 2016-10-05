@@ -65,7 +65,14 @@ function deleteSchedule(){
   if($("#scheduleLists li").length==0){
     scheIndex=0;
     scheduleShow();
-  }
+  }    
+  //スケジュールをソートした結果を格納
+  scheduleJson = sortObject(scheduleJson, function(a, b){
+    var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
+    var bt = getTimestamp(b.date); //上に同じ
+    return at - bt; //降順にソートする場合、変数aとbの位置を逆にする
+  });
+
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
 }
