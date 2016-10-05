@@ -19,10 +19,6 @@ function getCameraBase64(){
           });
 };
 
-function test(){
-  $('#camera_pic').attr('src', 'data:image/jpeg;base64,');
-}
-
 /*
 // カメラから画像を取得して、保存された画像のURIを取得する
 function getCameraURI(){
