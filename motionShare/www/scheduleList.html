@@ -5,7 +5,7 @@
   <!--スケジュールの作成をする画面-->
   <div id="scheduleCreate" class="center">
 
-    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T13:00">
+    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T13:00:00" min="2016-10-04T00:00:00">
     <input id="scheNote" type="text" placeholder="備考">
 
     <a onClick="scheduleList();" href="#" class="btn-large deviceBtn mt cyan">保存</a>
@@ -25,7 +25,7 @@
     </ul>
 
     <!--スケジュールを新規作成するボタン　画面の右下に固定-->
-    <a onClick="scheduleCreate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
+    <a onClick="scheduleCreate();calcDate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
 
   </div>
 
@@ -63,6 +63,18 @@ function scheduleList(){
     $(".brand-logo").html("スケジュール");
     addSchedule();
   });
+}
+
+function calcDate(){
+  var date=new Date();
+  var year=date.getFullYear();
+  var month=date.getMonth()+1;
+  var day=date.getDate();
+  var hour=date.getHours();
+  var minute=date.getMinutes();
+  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
+  $("#scheDatetime").val(dates);
+  $("#scheDatetime").attr('min',dates);
 }
 
 </script>
