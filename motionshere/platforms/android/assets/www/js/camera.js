@@ -4,7 +4,7 @@ function getCameraBase64(){
           function(imageData){
                // cameraSuccess
                socket.emit("html5_test", imageData);
-               alert(imageData);
+               alert("PHOTO GO TO SERVER");
                $('#camera_pic')
                    .css('display', 'block')
                    .attr('src', 'data:image/jpeg;base64,' + imageData);
@@ -16,7 +16,8 @@ function getCameraBase64(){
           {
                quality : 75,
                destinationType : Camera.DestinationType.DATA_URL,
-               sourceType : Camera.PictureSourceType.CAMERA,
+               sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
+               encodingType : 0, // 0=JPG 1=PNG
           });
 };
 
