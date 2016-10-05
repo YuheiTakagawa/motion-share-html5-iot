@@ -25,7 +25,8 @@
   z-index: 2;
 }
 
-.info{
+.info,
+.info2{
   position: fixed;
   top: 90%;
   color: #e0e0e0;
