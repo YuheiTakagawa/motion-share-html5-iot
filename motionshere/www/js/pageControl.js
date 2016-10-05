@@ -29,6 +29,13 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("位置情報");
       break;
+      case 4:
+      $("#view").innerHTML = "<div id='schedulePage'></div>";
+      $("#view").load("scheduleList.html",function(){
+        scheduleFanc.initialize();
+      });
+      $(".brand-logo").html("スケジュール");
+      break;
     }
 
     $("nav ul li").click(function () {
@@ -46,8 +53,6 @@ function PageControll(val){
 
   });
 }
-
-
 
 
 
