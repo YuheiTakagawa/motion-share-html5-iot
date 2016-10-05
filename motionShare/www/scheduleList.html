@@ -5,7 +5,7 @@
   <!--スケジュールの作成をする画面-->
   <div id="scheduleCreate" class="center">
 
-    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T13:00:00" min="2016-10-04T00:00:00">
+    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T00:00:00" min="2016-10-04T00:00:00">
     <input id="scheNote" type="text" placeholder="備考">
 
     <a onClick="scheduleList();" href="#" class="btn-large deviceBtn mt cyan">保存</a>
@@ -71,9 +71,16 @@ function calcDate(){
   var month=date.getMonth()+1;
   var day=date.getDate();
   var hour=date.getHours();
-  var minute=date.getMinutes();
+  var minute=date.getMinutes()+1;
   var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
   $("#scheDatetime").val(dates);
+  hour-=9;
+  if(hour<0){
+    hour=23-hour;
+    day--;
+  }
+  var minute=date.getMinutes()+1;
+  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
   $("#scheDatetime").attr('min',dates);
 }
 
