@@ -31,60 +31,8 @@
 
 </div><!-- #SetSchedule -->
 
-<script>
-$(function(){
-  scheduleFanc.initialize();
-});
 
-//画面レイアウトに関する関数
 
-function scheduleShow(){
-  //alert($("#scheduleLists li").length);
-  if($("#scheduleLists li").length==0){
-    $("#scheduleNone").css('display','');
-    $("#scheduleLists").css('display','none');
-  }else{
-    $("#scheduleNone").css('display','none');
-    $("#scheduleLists").css('display','');
-  }
-}
-function scheduleCreate(){
-  $(function(){
-    $("#scheduleCreate").show();
-    $("#scheduleList").hide();
-    $(".brand-logo").html("スケジュール作成");
-  });
-}
-
-function scheduleList(){
-  $(function(){
-    $("#scheduleCreate").hide();
-    $("#scheduleList").show();
-    $(".brand-logo").html("スケジュール");
-    addSchedule();
-  });
-}
-
-function calcDate(){
-  var date=new Date();
-  var year=date.getFullYear();
-  var month=date.getMonth()+1;
-  var day=date.getDate();
-  var hour=date.getHours();
-  var minute=date.getMinutes()+1;
-  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
-  $("#scheDatetime").val(dates);
-  hour-=9;
-  if(hour<0){
-    hour=23-hour;
-    day--;
-  }
-  var minute=date.getMinutes()+1;
-  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
-  $("#scheDatetime").attr('min',dates);
-}
-
-</script>
 <!--scheduleList.html用のcss　のちに別のcssファイルに書き込む必要あり-->
 <style type="text/css">
 #scheduleLists {

@@ -65,7 +65,14 @@ function deleteSchedule(){
   if($("#scheduleLists li").length==0){
     scheIndex=0;
     scheduleShow();
-  }
+  }    
+  //スケジュールをソートした結果を格納
+  scheduleJson = sortObject(scheduleJson, function(a, b){
+    var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
+    var bt = getTimestamp(b.date); //上に同じ
+    return at - bt; //降順にソートする場合、変数aとbの位置を逆にする
+  });
+
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
 }
@@ -89,7 +96,9 @@ function addSchedule(){
     scheduleToJson(datetime,note);
     scheduleAuto(scheIndex,datetime,note);
     scheduleShow();
-    $("#view").load('scheduleList.html');
+    $("#view").load('scheduleList.html',function(){
+      scheduleFanc.initialize();
+    });
   });
 };
 //スケジュールをリスト化する関数
@@ -195,4 +204,52 @@ function sortObject(obj,callback){
     new_obj[i]=sort_arr[i];
   }
   return new_obj;
+}
+
+//画面レイアウトに関する関数
+
+function scheduleShow(){
+  //alert($("#scheduleLists li").length);
+  if($("#scheduleLists li").length==0){
+    $("#scheduleNone").css('display','');
+    $("#scheduleLists").css('display','none');
+  }else{
+    $("#scheduleNone").css('display','none');
+    $("#scheduleLists").css('display','');
+  }
+}
+function scheduleCreate(){
+  $(function(){
+    $("#scheduleCreate").show();
+    $("#scheduleList").hide();
+    $(".brand-logo").html("スケジュール作成");
+  });
+}
+
+function scheduleList(){
+  $(function(){
+    $("#scheduleCreate").hide();
+    $("#scheduleList").show();
+    $(".brand-logo").html("スケジュール");
+    addSchedule();
+  });
+}
+
+function calcDate(){
+  var date=new Date();
+  var year=date.getFullYear();
+  var month=date.getMonth()+1;
+  var day=date.getDate();
+  var hour=date.getHours();
+  var minute=date.getMinutes()+1;
+  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
+  $("#scheDatetime").val(dates);
+  hour-=9;
+  if(hour<0){
+    hour=23-hour;
+    day--;
+  }
+  var minute=date.getMinutes()+1;
+  var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
+  $("#scheDatetime").attr('min',dates);
 }

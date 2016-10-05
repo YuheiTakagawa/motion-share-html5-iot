@@ -1,5 +1,7 @@
 $(function() {
-  $("#view").load("home.html");
+  $("#view").load("home.html",function(){
+    homeInitilize();
+  });
 });
 //パーツ読み込み
 function PageControll(val){
@@ -7,7 +9,9 @@ function PageControll(val){
     switch(val){
       case 0:
       $("#view").innerHTML = "<div id='home'></div>";
-      $("#view").load("home.html");
+      $("#view").load("home.html",function(){
+        homeInitilize();
+      });
       removeAnimationClass();
       $(".brand-logo").html("MotionShare");
       break;
@@ -29,6 +33,13 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("位置情報");
       break;
+      case 4:
+      $("#view").innerHTML = "<div id='schedulePage'></div>";
+      $("#view").load("scheduleList.html",function(){
+        scheduleFanc.initialize();
+      });
+      $(".brand-logo").html("スケジュール");
+      break;
     }
 
     $("nav ul li").click(function () {
@@ -46,8 +57,6 @@ function PageControll(val){
 
   });
 }
-
-
 
 
 
