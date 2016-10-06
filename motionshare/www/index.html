@@ -45,7 +45,7 @@
   <script type="text/javascript" src="js/modeChange.js"></script>
 
   <script>
-    alert(navigator.userAgent);
+    //alert(navigator.userAgent);
   </script>
 
   <title>MS-HTML5</title>
@@ -98,6 +98,9 @@
   });
   </script>
   <script type="text/javascript" src="cordova.js"></script>
-  <script>bluetoothFanc.onDeviceReady();</script>
+  <script>
+    bluetoothFanc.onDeviceReady();
+    modeChange(1);
+  </script>
 </body>
 </html>

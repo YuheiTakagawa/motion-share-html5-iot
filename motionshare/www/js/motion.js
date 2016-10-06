@@ -126,7 +126,7 @@
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
-      modeChange();
+      modeChange(0);
       SensorValueLoadControl();
     }
   }
