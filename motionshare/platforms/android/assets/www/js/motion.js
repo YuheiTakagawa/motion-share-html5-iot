@@ -122,12 +122,12 @@
 
     //チェンジー加速度・ジャイロによる判定
     if(changeCnt > 1){
-      alert("チェンジ");
+      alert("チェンジ"+changeMotionBool);
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
-      modeChange(0);
       SensorValueLoadControl();
+      modeChange(); //モード切り替え処理 modeChange.js
     }
   }
 
@@ -171,7 +171,6 @@
     }
 
 
-
     //チェンジモーション処理ージャイロ関係
     if(beta >= 60 && beta < 80){
       changeBool=true;
@@ -180,7 +179,6 @@
     }
 
   }
-
 
   //モーション判別後 2s後にセンサー値を再度取得する
   function SensorValueLoadControl(){
