@@ -77,7 +77,11 @@
           <li><a class="animsition-link" onClick="PageControll(1)" href="#">デバイス</a></li>
           <li><a class="animsition-link" onClick="PageControll(2)" href="#">握手</a></li>
           <li><a class="animsition-link" onClick="PageControll(3)" href="#">位置情報</a></li>
-          <a class='btn-large' href='#' id="modeBtn">モードチェンジ</a>
+
+          <div class="switch ml10">
+            <label>SEND MODE<input type="checkbox" id="modeChangeBtn" onclick="senderMode();"><span class="lever"></label>
+          </div>
+
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
       </nav>

@@ -126,7 +126,7 @@
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
-      modeChange(0);
+      modeChange(0);//受信者から送信者に切り替わる
       SensorValueLoadControl();
     }
   }
