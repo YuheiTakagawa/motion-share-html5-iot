@@ -126,7 +126,7 @@
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
-      modeChange(0);//受信者から送信者に切り替わる
+      changeMotionBool = true; //modeChange.jsに処理を記述
       SensorValueLoadControl();
     }
   }

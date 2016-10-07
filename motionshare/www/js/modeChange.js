@@ -1,21 +1,27 @@
+var changeMotionBool = false;
 
-//var mode = 0;
-
-function senderMode(){
+//モーションでデータ交換完了後，下の処理を実行する
+/*
+*/
+function modeChange(){
   var checked = $("#modeChangeBtn").is(":checked");
 
-  switch (checked) {
-    /*******  送信者モードのときの処理  *******/
-    case true:
-    $("#modeStatus").html("送信者");
-      break;
-    /*******  受信者モードのときの処理  *******/
-    case false:
-    $("#modeStatus").html("");
-    //サーバからデータ受信
-    socket.on('html5_test_show', function(rcvMsg) { alert(rcvMsg); });
-    break;
-  }
+  if(checked == true || changeMotionBool == true) senderMode();
+  else if (checked == false || changeMotionBool == false) receiverMode();
+}
+
+
+/*******  送信者モードのときの処理  *******/
+function senderMode(){
+  $("#modeStatus").html("送信者");
+}
+
+
+/*******  受信者モードのときの処理  *******/
+function receiverMode(){
+  $("#modeStatus").html("");
+  //サーバからデータ受信
+  socket.on('html5_test_show', function(rcvMsg) { alert(rcvMsg); });
 }
 
 
