@@ -20,24 +20,6 @@ body {
 .mr10 { margin-right: 10px;}
 .ml10 { margin-left: 10px; }
 
-.colorful {
-  background:
-  -webkit-linear-gradient(45deg, hsla(241, 24%, 20%, 1) 0%, hsla(241, 24%, 20%, 0) 70%),
-  -webkit-linear-gradient(315deg, hsla(227, 100%, 30%, 1) 10%, hsla(227, 100%, 30%, 0) 80%),
-  -webkit-linear-gradient(225deg, hsla(210, 34%, 28%, 1) 10%, hsla(210, 34%, 28%, 0) 80%),
-  -webkit-linear-gradient(135deg, hsla(279, 100%, 21%, 1) 100%, hsla(279, 100%, 21%, 0) 70%);
-  background:
-  linear-gradient(45deg, hsla(241, 24%, 20%, 1) 0%, hsla(241, 24%, 20%, 0) 70%),
-  linear-gradient(135deg, hsla(227, 100%, 30%, 1) 10%, hsla(227, 100%, 30%, 0) 80%),
-  linear-gradient(225deg, hsla(210, 34%, 28%, 1) 10%, hsla(210, 34%, 28%, 0) 80%),
-  linear-gradient(315deg, hsla(279, 100%, 21%, 1) 100%, hsla(279, 100%, 21%, 0) 70%);
-
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center center;
-  min-height: 100%;
-}
-
 
 .fa-cyan:before{color: #00bcd4;}
 .fa-white:before{color: white;}
@@ -78,18 +60,15 @@ nav .button-collapse i{
 .card .card-content { padding: 10px;}
 .card .card-image img{ border-radius: 0 0 0 0; }
 
-a{color: #00e5ff;}
 
 .btn-circle{
   width: 25%;
   height: 50px;
-  padding: 10px 16px;
+  padding: 10px 20px;
   font-size: 20px;
-  line-height: 1.33;
+  line-height: 2.33;
   border-radius: 35px;
   background-color: #eceff1;
   /*opacity: 0.2;*/
   border: 2px solid #00bcd4;
 }
-
-.btn-circle:hover{ background-color: #00bcd4;}
