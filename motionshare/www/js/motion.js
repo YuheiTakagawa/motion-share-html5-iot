@@ -100,8 +100,8 @@
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("html5_test", 1);
-      sendSchedule();
       alert("グータッチ");
+      sendSchedule();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
