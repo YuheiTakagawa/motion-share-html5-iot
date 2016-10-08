@@ -24,16 +24,14 @@ function getCameraBase64(){
   };
 
 
-  // ギャラリーなどから選択した画像のURIを取得する
-  function getPhotoURI(){
+  // ギャラリーなどから選択した画像をbase64で取得する
+  function getPhotoDATA(){
     navigator.camera.getPicture(
-      function(imageURI){
+      function(imageData){
         // cameraSuccess
-        $('#camera_pic')
-        .css('display', 'block')
-        .attr('src', 'data:image/jpeg;base64,' + imageURI);
-
-        $(".test").html(imageURI);
+        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+        socket.emit("html5_test", imageData);
+        alert("PHOTO GO TO SERVER");
       },
       function(message){
         // cameraError
