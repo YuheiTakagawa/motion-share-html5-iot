@@ -91,6 +91,7 @@
     if(handshakeCnt > 3){
       socket.emit("html5_test", 0);
       alert('握手');
+      sendContact();
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;

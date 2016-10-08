@@ -30,3 +30,19 @@ function sendSchedule(){
     }
     }
   }
+
+  function sendContact(){
+    if(!(localStorage.contact===void 0)){
+      var befferContact=JSON.parse(localStorage.contact);
+      var sendingContact={
+        "Name":befferContact.Name,
+        "Id":befferContact.Id,
+        "Phone":befferContact.Phone,
+        "Mail":befferContact.Mail
+      };
+      if(sendingContact.Name=="") sendingContact.Name="不明";
+      sendingContact=JSON.stringify(sendingContact);
+      socket.emit("html5_test",sendingContact);
+      alert("CONTACT GO TO SERVER");
+    }
+  }
