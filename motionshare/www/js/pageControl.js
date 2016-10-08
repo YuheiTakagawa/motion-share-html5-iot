@@ -25,32 +25,26 @@ function PageControll(val){
         bluetoothFanc.initialize();
       });
       removeAnimationClass();
-      $(".brand-logo").html("デバイス");
+      $(".brand-logo").html("Select Sensing Device");
       break;
       case 2:
       $("#view").innerHTML = "<div id='page2'></div>";
       $("#view").load("page2.html");
       removeAnimationClass();
-      $(".brand-logo").html("握手");
+      $(".brand-logo").html("Motion Debug");
       break;
       case 3:
-      $("#view").innerHTML = "<div id='page3'></div>";
-      $("#view").load("page3.html");
-      removeAnimationClass();
-      $(".brand-logo").html("位置情報");
-      break;
-      case 4:
       $("#view").innerHTML = "<div id='schedulePage'></div>";
       $("#view").load("scheduleList.html",function(){
         scheduleFanc.initialize();
       });
-      $(".brand-logo").html("スケジュール");
+      $(".brand-logo").html("Schedule");
       break;
-      case 5:
+      case 4:
       $("#view").innerHTML = "<div id='page5'></div>";
       $("#view").load("page5.html");
       removeAnimationClass();
-      $(".brand-logo").html("ユーザ設定");
+      $(".brand-logo").html("User Information");
       break;
     }
 
