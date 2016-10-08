@@ -89,7 +89,7 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("html5_test", 0);
+      socket.emit("html5_test", 0 + ',' + time + ',' + geoData);
       alert('握手');
       sendContact();
       handshakeCnt = 0;
@@ -100,7 +100,7 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("html5_test", 1);
+      socket.emit("html5_test", 1 + ',' + time + ',' + geoData);
       alert("グータッチ");
       sendSchedule();
       gooTouchCnt = 0;
@@ -113,7 +113,7 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("html5_test", 2);
+      socket.emit("html5_test", 2 + ',' + time + ',' + geoData);
       alert("ハイタッチ");
       sendPhotoData();
       highTouchCnt = 0;

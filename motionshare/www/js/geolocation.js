@@ -5,8 +5,8 @@ var options = {
   timeout: 120000
 }
 
-var time;
-var geoData;
+var time; //motion.js　で使用する.
+var geoData; //motion.js で使用する.
 
 function successCallback(position){
   var latitude         = position.coords.latitude; // 緯度(-180～180度)
@@ -22,7 +22,7 @@ function successCallback(position){
   var nowTime = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
 
   time = nowTime;
-  geoData;
+  geoData = latitude + ',' + longitude;
 
   //alert(latitude + ',' + longitude + ',' + nowTime);
 
