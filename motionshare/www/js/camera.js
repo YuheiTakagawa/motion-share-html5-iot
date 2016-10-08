@@ -38,3 +38,8 @@ function getCameraBase64(){
         sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
       });
     };
+
+    function setPhotoDATA(){
+      var data = localStorage.getItem('imageData');
+      $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+    }

@@ -11,6 +11,7 @@ function PageControll(val){
       $("#view").innerHTML = "<div id='home'></div>";
       $("#view").load("home.html",function(){
         homeInitilize();
+        setPhotoDATA();
       });
       removeAnimationClass();
       $(".brand-logo").html("home");
