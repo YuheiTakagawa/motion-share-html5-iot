@@ -113,6 +113,7 @@
     if(highTouchCnt >= 1 && highTouchBool == true){
       socket.emit("html5_test", 2);
       alert("ハイタッチ");
+      sendPhotoData();
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;

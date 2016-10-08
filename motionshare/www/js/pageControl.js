@@ -13,7 +13,7 @@ function PageControll(val){
         homeInitilize();
       });
       removeAnimationClass();
-      $(".brand-logo").html("MotionShare");
+      $(".brand-logo").html("home");
       break;
       case 1:
       $("#view").innerHTML = "<div id='page1'></div>";

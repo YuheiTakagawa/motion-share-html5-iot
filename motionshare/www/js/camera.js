@@ -3,8 +3,7 @@ function getCameraBase64(){
   navigator.camera.getPicture(
     function(imageData){
       // cameraSuccess
-      socket.emit("html5_test", imageData);
-      alert("PHOTO GO TO SERVER");
+      localStorage.setItem('imageData', imageData);
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
     },
     function(message){
@@ -26,9 +25,8 @@ function getCameraBase64(){
     navigator.camera.getPicture(
       function(imageData){
         // cameraSuccess
+        localStorage.setItem('imageData', imageData);
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
-        socket.emit("html5_test", imageData);
-        alert("PHOTO GO TO SERVER");
       },
       function(message){
         // cameraError
