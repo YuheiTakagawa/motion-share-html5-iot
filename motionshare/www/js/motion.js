@@ -91,6 +91,7 @@
     if(handshakeCnt > 3){
       socket.emit("html5_test", 0);
       alert('握手');
+      sendContact();
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -101,6 +102,7 @@
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("html5_test", 1);
       alert("グータッチ");
+      sendSchedule();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;

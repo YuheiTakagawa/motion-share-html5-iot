@@ -44,6 +44,12 @@ function PageControll(val){
       });
       $(".brand-logo").html("スケジュール");
       break;
+      case 5:
+      $("#view").innerHTML = "<div id='page5'></div>";
+      $("#view").load("page5.html");
+      removeAnimationClass();
+      $(".brand-logo").html("ユーザ設定");
+      break;
     }
 
     $("nav ul li").click(function () {
