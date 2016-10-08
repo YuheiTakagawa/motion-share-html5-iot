@@ -4,7 +4,7 @@ function setUserInfo(){
       "Name":$("#userName").val(),
       "Id":$("#userId").val(),
       "Phone":$("#userPhone").val(),
-      "Mail":$("#userMall").val(),
+      "Mail":$("#userMail").val(),
       "Pass1":$("#userPass1").val(),
       "Pass2":$("#userPass2").val()
     };
