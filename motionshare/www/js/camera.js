@@ -1,6 +1,3 @@
-var url;
-
-
 // カメラから画像を取得して、Base64形式で取得する
 function getCameraBase64(){
   navigator.camera.getPicture(
