@@ -6,7 +6,6 @@ function getCameraBase64(){
       // cameraSuccess
       socket.emit("html5_test", imageData);
       alert("PHOTO GO TO SERVER");
-
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
     },
     function(message){
@@ -14,6 +13,7 @@ function getCameraBase64(){
       alert(message);
     },
     {
+      //option
       quality : 75,
       destinationType : Camera.DestinationType.DATA_URL,
       sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
@@ -21,44 +21,22 @@ function getCameraBase64(){
     });
   };
 
-  // カメラから画像を取得して、保存された画像のURIを取得する
-  function getCameraURI(){
-    alert("getcamera");
-    navigator.camera.getPicture(
-      function(imageURI){
-        // cameraSuccess
-        $('#camera_pic')
-        .css('display', 'block')
-        .attr('src', imageURI);
-      },
-      function(message){
-        // cameraError
-        alert(message);
-      },
-      {
-        quality : 75,
-        destinationType : Camera.DestinationType.FILE_URI,
-        sourceType : Camera.PictureSourceType.CAMERA,
-        saveToPhotoAlbum: true,
-      });
-    };
-
 
     // ギャラリーなどから選択した画像のURIを取得する
     function getPhotoURI(){
-      navigator.camera.getPicture(
+    navigator.camera.getPicture(
         function(imageURI){
-          // cameraSuccess
-          $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageURI);
-          $(".test").html(camera_pic.src);
+            // cameraSuccess
+            $('#camera_pic').attr('src', imageURI);
+            $(".test").html(camera_pic.src);
         },
         function(message){
-          // cameraError
-          alert(message);
+            // cameraError
+            alert(message);
         },
         {
-          quality : 75,
-          destinationType : Camera.DestinationType.DATA_URI,
-          sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+            quality : 75,
+            destinationType : Camera.DestinationType.FILE_URI,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
         });
-      };
+};
