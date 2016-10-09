@@ -37,7 +37,7 @@
       var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
     }
 
-
+/*
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
     document.getElementById('accelerationZ').innerHTML = z;
@@ -51,7 +51,7 @@
     document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
     document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
     document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
-
+*/
 
     //x軸方向 加速度カウンター処理
     var l = 24; //握手用
@@ -89,8 +89,9 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("html5_test", 0);
+      socket.emit("html5_test", 0 + ',' + time + ',' + geoData);
       alert('握手');
+      sendContact();
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -99,8 +100,9 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("html5_test", 1);
+      socket.emit("html5_test", 1 + ',' + time + ',' + geoData);
       alert("グータッチ");
+      sendSchedule();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
@@ -111,8 +113,9 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("html5_test", 2);
+      socket.emit("html5_test", 2 + ',' + time + ',' + geoData);
       alert("ハイタッチ");
+      sendPhotoData();
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
@@ -141,10 +144,11 @@
       var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
     }
 
-
+/*
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
     document.getElementById('alpha').innerHTML = alpha;
+    */
 
     //握手処理-ジャイロ関係
     if((gamma >= -90) && (gamma <= -70)){

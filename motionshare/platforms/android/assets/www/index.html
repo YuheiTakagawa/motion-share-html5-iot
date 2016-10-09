@@ -7,7 +7,12 @@
   <meta name="msapplication-tap-highlight" content="no" />
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
   <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+
+
+  <!--
   <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+-->
+
   <!-- Good default declaration:
   * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
   * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
@@ -43,6 +48,10 @@
   <script type="text/javascript" src="js/schedule.js"></script>
   <script type="text/javascript" src="js/home.js"></script>
   <script type="text/javascript" src="js/modeChange.js"></script>
+  <script type="text/javascript" src="js/userSetting.js"></script>
+  <script type="text/javascript" src="js/saveBase64PhotoData.js"></script>
+
+
 
   <script>
     //alert(navigator.userAgent);
@@ -70,13 +79,14 @@
 
     <div id="wrap">
       <nav class="grey lighten-5">
-        <a href="#" class="brand-logo center cyan-text">home</a>
+        <a href="#" class="brand-logo center cyan-text">Home</a>
         <a href="#" class="right black-text" id="modeStatus"></a>
         <ul id="slide-out" class="side-nav blue-grey lighten-5">
-          <li><a class="animsition-link" onClick="PageControll(0)" href="#">home</a></li>
-          <li><a class="animsition-link" onClick="PageControll(1)" href="#">デバイス</a></li>
-          <li><a class="animsition-link" onClick="PageControll(2)" href="#">握手</a></li>
-          <li><a class="animsition-link" onClick="PageControll(3)" href="#">位置情報</a></li>
+          <li><a class="animsition-link" onClick="PageControll(0)" href="#">Home</a></li>
+          <li><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
+          <li><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
+          <li><a class="animsition-link" onClick="PageControll(3)" href="#">Schedule</a></li>
+          <li><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
 
           <div class="switch ml10">
             <label>SEND MODE<input type="checkbox" name="modeChangeBtn" onclick="modeChange();"><span class="lever"></label>
@@ -102,6 +112,8 @@
   <script type="text/javascript" src="cordova.js"></script>
   <script>
     bluetoothFanc.onDeviceReady();
+    setPhotoDATA();
+    getGeoStart();
   </script>
 </body>
 </html>

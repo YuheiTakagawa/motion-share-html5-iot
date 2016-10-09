@@ -1,64 +1,58 @@
-// カメラから画像を取得して、Base64形式で取得する
+/*******　カメラから画像を取得して、Base64形式で取得する *******/
 function getCameraBase64(){
-     navigator.camera.getPicture(
-          function(imageData){
-               // cameraSuccess
-               socket.emit("html5_test", imageData);
-               alert("PHOTO GO TO SERVER");
+  navigator.camera.getPicture(
+    function(imageData){
+      // cameraSuccess
+      localStorage.setItem('imageData', imageData);
+      $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+    },
+    function(message){
+      // cameraError
+      alert(message);
+    },
+    {
+      //option
+      quality : 75,
+      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
+      saveToPhotoAlbum: true,
+    });
+  };
 
-               $('#camera_pic').attr('src', 'data:image/jpeg;base64,' + imageData);
-          },
-          function(message){
-               // cameraError
-               alert(message);
-          },
-          {
-               quality : 75,
-               destinationType : Camera.DestinationType.DATA_URL,
-               sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
-          });
-};
 
-// カメラから画像を取得して、保存された画像のURIを取得する
-function getCameraURI(){
-  alert("getcamera");
+  /******* ギャラリーなどから選択した画像をbase64で取得する *******/
+  function getPhotoDATA(){
     navigator.camera.getPicture(
-        function(imageURI){
-            // cameraSuccess
-            $('#camera_pic')
-                 .css('display', 'block')
-                 .attr('src', imageURI);
-        },
-        function(message){
-            // cameraError
-            alert(message);
-        },
-        {
-            quality : 75,
-            destinationType : Camera.DestinationType.FILE_URI,
-            sourceType : Camera.PictureSourceType.CAMERA,
-        });
-};
+      function(imageData){
+        // cameraSuccess
+        localStorage.setItem('imageData', imageData);
+        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+      },
+      function(message){
+        // cameraError
+        alert(message);
+      },
+      {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+      });
+    };
 
-/*
-// ギャラリーなどから選択した画像のURIを取得する
-function getPhotoURI(){
-    navigator.camera.getPicture(
-        function(imageURI){
-            // cameraSuccess
-            $('#camera_pic')
-                 .css('display', 'block')
-                 .attr('src', imageURI);
-        },
-        function(message){
-            // cameraError
-            alert(message);
-        },
-        {
-            quality : 75,
-            destinationType : Camera.DestinationType.FILE_URI,
-            sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
-        });
-};
 
-*/
+    /******* 画面遷移・起動時してもtop画像の情報をキープする処理 *******/
+    function setPhotoDATA(){
+      var data = localStorage.getItem('imageData');
+      if(data == null){
+        //初回起動時のtop画像設定
+        localStorage.setItem('imageData', 'img/img.jpg');
+      }else{
+        //初回以外
+        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+      }
+
+      //初回起動時のtop画像設定
+      if(data == 'img/img.jpg'){
+        $('#camera_pic').attr('src', data);
+      }
+    }
