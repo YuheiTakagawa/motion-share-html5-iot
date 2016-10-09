@@ -55,12 +55,12 @@ var scheduleFanc = {
   },
 };
 //スケジュールを削除する関数
-function deleteSchedule(){
+function deleteSchedule(e){
   //JSONで扱う処理 インデックスの変更とJSONからの削除
   scheIndex=$(this).parent().val();
   delete scheduleJson[scheIndex];
   //スケジュールリストの削除
-  $(this).parent().remove();
+  $(this).parent().slideUp('slow',function(){$(this).remove();});
   //スケジュール数が0になった時の処理
   if($("#scheduleLists li").length==0){
     scheIndex=0;
@@ -76,6 +76,7 @@ function deleteSchedule(){
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
   sessionStorage.scheduleIndex='0';
+    e.stopPropagation();
 }
 
 //スケジュールを追加する関数
@@ -97,6 +98,7 @@ function addSchedule(){
     scheduleToJson(datetime,note);
     scheduleAuto(scheIndex,datetime,note);
     scheduleShow();
+    sessionStorage.scheduleIndex='0';
     $("#view").load('scheduleList.html',function(){
       scheduleFanc.initialize();
     });
