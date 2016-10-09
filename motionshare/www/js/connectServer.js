@@ -18,9 +18,12 @@ function sendSchedule(){
   //localStorageにscheduleがあるときに処理を行う
   if(!(localStorage.schedule===void 0)){
     scheduleJson=JSON.parse(localStorage.schedule);
-
+    var index='0';
+    if(!(sessionStorage.scheduleIndex===void 0)){
+      index=sessionStorage.scheduleIndex;
+    }
     //直近のスケジュールを扱う
-    sendingSche=scheduleJson["0"];
+    sendingSche=scheduleJson[index];
     sendingSche=JSON.stringify(sendingSche);
 
 
