@@ -41,16 +41,16 @@ var scheduleFanc = {
 
     $(function(){
       // 初期状態で[削除]は非表示
-      $(".badge").hide();
+      //$(".badge").hide();
 
       // [削除]クリックで親要素を削除
       $("#scheduleLists").on("touchstart",".badge", deleteSchedule);
-
+      $("#scheduleLists").on("touchstart","li",function(){alert("ass");});
       //スワイプイベントをまとめた関数
       badgeSwipe();
 
       //加速度の変化タイミングを利用してスケジュールを自動で保存する
-      window.addEventListener("devicemotion",scheduleAutoSave);
+      //window.addEventListener("devicemotion",scheduleAutoSave);
     });
   },
 };
@@ -65,7 +65,7 @@ function deleteSchedule(){
   if($("#scheduleLists li").length==0){
     scheIndex=0;
     scheduleShow();
-  }    
+  }
   //スケジュールをソートした結果を格納
   scheduleJson = sortObject(scheduleJson, function(a, b){
     var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
@@ -111,7 +111,7 @@ function scheduleAuto(index,datetime,note){
   $(listItem).val(index);
   $("#scheduleLists").append(listItem);
 
-  $(".badge").hide();
+  //$(".badge").hide();
 }
 //スケジュールをJSONに変換して保存する関数
 function scheduleToJson(date,note){
@@ -131,6 +131,9 @@ function scheduleToJson(date,note){
     //localStorage.removeItem("schedule");
   });
 };
+
+
+/*
 //スワイプ処理の関数
 function badgeSwipe(){
   //スワイプイベントを管理する変数
@@ -158,7 +161,11 @@ function badgeSwipe(){
     }
   });
 }
+*/
+
+/*
 //スケジュール保存のトリガーをモーションにした時の関数
+
 function scheduleAutoSave(){
   if(scheShake>5 && $("#scheduleCreate").is(":visible")){
     alert("保存しました。")
@@ -168,6 +175,7 @@ function scheduleAutoSave(){
     scheShake=0;
   }
 }
+*/
 
 //日付のタイムスタンプ取得関数を定義
 function getTimestamp(dateStr){
