@@ -75,6 +75,7 @@ function deleteSchedule(){
 
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
+  sessionStorage.scheduleIndex='0';
 }
 
 //スケジュールを追加する関数
