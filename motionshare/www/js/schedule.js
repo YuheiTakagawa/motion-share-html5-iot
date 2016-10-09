@@ -45,9 +45,9 @@ var scheduleFanc = {
 
       // [削除]クリックで親要素を削除
       $("#scheduleLists").on("touchstart",".badge", deleteSchedule);
-      $("#scheduleLists").on("touchstart","li",function(){alert("ass");});
+      $("#scheduleLists").on("touchstart","li",scheduleIndex);
       //スワイプイベントをまとめた関数
-      badgeSwipe();
+      //badgeSwipe();
 
       //加速度の変化タイミングを利用してスケジュールを自動で保存する
       //window.addEventListener("devicemotion",scheduleAutoSave);
@@ -260,4 +260,10 @@ function calcDate(){
   var minute=date.getMinutes()+1;
   var dates=year+"-"+('0'+month).slice(-2)+"-"+('0'+day).slice(-2)+"T"+('0'+hour).slice(-2)+":"+('0'+minute).slice(-2)+":00";
   $("#scheDatetime").attr('min',dates);
+}
+
+function scheduleIndex(e){
+  sessionStorage.scheduleIndex=e.target.value;
+  alert("共有するスケジュールを変更しました");
+  PageControll(0);
 }

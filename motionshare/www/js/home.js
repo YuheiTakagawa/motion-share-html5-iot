@@ -5,8 +5,12 @@ function homeInitilize(){
     var note="スケジュールはありません"
     if(!(localStorage.schedule===void 0)){
       var json=JSON.parse(localStorage.schedule);
+        var index='0';
+      if(!(sessionStorage.scheduleIndex===void 0)){
+        index=sessionStorage.scheduleIndex;
+      }
       if(Object.keys(json)!=""){
-        var date=json["0"].date;
+        var date=json[index].date;
         var dateMatch = date.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/);
         //日付オブジェクトに変換
         var dateObj = new Date(
