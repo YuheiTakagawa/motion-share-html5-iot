@@ -20,5 +20,8 @@ function receiverMode(){
   $("#modeStatus").html("");
   $('input[name="modeChangeBtn"]').prop("checked",false);
   //サーバからデータ受信
-  socket.on('html5_test_show', function(rcvMsg) { alert(rcvMsg); });
+  socket.on('html5_test_show', function(rcvMsg) {
+    alert("データを受信しました");
+
+  });
 }
