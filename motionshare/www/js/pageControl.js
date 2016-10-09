@@ -42,7 +42,9 @@ function PageControll(val){
       break;
       case 4:
       $("#view").innerHTML = "<div id='page5'></div>";
-      $("#view").load("page5.html");
+      $("#view").load("page5.html",function(){
+        showUserInfo();
+      });
       removeAnimationClass();
       $(".brand-logo").html("User Information");
       break;
