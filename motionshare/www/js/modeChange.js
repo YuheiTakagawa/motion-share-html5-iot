@@ -35,6 +35,7 @@ function receiverMode(){
     alert("データを受信しました");
 
     /*** 画像の送受信時の処理 (あとでconnectServer.js にてfunction作成) ****/
+    /*
     var data = localStorage.getItem('imageData');
     data = rcvMsg;
     if(data.length < 100){
@@ -45,6 +46,7 @@ function receiverMode(){
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
       saveBase64PhotoData();
     }
+    */
     /*****************************************************************/
 
 
