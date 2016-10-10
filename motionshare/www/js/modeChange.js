@@ -9,6 +9,7 @@ function modeChange(){
   else if(changeMotionBool == false) receiverMode();
 }
 
+/*
 function modeFuncTrigger(){
   if(changeMotionBool == true){
     senderMode();
@@ -19,6 +20,7 @@ function modeFuncTrigger(){
     alert("Receiver-Mode now");
   }
 }
+*/
 
 /*******  送信者モードのときの処理  *******/
 function senderMode(){
