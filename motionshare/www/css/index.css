@@ -20,6 +20,12 @@ body {
 .mr10 { margin-right: 10px;}
 .ml10 { margin-left: 10px; }
 
+.loadingWidth {
+  width: 90px;
+  margin-left: 32%;
+  padding-top: 20px;
+}
+
 
 .fa-cyan:before{color: #00bcd4;}
 .fa-white:before{color: white;}

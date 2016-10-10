@@ -92,6 +92,7 @@
       socket.emit("html5_test", 0 + ',' + time + ',' + geoData);
       alert('握手');
       sendContact();
+      modeFuncTrigger();
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -103,6 +104,7 @@
       socket.emit("html5_test", 1 + ',' + time + ',' + geoData);
       alert("グータッチ");
       sendSchedule();
+      modeFuncTrigger();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
@@ -116,6 +118,7 @@
       socket.emit("html5_test", 2 + ',' + time + ',' + geoData);
       alert("ハイタッチ");
       sendPhotoData();
+      modeFuncTrigger();
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
