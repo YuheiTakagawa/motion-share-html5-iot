@@ -35,7 +35,7 @@ function receiverMode(){
   //サーバからデータ受信
   socket.on('html5_test_show', function(rcvMsg) {
     alert("データを受信しました");
-
+    //receiveSchedule(rcvMsg);
     /*** 画像の送受信時の処理 (あとでconnectServer.js にてfunction作成) ****/
     /*
     var data = localStorage.getItem('imageData');

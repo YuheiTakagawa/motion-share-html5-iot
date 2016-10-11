@@ -270,3 +270,26 @@ function scheduleIndex(e){
   alert("共有するスケジュールを変更しました");
   PageControll(0);
 }
+
+function receiveSchedule(rcvMsg){
+  var sche=JSON.parse(rcvMsg);
+
+  var datetime=sche["date"];
+  var note =sche["note"];
+  //JSONのkeyをスケジュールリストの要素数にする
+  for(var i=0;i<=Object.keys(scheduleJson).length;i++){
+    if(!(i in scheduleJson)){
+      scheIndex=i;
+      break;
+    }
+  }
+
+
+  scheduleToJson(datetime,note);
+  scheduleAuto(scheIndex,datetime,note);
+  scheduleShow();
+  sessionStorage.scheduleIndex='0';
+  $("#view").load('scheduleList.html',function(){
+    scheduleFanc.initialize();
+  });
+}
