@@ -12,7 +12,7 @@ function getCameraBase64(){
     },
     {
       //option
-      quality : 75,
+      quality : 20,
       destinationType : Camera.DestinationType.DATA_URL,
       sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
       saveToPhotoAlbum: true,
@@ -33,7 +33,7 @@ function getCameraBase64(){
         alert(message);
       },
       {
-        quality : 75,
+        quality : 20,
         destinationType : Camera.DestinationType.DATA_URL,
         sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
       });

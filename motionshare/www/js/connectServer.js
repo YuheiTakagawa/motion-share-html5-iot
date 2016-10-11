@@ -13,6 +13,20 @@ function sendPhotoData(){
   //alert(base64PhotoData);
 }
 
+function receivePhotoData(imageData){
+  localStorage.setItem('imageData', imageData);
+  var data = localStorage.getItem('imageData');
+
+  if(data.length < 100){
+    $('.card-image').addClass('loadingWidth');
+    $('#camera_pic').attr('src', 'img/load.gif');
+  }else{
+    $('.card-image').removeClass('loadingWidth');
+    $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+    saveBase64PhotoData(data);
+  }
+}
+
 //スケジュールを文字列に変換し，Base64でエンコードしてサーバに送信
 function sendSchedule(){
   //localStorageにscheduleがあるときに処理を行う

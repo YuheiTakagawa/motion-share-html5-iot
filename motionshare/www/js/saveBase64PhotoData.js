@@ -1,7 +1,7 @@
-function saveBase64PhotoData() {
-    var base64Data = localStorage.getItem('imageData');
+function saveBase64PhotoData(data) {
+    //var base64Data = localStorage.getItem('imageData');
     cordova.base64ToGallery(
-        base64Data,
+        data,
 
         {
             prefix: 'img_',
@@ -9,7 +9,7 @@ function saveBase64PhotoData() {
         },
 
         function(path) {
-            alert(path);
+            alert("画像を受信しました　:"+path);
         },
 
         function(err) {
