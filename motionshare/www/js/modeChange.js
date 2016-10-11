@@ -13,12 +13,17 @@ function modeChange(){
 function senderMode(){
   $("#modeStatus").html("送信者");
   $('input[name="modeChangeBtn"]').prop("checked",true);
+  //イベントを削除（受信できない）
+  socket.off('html5_test_show');
 }
 
 /*******  受信者モードのときの処理  *******/
 function receiverMode(){
   $("#modeStatus").html("");
   $('input[name="modeChangeBtn"]').prop("checked",false);
+
+  //イベントを削除（受信できない）
+  socket.off('html5_test_show');
   //サーバからデータ受信
   socket.on('html5_test_show', function(rcvMsg) { alert(rcvMsg); });
 }
