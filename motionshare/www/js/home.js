@@ -22,7 +22,7 @@ function homeInitilize(){
           +0                 //秒
         );
         date=(dateMatch[2])+"/"+dateMatch[3]+" "+dateMatch[4]+":"+dateMatch[5];
-        note=json["0"].note;
+        note=json[index].note;
       }
     }
     $("#recentScheduleDate").html(date);
