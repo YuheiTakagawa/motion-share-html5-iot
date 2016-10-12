@@ -11,14 +11,14 @@ function modeChange(){
 
 /*
 function modeFuncTrigger(){
-  if(changeMotionBool == true){
-    senderMode();
-    alert("Sender-Mode now");
-  }
-  else if(changeMotionBool == false){
-    receiverMode();
-    alert("Receiver-Mode now");
-  }
+if(changeMotionBool == true){
+senderMode();
+alert("Sender-Mode now");
+}
+else if(changeMotionBool == false){
+receiverMode();
+alert("Receiver-Mode now");
+}
 }
 */
 
@@ -42,22 +42,51 @@ function receiverMode(){
     //alert("データを受信しました");
 
     receivePhotoData(rcvMsg);
+
+    var contentID = null;
+
+    socket.on('contentID', function(id) {
+      contentID = id;
+    });
+
+
+    switch (id) {
+      /****** 連絡先の受信処理 ( CONTENT ID : 0 ) ************/
+      case 0:
+      socket.on('html5_test_show', function(data){
+        alert("連絡先を受信しました　:" + data);
+      });
+      break;
+      /****** スケジュールの受信処理 ( CONTENT ID : 1 )  *****/
+      case 1:
+      socket.on('html5_test_show', function(data){
+        receiveSchedule(data);
+      });
+      break;
+      /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
+      case 2:
+      socket.on('html5_test_show', function(data){
+        receivePhotoData(data);
+      });
+      break;
+    }
+
     //receiveSchedule(rcvMsg);
     /*** 画像の送受信時の処理 (あとでconnectServer.js にてfunction作成) ****/
     /*
     var data = localStorage.getItem('imageData');
     data = rcvMsg;
     if(data.length < 100){
-      $('.card-image').addClass('loadingWidth');
-      $('#camera_pic').attr('src', 'img/load.gif');
-    }else{
-      $('.card-image').removeClass('loadingWidth');
-      $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-      saveBase64PhotoData();
-    }
-    */
-    /*****************************************************************/
+    $('.card-image').addClass('loadingWidth');
+    $('#camera_pic').attr('src', 'img/load.gif');
+  }else{
+  $('.card-image').removeClass('loadingWidth');
+  $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+  saveBase64PhotoData();
+}
+*/
+/*****************************************************************/
 
 
-  });
+});
 }
