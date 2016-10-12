@@ -43,33 +43,42 @@ function receiverMode(){
 
     receivePhotoData(rcvMsg);
 
-    var contentID = null;
 
+    /* サーバの準備ができるまでコメントアウト
+    var contentID = null;
     socket.on('contentID', function(id) {
       contentID = id;
     });
+    */
 
+    //サーバの準備ができるまでコメントアウト
 
-    switch (id) {
+    //switch (id) {
       /****** 連絡先の受信処理 ( CONTENT ID : 0 ) ************/
+      /*
       case 0:
       socket.on('html5_test_show', function(data){
         alert("連絡先を受信しました　:" + data);
       });
       break;
+      */
       /****** スケジュールの受信処理 ( CONTENT ID : 1 )  *****/
+      /*
       case 1:
       socket.on('html5_test_show', function(data){
         receiveSchedule(data);
       });
       break;
+      */
       /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
+      /*
       case 2:
       socket.on('html5_test_show', function(data){
         receivePhotoData(data);
       });
       break;
     }
+    */
 
     //receiveSchedule(rcvMsg);
     /*** 画像の送受信時の処理 (あとでconnectServer.js にてfunction作成) ****/
