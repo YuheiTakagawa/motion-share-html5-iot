@@ -31,6 +31,11 @@
       var y = Math.round(event.acceleration.y * 10) / 10;
       var z = Math.round(event.acceleration.z * 10) / 10;
 
+      //傾き
+      var xg = Math.round(event.accelerationIncludingGravity.x * 10) / 10; //左右
+      var yg = Math.round(event.accelerationIncludingGravity.y * 10) / 10; //上下
+      var zg = Math.round(event.accelerationIncludingGravity.z * 10) / 10; //前後
+
       //回転速度
       var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
       var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
@@ -89,7 +94,7 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("html5_test", 0 + ',' + time + ',' + geoData);
+      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 0 + ',' + time + ',' + geoData);
       alert('握手');
       sendContact();
       //modeFuncTrigger();
@@ -101,7 +106,7 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("html5_test", 1 + ',' + time + ',' + geoData);
+      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 1 + ',' + time + ',' + geoData);
       alert("グータッチ");
       sendSchedule();
       //modeFuncTrigger();
@@ -115,7 +120,7 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("html5_test", 2 + ',' + time + ',' + geoData);
+      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 2 + ',' + time + ',' + geoData);
       alert("ハイタッチ");
       sendPhotoData();
       //modeFuncTrigger();

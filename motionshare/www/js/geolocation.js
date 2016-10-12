@@ -8,6 +8,7 @@ var options = {
 var time; //motion.js　で使用する.
 var geoData; //motion.js で使用する.
 
+
 function successCallback(position){
   var latitude         = position.coords.latitude; // 緯度(-180～180度)
   var longitude        = position.coords.longitude; // 経度(-90～90度)
