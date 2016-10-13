@@ -33,6 +33,7 @@ var scheduleFanc = {
     //スケジュール一覧画面の更新
     $("#scheduleCreate").hide();
     scheduleShow();
+    Materialize.showStaggeredList('#scheduleLists');
     this.bindEvents();
   },
 
@@ -76,7 +77,7 @@ function deleteSchedule(e){
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
   sessionStorage.scheduleIndex='0';
-    e.stopPropagation();
+  e.stopPropagation();
 }
 
 //スケジュールを追加する関数
@@ -139,30 +140,30 @@ function scheduleToJson(date,note){
 /*
 //スワイプ処理の関数
 function badgeSwipe(){
-  //スワイプイベントを管理する変数
-  var tsJqSwipeX = -1;
-  var tsJqSwipeY = -1;
-  // スワイプ処理
-  $("#scheduleLists").on("touchstart","li", function(){
-    tsJqSwipeX = event.changedTouches[0].pageX;
-    tsJqSwipeY = event.changedTouches[0].pageY;
-  });
-  $("#scheduleLists").on("touchend","li", function(){
-    tsJqSwipeX = -1;
-  });
-  $("#scheduleLists").on("touchmove","li", function(){
-    if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
-    if (tsJqSwipeX != -1 && (event.changedTouches[0].pageX - tsJqSwipeX) < -35) {
-      tsJqSwipeX = -1;
-      // スワイプられた時の処理
-      if ($(this).children("span").is(':visible')) {
-        $(".badge").hide();
-      } else {
-        $(".badge").hide();
-        $(this).children("span").show();
-      }
-    }
-  });
+//スワイプイベントを管理する変数
+var tsJqSwipeX = -1;
+var tsJqSwipeY = -1;
+// スワイプ処理
+$("#scheduleLists").on("touchstart","li", function(){
+tsJqSwipeX = event.changedTouches[0].pageX;
+tsJqSwipeY = event.changedTouches[0].pageY;
+});
+$("#scheduleLists").on("touchend","li", function(){
+tsJqSwipeX = -1;
+});
+$("#scheduleLists").on("touchmove","li", function(){
+if (Math.abs(event.changedTouches[0].pageY - tsJqSwipeY) > 10) tsJqSwipeX = -1;
+if (tsJqSwipeX != -1 && (event.changedTouches[0].pageX - tsJqSwipeX) < -35) {
+tsJqSwipeX = -1;
+// スワイプられた時の処理
+if ($(this).children("span").is(':visible')) {
+$(".badge").hide();
+} else {
+$(".badge").hide();
+$(this).children("span").show();
+}
+}
+});
 }
 */
 
@@ -170,13 +171,13 @@ function badgeSwipe(){
 //スケジュール保存のトリガーをモーションにした時の関数
 
 function scheduleAutoSave(){
-  if(scheShake>5 && $("#scheduleCreate").is(":visible")){
-    alert("保存しました。")
-    scheduleList();
-    scheShake=0;
-  }else if($("#scheduleCreate").is(":hidden")){
-    scheShake=0;
-  }
+if(scheShake>5 && $("#scheduleCreate").is(":visible")){
+alert("保存しました。")
+scheduleList();
+scheShake=0;
+}else if($("#scheduleCreate").is(":hidden")){
+scheShake=0;
+}
 }
 */
 
@@ -283,7 +284,6 @@ function receiveSchedule(rcvMsg){
       break;
     }
   }
-
 
   scheduleToJson(datetime,note);
   scheduleAuto(scheIndex,datetime,note);

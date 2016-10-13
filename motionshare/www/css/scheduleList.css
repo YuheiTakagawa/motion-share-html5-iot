@@ -1,0 +1,17 @@
+.halfButton{
+  width:49%;
+}
+
+.badge{
+  position: relative;
+  height:100%;
+}
+
+.posi100{
+  position: absolute;
+  width:100%;
+}
+
+#scheduleLists{
+  width:100%;
+}
