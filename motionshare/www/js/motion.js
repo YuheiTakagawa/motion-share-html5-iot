@@ -1,5 +1,16 @@
 (function () {
 
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var date = now.getDate();
+  var h = now.getHours();
+  var m = now.getMinutes();
+  var s = now.getSeconds();
+  var nowTime = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
+
+  var geoData = localStorage.getItem('geoData');
+
   var SensorValueLoad = true;
 
   var handshakeCnt = 0;
@@ -94,9 +105,9 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 0 + ',' + time + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 0 + ',' + nowTime + ',' + geoData);
       alert('握手');
-      sendContact();
+      //sendContact();
       //modeFuncTrigger();
       handshakeCnt = 0;
       handshakeBool = false;
@@ -106,7 +117,7 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 1 + ',' + time + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 1 + ',' + nowTime + ',' + geoData);
       alert("グータッチ");
       sendSchedule();
       //modeFuncTrigger();
@@ -120,7 +131,7 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("html5_test", 'usr_cd' + ',' + 'tr_flag' + ',' + 2 + ',' + time + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 2 + ',' + nowTime + ',' + geoData);
       alert("ハイタッチ");
       sendPhotoData();
       //modeFuncTrigger();

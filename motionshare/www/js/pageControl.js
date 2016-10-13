@@ -2,7 +2,6 @@ $(function() {
   $("#view").load("home.html",function(){
     homeInitilize();
     setPhotoDATA();
-    getGeoStart();
   });
 });
 //パーツ読み込み
@@ -14,7 +13,6 @@ function PageControll(val){
       $("#view").load("home.html",function(){
         homeInitilize();
         setPhotoDATA();
-        getGeoStart();
       });
       removeAnimationClass();
       $(".brand-logo").html("home");
