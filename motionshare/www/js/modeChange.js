@@ -37,8 +37,6 @@ function senderMode(){
   //イベントを削除（受信できない）
   //socket.off('html5_test_show');
 
-
-
   socket.on('data request', function(id){
     //var motionArray = id.split(',');
     //contentID = motionArray[0];
@@ -50,28 +48,22 @@ function senderMode(){
 
     switch (contentID) {
       /****** 連絡先の受信処理 ( CONTENT ID : 0 ) ************/
-
       case 0:
       socket.emit('html5_test_show', function(data){
         alert("連絡先を受信しました　:" + data);
       });
       break;
-
       /****** スケジュールの受信処理 ( CONTENT ID : 1 )  *****/
-
       case 1:
       socket.emit('html5_test_show', function(data){
         receiveSchedule(data);
       });
       break;
-
       /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
-
       case 2:
         sendPhotoData(socketID);
       break;
     }
-    //alert("contentID, socketID " + contentID +','+ socketID);
   });
 }
 
@@ -95,6 +87,7 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
+        socket.off('send real data from server');
       break;
     }
 
