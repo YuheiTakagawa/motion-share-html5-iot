@@ -26,6 +26,7 @@ var scheduleFanc = {
       //削除・ソート状態のJSONをローカルストレージに保存する
       localStorage.schedule=JSON.stringify(scheduleJson);
       //保存されたスケジュールからリストを作成する
+      $("#scheduleLists").html("");
       for(var i in scheduleJson){
         scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
       }
@@ -61,12 +62,7 @@ function deleteSchedule(e){
   scheIndex=$(this).parent().val();
   delete scheduleJson[scheIndex];
   //スケジュールリストの削除
-  $(this).parent().slideUp('slow',function(){$(this).remove();});
-  //スケジュール数が0になった時の処理
-  if($("#scheduleLists li").length==0){
-    scheIndex=0;
-    scheduleShow();
-  }
+  $(this).parent().remove();
   //スケジュールをソートした結果を格納
   scheduleJson = sortObject(scheduleJson, function(a, b){
     var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
@@ -74,10 +70,15 @@ function deleteSchedule(e){
     return at - bt; //降順にソートする場合、変数aとbの位置を逆にする
   });
 
+  $("#scheduleLists").html("");
+  for(var i in scheduleJson){
+    scheduleAuto(i,scheduleJson[i].date,scheduleJson[i].note);
+  }
   //削除した状態のJSONをローカルストレージに保存する
   localStorage.schedule=JSON.stringify(scheduleJson);
   sessionStorage.scheduleIndex='0';
   e.stopPropagation();
+  scheduleShow();
 }
 
 //スケジュールを追加する関数
@@ -107,10 +108,11 @@ function addSchedule(){
 };
 //スケジュールをリスト化する関数
 function scheduleAuto(index,datetime,note){
+  datetime=datetime.replace(/T/g," ");
   var listItem = document.createElement('li'),
-  dateSpan="<span class='title'>"+datetime+"</span>",
-  noteSpan="<p>"+note+"</p>",
-  deleteSpan="<a href='#!' class='secondary-content badge'><i class='fa fa-fw fa-close'></i></a>",
+  dateSpan="<span class='cyan-text scheTitle'>"+datetime+"</span>",
+  noteSpan="<p class='text-col scheAbout'>"+note+"</p>",
+  deleteSpan="<a href='#!' class='secondary-content'><i class='fa fa-fw fa-cyan fa-close list-close'></i></a>",
   html =  dateSpan+noteSpan+deleteSpan;
   listItem.innerHTML = html;
 
