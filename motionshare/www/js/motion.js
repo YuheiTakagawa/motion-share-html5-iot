@@ -97,12 +97,12 @@
 
 
     //Z軸方向 加速度カウンター処理
-    if(z < -18 && highTouchBool == true){
+    if(z < -8 && highTouchBool == true){
       highTouchCnt++;
     }
 
     //チェンジモーション用
-    var cl=10
+    var cl=5;
     if(changeBool==true){
       if (rotationbeta <= -cl && changeCnt==0) changeCnt++;
       if(rotationbeta >=cl && changeCnt==1) changeCnt++;
@@ -196,7 +196,8 @@
 
 
     //ハイタッチ！処理ージャイロ関係
-    if((beta >= 55) && (beta <= 115)){
+    if((beta >= 55) && (beta <= 160)){
+      //    if((beta >= 55) && (beta <= 115)){
       if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
         highTouchBool = true;
       }
@@ -206,7 +207,9 @@
 
 
     //チェンジモーション処理ージャイロ関係
-    if(beta >= 60 && beta < 80){
+    if(beta >= -10 && beta < 40){
+
+      //if(beta >= 60 && beta < 80){
       changeBool=true;
     }else{
       changeBool=false;
@@ -220,7 +223,7 @@
     if(SensorValueLoad == false){
       setTimeout(function(){
         SensorValueLoad = true;
-      }, 2000);
+      }, 500);
     }
 
   }
