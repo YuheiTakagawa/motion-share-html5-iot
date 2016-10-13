@@ -1,14 +1,5 @@
 (function () {
 
-  var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth() + 1;
-  var date = now.getDate();
-  var h = now.getHours();
-  var m = now.getMinutes();
-  var s = now.getSeconds();
-  var nowTime = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
-
   var geoData = localStorage.getItem('geoData');
 
   var SensorValueLoad = true;
@@ -24,6 +15,20 @@
   var gooTouchBool = false;
   var gooTouchRotaBool = false;
   var highTouchBool = false;
+
+  var now = {
+    time : function(){
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var date = now.getDate();
+      var h = now.getHours();
+      var m = now.getMinutes();
+      var s = now.getSeconds();
+      var time = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
+      return time;
+    }
+  }
 
 
   $(function () {
@@ -53,7 +58,7 @@
       var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
     }
 
-/*
+    /*
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
     document.getElementById('accelerationZ').innerHTML = z;
@@ -67,7 +72,7 @@
     document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
     document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
     document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
-*/
+    */
 
     //x軸方向 加速度カウンター処理
     var l = 24; //握手用
@@ -105,9 +110,9 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 0 + ',' + nowTime + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 0 + ',' + now.time() + ',' + geoData);
       alert('握手');
-      //sendContact();
+      sendContact();
       //modeFuncTrigger();
       handshakeCnt = 0;
       handshakeBool = false;
@@ -117,7 +122,7 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 1 + ',' + nowTime + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 1 + ',' + now.time() + ',' + geoData);
       alert("グータッチ");
       sendSchedule();
       //modeFuncTrigger();
@@ -131,7 +136,7 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 2 + ',' + nowTime + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + 0 + ',' + 2 + ',' + now.time() + ',' + geoData);
       alert("ハイタッチ");
       sendPhotoData();
       //modeFuncTrigger();
@@ -163,7 +168,7 @@
       var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
     }
 
-/*
+    /*
     document.getElementById('beta').innerHTML = beta;
     document.getElementById('gamma').innerHTML = gamma;
     document.getElementById('alpha').innerHTML = alpha;
