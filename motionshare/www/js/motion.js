@@ -1,6 +1,7 @@
 (function () {
 
   var geoData = localStorage.getItem('geoData');
+  //var whoAmI = 0;
 
   var SensorValueLoad = true;
 
@@ -112,7 +113,7 @@
     if(handshakeCnt > 3){
       socket.emit("send motion data", 0 + ',' + 0 + ',' + 0 + ',' + now.time() + ',' + geoData);
       alert('握手');
-      sendContact();
+      //sendContact();
       //modeFuncTrigger();
       handshakeCnt = 0;
       handshakeBool = false;
@@ -124,7 +125,7 @@
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("send motion data", 0 + ',' + 0 + ',' + 1 + ',' + now.time() + ',' + geoData);
       alert("グータッチ");
-      sendSchedule();
+      //sendSchedule();
       //modeFuncTrigger();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
@@ -136,9 +137,13 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 2 + ',' + now.time() + ',' + geoData);
+      socket.emit("send motion data", 0 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
       alert("ハイタッチ");
-      sendPhotoData();
+
+      if(whoAmI == 0) receiverMode();
+      else if(whoAmI == 1) senderMode();
+
+      //sendPhotoData();
       //modeFuncTrigger();
       highTouchCnt = 0;
       highTouchBool = false;

@@ -5,27 +5,18 @@ socket.on("connect", function() {
   $(".info").text('connect server...OK');
 });
 
-function sendPhotoData(){
-  var data = localStorage.getItem('imageData');
-  socket.emit("html5_test", data);
-  alert("PHOTO GO TO SERVER");
 
+
+
+
+
+function sendPhotoData(socketID){
+  var data = localStorage.getItem('imageData');
+  socket.emit("send real data to server", [ 2 , socketID , data ]);
+  alert("PHOTO GO TO SERVER " + socketID);
   //alert(base64PhotoData);
 }
 
-function receivePhotoData(imageData){
-  localStorage.setItem('imageData', imageData);
-  var data = localStorage.getItem('imageData');
-
-  if(data.length < 100){
-    $('.card-image').addClass('loadingWidth');
-    $('#camera_pic').attr('src', 'img/load.gif');
-  }else{
-    $('.card-image').removeClass('loadingWidth');
-    $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-    saveBase64PhotoData(data);
-  }
-}
 
 //スケジュールを文字列に変換し，Base64でエンコードしてサーバに送信
 function sendSchedule(){
@@ -55,28 +46,28 @@ function sendSchedule(){
     }else{
       alert("共有できるスケジュールがありません．");
     }
-    }
   }
+}
 
 
 //連絡先のJSONを文字列に変換し，サーバに送信
-  function sendContact(){
-    //localStorageにcontactがあるときに処理を行う
-    if(!(localStorage.contact===void 0)){
-      //簡単に扱うために一時的にJSONを入れる変数
-      var befferContact=JSON.parse(localStorage.contact);
-      //保存されたユーザ情報にはパスワードも含まれるため，パスワードを除いた4項目のJSONを再構築
-      var sendingContact={
-        "Name":befferContact.Name,
-        "Id":befferContact.Id,
-        "Phone":befferContact.Phone,
-        "Mail":befferContact.Mail
-      };
-      //名前が空文字であれば，不明とする
-      if(sendingContact.Name=="") sendingContact.Name="不明";
-      //JSONを文字列にしてサーバに送信
-      sendingContact=JSON.stringify(sendingContact);
-      socket.emit("html5_test",sendingContact);
-      alert("CONTACT GO TO SERVER");
-    }
+function sendContact(){
+  //localStorageにcontactがあるときに処理を行う
+  if(!(localStorage.contact===void 0)){
+    //簡単に扱うために一時的にJSONを入れる変数
+    var befferContact=JSON.parse(localStorage.contact);
+    //保存されたユーザ情報にはパスワードも含まれるため，パスワードを除いた4項目のJSONを再構築
+    var sendingContact={
+      "Name":befferContact.Name,
+      "Id":befferContact.Id,
+      "Phone":befferContact.Phone,
+      "Mail":befferContact.Mail
+    };
+    //名前が空文字であれば，不明とする
+    if(sendingContact.Name=="") sendingContact.Name="不明";
+    //JSONを文字列にしてサーバに送信
+    sendingContact=JSON.stringify(sendingContact);
+    socket.emit("html5_test",sendingContact);
+    alert("CONTACT GO TO SERVER");
   }
+}
