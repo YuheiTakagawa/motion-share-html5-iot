@@ -70,11 +70,22 @@ nav .button-collapse i{
 .btn-circle{
   width: 25%;
   height: 50px;
-  padding: 10px 20px;
+  padding: 15px 15px;
   font-size: 20px;
   line-height: 2.33;
   border-radius: 35px;
   background-color: #eceff1;
   /*opacity: 0.2;*/
   border: 2px solid #00bcd4;
+}
+
+.l-white{
+  background-color: #eceff1;
+}
+.l-white:hover{
+  background-color: #eceff1;
+}
+
+.fixed-action-btn {
+  z-index: 2;
 }
