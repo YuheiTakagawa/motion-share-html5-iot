@@ -55,6 +55,7 @@ bindEvents: function() {
     // [削除]クリックで親要素を削除
     //$("#scheduleLists").off();
     $("#scheduleLists").on("click","li",scheduleIndex);
+    $("#scheduleLists li").on("click","span,p",scheduleIndexChild);
     $("#scheduleLists").on("click",".badge", deleteSchedule);
     //スワイプイベントをまとめた関数
     //badgeSwipe();
@@ -264,8 +265,12 @@ function calcDate(){
   $("#scheDatetime").attr('min',dates);
 }
 
+function scheduleIndexChild(e){
+  sessionStorage.scheduleIndex=$(this).parent().val();
+}
+
 function scheduleIndex(e){
-  sessionStorage.scheduleIndex=e.target.value;
+  sessionStorage.scheduleIndex=$(this).val();
   alert("共有するスケジュールを変更しました");
   PageControll(0);
 }
