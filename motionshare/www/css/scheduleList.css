@@ -10,10 +10,22 @@
   border-style:none;
 }
 #scheduleLists li {
+  border-left:7px solid #00bcd4;
   text-align: left;
   color: #000;
   background: #fff;
   margin-top:1em;
   padding:1em;
   padding-right:10%;
+}
+
+.scheTitle{
+  font-size: 1.5em;
+}
+.scheAbout{
+  padding-top:5%;
+}
+
+.list-close{
+  font-size:20px;
 }
