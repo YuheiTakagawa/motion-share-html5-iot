@@ -32,8 +32,8 @@ var scheduleFanc = {
     }
     //スケジュール一覧画面の更新
     $("#scheduleCreate").hide();
-    scheduleShow();
     Materialize.showStaggeredList('#scheduleLists');
+    scheduleShow();
     this.bindEvents();
   },
 
@@ -108,11 +108,15 @@ function addSchedule(){
 //スケジュールをリスト化する関数
 function scheduleAuto(index,datetime,note){
   var listItem = document.createElement('li'),
-  html =  note+", "+datetime+
-  "<span class='badge'><i class='fa fa-fw fa-close'></i></span>";
+  dateSpan="<span class='title'>"+datetime+"</span>",
+  noteSpan="<p>"+note+"</p>",
+  deleteSpan="<a href='#!' class='secondary-content badge'><i class='fa fa-fw fa-close'></i></a>",
+  html =  dateSpan+noteSpan+deleteSpan;
   listItem.innerHTML = html;
 
   $(listItem).val(index);
+  $(listItem).addClass("collection-item");
+  $(listItem).addClass("avatar");
   $("#scheduleLists").append(listItem);
 
   //$(".badge").hide();

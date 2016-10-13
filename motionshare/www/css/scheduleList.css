@@ -2,16 +2,17 @@
   width:49%;
 }
 
-.badge{
-  position: relative;
-  height:100%;
-}
-
-.posi100{
-  position: absolute;
+#scheduleLists {
   width:100%;
+  margin-top:0;
+  margin-left:0;
+  padding-left: 0em;
 }
-
-#scheduleLists{
-  width:100%;
+#scheduleLists li {
+  text-align: left;
+  color: #000;
+  background: #fff;
+  margin-top:1em;
+  padding:1em;
+  padding-right:10%;
 }
