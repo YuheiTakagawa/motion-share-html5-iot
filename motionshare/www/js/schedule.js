@@ -114,9 +114,9 @@ function scheduleAuto(index,datetime,note){
   html =  dateSpan+noteSpan+deleteSpan;
   listItem.innerHTML = html;
 
-  $(listItem).val(index);
   $(listItem).addClass("collection-item");
   $(listItem).addClass("avatar");
+  $(listItem).val(index);
   $("#scheduleLists").append(listItem);
 
   //$(".badge").hide();
