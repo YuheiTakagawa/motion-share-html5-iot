@@ -78,4 +78,8 @@ function removeAnimationClass(){
   $(document).ready(function(){
     $("#view").removeClass(type);
   });
+
+  $(".fixed-action-btn ul li").click(function(){
+    $("#view").addClass(type);
+  });
 }
