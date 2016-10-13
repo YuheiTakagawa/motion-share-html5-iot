@@ -23,9 +23,14 @@
   font-size: 1.5em;
 }
 .scheAbout{
-  padding-top:5%;
+  margin-top:5%;
 }
 
 .list-close{
   font-size:20px;
+}
+.right-bottom{
+  position:fixed;
+  bottom: 5%;
+  right:5%;
 }
