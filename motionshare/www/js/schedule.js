@@ -80,7 +80,7 @@ function deleteSchedule(e){
   localStorage.schedule=JSON.stringify(scheduleJson);
   sessionStorage.scheduleIndex='0';
   e.stopPropagation();
-  scheduleFanc.initialize();
+  scheduleFanc.readySchedule();
 }
 
 //スケジュールを追加する関数
