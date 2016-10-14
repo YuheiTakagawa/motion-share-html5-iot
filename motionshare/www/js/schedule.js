@@ -18,14 +18,6 @@ var scheduleFanc = {
     //スケジュール一覧画面の更新
     $("#scheduleCreate").hide();
 
-    //過ぎたスケジュールを削除する
-    for(var key in scheduleJson){
-      if(getTimestamp(scheduleJson[key].date)<$.now()){
-        alert(scheduleJson[key].date+"に予定だった"+scheduleJson[key].note+"を削除しました");
-        delete scheduleJson[key];
-      }
-    }
-
     //スケジュールをソートした結果を格納
     scheduleJson = sortObject(scheduleJson, function(a, b){
       var at = getTimestamp(a.date); //日付文字列を取得し、それをタイムスタンプに変換
@@ -57,6 +49,7 @@ bindEvents: function() {
     $("#scheduleLists").on("click","li",scheduleIndex);
     $("#scheduleLists li").on("click","span,p",scheduleIndexChild);
     $("#scheduleLists").on("click",".badge", deleteSchedule);
+
     //スワイプイベントをまとめた関数
     //badgeSwipe();
 
@@ -296,4 +289,17 @@ function receiveSchedule(rcvMsg){
   $("#view").load('scheduleList.html',function(){
     scheduleFanc.initialize();
   });
+}
+
+function autoScheduleDelete(){
+  var rea="0";
+      //過ぎたスケジュールを削除する
+      for(var key in scheduleJson){
+        if(getTimestamp(scheduleJson[key].date)<$.now()){
+          alert(scheduleJson[key].date+"に予定だった"+scheduleJson[key].note+"を削除しました");
+          delete scheduleJson[key];
+          rea="1";
+        }
+      }
+      return rea;
 }
