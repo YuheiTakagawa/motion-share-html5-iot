@@ -16,6 +16,12 @@ function modeChange(){
 }
 
 
+/*******  socket再接続処理  *******/
+function reConnect(){
+  setTimeout(function(){
+    socket.on("connect", function() {alert("reConnect");});
+  }, 500);
+}
 
 
 /*----------------------------------------------------------*/
@@ -83,7 +89,7 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
-        socket.on('send real data from server');
+        //socket.on('send real data from server');
       break;
     }
 
