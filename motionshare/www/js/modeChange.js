@@ -30,9 +30,10 @@ alert("Receiver-Mode now");
 
 /*******  送信者モードのときの処理  *******/
 function senderMode(){
+  connect();
   whoAmI = 1;
-  alert(whoAmI);
-  $("#modeStatus").html("送信者");
+  //alert(whoAmI);
+  $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   //イベントを削除（受信できない）
   //socket.off('html5_test_show');
@@ -69,9 +70,10 @@ function senderMode(){
 
 /*******  受信者モードのときの処理  *******/
 function receiverMode(){
+  connect();
   whoAmI = 0;
-  alert(whoAmI);
-  $("#modeStatus").html("");
+  //alert(whoAmI);
+  $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
   //イベントを削除（受信できない）
@@ -93,8 +95,9 @@ function receiverMode(){
 
 
     function receivePhotoData(imageData){
-      alert("画像を受信しました");
       localStorage.setItem('imageData', imageData);
+      alert("画像を受信しました");
+      //disconnect();
       var data = localStorage.getItem('imageData');
 
       if(data.length < 100){
@@ -104,6 +107,7 @@ function receiverMode(){
         $('.card-image').removeClass('loadingWidth');
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
         saveBase64PhotoData(data);
+        //connect();
       }
     }
 

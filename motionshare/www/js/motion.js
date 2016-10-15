@@ -137,7 +137,7 @@
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
-      socket.emit("send motion data", 0 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
       alert("ハイタッチ");
       /*
       if(whoAmI == 0) receiverMode();
