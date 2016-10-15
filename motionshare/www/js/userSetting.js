@@ -10,6 +10,13 @@ function setUserInfo(){
     };
     localStorage.contact=JSON.stringify(users);
     alert("ユーザ情報を保存しました．");
+    var index=1;
+    var order = "nth-child("+index+")";
+    $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更
+    $("nav ul li:not(:"+order+")").css("background-color", "#eceff1"); //選択外項目の色をサイドバー背景色にする
+
+    $("nav ul li:"+order+" a").css("color", "#fff");//選択された項目のtxt色を白に変更
+    $("nav ul li:not(:"+order+") a").css("color", "#616161");//選択された項目のtxt色を黒に変更
     PageControll(0);
   });
 }
