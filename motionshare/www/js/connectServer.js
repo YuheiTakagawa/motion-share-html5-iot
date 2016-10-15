@@ -1,10 +1,17 @@
-//recodemo.herokuapp.com
+var socket = { on: function(){} };
 var url = "https://motion-share.herokuapp.com"; //websocketサーバのURL。
-var socket = io.connect(url);
-socket.on("connect", function() {
-  $(".info").text('connect server...OK');
-});
+// 接続
+var connect = function() {
+    alert("connect");
+    if ( !socket.connected ) socket = io.connect(url);
+    else socket.connect();
+}
 
+// 切断
+var disconnect = function(){
+    alert("disconnect");
+    socket.disconnect();
+}
 
 
 
@@ -13,7 +20,9 @@ socket.on("connect", function() {
 function sendPhotoData(socketID){
   var data = localStorage.getItem('imageData');
   socket.emit("send real data to server", [ 2 , socketID , data ]);
-  alert("PHOTO GO TO SERVER " + socketID);
+  disconnect();
+  alert("PHOTO GO TO SERVER");
+  connect();
   //alert(base64PhotoData);
 }
 

@@ -30,8 +30,9 @@ alert("Receiver-Mode now");
 
 /*******  送信者モードのときの処理  *******/
 function senderMode(){
+  connect();
   whoAmI = 1;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("送信者");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   //イベントを削除（受信できない）
@@ -77,8 +78,9 @@ function senderMode(){
 
 /*******  受信者モードのときの処理  *******/
 function receiverMode(){
+  connect();
   whoAmI = 0;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
@@ -100,8 +102,9 @@ function receiverMode(){
 
 
     function receivePhotoData(imageData){
-      alert("画像を受信しました");
       localStorage.setItem('imageData', imageData);
+      alert("画像を受信しました");
+      //disconnect();
       var data = localStorage.getItem('imageData');
 
       if(data.length < 100){
@@ -111,6 +114,7 @@ function receiverMode(){
         $('.card-image').removeClass('loadingWidth');
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
         saveBase64PhotoData(data);
+        //connect();
       }
     }
 
