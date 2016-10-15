@@ -97,14 +97,14 @@ function receiverMode(){
       localStorage.setItem('imageData', imageData);
       var data = localStorage.getItem('imageData');
 
-      if(data.length < 100){
-        $('.card-image').addClass('loadingWidth');
-        $('#camera_pic').attr('src', 'img/load.gif');
-      }else{
+      //if(data.length < 100){
+        //$('.card-image').addClass('loadingWidth');
+        //$('#camera_pic').attr('src', 'img/load.gif');
+      //}else{
         $('.card-image').removeClass('loadingWidth');
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-        saveBase64PhotoData(data);
-      }
+        //saveBase64PhotoData(data);
+      //}
     }
 
   });
