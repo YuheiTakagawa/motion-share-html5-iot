@@ -83,7 +83,7 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
-        socket.off('send real data from server');
+        socket.on('send real data from server');
       break;
     }
 
