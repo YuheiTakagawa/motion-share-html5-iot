@@ -22,7 +22,8 @@ function sendPhotoData(socketID){
   socket.emit("send real data to server", [ 2 , socketID , data ]);
   disconnect();
   alert("PHOTO GO TO SERVER");
-  connect();
+  modeChange();
+  //connect();
   //alert(base64PhotoData);
 }
 
