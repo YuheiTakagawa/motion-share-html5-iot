@@ -111,10 +111,8 @@
 
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 0 + ',' + now.time() + ',' + geoData);
+      socket.emit("send motion data", 1000 + ',' + 0 + ',' + 0 + ',' + now.time() + ',' + geoData);
       alert('握手');
-      //sendContact();
-      //modeFuncTrigger();
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -123,10 +121,8 @@
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-      socket.emit("send motion data", 0 + ',' + 0 + ',' + 1 + ',' + now.time() + ',' + geoData);
+      socket.emit("send motion data", 1000 + ',' + 0 + ',' + 1 + ',' + now.time() + ',' + geoData);
       alert("グータッチ");
-      //sendSchedule();
-      //modeFuncTrigger();
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
@@ -139,13 +135,6 @@
     if(highTouchCnt >= 1 && highTouchBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
       alert("ハイタッチ");
-      /*
-      if(whoAmI == 0) receiverMode();
-      else if(whoAmI == 1) senderMode();
-      */
-
-      //sendPhotoData();
-      //modeFuncTrigger();
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
