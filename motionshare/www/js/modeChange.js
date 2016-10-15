@@ -41,7 +41,7 @@ function senderMode(){
     //var motionArray = id.split(',');
     //contentID = motionArray[0];
     //socketID = motionArray[1];
-    alert("Request GET: "id[0]);
+    alert("Request GET: " + id[0]);
 
     var contentID = id[0];
     var socketID = id[1];
