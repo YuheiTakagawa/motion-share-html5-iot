@@ -1,5 +1,5 @@
 var changeMotionBool = new Boolean(false);
-changeMotionBool = false; //true: 送信者 / false:受信者
+changeMotionBool = true; //true: 送信者 / false:受信者
 
 var whoAmI = 0;
 
@@ -102,6 +102,5 @@ function receiverMode(){
         //saveBase64PhotoData(data);
       //}
     }
-
   });
 }
