@@ -76,10 +76,6 @@ function receiverMode(){
   $("#modeStatus").html("");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
-  //イベントを削除（受信できない）
-  //socket.off('html5_test_show');
-
-
   socket.on('send real data from server', function(data){
     //data[0] is contentID
     switch (data[0]) {
@@ -89,6 +85,7 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
+        socket.on('disconnect', function(){alert('disconnect');});
         //socket.on('send real data from server');
       break;
     }
