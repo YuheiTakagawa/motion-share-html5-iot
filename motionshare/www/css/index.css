@@ -91,3 +91,6 @@ nav .button-collapse i{
 .fixed-action-btn {
   z-index: 2;
 }
+::-webkit-input-placeholder{
+  color: #616161;
+}
