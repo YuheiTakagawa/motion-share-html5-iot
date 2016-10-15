@@ -56,9 +56,7 @@ function senderMode(){
       break;
       /****** スケジュールの受信処理 ( CONTENT ID : 1 )  *****/
       case 1:
-      socket.emit('html5_test_show', function(data){
-        receiveSchedule(data);
-      });
+        sendSchedule(socketID);
       break;
       /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
       case 2:
@@ -86,6 +84,7 @@ function receiverMode(){
       case 0:
       break;
       case 1:
+        receiveSchedule(data[1]);
       break;
       case 2:
         receivePhotoData(data[1]);

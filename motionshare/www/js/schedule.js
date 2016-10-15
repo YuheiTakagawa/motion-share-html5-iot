@@ -271,6 +271,7 @@ function scheduleIndex(e){
   PageControll(0);
 }
 
+/*
 function receiveSchedule(rcvMsg){
   var sche=JSON.parse(rcvMsg);
 
@@ -293,3 +294,4 @@ function receiveSchedule(rcvMsg){
     scheduleFanc.initialize();
   });
 }
+*/
