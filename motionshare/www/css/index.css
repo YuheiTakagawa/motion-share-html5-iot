@@ -63,6 +63,8 @@ nav .button-collapse i{
   box-shadow: 0 0 0 0 rgba(0,0,0,0.0),0 0 0 0 rgba(0,0,0,0.0);
   border-left: 7px solid #00bcd4;
 }
+
+.card .card-image{margin-top: 24px;}
 .card .card-content { padding: 10px;}
 .card .card-image img{ border-radius: 0 0 0 0; }
 

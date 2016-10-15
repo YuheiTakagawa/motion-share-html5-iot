@@ -1,5 +1,5 @@
 var changeMotionBool = new Boolean(false);
-changeMotionBool = false; //true: 送信者 / false:受信者
+changeMotionBool = true; //true: 送信者 / false:受信者
 
 var whoAmI = 0;
 
@@ -42,7 +42,7 @@ function senderMode(){
     //var motionArray = id.split(',');
     //contentID = motionArray[0];
     //socketID = motionArray[1];
-    alert("Request GET");
+    alert("Request GET: "+ id[0]);
 
     var contentID = id[0];
     var socketID = id[1];
@@ -89,7 +89,7 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
-        socket.off('send real data from server');
+        //socket.off('send real data from server');
       break;
     }
 
