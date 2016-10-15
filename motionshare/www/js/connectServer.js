@@ -58,7 +58,7 @@ function sendSchedule(socketID){
     if(!(sessionStorage.scheduleIndex===void 0)){
       index=sessionStorage.scheduleIndex;
     }
-    //直近のスケジュールを扱う
+    //選択したスケジュールを扱う
     sendingSche=scheduleJson[index];
     sendingSche=JSON.stringify(sendingSche);
 
@@ -100,7 +100,13 @@ function sendPhotoData(socketID){
 
 
 //  contentID:0 連絡先 受信処理
-
+function receiveContact(rcvCtt){
+  var contact=JSON.parse(rcvCtt);
+  var name=contact["Name"];
+  var phone=contact["Phone"];
+  var mail=contact["Mail"];
+  alert("名前："+name+",電話番号："+phone+",メール："+mail+"を受信しました");
+}
 
 
 
@@ -120,12 +126,16 @@ function receiveSchedule(rcvMsg){
       break;
     }
   }
+  //受け取ったスケジュールをJsonで保存し画面に反映
   scheduleToJson(datetime,note);
   scheduleAuto(scheIndex,datetime,note);
   scheduleShow();
+  //ホーム画面のスケジュールは直近のスケジュールに変更
   sessionStorage.scheduleIndex='0';
+  //スケジュール画面に自動で遷移 遷移しない方がいいのなら削除
   $("#view").load('scheduleList.html',function(){
-    scheduleFanc.initialize();
+    //イベント重複のない初期化
+    scheduleFanc.readySchedule();
   });
 }
 
