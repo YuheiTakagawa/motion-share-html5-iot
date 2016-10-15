@@ -2,14 +2,14 @@ var socket = { on: function(){} };
 var url = "https://motion-share.herokuapp.com"; //websocketサーバのURL。
 // 接続
 var connect = function() {
-    alert("connect");
+    //alert("connect");
     if ( !socket.connected ) socket = io.connect(url);
     else socket.connect();
 }
 
 // 切断
 var disconnect = function(){
-    alert("disconnect");
+    //alert("disconnect");
     socket.disconnect();
 }
 
