@@ -22,9 +22,6 @@ var scheduleFanc = {
   //ソートとローカル保存処理
   //追加削除後，ソートするのでscheduleJsonに変更を加えてこの関数を呼び出し
   readySchedule: function(){
-    //スケジュール作成画面を非表示
-    $("#scheduleCreate").hide();
-
     //スケジュールをソートした結果を格納
     scheduleJson = sortObject(scheduleJson, resultTimestamp);
 
