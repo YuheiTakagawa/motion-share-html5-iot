@@ -15,20 +15,12 @@ function modeChange(){
   }
 }
 
-/*
-function modeFuncTrigger(){
-if(changeMotionBool == true){
-senderMode();
-alert("Sender-Mode now");
-}
-else if(changeMotionBool == false){
-receiverMode();
-alert("Receiver-Mode now");
-}
-}
-*/
 
-/*******  送信者モードのときの処理  *******/
+
+
+/*----------------------------------------------------------*/
+/*----------      送信者モードのときの処理      ----------------*/
+/*----------------------------------------------------------*/
 function senderMode(){
   whoAmI = 1;
   //alert(whoAmI);
@@ -62,12 +54,16 @@ function senderMode(){
       /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
       case 2:
         sendPhotoData(socketID);
+        socket.on('data request');
       break;
     }
   });
 }
 
-/*******  受信者モードのときの処理  *******/
+
+/*----------------------------------------------------------*/
+/*----------      受信者モードのときの処理      ----------------*/
+/*----------------------------------------------------------*/
 function receiverMode(){
   whoAmI = 0;
   //alert(whoAmI);
