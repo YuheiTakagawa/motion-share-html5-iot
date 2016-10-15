@@ -31,7 +31,7 @@ alert("Receiver-Mode now");
 /*******  送信者モードのときの処理  *******/
 function senderMode(){
   whoAmI = 1;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("送信者");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   //イベントを削除（受信できない）
@@ -41,7 +41,7 @@ function senderMode(){
     //var motionArray = id.split(',');
     //contentID = motionArray[0];
     //socketID = motionArray[1];
-    alert("Request GET");
+    alert("Request GET: "id[0]);
 
     var contentID = id[0];
     var socketID = id[1];
@@ -70,7 +70,7 @@ function senderMode(){
 /*******  受信者モードのときの処理  *******/
 function receiverMode(){
   whoAmI = 0;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
