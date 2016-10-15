@@ -92,6 +92,7 @@ function receiverMode(){
 
 
     function receivePhotoData(imageData){
+      reConnect();
       alert("画像を受信しました");
       localStorage.setItem('imageData', imageData);
       var data = localStorage.getItem('imageData');
