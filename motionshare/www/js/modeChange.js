@@ -33,7 +33,7 @@ function senderMode(){
   connect();
   whoAmI = 1;
   //alert(whoAmI);
-  $("#modeStatus").html("送信者");
+  $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   //イベントを削除（受信できない）
   //socket.off('html5_test_show');
@@ -81,7 +81,7 @@ function receiverMode(){
   connect();
   whoAmI = 0;
   //alert(whoAmI);
-  $("#modeStatus").html("");
+  $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
   //イベントを削除（受信できない）
