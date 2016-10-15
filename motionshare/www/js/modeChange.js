@@ -28,6 +28,7 @@ function reConnect(){
 /*----------      送信者モードのときの処理      ----------------*/
 /*----------------------------------------------------------*/
 function senderMode(){
+  connect();
   whoAmI = 1;
   //alert(whoAmI);
   $("#modeStatus").html("送信者");
@@ -71,6 +72,7 @@ function senderMode(){
 /*----------      受信者モードのときの処理      ----------------*/
 /*----------------------------------------------------------*/
 function receiverMode(){
+  connect();
   whoAmI = 0;
   //alert(whoAmI);
   $("#modeStatus").html("");
@@ -85,16 +87,16 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
-        socket.on('disconnect', function(){alert('disconnect');});
-        //socket.on('send real data from server');
       break;
     }
 
 
     function receivePhotoData(imageData){
-      reConnect();
-      alert("画像を受信しました");
       localStorage.setItem('imageData', imageData);
+      disconnect();
+      alert("画像を受信しました");
+      //reConnect();
+
       var data = localStorage.getItem('imageData');
 
       //if(data.length < 100){
@@ -103,6 +105,7 @@ function receiverMode(){
       //}else{
         $('.card-image').removeClass('loadingWidth');
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+        connect();
         //saveBase64PhotoData(data);
       //}
     }
