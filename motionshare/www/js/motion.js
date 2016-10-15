@@ -140,8 +140,9 @@
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
       alert("ハイタッチ");
 
-      if(whoAmI == 0) receiverMode();
-      else if(whoAmI == 1) senderMode();
+      //if(whoAmI == 0) receiverMode();
+      //else if(whoAmI == 1) senderMode();
+      receiveWaiting();
 
       //sendPhotoData();
       //modeFuncTrigger();

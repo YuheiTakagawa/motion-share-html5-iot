@@ -4,7 +4,7 @@ function getCameraBase64(){
     function(imageData){
       // cameraSuccess
       localStorage.setItem('imageData', imageData);
-      $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+      $('#camera_pic').attr('src', 'data:image/png;charset=utf-8;base64,' + imageData);
     },
     function(message){
       // cameraError
@@ -12,7 +12,7 @@ function getCameraBase64(){
     },
     {
       //option
-      quality : 20,
+      quality : 18,
       destinationType : Camera.DestinationType.DATA_URL,
       sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
       saveToPhotoAlbum: true,
@@ -26,14 +26,14 @@ function getCameraBase64(){
       function(imageData){
         // cameraSuccess
         localStorage.setItem('imageData', imageData);
-        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+        $('#camera_pic').attr('src', 'data:image/png;charset=utf-8;base64,' + imageData);
       },
       function(message){
         // cameraError
         alert(message);
       },
       {
-        quality : 20,
+        quality : 18,
         destinationType : Camera.DestinationType.DATA_URL,
         sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
       });
@@ -48,7 +48,7 @@ function getCameraBase64(){
         localStorage.setItem('imageData', 'img/img.jpg');
       }else{
         //初回以外
-        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+        $('#camera_pic').attr('src', 'data:image/png;charset=utf-8;base64,' + data);
       }
 
       //初回起動時のtop画像設定

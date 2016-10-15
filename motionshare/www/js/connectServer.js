@@ -14,6 +14,7 @@ function sendPhotoData(socketID){
   var data = localStorage.getItem('imageData');
   socket.emit("send real data to server", [ 2 , socketID , data ]);
   alert("PHOTO GO TO SERVER " + socketID);
+  receiverMode();
   //alert(base64PhotoData);
 }
 

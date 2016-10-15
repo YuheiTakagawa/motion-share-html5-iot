@@ -31,7 +31,7 @@ alert("Receiver-Mode now");
 /*******  送信者モードのときの処理  *******/
 function senderMode(){
   whoAmI = 1;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   //イベントを削除（受信できない）
@@ -41,7 +41,7 @@ function senderMode(){
     //var motionArray = id.split(',');
     //contentID = motionArray[0];
     //socketID = motionArray[1];
-    alert("Request GET");
+    alert("Request GET: " + id[0]);
 
     var contentID = id[0];
     var socketID = id[1];
@@ -70,7 +70,7 @@ function senderMode(){
 /*******  受信者モードのときの処理  *******/
 function receiverMode(){
   whoAmI = 0;
-  alert(whoAmI);
+  //alert(whoAmI);
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
@@ -97,15 +97,22 @@ function receiverMode(){
       localStorage.setItem('imageData', imageData);
       var data = localStorage.getItem('imageData');
 
-      if(data.length < 100){
-        $('.card-image').addClass('loadingWidth');
-        $('#camera_pic').attr('src', 'img/load.gif');
-      }else{
+      //if(data.length < 100){
+        //$('.card-image').addClass('loadingWidth');
+        //$('#camera_pic').attr('src', 'img/load.gif');
+      //}else{
         $('.card-image').removeClass('loadingWidth');
-        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-        saveBase64PhotoData(data);
-      }
+        $('#camera_pic').attr('src', 'data:image/png;charset=utf-8;base64,' + data);
+        //saveBase64PhotoData(data);
+      //}
     }
 
   });
+}
+
+function receiveWaiting(){
+  if(whoAmI == 0){
+    $('.card-image').addClass('loadingWidth');
+    $('#camera_pic').attr('src', 'img/load.gif');
+  }
 }
