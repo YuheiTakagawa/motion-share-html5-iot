@@ -52,7 +52,7 @@ function PageControll(val){
 
     $("nav ul li").click(function () {
       var index = $("nav ul li").index(this);
-      index += 1;
+      index += 2;
       var order = "nth-child("+index+")";
 
       $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更

@@ -1,15 +1,31 @@
 function homeInitilize(){
-
   $(function(){
+
+    setInterval(function(){
+      if(autoScheduleDelete()=="1"){
+        //削除状態のJSONをローカルストレージに保存する
+        localStorage.schedule=JSON.stringify(scheduleJson);
+        sessionStorage.scheduleIndex='0';
+        scheduleFanc.readySchedule();
+        homeScheIni();
+      }
+    },60*1000);
+    homeScheIni();
+  });
+}
+
+function homeScheIni(){
+  $(function(){
+
     var date="--/-- --:--";
     var note="スケジュールはありません"
     if(!(localStorage.schedule===void 0)){
       var json=JSON.parse(localStorage.schedule);
-        var index='0';
+      var index='0';
       if(!(sessionStorage.scheduleIndex===void 0)){
         index=sessionStorage.scheduleIndex;
       }
-      if(Object.keys(json)!=""){
+      if((Object.keys(json)!="")&&!(json[index]===void 0)){
         var date=json[index].date;
         var dateMatch = date.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/);
         //日付オブジェクトに変換

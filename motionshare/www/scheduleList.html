@@ -6,64 +6,29 @@
   <div id="scheduleCreate" class="center">
 
     <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T00:00:00" min="2016-10-04T00:00:00">
-    <input id="scheNote" type="text" placeholder="備考">
+    <input id="scheNote" type="text" placeholder="備考" maxlength="100">
 
-    <a onClick="scheduleList();" href="#" class="btn-large deviceBtn mt cyan">保存</a>
+    <a onClick="scheduleList();" href="#" class="btn-large halfButton cyan animated zoomInUp">保存</a>
+    <a onClick="PageControll(3);" href="#" class="btn-large halfButton cyan lighten-3 animated zoomInUp">キャンセル</a>
+
 
   </div>
 
 
 
   <!--スケジュールの一覧を表示する画面-->
-  <div id="scheduleList" class="list-list">
+  <div id="scheduleList">
 
     <!--保存されているスケジュールがない時に表示する-->
-    <div id="scheduleNone">スケジュールはありません</div>
+    <div id="scheduleNone" class="animated swing">スケジュールはありません</div>
 
 
-    <ul id="scheduleLists" class="list-group">
+    <ul id="scheduleLists" class="collection list-list ">
     </ul>
 
     <!--スケジュールを新規作成するボタン　画面の右下に固定-->
-    <a onClick="scheduleCreate();calcDate()" href="#" class="btn-floating btn-large cyan right-bottom"><i class="fa fa-fw fa-plus"></i></a>
+    <a onClick="scheduleCreate();calcDate()" href="#" class="btn-floating btn-large cyan right-bottom animated bounce"><i class="fa fa-fw fa-plus"></i></a>
 
   </div>
 
 </div><!-- #SetSchedule -->
-
-
-
-<!--scheduleList.html用のcss　のちに別のcssファイルに書き込む必要あり-->
-<style type="text/css">
-#scheduleLists {
-  width:70%;
-  margin: 0 auto;
-  padding-left: 0em;
-
-}
-#scheduleLists li {
-  text-align: center;
-  color: #000;
-  background: #fff;
-  margin-top:1em;
-  padding:2em;
-}
-span.badge{
-  display: block;
-  width:15%;
-  color:#fff;
-  background:#ee2828;
-  margin-top:-10%;
-  padding-top:1.5em;
-  padding-bottom:1.5em;
-}
-.right-bottom{
-  position:fixed;
-  bottom: 5%;
-  right:5%;
-}
-.list-list{
-  margin-bottom:25%;
-}
-
-</style>

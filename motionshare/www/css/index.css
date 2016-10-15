@@ -78,3 +78,6 @@ nav .button-collapse i{
   /*opacity: 0.2;*/
   border: 2px solid #00bcd4;
 }
+::-webkit-input-placeholder{
+  color: #616161;
+}
