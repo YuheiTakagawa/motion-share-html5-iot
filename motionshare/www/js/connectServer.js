@@ -106,6 +106,13 @@ function receiveContact(rcvCtt){
   var phone=contact["Phone"];
   var mail=contact["Mail"];
   alert("名前："+name+",電話番号："+phone+",メール："+mail+"を受信しました");
+  var newContact=navigator.contacts.create({"displayName":name});
+  var phoneNumbers[];
+  phoneNumbers[0] = new ContactField('mobile', phone, true); // preferred number
+  var emails[];
+  emails[0]=new ContactField('mobile',mail,true);
+  newContact.phoneNumbers=phoneNumbers;
+  newContact.emails=emails;
 }
 
 
