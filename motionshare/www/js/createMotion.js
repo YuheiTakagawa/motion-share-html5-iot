@@ -18,4 +18,12 @@
     var yg = event.accelerationIncludingGravity.y;	// 縦方向の傾斜
     var zg = event.accelerationIncludingGravity.z;	// 上下方向の傾斜
 
+    $('.x').html(x);
+    $('.y').html(y);
+    $('.z').html(z);
+
+    $('.xg').html(xg);
+    $('.yg').html(yg);
+    $('.zg').html(zg);
+
   })();
