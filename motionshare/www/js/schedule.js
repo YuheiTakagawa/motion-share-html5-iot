@@ -268,6 +268,7 @@ function scheduleIndex(e){
   PageControll(0);
 }
 
+/*
 function receiveSchedule(rcvMsg){
   var sche=JSON.parse(rcvMsg);
 
@@ -289,7 +290,7 @@ function receiveSchedule(rcvMsg){
   $("#view").load('scheduleList.html',function(){
     scheduleFanc.initialize();
   });
-}
+}*/
 
 function autoScheduleDelete(){
   var rea="0";
