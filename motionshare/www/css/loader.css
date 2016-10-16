@@ -7,7 +7,7 @@
   top: 0px;
   left: 0px;
   background: #fff;
-  z-index: 3;
+  z-index: 100;
 }
 #loader {
   display: none;
@@ -22,7 +22,7 @@
   color: #32332f;
   font-size: 14px;
   font-weight: 600;
-  z-index: 4;
+  z-index: 101;
 }
 
 .info,

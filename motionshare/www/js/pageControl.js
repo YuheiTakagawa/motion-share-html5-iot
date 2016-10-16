@@ -6,6 +6,9 @@ $(function() {
 });
 //パーツ読み込み
 function PageControll(val){
+  if(val==3) $('#fab').addClass('fab');
+  else $('#fab').removeClass('fab');
+
   $(function() {
     switch(val){
       case 0:
@@ -14,6 +17,7 @@ function PageControll(val){
         homeInitilize();
         setPhotoDATA();
         animated();
+        $('.fixed-action-btn').closeFAB();
       });
       removeAnimationClass();
       $(".brand-logo").html("home");
@@ -22,6 +26,7 @@ function PageControll(val){
       $("#view").innerHTML = "<div id='page1'></div>";
       $("#view").load("page1.html",function(){
         bluetoothFanc.initialize();
+        $('.fixed-action-btn').closeFAB();
       });
       removeAnimationClass();
       $(".brand-logo").html("Select Sensing Device");
@@ -30,12 +35,14 @@ function PageControll(val){
       $("#view").innerHTML = "<div id='page2'></div>";
       $("#view").load("page2.html");
       removeAnimationClass();
+      $('.fixed-action-btn').closeFAB();
       $(".brand-logo").html("Motion Debug");
       break;
       case 3:
       $("#view").innerHTML = "<div id='schedulePage'></div>";
       $("#view").load("scheduleList.html",function(){
         scheduleFanc.initialize();
+        $('.fixed-action-btn').closeFAB();
       });
       $(".brand-logo").html("Schedule");
       break;
@@ -43,6 +50,7 @@ function PageControll(val){
       $("#view").innerHTML = "<div id='page5'></div>";
       $("#view").load("page5.html",function(){
         showUserInfo();
+        $('.fixed-action-btn').closeFAB();
       });
       removeAnimationClass();
       $(".brand-logo").html("User Information");
@@ -63,6 +71,10 @@ function PageControll(val){
 
 
   });
+}
+
+function fabCon(){
+  $('.fixed-action-btn').openFAB();
 }
 
 
