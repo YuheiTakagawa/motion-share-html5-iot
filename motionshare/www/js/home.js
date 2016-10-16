@@ -14,6 +14,15 @@ function homeInitilize(){
   });
 }
 
+
+//画像をlocalに保存する
+function savePhoto(){
+  var data = localStorage.getItem('imageData');
+  saveBase64PhotoData(data);
+}
+
+
+
 function homeScheIni(){
   $(function(){
 

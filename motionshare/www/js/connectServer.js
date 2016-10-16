@@ -152,13 +152,14 @@ function receivePhotoData(imageData){
   localStorage.setItem('imageData', imageData);
   alert("画像を受信しました");
   var data = localStorage.getItem('imageData');
-
+/*
   if(data.length < 100){
     $('.card-image').addClass('loadingWidth');
     $('#camera_pic').attr('src', 'img/load.gif');
   }else{
-    $('.card-image').removeClass('loadingWidth');
-    $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-    saveBase64PhotoData(data);
-  }
+  */
+  //$('.card-image').removeClass('loadingWidth');
+  $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+    //saveBase64PhotoData(data);
+  //}
 }
