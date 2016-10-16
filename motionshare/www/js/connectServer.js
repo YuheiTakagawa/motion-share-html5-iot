@@ -105,7 +105,7 @@ function receiveContact(rcvCtt){
   var name=contact["Name"];
   var phone=contact["Phone"];
   var mail=contact["Mail"];
-  alert("名前："+name+",電話番号："+phone+",メール："+mail+"を受信しました");
+  alert(name+"の連絡先を受信しました");
   var newContact=navigator.contacts.create({"displayName":name});
   var phoneNumbers=[];
   phoneNumbers[0] = new ContactField('mobile', phone, true); // preferred number
@@ -113,7 +113,7 @@ function receiveContact(rcvCtt){
   emails[0]=new ContactField('mobile',mail,true);
   newContact.phoneNumbers=phoneNumbers;
   newContact.emails=emails;
-  newContact.save(function(){alert("success");},function(message){alert(message);});
+  newContact.save();
 }
 
 
