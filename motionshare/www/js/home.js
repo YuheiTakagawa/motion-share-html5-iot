@@ -1,6 +1,6 @@
 function homeInitilize(){
   $(function(){
-
+    //ホーム画面でのスケジュール自動削除　スケジュール画面にも適用できる
     setInterval(function(){
       if(autoScheduleDelete()=="1"){
         //削除状態のJSONをローカルストレージに保存する
