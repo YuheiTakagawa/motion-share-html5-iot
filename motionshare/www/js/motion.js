@@ -97,7 +97,7 @@
 
 
     //Z軸方向 加速度カウンター処理
-    if(z < -15 && highTouchBool == true){
+    if(z < -18 && highTouchBool == true){
       highTouchCnt++;
     }
 
@@ -185,8 +185,7 @@
 
 
     //ハイタッチ！処理ージャイロ関係
-    if((beta >= 60) && (beta <= 150)){
-      //    if((beta >= 55) && (beta <= 115)){
+    if((beta >= 55) && (beta <= 130)){
       if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
         highTouchBool = true;
       }
