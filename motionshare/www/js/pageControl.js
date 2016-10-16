@@ -13,6 +13,7 @@ function PageControll(val){
       $("#view").load("home.html",function(){
         homeInitilize();
         setPhotoDATA();
+        animated();
       });
       removeAnimationClass();
       $(".brand-logo").html("home");

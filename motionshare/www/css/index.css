@@ -94,3 +94,8 @@ nav .button-collapse i{
 ::-webkit-input-placeholder{
   color: #616161;
 }
+
+#fab{
+  bottom: 110px;
+  right: 18px;
+}
