@@ -135,7 +135,7 @@ function receiveSchedule(rcvMsg){
   //スケジュール画面に自動で遷移 遷移しない方がいいのなら削除
   $("#view").load('scheduleList.html',function(){
     //イベント重複のない初期化 まだマージされてない関数
-    scheduleFanc.readySchedule();
+    scheduleFanc.initialize();
   });
 }
 
