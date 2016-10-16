@@ -97,12 +97,12 @@
 
 
     //Z軸方向 加速度カウンター処理
-    if(z < -8 && highTouchBool == true){
+    if(z < -15 && highTouchBool == true){
       highTouchCnt++;
     }
 
     //チェンジモーション用
-    var cl=5;
+    var cl=7;
     if(changeBool==true){
       if (rotationbeta <= -cl && changeCnt==0) changeCnt++;
       if(rotationbeta >=cl && changeCnt==1) changeCnt++;
@@ -185,7 +185,7 @@
 
 
     //ハイタッチ！処理ージャイロ関係
-    if((beta >= 55) && (beta <= 160)){
+    if((beta >= 60) && (beta <= 150)){
       //    if((beta >= 55) && (beta <= 115)){
       if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
         highTouchBool = true;
