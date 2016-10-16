@@ -1,5 +1,5 @@
 var changeMotionBool = new Boolean(false);
-changeMotionBool = false; //true: 送信者 / false:受信者
+changeMotionBool = true; //true: 送信者 / false:受信者
 
 var whoAmI = 0;
 
@@ -15,21 +15,20 @@ function modeChange(){
   }
 }
 
-/*
-function modeFuncTrigger(){
-if(changeMotionBool == true){
-senderMode();
-alert("Sender-Mode now");
-}
-else if(changeMotionBool == false){
-receiverMode();
-alert("Receiver-Mode now");
-}
-}
-*/
 
-/*******  送信者モードのときの処理  *******/
+/*******  socket再接続処理  *******/
+function reConnect(){
+  setTimeout(function(){
+    socket.on("connect", function() {alert("reConnect");});
+  }, 500);
+}
+
+
+/*----------------------------------------------------------*/
+/*----------      送信者モードのときの処理      ----------------*/
+/*----------------------------------------------------------*/
 function senderMode(){
+  connect();
   whoAmI = 1;
   //alert(whoAmI);
   $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
@@ -62,21 +61,22 @@ function senderMode(){
       /****** 画像の受信処理 ( CONTENT ID : 2 ) ************/
       case 2:
         sendPhotoData(socketID);
+        socket.on('data request');
       break;
     }
   });
 }
 
-/*******  受信者モードのときの処理  *******/
+
+/*----------------------------------------------------------*/
+/*----------      受信者モードのときの処理      ----------------*/
+/*----------------------------------------------------------*/
 function receiverMode(){
+  connect();
   whoAmI = 0;
   //alert(whoAmI);
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
-
-  //イベントを削除（受信できない）
-  //socket.off('html5_test_show');
-
 
   socket.on('send real data from server', function(data){
     //data[0] is contentID
@@ -87,14 +87,16 @@ function receiverMode(){
       break;
       case 2:
         receivePhotoData(data[1]);
-        socket.off('send real data from server');
       break;
     }
 
 
     function receivePhotoData(imageData){
-      alert("画像を受信しました");
       localStorage.setItem('imageData', imageData);
+      disconnect();
+      alert("画像を受信しました");
+      //reConnect();
+
       var data = localStorage.getItem('imageData');
 
       //if(data.length < 100){
@@ -106,7 +108,6 @@ function receiverMode(){
         //saveBase64PhotoData(data);
       //}
     }
-
   });
 }
 
