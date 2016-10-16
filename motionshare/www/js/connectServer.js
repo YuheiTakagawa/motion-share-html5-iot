@@ -107,12 +107,13 @@ function receiveContact(rcvCtt){
   var mail=contact["Mail"];
   alert("名前："+name+",電話番号："+phone+",メール："+mail+"を受信しました");
   var newContact=navigator.contacts.create({"displayName":name});
-  var phoneNumbers[];
+  var phoneNumbers=[];
   phoneNumbers[0] = new ContactField('mobile', phone, true); // preferred number
-  var emails[];
+  var emails=[];
   emails[0]=new ContactField('mobile',mail,true);
   newContact.phoneNumbers=phoneNumbers;
   newContact.emails=emails;
+  newContact.save(function(){alert("success");},function(message){alert(message);});
 }
 
 
@@ -141,8 +142,7 @@ function receiveSchedule(rcvMsg){
   sessionStorage.scheduleIndex='0';
   //スケジュール画面に自動で遷移 遷移しない方がいいのなら削除
   $("#view").load('scheduleList.html',function(){
-    //イベント重複のない初期化 まだマージされてない関数
-    scheduleFanc.readySchedule();
+    scheduleFanc.initialize();
   });
 }
 

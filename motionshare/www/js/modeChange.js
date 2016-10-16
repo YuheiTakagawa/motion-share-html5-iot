@@ -69,6 +69,7 @@ function receiverMode(){
     switch (data[0]) {
       //  contentID:0 連絡先 受信処理
       case 0:
+      receiveContact(data[1]);
       break;
       //  contentID:1 スケジュール 受信処理
       case 1:
