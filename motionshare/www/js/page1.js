@@ -44,7 +44,7 @@ var bluetoothFanc = {
     var deviceName=deviceInfo.getDeviceName();
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
-        alert("自動接続成功:"+deviceName);
+        alert("success:"+deviceName);
         bluetoothSerial.receiveData();
       },this.onError);
     }else{
@@ -78,7 +78,7 @@ var bluetoothFanc = {
     deviceInfo.setDeviceName("");
     bluetoothSerial.disconnect(
       function(){
-        alert("ペアリング解除成功");
+        alert("connecting success");
         tmpBtnTrigger(1);
       }, bluetoothFanc.onError);
     },
@@ -120,7 +120,7 @@ var bluetoothFanc = {
       deviceInfo.setDeviceName("");
       tmpBtnTrigger(1);
       bluetoothSerial.disconnect(function(){
-        alert("本体に設定しました。");
+        alert("Setting Smart phone");
       },bluetoothFanc.onError);
     }
   };
@@ -150,7 +150,7 @@ var bluetoothFanc = {
       //ドロップダウンのDevicesの表示名を変更
       devices.innerHTML=name;
       //専用デバイスボタンの表示名を変更
-      deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
+      deviceButton.innerHTML="<p>device<br>"+name+"</p>";
     },
   };
 
