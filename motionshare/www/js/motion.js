@@ -1,23 +1,33 @@
+
 window.addEventListener("devicemotion", deviceMotion);
 
-var acX;
-var acY;
-var acZ;
+var acX, acY, acZ;
+var agX, agY, agZ;
+var rtA, rtB, rtG;
 
-var agX;
-var agY;
-var agZ;
+var geoData = localStorage.getItem('geoData');
 
-var rtA;
-var rtB;
-var rtG;
+var now = {
+  time : function(){
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var h = now.getHours();
+    var m = now.getMinutes();
+    var s = now.getSeconds();
+    var time = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
+    return time;
+  }
+}
+
 
 
 function deviceMotion(e) {
-	e.preventDefault();
-	var ac = e.acceleration;
-	var ag = e.accelerationIncludingGravity;
-	var rt = e.rotationRate;
+  e.preventDefault();
+  var ac = e.acceleration;
+  var ag = e.accelerationIncludingGravity;
+  var rt = e.rotationRate;
 
   //加速度
   acX = Math.round(e.acceleration.x * 10) / 10;
@@ -33,15 +43,28 @@ function deviceMotion(e) {
   rtG = Math.round(e.rotationRate.gamma * 10) / 10;
 
 
-		document.getElementById("ax").innerHTML = "acX: " + acX;
-		document.getElementById("ay").innerHTML = "acY: " + acY;
-		document.getElementById("az").innerHTML = "acZ: " + acZ;
+  document.getElementById("ax").innerHTML = "acX: " + ac.x;
+  document.getElementById("ay").innerHTML = "acY: " + ac.y;
+  document.getElementById("az").innerHTML = "acZ: " + ac.z;
 
-		document.getElementById("agx").innerHTML = "agX: " + agX;
-		document.getElementById("agy").innerHTML = "agY: " + agY;
-		document.getElementById("agz").innerHTML = "agZ: " + agZ;
+  document.getElementById("agx").innerHTML = "agX: " + ag.x;
+  document.getElementById("agy").innerHTML = "agY: " + ag.y;
+  document.getElementById("agz").innerHTML = "agZ: " + ag.z;
 
-		document.getElementById("rta").innerHTML = "ALPHA: " + rtA;
-		document.getElementById("rtb").innerHTML = "BETA: " + rtB;
-		document.getElementById("rtg").innerHTML = "GAMMA: " + rtG;
+  document.getElementById("rta").innerHTML = "ALPHA: " + rt.alpha;
+  document.getElementById("rtb").innerHTML = "BETA: " + rt.beta;
+  document.getElementById("rtg").innerHTML = "GAMMA: " + rt.gamma;
+
+  highTouch();
+
+
+
+
+
+  function highTouch(){
+    if(ac.z < -14 && ag.y > 2.5){
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+      alert("highTouch");
+    }
+  }
 }
