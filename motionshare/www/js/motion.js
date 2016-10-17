@@ -60,12 +60,14 @@
         var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
         var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
       }else{
+        /*
         var x = accgyr[0];
         var y = accgyr[1];
         var z = accgyr[2];
         var xg = accgyr[6];
         var yg = accgyr[7];
         var zg = accgyr[8];
+        */
       }
 
 
@@ -179,9 +181,11 @@
         var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
         var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
       }else{
+        /*
         var beta = accgyr[3];
         var gamma = accgyr[4];
         var alpha = accgyr[5];
+        */
       }
 
     }
