@@ -34,8 +34,8 @@ function senderMode(){
   socket.on('data request', function(id){
     alert("Request GET: "+ id[0]);
 
-    var contentID = id[0];
-    var socketID = id[1];
+    var contentID = id[0] - 0;
+    var socketID = id[1] - 0;
 
     switch (contentID) {
       //  contentID:0 連絡先 受信処理
@@ -64,7 +64,12 @@ function receiverMode(){
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
+  //waitRequestPhoto();
+
   socket.on('send real data from server', function(data){
+
+    waitRequest();//受信スタンバイ処理
+
     //data[0] is contentID, data[1] is real Data
     switch (data[0] - 0) {
       //  contentID:0 連絡先 受信処理
@@ -81,4 +86,31 @@ function receiverMode(){
       break;
     }
   });
+}
+
+
+/******************************************************************/
+/********               受信スタンバイ処理                 ***********/
+/******************************************************************/
+
+//画像の受信準備
+function waitRequest(){
+  if(whoAmI == 0){
+    socket.on('wait request', function(id){
+      //alert('wait req' + id);
+      switch (id - 0) {
+        //  motionID:0 連絡先 受信スタンバイ処理
+        case 0:
+        break;
+        //  motionID:1 スケジュール 受信スタンバイ処理
+        case 1:
+        break;
+        //  motionID:2 画像 受信スタンバイ処理
+        case 2:
+        $('.card-image').addClass('loadingWidth');
+        $('#camera_pic').attr('src', 'img/load.gif');
+        break;
+      }
+    });
+  }
 }
