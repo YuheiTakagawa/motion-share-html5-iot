@@ -64,12 +64,9 @@ function receiverMode(){
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
-  //waitRequestPhoto();
+  //waitRequest();//受信スタンバイ処理
 
   socket.on('send real data from server', function(data){
-
-    waitRequest();//受信スタンバイ処理
-
     //data[0] is contentID, data[1] is real Data
     switch (data[0] - 0) {
       //  contentID:0 連絡先 受信処理
