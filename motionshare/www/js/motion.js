@@ -43,20 +43,32 @@
 
 
     if(SensorValueLoad == true){
-      // 加速度
-      var x = Math.round(event.acceleration.x * 10) / 10;
-      var y = Math.round(event.acceleration.y * 10) / 10;
-      var z = Math.round(event.acceleration.z * 10) / 10;
+      //本体に設定しているときは本体のセンサ値を扱う
+      if(localStorage.name==""){
+        // 加速度
+        var x = Math.round(event.acceleration.x * 10) / 10;
+        var y = Math.round(event.acceleration.y * 10) / 10;
+        var z = Math.round(event.acceleration.z * 10) / 10;
 
-      //傾き
-      var xg = Math.round(event.accelerationIncludingGravity.x * 10) / 10; //左右
-      var yg = Math.round(event.accelerationIncludingGravity.y * 10) / 10; //上下
-      var zg = Math.round(event.accelerationIncludingGravity.z * 10) / 10; //前後
+        //傾き
+        var xg = Math.round(event.accelerationIncludingGravity.x * 10) / 10; //左右
+        var yg = Math.round(event.accelerationIncludingGravity.y * 10) / 10; //上下
+        var zg = Math.round(event.accelerationIncludingGravity.z * 10) / 10; //前後
 
-      //回転速度
-      var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
-      var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
-      var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
+        //回転速度
+        var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
+        var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
+        var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
+      }else{
+        var x = accgyr[0];
+        var y = accgyr[1];
+        var z = accgyr[2];
+        var xg = accgyr[6];
+        var yg = accgyr[7];
+        var zg = accgyr[8];
+      }
+
+
     }
 
     /*
@@ -160,10 +172,18 @@
   function deviceorientationHandler(event) {
 
     if(SensorValueLoad == true){
-      //傾き
-      var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
-      var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
-      var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
+      //本体設定じ
+      if(localStorage.name==""){
+        //傾き
+        var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
+        var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
+        var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
+      }else{
+        var beta = accgyr[3];
+        var gamma = accgyr[4];
+        var alpha = accgyr[5];
+      }
+
     }
 
     /*
