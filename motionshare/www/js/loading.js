@@ -17,8 +17,8 @@ $(window).load(function () { //全ての読み込みが完了したら実行
 });
 
 function animated(){
-  $('.card').addClass('animated zoomIn');
-  $('#cameraBtn').addClass('animated fadeInUp');
+  $('.card').addClass('animated zoomInUp');
+  $('#cameraBtn').addClass('animated zoomInUp');
 }
 
 //10秒たったら強制的にロード画面を非表示
