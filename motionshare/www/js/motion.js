@@ -55,10 +55,18 @@ function deviceMotion(e) {
   document.getElementById("rtb").innerHTML = "BETA: " + rt.beta;
   document.getElementById("rtg").innerHTML = "GAMMA: " + rt.gamma;
 
+  gooTouch();
   highTouch();
 
 
 
+
+  function gooTouch(){
+    if(ac.x < -10 && ag.z < -8){
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+      alert("gooTouch");
+    }
+  }
 
 
   function highTouch(){
@@ -67,4 +75,6 @@ function deviceMotion(e) {
       alert("highTouch");
     }
   }
+
+
 }
