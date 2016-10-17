@@ -112,7 +112,7 @@
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
-      alert('握手');
+      alert('handshake!');
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
@@ -122,7 +122,7 @@
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
-      alert("グータッチ");
+      alert("goo touch!");
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
@@ -134,7 +134,7 @@
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
-      alert("ハイタッチ");
+      alert("high touch!");
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
@@ -144,7 +144,10 @@
 
     //チェンジー加速度・ジャイロによる判定
     if(changeCnt > 1){
-      alert("チェンジ"+changeMotionBool);
+      var m="";
+      if(changeMotionBool)m="receive"
+      else m="send"
+      alert("change:"+changeMotionBool);
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
