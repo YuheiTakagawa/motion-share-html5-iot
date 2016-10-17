@@ -27,7 +27,7 @@ function homeScheIni(){
   $(function(){
 
     var date="--/-- --:--";
-    var note="スケジュールはありません"
+    var note="You don't have schedule"
     if(!(localStorage.schedule===void 0)){
       var json=JSON.parse(localStorage.schedule);
       var index='0';
