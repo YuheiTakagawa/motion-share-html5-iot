@@ -9,7 +9,7 @@ function saveBase64PhotoData(data) {
         },
 
         function(path) {
-            alert("画像を保存しました　:"+path);
+            alert("Saved photo:"+path);
         },
 
         function(err) {
