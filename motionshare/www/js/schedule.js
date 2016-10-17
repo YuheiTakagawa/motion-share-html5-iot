@@ -75,7 +75,7 @@ function autoScheduleDelete(){
   //過ぎたスケジュールを削除する
   for(var key in scheduleJson){
     if(getTimestamp(scheduleJson[key].date)<$.now()){
-      alert(scheduleJson[key].date+"に予定だった"+scheduleJson[key].note+"を削除しました");
+      alert("Deleted:"+scheduleJson[key].note+" at "+scheduleJson[key].date);
       delete scheduleJson[key];
       rea="1";
     }
@@ -253,6 +253,6 @@ function scheduleIndexChild(e){
 //リスト自体のタッチイベントに対応
 function scheduleIndex(e){
   sessionStorage.scheduleIndex=$(this).val();
-  alert("共有するスケジュールを変更しました");
+  alert("Changed schedule");
   PageControll(0);
 }
