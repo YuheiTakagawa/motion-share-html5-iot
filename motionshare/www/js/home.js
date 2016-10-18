@@ -57,12 +57,14 @@ function homeScheIni(){
 
 var audio=[];
 function audioInitialize(){
-  for(var i=0;i<3;i++){
+  for(var i=0;i<5;i++){
     audio[i]=new Audio();
   }
   audio[0].src="audio/whip-gesture2.mp3";
   audio[1].src="audio/slap1.mp3";
   audio[2].src="audio/jump1.mp3";
+  audio[3].src="audio/ta_ta_suraido01.mp3";
+  audio[4].src="audio/ta_ta_kira08.mp3";
 }
 
 function audioPlay(num){
@@ -81,5 +83,12 @@ function audioPlay(num){
     // 再生を開始する
     audio[2].play();
     break;
+    case 3:
+    audio[3].play();
+    break;
+    case 4:
+    audio[4].play();
+    break;
   };
+
 }

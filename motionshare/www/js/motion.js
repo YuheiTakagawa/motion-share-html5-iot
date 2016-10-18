@@ -1,4 +1,4 @@
-  var makeMotionBool = false;
+var makeMotionBool = false;
 
 (function () {
 
@@ -63,11 +63,11 @@
       var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
       var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
     }
-/*
+    /*
     document.getElementById("agx").innerHTML = "agX: " + xg;
     document.getElementById("agy").innerHTML = "agY: " + yg;
     document.getElementById("agz").innerHTML = "agZ: " + zg;
-*/
+    */
     /*
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
@@ -156,11 +156,12 @@
 
     //チェンジー加速度・ジャイロによる判定
     if(changeCnt > 1){
-      alert("チェンジ"+changeMotionBool);
+      audioPlay(3);
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert("チェンジ"+changeMotionBool);
       modeChange(); //モード切り替え処理 modeChange.js
     }
 

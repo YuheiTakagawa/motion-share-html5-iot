@@ -67,6 +67,7 @@ function receiverMode(){
   //waitRequest();//受信スタンバイ処理
 
   socket.on('send real data from server', function(data){
+    audioPlay(4);
     //data[0] is contentID, data[1] is real Data
     switch (data[0] - 0) {
       //  contentID:0 連絡先 受信処理
