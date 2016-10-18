@@ -9,7 +9,9 @@ function saveBase64PhotoData(data) {
         },
 
         function(path) {
-            alert("画像を保存しました　:"+path);
+            alert("Saved photo:"+path);
+            var photoname=path.match(".+/(.+?)$")[1];
+            $("#photoName").html(photoname);
         },
 
         function(err) {

@@ -38,7 +38,7 @@ function sendContact(socketID){
       "Mail":befferContact.Mail
     };
     //名前が空文字であれば，不明とする
-    if(sendingContact.Name=="") sendingContact.Name="不明";
+    if(sendingContact.Name=="") sendingContact.Name="unknown";
     //JSONを文字列にしてサーバに送信
     sendingContact=JSON.stringify(sendingContact);
     socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
@@ -75,7 +75,7 @@ function sendSchedule(socketID){
       //alert(decodeURIComponent(escape(atob(sendingSche))));
     }else{
       disconnect();
-      alert("共有できるスケジュールがありません．");
+      alert("There are not sharable schedule");
       modeChange();
     }
   }
@@ -105,7 +105,7 @@ function receiveContact(rcvCtt){
   var name=contact["Name"];
   var phone=contact["Phone"];
   var mail=contact["Mail"];
-  alert(name+"の連絡先を受信しました");
+  alert("Received contact of "+ name);
   var newContact=navigator.contacts.create({"displayName":name});
   var phoneNumbers=[];
   phoneNumbers[0] = new ContactField('mobile', phone, true); // preferred number
@@ -123,7 +123,7 @@ function receiveContact(rcvCtt){
 
 //  contentID:1 スケジュール 受信処理
 function receiveSchedule(rcvMsg){
-  alert("スケジュールを受信しました");
+  alert("Received schedule");
   var sche=JSON.parse(rcvMsg);
   var datetime=sche["date"];
   var note =sche["note"];
@@ -150,7 +150,7 @@ function receiveSchedule(rcvMsg){
 //  contentID:2 画像 受信処理
 function receivePhotoData(imageData){
   localStorage.setItem('imageData', imageData);
-  alert("画像を受信しました");
+  alert("Received photo");
   var data = localStorage.getItem('imageData');
 /*
   if(data.length < 100){

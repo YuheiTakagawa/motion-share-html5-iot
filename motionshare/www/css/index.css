@@ -99,3 +99,7 @@ nav .button-collapse i{
   bottom: 110px;
   right: 18px;
 }
+
+.bottom-line{
+  border-bottom:solid #616161;
+}

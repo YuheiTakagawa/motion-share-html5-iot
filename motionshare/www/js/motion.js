@@ -121,33 +121,36 @@
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
-      alert('握手');
+      audioPlay(0);
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert('握手');
     }
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
-      alert("グータッチ");
+      audioPlay(1);
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
       gooTouchRotaBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert("グータッチ");
     }
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
-      alert("ハイタッチ");
+      audioPlay(2);
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert("ハイタッチ");
     }
 
 

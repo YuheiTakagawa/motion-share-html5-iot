@@ -5,11 +5,11 @@
   <!--スケジュールの作成をする画面-->
   <div id="scheduleCreate" class="center">
 
-    <input id="scheDatetime" type="datetime-local" placeholder="日時" value="2016-10-04T00:00:00" min="2016-10-04T00:00:00">
-    <input id="scheNote" type="text" placeholder="備考" maxlength="100">
+    <input id="scheDatetime" type="datetime-local" placeholder="Datetime" value="2016-10-04T00:00:00" min="2016-10-04T00:00:00">
+    <input id="scheNote" type="text" placeholder="About" maxlength="100">
 
-    <a onClick="scheduleList();addSchedule();" href="#" class="btn-large halfButton cyan animated zoomInUp">保存</a>
-    <a onClick="PageControll(3);" href="#" class="btn-large halfButton cyan lighten-3 animated zoomInUp">キャンセル</a>
+    <a onClick="scheduleList();addSchedule();" href="#" class="btn-large halfButton cyan animated zoomInUp">save</a>
+    <a onClick="PageControll(3);" href="#" class="btn-large halfButton cyan lighten-3 animated zoomInUp">cancel</a>
 
 
   </div>
@@ -20,7 +20,7 @@
   <div id="scheduleList">
 
     <!--保存されているスケジュールがない時に表示する-->
-    <div id="scheduleNone" class="animated swing">スケジュールはありません</div>
+    <div id="scheduleNone" class="animated swing">You don't have schedule</div>
 
 
     <ul id="scheduleLists" class="collection list-list ">

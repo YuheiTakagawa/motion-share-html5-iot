@@ -9,7 +9,7 @@ function setUserInfo(){
       "Pass2":$("#userPass2").val()
     };
     localStorage.contact=JSON.stringify(users);
-    alert("ユーザ情報を保存しました．");
+    alert("Saved user information");
     var index=2;
     var order = "nth-child("+index+")";
     $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更
