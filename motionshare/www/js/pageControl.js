@@ -23,6 +23,7 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("home");
+      menuValue=1;
       break;
       case 1:
       $("#view").innerHTML = "<div id='page1'></div>";
@@ -32,6 +33,7 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Select Sensing Device");
+      menuValue=0;
       break;
       case 2:
       $("#view").innerHTML = "<div id='page2'></div>";
@@ -39,6 +41,7 @@ function PageControll(val){
       removeAnimationClass();
       $('.fixed-action-btn').closeFAB();
       $(".brand-logo").html("Motion Debug");
+      menuValue=0;
       break;
       case 3:
       $("#view").innerHTML = "<div id='schedulePage'></div>";
@@ -47,6 +50,7 @@ function PageControll(val){
         $('.fixed-action-btn').closeFAB();
       });
       $(".brand-logo").html("Schedule");
+      menuValue=0;
       break;
       case 4:
       $("#view").innerHTML = "<div id='page5'></div>";
@@ -56,6 +60,7 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("User Information");
+      menuValue=0;
       break;
       case 5:
       $("#view").innerHTML = "<div id='makeMotion'></div>";
@@ -65,6 +70,7 @@ function PageControll(val){
       makeMotionBool = true;
       removeAnimationClass();
       $(".brand-logo").html("Maiking Motion");
+      menuValue=0;
       break;
     }
 

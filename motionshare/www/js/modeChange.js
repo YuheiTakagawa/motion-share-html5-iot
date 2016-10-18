@@ -2,6 +2,7 @@ var changeMotionBool = new Boolean(false);
 changeMotionBool = true; //true: 送信者 / false:受信者
 
 var whoAmI = 0;
+var menuValue=1;
 
 
 /******************************************************************/
@@ -30,26 +31,27 @@ function senderMode(){
   $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
 
-
   socket.on('data request', function(id){
-    //alert("Request GET: "+ id[0]);
+    if(menuValue==1){
+      //alert("Request GET: "+ id[0]);
 
-    var contentID = id[0] - 0;
-    var socketID = id[1];
+      var contentID = id[0] - 0;
+      var socketID = id[1];
 
-    switch (contentID) {
-      //  contentID:0 連絡先 受信処理
-      case 0:
-      sendContact(socketID);
-      break;
-      //  contentID:1 スケジュール 受信処理
-      case 1:
-      sendSchedule(socketID);
-      break;
-      //  contentID:2 画像 受信処理
-      case 2:
-      sendPhotoData(socketID);
-      break;
+      switch (contentID) {
+        //  contentID:0 連絡先 受信処理
+        case 0:
+        sendContact(socketID);
+        break;
+        //  contentID:1 スケジュール 受信処理
+        case 1:
+        sendSchedule(socketID);
+        break;
+        //  contentID:2 画像 受信処理
+        case 2:
+        sendPhotoData(socketID);
+        break;
+      }
     }
   });
 }
