@@ -30,15 +30,27 @@ function sendContact(socketID){
   if(!(localStorage.contact===void 0)){
     //簡単に扱うために一時的にJSONを入れる変数
     var befferContact=JSON.parse(localStorage.contact);
+        //名前が空文字であれば，不明とする
+        if(befferContact.Name=="") befferContact.Name="unknown";
     //保存されたユーザ情報にはパスワードも含まれるため，パスワードを除いた4項目のJSONを再構築
+    //JSON形式
+    /*
     var sendingContact={
       "Name":befferContact.Name,
       "Id":befferContact.Id,
       "Phone":befferContact.Phone,
       "Mail":befferContact.Mail
     };
-    //名前が空文字であれば，不明とする
-    if(sendingContact.Name=="") sendingContact.Name="unknown";
+    */
+    //配列形式
+    var sendingContact=[];
+    sendingContact[0]=befferContact.Name;
+    sendingContact[1]=befferContact.Id;
+    sendingContact[2]=befferContact.Phone;
+    sendingContact[3]=befferContact.Mail;
+
+    sendingContact=sendingContact.toString();
+
     //JSONを文字列にしてサーバに送信
     sendingContact=JSON.stringify(sendingContact);
     socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
@@ -59,8 +71,16 @@ function sendSchedule(socketID){
       index=sessionStorage.scheduleIndex;
     }
     //選択したスケジュールを扱う
-    sendingSche=scheduleJson[index];
+    //JSON形式
+    /*
+    var sendingSche=scheduleJson[index];
     sendingSche=JSON.stringify(sendingSche);
+    */
+    //配列形式
+    var dates=scheduleJson[index].date.replace(/T|-|:/g,"/");
+    var notes=scheduleJson[index].note;
+    var sendingSche=[dates,notes];
+    sendingSche=sendingSche.toString();
 
     if(sendingSche!=null){
       //Base64で送信するときは以下のbtoa関数のコメントアウトを解除する
@@ -101,10 +121,17 @@ function sendPhotoData(socketID){
 
 //  contentID:0 連絡先 受信処理
 function receiveContact(rcvCtt){
+  /*
   var contact=JSON.parse(rcvCtt);
   var name=contact["Name"];
   var phone=contact["Phone"];
   var mail=contact["Mail"];
+  */
+  var rcvCttString=rcvCtt.split(",");
+  var name=rcvCttString[0];
+  var phone=rcvCttString[2];
+  var mail=rcvCttString[3];
+
   alert("Received contact of "+ name);
   var newContact=navigator.contacts.create({"displayName":name});
   var phoneNumbers=[];
@@ -124,9 +151,20 @@ function receiveContact(rcvCtt){
 //  contentID:1 スケジュール 受信処理
 function receiveSchedule(rcvMsg){
   alert("Received schedule");
+  //JSON形式
+  /*
   var sche=JSON.parse(rcvMsg);
   var datetime=sche["date"];
   var note =sche["note"];
+  */
+
+  //配列形式
+  var rcvMsgString=rcvMsg.split(",");
+  var datetime=rcvMsgString[0];
+  var note=rcvMsgString[1];
+  var datetimes=datetime.split("/");
+  datetime=datetimes[0]+"-"+datetimes[1]+"-"+datetimes[2]+"T"+datetimes[3]+":"+datetimes[4];
+
   //JSONのkeyをスケジュールリストの要素数にする
   for(var i=0;i<=Object.keys(scheduleJson).length;i++){
     if(!(i in scheduleJson)){
@@ -152,14 +190,14 @@ function receivePhotoData(imageData){
   localStorage.setItem('imageData', imageData);
   alert("Received photo");
   var data = localStorage.getItem('imageData');
-/*
+  /*
   if(data.length < 100){
-    $('.card-image').addClass('loadingWidth');
-    $('#camera_pic').attr('src', 'img/load.gif');
-  }else{
-  */
-  //$('.card-image').removeClass('loadingWidth');
-  $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
-    //saveBase64PhotoData(data);
-  //}
+  $('.card-image').addClass('loadingWidth');
+  $('#camera_pic').attr('src', 'img/load.gif');
+}else{
+*/
+//$('.card-image').removeClass('loadingWidth');
+$('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
+//saveBase64PhotoData(data);
+//}
 }
