@@ -55,6 +55,14 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("User Information");
       break;
+      case 5:
+      $("#view").innerHTML = "<div id='makeMotion'></div>";
+      $("#view").load("makeMotion.html",function(){
+        $('.fixed-action-btn').closeFAB();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Maiking Motion");
+      break;
     }
 
     $("nav ul li").click(function () {
