@@ -9,6 +9,8 @@ function PageControll(val){
   if(val==3) $('#fab').addClass('fab');
   else $('#fab').removeClass('fab');
 
+  if(val == !5) makeMotionBool = false;
+
   $(function() {
     switch(val){
       case 0:
@@ -60,6 +62,7 @@ function PageControll(val){
       $("#view").load("makeMotion.html",function(){
         $('.fixed-action-btn').closeFAB();
       });
+      makeMotionBool = true;
       removeAnimationClass();
       $(".brand-logo").html("Maiking Motion");
       break;

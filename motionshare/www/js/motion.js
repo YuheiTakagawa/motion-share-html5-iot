@@ -1,3 +1,5 @@
+  var makeMotionBool = false;
+
 (function () {
 
   var geoData = localStorage.getItem('geoData');
@@ -38,7 +40,10 @@
   });
 
 
-  // 加速度が変化
+
+  /******************************************************************/
+  /********         加速度　制御処理                         ***********/
+  /******************************************************************/
   function devicemotionHandler(event) {
 
 
@@ -58,11 +63,11 @@
       var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
       var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
     }
-
+/*
     document.getElementById("agx").innerHTML = "agX: " + xg;
     document.getElementById("agy").innerHTML = "agY: " + yg;
     document.getElementById("agz").innerHTML = "agZ: " + zg;
-
+*/
     /*
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
@@ -78,8 +83,6 @@
     document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
     document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
     */
-
-    createMotion(20);
 
     //x軸方向 加速度カウンター処理
     var l = 24; //握手用
@@ -158,27 +161,43 @@
       modeChange(); //モード切り替え処理 modeChange.js
     }
 
-
+    /******************************************************************/
+    /********         motion作成  判別  処理                  ***********/
+    /******************************************************************/
     function createMotion(val){
-      if (x > val && yg > 5) { // 右
-        alert("left");
+      if (x > val && yg > 5) { // 左
+        //alert("left");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
       }
-      else if (x < -val && yg > 5) { // 左
-        alert("right");
+      else if (x < -val && yg > 5) { // 右
+        //alert("right");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-right"></i></li>').appendTo('ul.makeMotion');
       }
-      else if (y > val-5) { // 上
-        alert("up");
+      else if (y > val-8) { // 上
+        //alert("up");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-up"></i></li>').appendTo('ul.makeMotion');
       }
       else if (y < -val) { // 下
-        alert("down");
+        //alert("down");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-down"></i></li>').appendTo('ul.makeMotion');
       }
       else return;
+    }
+
+    if(makeMotionBool == true){
+      createMotion(20);
     }
   }
 
 
 
-  //角速度変化
+  /******************************************************************/
+  /********         ジャイロ 制御処理                        ***********/
+  /******************************************************************/
   function deviceorientationHandler(event) {
 
     if(SensorValueLoad == true){
