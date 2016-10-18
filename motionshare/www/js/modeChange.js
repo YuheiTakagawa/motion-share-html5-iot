@@ -32,10 +32,10 @@ function senderMode(){
 
 
   socket.on('data request', function(id){
-    alert("Request GET: "+ id[0]);
+    //alert("Request GET: "+ id[0]);
 
     var contentID = id[0] - 0;
-    var socketID = id[1] - 0;
+    var socketID = id[1];
 
     switch (contentID) {
       //  contentID:0 連絡先 受信処理
