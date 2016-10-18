@@ -68,27 +68,5 @@ function audioInitialize(){
 }
 
 function audioPlay(num){
-  switch(num){
-    case 0:
-    // 再生を開始する
-    audio[0].play();
-    break;
-
-    case 1:
-    // 再生を開始する
-    audio[1].play();
-    break;
-
-    case 2:
-    // 再生を開始する
-    audio[2].play();
-    break;
-    case 3:
-    audio[3].play();
-    break;
-    case 4:
-    audio[4].play();
-    break;
-  };
-
+  audio[num].play();
 }
