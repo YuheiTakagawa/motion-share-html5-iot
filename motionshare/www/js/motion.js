@@ -161,7 +161,7 @@ var makeMotionBool = false;
       changeBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
-      alert("チェンジ"+changeMotionBool);
+      alert("Mode Change");
       modeChange(); //モード切り替え処理 modeChange.js
     }
 

@@ -66,7 +66,7 @@ function receiverMode(){
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
-  //waitRequest();//受信スタンバイ処理
+  waitRequest();//受信スタンバイ処理
 
   socket.on('send real data from server', function(data){
     audioPlay(4);
