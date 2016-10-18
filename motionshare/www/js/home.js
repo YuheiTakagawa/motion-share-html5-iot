@@ -54,3 +54,32 @@ function homeScheIni(){
     $("#recentScheduleNote").html(note);
   });
 }
+
+var audio=[];
+function audioInitialize(){
+  for(var i=0;i<3;i++){
+    audio[i]=new Audio();
+  }
+  audio[0].src="audio/whip-gesture2.mp3";
+  audio[1].src="audio/slap1.mp3";
+  audio[2].src="audio/jump1.mp3";
+}
+
+function audioPlay(num){
+  switch(num){
+    case 0:
+    // 再生を開始する
+    audio[0].play();
+    break;
+
+    case 1:
+    // 再生を開始する
+    audio[1].play();
+    break;
+
+    case 2:
+    // 再生を開始する
+    audio[2].play();
+    break;
+  };
+}

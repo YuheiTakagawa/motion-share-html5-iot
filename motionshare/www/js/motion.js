@@ -1,3 +1,5 @@
+  var makeMotionBool = false;
+
 (function () {
 
   var geoData = localStorage.getItem('geoData');
@@ -38,41 +40,34 @@
   });
 
 
-  // 加速度が変化
+
+  /******************************************************************/
+  /********         加速度　制御処理                         ***********/
+  /******************************************************************/
   function devicemotionHandler(event) {
 
 
     if(SensorValueLoad == true){
-      //本体に設定しているときは本体のセンサ値を扱う
-      if(localStorage.name==""){
-        // 加速度
-        var x = Math.round(event.acceleration.x * 10) / 10;
-        var y = Math.round(event.acceleration.y * 10) / 10;
-        var z = Math.round(event.acceleration.z * 10) / 10;
+      // 加速度
+      var x = Math.round(event.acceleration.x * 10) / 10;
+      var y = Math.round(event.acceleration.y * 10) / 10;
+      var z = Math.round(event.acceleration.z * 10) / 10;
 
-        //傾き
-        var xg = Math.round(event.accelerationIncludingGravity.x * 10) / 10; //左右
-        var yg = Math.round(event.accelerationIncludingGravity.y * 10) / 10; //上下
-        var zg = Math.round(event.accelerationIncludingGravity.z * 10) / 10; //前後
+      //傾き
+      var xg = Math.round(event.accelerationIncludingGravity.x * 10) / 10; //左右
+      var yg = Math.round(event.accelerationIncludingGravity.y * 10) / 10; //上下
+      var zg = Math.round(event.accelerationIncludingGravity.z * 10) / 10; //前後
 
-        //回転速度
-        var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
-        var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
-        var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
-      }else{
-        /*
-        var x = accgyr[0];
-        var y = accgyr[1];
-        var z = accgyr[2];
-        var xg = accgyr[6];
-        var yg = accgyr[7];
-        var zg = accgyr[8];
-        */
-      }
-
-
+      //回転速度
+      var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
+      var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
+      var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
     }
-
+/*
+    document.getElementById("agx").innerHTML = "agX: " + xg;
+    document.getElementById("agy").innerHTML = "agY: " + yg;
+    document.getElementById("agz").innerHTML = "agZ: " + zg;
+*/
     /*
     document.getElementById('accelerationX').innerHTML = x;
     document.getElementById('accelerationY').innerHTML = y;
@@ -126,68 +121,93 @@
     //握手ー加速度・ジャイロによる判定
     if(handshakeCnt > 3){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
-      alert('handshake!');
+      audioPlay(0);
       handshakeCnt = 0;
       handshakeBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert('握手');
     }
 
     //グータッチー加速度・ジャイロによる判定
     if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
-      alert("goo touch!");
+      audioPlay(1);
       gooTouchCnt = 0;
       rotationalphaCnt = 0;
       gooTouchBool = false;
       gooTouchRotaBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert("グータッチ");
     }
 
     //ハイタッチー加速度・ジャイロによる判定
     if(highTouchCnt >= 1 && highTouchBool == true){
       socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
-      alert("high touch!");
+      audioPlay(2);
       highTouchCnt = 0;
       highTouchBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
+      alert("ハイタッチ");
     }
 
 
     //チェンジー加速度・ジャイロによる判定
     if(changeCnt > 1){
-      var m="";
-      if(changeMotionBool)m="receive"
-      else m="send"
-      alert("change:"+changeMotionBool);
+      alert("チェンジ"+changeMotionBool);
       changeCnt = 0;
       changeBool = false;
       SensorValueLoad = false;
       SensorValueLoadControl();
       modeChange(); //モード切り替え処理 modeChange.js
     }
+
+    /******************************************************************/
+    /********         motion作成  判別  処理                  ***********/
+    /******************************************************************/
+    function createMotion(val){
+      if (x > val && yg > 5) { // 左
+        //alert("left");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (x < -val && yg > 5) { // 右
+        //alert("right");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-right"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (y > val-8) { // 上
+        //alert("up");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-up"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (y < -val) { // 下
+        //alert("down");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-down"></i></li>').appendTo('ul.makeMotion');
+      }
+      else return;
+    }
+
+    if(makeMotionBool == true){
+      createMotion(20);
+    }
   }
 
-  //角速度変化
+
+
+  /******************************************************************/
+  /********         ジャイロ 制御処理                        ***********/
+  /******************************************************************/
   function deviceorientationHandler(event) {
 
     if(SensorValueLoad == true){
-      //本体設定じ
-      if(localStorage.name==""){
-        //傾き
-        var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
-        var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
-        var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
-      }else{
-        /*
-        var beta = accgyr[3];
-        var gamma = accgyr[4];
-        var alpha = accgyr[5];
-        */
-      }
-
+      //傾き
+      var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
+      var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
+      var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
     }
 
     /*
