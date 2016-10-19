@@ -54,6 +54,7 @@ function senderMode(){
       }
     }
   });
+  changeMotionBool = true;
 }
 
 
@@ -86,6 +87,7 @@ function receiverMode(){
       break;
     }
   });
+  changeMotionBool = false;
 }
 
 
