@@ -9,14 +9,14 @@ var scheduleFanc = {
 
   //初期化
   initialize: function() {
-    //スケジュール一覧画面の更新
-    $("#scheduleCreate").hide();
-    //ローカルストレージに保存されているスケジュール用のJSONを格納する
-    if(!(localStorage.schedule===void 0)){
-      scheduleJson=JSON.parse(localStorage.schedule);
-      this.readySchedule();
-    }
-    this.bindEvents();
+      //スケジュール一覧画面の更新
+      $("#scheduleCreate").hide();
+      //ローカルストレージに保存されているスケジュール用のJSONを格納する
+      if(!(localStorage.schedule===void 0)){
+        scheduleJson=JSON.parse(localStorage.schedule);
+        this.readySchedule();
+      }
+      this.bindEvents();
   },
 
   //ソートとローカル保存処理
@@ -88,34 +88,36 @@ function autoScheduleDelete(){
 /******************************************************************/
 
 function addSchedule(){
-  $(function(){
-    //入力されたスケジュールを情報を取得
-    var datetime = $("#scheDatetime").val();
-    //日付日時の入力が正しくない場合はゼロ値を保存(すぐに自動で削除される)
-    if(datetime==""){
-      datetime="0000-00-00T00:00"
-    }
-    var note = $("#scheNote").val();
+  //入力されたスケジュールを情報を取得
+  var datetime = $("#scheDatetime").val();
+  //日付日時の入力が正しくない場合はゼロ値を保存(すぐに自動で削除される)
+  if(datetime==""){
+    datetime="0000-00-00T00:00"
+  }
+  var note = $("#scheNote").val();
 
-    //JSONのkeyをスケジュールリストの要素数にする
-    for(var i=0;i<=Object.keys(scheduleJson).length;i++){
-      if(!(i in scheduleJson)){
-        scheIndex=i;
-        break;
-      }
+  //JSONのkeyをスケジュールリストの要素数にする
+  for(var i=0;i<=Object.keys(scheduleJson).length;i++){
+    if(!(i in scheduleJson)){
+      scheIndex=i;
+      break;
     }
+  }
 
-    scheduleToJson(datetime,note);
-    //ページを再読み込み
-    PageControll(3);
-    //追加された場合はホーム画面の表示は直近になる
-    sessionStorage.scheduleIndex='0';
-  });
+  scheduleToJson(datetime,note);
+
+  //ページを再読み込み
+  for(var i in scheduleJson){
+    if((datetime==scheduleJson[i].date)&&(note==scheduleJson[i].note)){
+      //追加された場合はホーム画面の表示は直近になる
+      sessionStorage.scheduleIndex=i;
+      break;
+    }
+  }
 };
 
 //スケジュールをJSONに変換して保存する関数
 function scheduleToJson(date,note){
-  $(function(){
     scheduleJson[scheIndex]={
       "date":date,
       "note":note
@@ -123,7 +125,6 @@ function scheduleToJson(date,note){
     localStorage.schedule=JSON.stringify(scheduleJson);
     //削除コマンド デバッグ用
     //localStorage.removeItem("schedule");
-  });
 };
 
 /******************************************************************/
@@ -156,7 +157,7 @@ function resultTimestamp(a,b){
 }
 
 //日付時間計算 inputの初期値・最小値に利用
- function calcDate(){
+function calcDate(){
   var date=new Date();
   var year=date.getFullYear();
   var month=date.getMonth()+1;
