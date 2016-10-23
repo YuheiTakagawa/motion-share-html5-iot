@@ -53,6 +53,8 @@ function sendContact(socketID){
 
     //JSONを文字列にしてサーバに送信
     sendingContact=JSON.stringify(sendingContact);
+    //Base64エンコード
+    sendingContact=btoa(unescape(encodeURIComponent(sendingContact)));
     socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
     disconnect();
     alert("CONTACT GO TO SERVER");
@@ -85,14 +87,12 @@ function sendSchedule(socketID){
     if(sendingSche!=null){
       //Base64で送信するときは以下のbtoa関数のコメントアウトを解除する
       //Base64エンコード
-      //sendingSche=btoa(unescape(encodeURIComponent(sendingSche)));
+      sendingSche=btoa(unescape(encodeURIComponent(sendingSche)));
       socket.emit("send real data to server", [ 1 , socketID , sendingSche ]);
       //socket.emit("html5_test", sendingSche);
       disconnect();
       alert("SCHEDULE GO TO SERVER");
       modeChange();
-      //Base64デコード
-      //alert(decodeURIComponent(escape(atob(sendingSche))));
     }else{
       disconnect();
       alert("There are not sharable schedule");
@@ -121,6 +121,8 @@ function sendPhotoData(socketID){
 
 //  contentID:0 連絡先 受信処理
 function receiveContact(rcvCtt){
+//Base64デコード
+rcvCtt=decodeURIComponent(escape(atob(rcvCtt)));
   /*
   var contact=JSON.parse(rcvCtt);
   var name=contact["Name"];
@@ -151,6 +153,8 @@ function receiveContact(rcvCtt){
 //  contentID:1 スケジュール 受信処理
 function receiveSchedule(rcvMsg){
   alert("Received schedule");
+  //Base64デコード
+  rcvMsg=decodeURIComponent(escape(atob(rcvMsg)));
   //JSON形式
   /*
   var sche=JSON.parse(rcvMsg);
