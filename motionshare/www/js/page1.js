@@ -98,6 +98,7 @@ var bluetoothFanc = {
 
     //受信した文字列を整数に変換する
     splitString: function(data){
+      alert(data);
       var strings=data.split(",");
 
       for(var i=0;i<strings.length;i++){
