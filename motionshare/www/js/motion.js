@@ -35,8 +35,14 @@ var makeMotionBool = false;
 
 
   $(function () {
-    window.addEventListener("devicemotion", devicemotionHandler);
-    window.addEventListener("deviceorientation", deviceorientationHandler);
+    //選択されているデバイスによって読み込む関数を変更
+    if(localStorage.name==""){
+      window.addEventListener("devicemotion", devicemotionHandler);
+      window.addEventListener("deviceorientation", deviceorientationHandler);
+    }
+    else{
+      deviceNum();
+    }
   });
 
 
@@ -262,6 +268,24 @@ var makeMotionBool = false;
       }, 500);
     }
 
+  }
+
+  //専用デバイスからの数値を扱う関数
+  function deviceNum(){
+    // 加速度
+    var x = dNum[0];
+    var y = dNUm[1];
+    var z = dNUm[2];
+
+    //傾き
+    var xg = dNum[3]; //左右
+    var yg = dNum[4]; //上下
+    var zg = dNum[5]; //前後
+
+    //回転速度
+    var rotationalpha = dNum[6];
+    var rotationbeta = dNum[7];
+    var rotationgamma = dNum[8];
   }
 
 })();

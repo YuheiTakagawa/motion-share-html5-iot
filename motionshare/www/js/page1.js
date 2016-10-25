@@ -1,4 +1,4 @@
-var accgyr=[];
+var dNum=[];
 
 var bluetoothFanc = {
   //初期化
@@ -101,7 +101,7 @@ var bluetoothFanc = {
       var strings=data.split(",");
 
       for(var i=0;i<strings.length;i++){
-        accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ 重力加速度も対応化
+        dNum[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ 重力加速度も対応化
       }
     },
 
