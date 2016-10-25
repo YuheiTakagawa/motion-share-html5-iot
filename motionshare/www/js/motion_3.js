@@ -1,17 +1,14 @@
 (function() {
 
-  var SensorValueLoad = true;
-
   /******************************************************************/
   /********         センサー値取得処理                       ***********/
   /******************************************************************/
   window.addEventListener("devicemotion", function(e){
-    if(SensorValueLoad == true){
       //加速度
       var acc = e.acceleration;
-      x = obj2NumberFix(acc.x, 5);
-      y = obj2NumberFix(acc.y, 5);
-      z = obj2NumberFix(acc.z, 5);
+      var x = obj2NumberFix(acc.x, 5);
+      var y = obj2NumberFix(acc.y, 5);
+      var z = obj2NumberFix(acc.z, 5);
 
       //傾き(重力加速度)
       var acc_g = e.accelerationIncludingGravity;
@@ -24,7 +21,8 @@
       var a = obj2NumberFix(rota_r.alpha, 5); //z方向
       var b = obj2NumberFix(rota_r.beta, 5); //x方向
       var g = obj2NumberFix(rota_r.gamma, 5); // y方向
-    }
+
+      var lastmotion = 0;
 
     /******************************************************************/
     /********         モーション判別機能 呼出                   ***********/
@@ -61,11 +59,13 @@
 
     //モーション 0 握手
     function handshake(){
+      /*
       if(gz > 8){
         SensorValueLoad = false;
         SensorValueLoadControl();
         emitRequest(0);
       }
+      */
     }
 
     //モーション 1 グータッチ
@@ -75,6 +75,11 @@
 
     //モーション 2 ハイタッチ
     function highTouch(){
+      if(Math.abs(gy) > 6 && z < -20){
+        SensorValueLoad = false;
+        sensorValueLoadControl();
+        emitRequest(2);
+      }
 
     }
 
@@ -90,11 +95,11 @@
 
 
     //モーション判別後 数秒間センサー値を取得しない
-    function SensorValueLoadControl(){
+    function sensorValueLoadControl(){
       if(SensorValueLoad == false){
         setTimeout(function(){
           SensorValueLoad = true;
-        }, 3000);
+        }, 100);
       }
     }
 
