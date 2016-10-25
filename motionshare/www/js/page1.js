@@ -45,7 +45,7 @@ var bluetoothFanc = {
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
         alert("success:"+deviceName);
-        bluetoothSerial.receiveData();
+        bluetoothFanc.receiveData();
       },this.onError);
     }else{
       //alert("本体を設定しています。");
