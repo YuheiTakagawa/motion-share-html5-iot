@@ -72,6 +72,16 @@ function PageControll(val){
       $(".brand-logo").html("Maiking Motion");
       menuValue=0;
       break;
+      case 6:
+      $("#view").innerHTML = "<div id='publicSet'></div>";
+      $("#view").load("publicSetting.html",function(){
+        $('.fixed-action-btn').closeFAB();
+        loadRangeSetting();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Public Range Setting");
+      menuValue=0;
+      break;
     }
 
     $("nav ul li").click(function () {
