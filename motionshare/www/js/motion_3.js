@@ -59,17 +59,15 @@
 
     //モーション 0 握手
     function handshake(){
-      /*
-      if(gz > 8){
-        SensorValueLoad = false;
-        SensorValueLoadControl();
-        emitRequest(0);
-      }
-      */
     }
 
     //モーション 1 グータッチ
     function gooTouch(){
+      if(gz < -9 && x < -10){
+        SensorValueLoad = false;
+        sensorValueLoadControl();
+        emitRequest(1);
+      }
 
     }
 
@@ -99,7 +97,7 @@
       if(SensorValueLoad == false){
         setTimeout(function(){
           SensorValueLoad = true;
-        }, 100);
+        }, 800);
       }
     }
 
