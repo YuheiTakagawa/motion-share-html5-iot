@@ -30,31 +30,31 @@ function senderMode(){
   //alert(whoAmI);
   $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
-
-  socket.on('data request', function(id){
-    if(menuValue==1){
-      //alert("Request GET: "+ id[0]);
-
-      var contentID = id[0] - 0;
-      var socketID = id[1];
-
-      switch (contentID) {
-        //  contentID:0 連絡先 受信処理
-        case 0:
-        sendContact(socketID);
-        break;
-        //  contentID:1 スケジュール 受信処理
-        case 1:
-        sendSchedule(socketID);
-        break;
-        //  contentID:2 画像 受信処理
-        case 2:
-        sendPhotoData(socketID);
-        break;
-      }
-    }
-  });
   changeMotionBool = true;
+  socket.off('data request');
+  socket.on('data request', function(id){
+      if(menuValue==1){
+        //alert("Request GET: "+ id[0]);
+
+        var contentID = id[0] - 0;
+        var socketID = id[1];
+
+        switch (contentID) {
+          //  contentID:0 連絡先 受信処理
+          case 0:
+          sendContact(socketID);
+          break;
+          //  contentID:1 スケジュール 受信処理
+          case 1:
+          sendSchedule(socketID);
+          break;
+          //  contentID:2 画像 受信処理
+          case 2:
+          sendPhotoData(socketID);
+          break;
+        }
+      }
+  });
 }
 
 
@@ -67,6 +67,7 @@ function receiverMode(){
   $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
+  changeMotionBool = false;
   waitRequest();//受信スタンバイ処理
 
   socket.on('send real data from server', function(data){
@@ -87,7 +88,6 @@ function receiverMode(){
       break;
     }
   });
-  changeMotionBool = false;
 }
 
 
