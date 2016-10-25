@@ -296,6 +296,9 @@ var makeMotionBool = false;
     var g = Math.round(dNum[8] * 10 ) / 100;
 
 
+    /******************************************************************/
+    /********                  debug用                      ***********/
+    /******************************************************************/
     document.getElementById("x").innerHTML = "X: " + x;
     document.getElementById("y").innerHTML = "Y: " + y;
     document.getElementById("z").innerHTML = "Z: " + z;
@@ -308,12 +311,19 @@ var makeMotionBool = false;
     document.getElementById("rb").innerHTML = "Rb: " + b;
     document.getElementById("rg").innerHTML = "Rg: " + g;
 
+    /******************************************************************/
+    /********           モーション判別機能 呼出                 ***********/
+    /******************************************************************/
     handshake();
+    gooTouch();
+    highTouch();
+    changeMotion();
 
 
     /******************************************************************/
     /********     3種ベースモーション判別(専用デバイスから)       ***********/
     /******************************************************************/
+    //モーション 0 握手 判別処理
     function handshake(){
       if(x > 1) downCnt++;
       if(x < -1) upCnt++;
@@ -327,9 +337,14 @@ var makeMotionBool = false;
       }
     }
 
-    function gooTouch(){
+    //モーション 1 グータッチ 判別処理
+    function gooTouch(){}
 
-    }
+    //モーション 2 ハイタッチ 判別処理
+    function highTouch(){}
+
+    //モーション 0000 チェンジモーション 判別処理
+    function changeMotion(){}
 
 
 
