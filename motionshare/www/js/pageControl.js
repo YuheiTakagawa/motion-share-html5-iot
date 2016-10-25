@@ -1,8 +1,18 @@
 $(function() {
-  $("#view").load("home.html",function(){
+  //ログインページ　コメントアウト
+  /*
+  $("#view").load("login.html",function(){
+    $("#modeStatus").hide();
+    $("#slide-menu").hide();
+    $("#fab").hide();
     homeInitilize();
     setPhotoDATA();
   });
+  */
+  $("#view").load("home.html",function(){
+    homeInitilize();
+    setPhotoDATA();
+  })
 });
 //パーツ読み込み
 function PageControll(val){
