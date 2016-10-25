@@ -46,7 +46,6 @@ var makeMotionBool = false;
   /********         加速度　制御処理                         ***********/
   /******************************************************************/
   function devicemotionHandler(event) {
-
     if(localStorage.name != ""){
       deviceNum();
     }else{
@@ -278,8 +277,8 @@ var makeMotionBool = false;
   function deviceNum(){
     // 加速度
     var x = dNum[0];
-    var y = dNUm[1];
-    var z = dNUm[2];
+    var y = dNum[1];
+    var z = dNum[2];
 
     //傾き
     var xg = dNum[3]; //左右
@@ -290,7 +289,7 @@ var makeMotionBool = false;
     var rotationalpha = dNum[6];
     var rotationbeta = dNum[7];
     var rotationgamma = dNum[8];
-    
+
 
     document.getElementById("x").innerHTML = "X: " + x;
     document.getElementById("y").innerHTML = "Y: " + y;
