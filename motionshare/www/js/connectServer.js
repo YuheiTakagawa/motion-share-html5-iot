@@ -24,42 +24,40 @@ var disconnect = function(){
 /******************************************************************/
 
 
-//  contentID:0 連絡先 受信処理
+//  contentID:0 連絡先 送信処理
 function sendContact(socketID){
   //localStorageにcontactがあるときに処理を行う
   if(!(localStorage.contact===void 0)){
     //簡単に扱うために一時的にJSONを入れる変数
     var befferContact=JSON.parse(localStorage.contact);
-        //名前が空文字であれば，不明とする
-        if(befferContact.Name=="") befferContact.Name="unknown";
+    //名前が空文字であれば，不明とする
+    if(befferContact.Name=="") befferContact.Name="unknown";
     //保存されたユーザ情報にはパスワードも含まれるため，パスワードを除いた4項目のJSONを再構築
     //JSON形式
     /*
     var sendingContact={
-      "Name":befferContact.Name,
-      "Id":befferContact.Id,
-      "Phone":befferContact.Phone,
-      "Mail":befferContact.Mail
-    };
-    */
-    //配列形式
-    var sendingContact=[];
-    sendingContact[0]=befferContact.Name;
-    sendingContact[1]=befferContact.Id;
-    sendingContact[2]=befferContact.Phone;
-    sendingContact[3]=befferContact.Mail;
+    "Name":befferContact.Name,
+    "Id":befferContact.Id,
+    "Phone":befferContact.Phone,
+    "Mail":befferContact.Mail
+  };
+  */
+  //配列形式
+  var sendingContact=[];
+  sendingContact[0]=befferContact.Name;
+  sendingContact[1]=befferContact.Id;
+  sendingContact[2]=befferContact.Phone;
+  sendingContact[3]=befferContact.Mail;
 
-    sendingContact=sendingContact.toString();
+  sendingContact=sendingContact.toString();
 
-    //JSONを文字列にしてサーバに送信
-    sendingContact=JSON.stringify(sendingContact);
-    //Base64エンコード
-    sendingContact=btoa(unescape(encodeURIComponent(sendingContact)));
-    socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
-    disconnect();
-    alert("CONTACT GO TO SERVER");
-    modeChange();
-  }
+  //Base64エンコード
+  sendingContact=btoa(unescape(encodeURIComponent(sendingContact)));
+  socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
+  disconnect();
+  alert("CONTACT GO TO SERVER");
+  modeChange();
+}
 }
 
 
@@ -121,8 +119,8 @@ function sendPhotoData(socketID){
 
 //  contentID:0 連絡先 受信処理
 function receiveContact(rcvCtt){
-//Base64デコード
-rcvCtt=decodeURIComponent(escape(atob(rcvCtt)));
+  //Base64デコード
+  rcvCtt=decodeURIComponent(escape(atob(rcvCtt)));
   /*
   var contact=JSON.parse(rcvCtt);
   var name=contact["Name"];
