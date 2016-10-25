@@ -19,6 +19,9 @@ var makeMotionBool = false;
   var gooTouchRotaBool = false;
   var highTouchBool = false;
 
+  var upCnt = 0;
+  var downCnt = 0
+
   var now = {
     time : function(){
       var now = new Date();
@@ -286,9 +289,9 @@ var makeMotionBool = false;
     var zg = dNum[5]; //前後
 
     //回転速度
-    var rotationalpha = dNum[6];
-    var rotationbeta = dNum[7];
-    var rotationgamma = dNum[8];
+    var a = Math.round(dNum[6] * 10 )  / 100;
+    var b = Math.round(dNum[7] * 10 )  / 100;
+    var g = Math.round(dNum[8] * 10 ) / 100;
 
 
     document.getElementById("x").innerHTML = "X: " + x;
@@ -299,9 +302,29 @@ var makeMotionBool = false;
     document.getElementById("yg").innerHTML = "Yg: " + yg;
     document.getElementById("zg").innerHTML = "Zg: " + zg;
 
-    document.getElementById("ra").innerHTML = "Ra: " + rotationalpha;
-    document.getElementById("rb").innerHTML = "Rb: " + rotationbeta;
-    document.getElementById("rg").innerHTML = "Rg: " + rotationgamma;
+    document.getElementById("ra").innerHTML = "Ra: " + a;
+    document.getElementById("rb").innerHTML = "Rb: " + b;
+    document.getElementById("rg").innerHTML = "Rg: " + g;
+
+    handshake();
+
+    function handshake(){
+      if(x > 1) downCnt++;
+      if(x < -1) upCnt++;
+
+      if((downCnt > 2 && upCnt > 2) && (yg > 0 && yg < 60) && (xg > -100 && xg < -75)){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        audioPlay(0);
+        alert('Handshake');
+        downCnt = 0;
+        upCnt = 0;
+      }
+    }
+
+    function gooTouch(){
+
+    }
+
 
 
   }
