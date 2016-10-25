@@ -1,4 +1,4 @@
-var accgyr=[];
+dNum=[0,0,0,0,0,0,0,0,0];
 
 var bluetoothFanc = {
   //初期化
@@ -45,7 +45,7 @@ var bluetoothFanc = {
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
         alert("success:"+deviceName);
-        bluetoothSerial.receiveData();
+        bluetoothFanc.receiveData();
       },this.onError);
     }else{
       //alert("本体を設定しています。");
@@ -99,9 +99,8 @@ var bluetoothFanc = {
     //受信した文字列を整数に変換する
     splitString: function(data){
       var strings=data.split(",");
-
       for(var i=0;i<strings.length;i++){
-        accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ 重力加速度も対応化
+        dNum[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ 重力加速度も対応化
       }
     },
 
