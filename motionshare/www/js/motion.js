@@ -36,8 +36,8 @@ var makeMotionBool = false;
 
   $(function () {
     //選択されているデバイスによって読み込む関数を変更
-      window.addEventListener("devicemotion", devicemotionHandler);
-      window.addEventListener("deviceorientation", deviceorientationHandler);
+    window.addEventListener("devicemotion", devicemotionHandler);
+    window.addEventListener("deviceorientation", deviceorientationHandler);
   });
 
 
@@ -47,12 +47,9 @@ var makeMotionBool = false;
   /******************************************************************/
   function devicemotionHandler(event) {
 
-    if(localStorage.name != ""){
-      deviceNum();
-    }else{
-
-
-      if(SensorValueLoad == true){
+    if(SensorValueLoad == true){
+      //選択されているデバイスによって読み込む関数を変更
+      if(localStorage.name==""){
         // 加速度
         var x = Math.round(event.acceleration.x * 10) / 10;
         var y = Math.round(event.acceleration.y * 10) / 10;
@@ -67,244 +64,255 @@ var makeMotionBool = false;
         var rotationalpha = Math.round(event.rotationRate.alpha * 10) / 10;
         var rotationbeta = Math.round(event.rotationRate.beta * 10) / 10;
         var rotationgamma = Math.round(event.rotationRate.gamma * 10) / 10;
-      }
-      /*
-      document.getElementById("agx").innerHTML = "agX: " + xg;
-      document.getElementById("agy").innerHTML = "agY: " + yg;
-      document.getElementById("agz").innerHTML = "agZ: " + zg;
-      */
-      /*
-      document.getElementById('accelerationX').innerHTML = x;
-      document.getElementById('accelerationY').innerHTML = y;
-      document.getElementById('accelerationZ').innerHTML = z;
 
-      document.getElementById('rotationalpha').innerHTML = rotationalpha;
-      document.getElementById('rotationbeta').innerHTML = rotationbeta;
-      document.getElementById('rotationgamma').innerHTML = rotationgamma;
-
-
-      document.getElementById('handshakeCnt').innerHTML = handshakeCnt;
-      document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
-      document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
-      document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
-      */
-
-      //x軸方向 加速度カウンター処理
-      var l = 24; //握手用
-      if(x > l || x < -l){
-        if(handshakeBool == true){
-          handshakeCnt++;
-        }
-      }
-
-      //グータッチ用
-      if(x < -10 && gooTouchBool == true) gooTouchCnt++;
-      if(rotationalpha > 8) rotationalphaCnt++;
-      if(rotationalphaCnt > 1) gooTouchRotaBool = true;
-
-      if(rotationalphaCnt > 0){
-        setTimeout(function(){
-          rotationalphaCnt = 0;
-          gooTouchCnt = 0;
-        }, 2000);
-      }
-
-
-      //Z軸方向 加速度カウンター処理
-      if(z < -18 && highTouchBool == true){
-        highTouchCnt++;
-      }
-
-      //チェンジモーション用
-      var cl=7;
-      if(changeBool==true){
-        if (rotationbeta <= -cl && changeCnt==0) changeCnt++;
-        if(rotationbeta >=cl && changeCnt==1) changeCnt++;
-      }
-
-
-      //握手ー加速度・ジャイロによる判定
-      if(handshakeCnt > 3){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
-        audioPlay(0);
-        handshakeCnt = 0;
-        handshakeBool = false;
-        SensorValueLoad = false;
-        SensorValueLoadControl();
-        alert('握手');
-      }
-
-      //グータッチー加速度・ジャイロによる判定
-      if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
-        audioPlay(1);
-        gooTouchCnt = 0;
-        rotationalphaCnt = 0;
-        gooTouchBool = false;
-        gooTouchRotaBool = false;
-        SensorValueLoad = false;
-        SensorValueLoadControl();
-        alert("グータッチ");
-      }
-
-      //ハイタッチー加速度・ジャイロによる判定
-      if(highTouchCnt >= 1 && highTouchBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
-        audioPlay(2);
-        highTouchCnt = 0;
-        highTouchBool = false;
-        SensorValueLoad = false;
-        SensorValueLoadControl();
-        alert("ハイタッチ");
-      }
-
-
-      //チェンジー加速度・ジャイロによる判定
-      if(changeCnt > 1){
-        audioPlay(3);
-        changeCnt = 0;
-        changeBool = false;
-        SensorValueLoad = false;
-        SensorValueLoadControl();
-        alert("Mode Change");
-        modeChange(); //モード切り替え処理 modeChange.js
-      }
-
-      /******************************************************************/
-      /********         motion作成  判別  処理                  ***********/
-      /******************************************************************/
-      function createMotion(val){
-        if (x > val && yg > 5) { // 左
-          //alert("left");
-          SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
-        }
-        else if (x < -val && yg > 5) { // 右
-          //alert("right");
-          SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-right"></i></li>').appendTo('ul.makeMotion');
-        }
-        else if (y > val-8) { // 上
-          //alert("up");
-          SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-up"></i></li>').appendTo('ul.makeMotion');
-        }
-        else if (y < -val) { // 下
-          //alert("down");
-          SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-down"></i></li>').appendTo('ul.makeMotion');
-        }
-        else return;
-      }
-
-      if(makeMotionBool == true){
-        createMotion(20);
-      }
-    }// !.deviceNum();
-  }
-
-
-
-  /******************************************************************/
-  /********         ジャイロ 制御処理                        ***********/
-  /******************************************************************/
-  function deviceorientationHandler(event) {
-
-    if(localStorage.name == ""){
-
-
-      if(SensorValueLoad == true){
-        //傾き
-        var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
-        var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
-        var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
-      }
-
-      /*
-      document.getElementById('beta').innerHTML = beta;
-      document.getElementById('gamma').innerHTML = gamma;
-      document.getElementById('alpha').innerHTML = alpha;
-      */
-
-      //握手処理-ジャイロ関係
-      if((gamma >= -90) && (gamma <= -70)){
-        handshakeBool = true;
       }else{
-        handshakeBool = false;
+        var x = dNum[0];
+        var y = dNum[1];
+        var z = dNum[2];
+        var xg = dNum[6];
+        var yg = dNum[7];
+        var zg = dNum[8];
+
       }
+    }
+    /*
+    document.getElementById("agx").innerHTML = "agX: " + xg;
+    document.getElementById("agy").innerHTML = "agY: " + yg;
+    document.getElementById("agz").innerHTML = "agZ: " + zg;
+    */
+    document.getElementById('x').innerHTML = x;
+    document.getElementById('y').innerHTML = y;
+    document.getElementById('z').innerHTML = z;
 
-      //グータッチ処理ージャイロ関係
-      if((beta > 160) && (beta < 180) || (beta >= -180) && (beta < -160)){　//端末が裏になっていることの判別
-        gooTouchBool = true;
-      }else{
-        gooTouchBool = false;
-      }
+    document.getElementById('xg').innerHTML = xg;
+    document.getElementById('yg').innerHTML = yg;
+    document.getElementById('zg').innerHTML = zg;
 
+    /*
+    document.getElementById('handshakeCnt').innerHTML = handshakeCnt;
+    document.getElementById('gooTouchCnt').innerHTML = gooTouchCnt;
+    document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
+    document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
+    */
 
-      //ハイタッチ！処理ージャイロ関係
-      if((beta >= 55) && (beta <= 130)){
-        if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
-          highTouchBool = true;
-        }
-      }else{
-        highTouchBool = false;
-      }
-
-
-      //チェンジモーション処理ージャイロ関係
-      if(beta >= -10 && beta < 40){
-
-        //if(beta >= 60 && beta < 80){
-        changeBool=true;
-      }else{
-        changeBool=false;
+    //x軸方向 加速度カウンター処理
+    var l = 24; //握手用
+    if(x > l || x < -l){
+      if(handshakeBool == true){
+        handshakeCnt++;
       }
     }
 
-  }
+    //グータッチ用
+    if(x < -10 && gooTouchBool == true) gooTouchCnt++;
+    if(rotationalpha > 8) rotationalphaCnt++;
+    if(rotationalphaCnt > 1) gooTouchRotaBool = true;
 
-  //モーション判別後 2s後にセンサー値を再度取得する
-  function SensorValueLoadControl(){
-
-    if(SensorValueLoad == false){
+    if(rotationalphaCnt > 0){
       setTimeout(function(){
-        SensorValueLoad = true;
-      }, 500);
+        rotationalphaCnt = 0;
+        gooTouchCnt = 0;
+      }, 2000);
     }
 
+
+    //Z軸方向 加速度カウンター処理
+    if(z < -18 && highTouchBool == true){
+      highTouchCnt++;
+    }
+
+    //チェンジモーション用
+    var cl=7;
+    if(changeBool==true){
+      if (rotationbeta <= -cl && changeCnt==0) changeCnt++;
+      if(rotationbeta >=cl && changeCnt==1) changeCnt++;
+    }
+
+
+    //握手ー加速度・ジャイロによる判定
+    if(handshakeCnt > 3){
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+      audioPlay(0);
+      handshakeCnt = 0;
+      handshakeBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
+      alert('握手');
+    }
+
+    //グータッチー加速度・ジャイロによる判定
+    if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+      audioPlay(1);
+      gooTouchCnt = 0;
+      rotationalphaCnt = 0;
+      gooTouchBool = false;
+      gooTouchRotaBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
+      alert("グータッチ");
+    }
+
+    //ハイタッチー加速度・ジャイロによる判定
+    if(highTouchCnt >= 1 && highTouchBool == true){
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+      audioPlay(2);
+      highTouchCnt = 0;
+      highTouchBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
+      alert("ハイタッチ");
+    }
+
+
+    //チェンジー加速度・ジャイロによる判定
+    if(changeCnt > 1){
+      audioPlay(3);
+      changeCnt = 0;
+      changeBool = false;
+      SensorValueLoad = false;
+      SensorValueLoadControl();
+      alert("Mode Change");
+      modeChange(); //モード切り替え処理 modeChange.js
+    }
+
+    /******************************************************************/
+    /********         motion作成  判別  処理                  ***********/
+    /******************************************************************/
+    function createMotion(val){
+      if (x > val && yg > 5) { // 左
+        //alert("left");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (x < -val && yg > 5) { // 右
+        //alert("right");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-right"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (y > val-8) { // 上
+        //alert("up");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-up"></i></li>').appendTo('ul.makeMotion');
+      }
+      else if (y < -val) { // 下
+        //alert("down");
+        SensorValueLoadControl();
+        $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-down"></i></li>').appendTo('ul.makeMotion');
+      }
+      else return;
+    }
+
+    if(makeMotionBool == true){
+      createMotion(20);
+    }
+  }// !.deviceNum();
+}
+
+
+
+/******************************************************************/
+/********         ジャイロ 制御処理                        ***********/
+/******************************************************************/
+function deviceorientationHandler(event) {
+
+  if(SensorValueLoad == true){
+    if(localStorage.name==""){
+      //傾き
+      var beta = Math.round(event.beta * 10) / 10; //-180 から 180 の範囲の値による度数で表されます。
+      var gamma = Math.round(event.gamma * 10) / 10; //-90 から 90 の範囲の値による度数で表されます。
+      var alpha = Math.round(event.alpha * 10) / 10; //0 から 360 の範囲による度数で表されます。
+    }else{
+      var beta = dNum[3];
+      var gamma = dNum[4];
+      var alpha = dNum[5];
+    }
+  }
+  
+
+  document.getElementById('rb').innerHTML = beta;
+  document.getElementById('rg').innerHTML = gamma;
+  document.getElementById('ra').innerHTML = alpha;
+
+
+  //握手処理-ジャイロ関係
+  if((gamma >= -90) && (gamma <= -70)){
+    handshakeBool = true;
+  }else{
+    handshakeBool = false;
   }
 
-  //専用デバイスからの数値を扱う関数
-  function deviceNum(){
-    // 加速度
-    var x = dNum[0];
-    var y = dNUm[1];
-    var z = dNUm[2];
-
-    //傾き
-    var xg = dNum[3]; //左右
-    var yg = dNum[4]; //上下
-    var zg = dNum[5]; //前後
-
-    //回転速度
-    var rotationalpha = dNum[6];
-    var rotationbeta = dNum[7];
-    var rotationgamma = dNum[8];
-    
-
-    document.getElementById("x").innerHTML = "X: " + x;
-    document.getElementById("y").innerHTML = "Y: " + y;
-    document.getElementById("z").innerHTML = "Z: " + z;
-
-    document.getElementById("xg").innerHTML = "Xg: " + xg
-    document.getElementById("yg").innerHTML = "Yg: " + yg;
-    document.getElementById("zg").innerHTML = "Zg: " + zg;
-
-    document.getElementById("ra").innerHTML = "Ra: " + rotationalpha;
-    document.getElementById("rb").innerHTML = "Rb: " + rotationbeta;
-    document.getElementById("rg").innerHTML = "Rg: " + rotationgamma;
-
-
+  //グータッチ処理ージャイロ関係
+  if((beta > 160) && (beta < 180) || (beta >= -180) && (beta < -160)){　//端末が裏になっていることの判別
+    gooTouchBool = true;
+  }else{
+    gooTouchBool = false;
   }
+
+
+  //ハイタッチ！処理ージャイロ関係
+  if((beta >= 55) && (beta <= 130)){
+    if((gamma >= -30) && (gamma <= 0) || (gamma >= 0) && (gamma <= 30)){
+      highTouchBool = true;
+    }
+  }else{
+    highTouchBool = false;
+  }
+
+
+  //チェンジモーション処理ージャイロ関係
+  if(beta >= -10 && beta < 40){
+
+    //if(beta >= 60 && beta < 80){
+    changeBool=true;
+  }else{
+    changeBool=false;
+  }
+}
+}
+
+//モーション判別後 2s後にセンサー値を再度取得する
+function SensorValueLoadControl(){
+
+  if(SensorValueLoad == false){
+    setTimeout(function(){
+      SensorValueLoad = true;
+    }, 500);
+  }
+
+}
+
+//専用デバイスからの数値を扱う関数
+function deviceNum(){
+  // 加速度
+  var x = dNum[0];
+  var y = dNUm[1];
+  var z = dNUm[2];
+
+  //傾き
+  var xg = dNum[3]; //左右
+  var yg = dNum[4]; //上下
+  var zg = dNum[5]; //前後
+
+  //回転速度
+  var rotationalpha = dNum[6];
+  var rotationbeta = dNum[7];
+  var rotationgamma = dNum[8];
+
+
+  document.getElementById("x").innerHTML = "X: " + x;
+  document.getElementById("y").innerHTML = "Y: " + y;
+  document.getElementById("z").innerHTML = "Z: " + z;
+
+  document.getElementById("xg").innerHTML = "Xg: " + xg
+  document.getElementById("yg").innerHTML = "Yg: " + yg;
+  document.getElementById("zg").innerHTML = "Zg: " + zg;
+
+  document.getElementById("ra").innerHTML = "Ra: " + rotationalpha;
+  document.getElementById("rb").innerHTML = "Rb: " + rotationbeta;
+  document.getElementById("rg").innerHTML = "Rg: " + rotationgamma;
+
+
+}
 
 })();
