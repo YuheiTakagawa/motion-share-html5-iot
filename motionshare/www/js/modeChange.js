@@ -69,7 +69,7 @@ function receiverMode(){
 
   changeMotionBool = false;
   waitRequest();//受信スタンバイ処理
-
+  socket.off('send real data from server');
   socket.on('send real data from server', function(data){
     audioPlay(4);
     //data[0] is contentID, data[1] is real Data
