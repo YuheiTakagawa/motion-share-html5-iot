@@ -1,3 +1,5 @@
+var shareSetting=11;
+
 function setUserInfo(){
   $(function(){
     var users={
@@ -59,20 +61,29 @@ function loadRangeSetting(){
       belowOrigin: false, // Displays dropdown below the button
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
-    $('input[name="shareRange"]').prop("checked",true);
+    if(!(localStorage.setting=== void 0)){
+      shareSetting=localStorage.setting;
+      if((shareSetting&01)==01){
+        $('input[name="shareRange1"]').prop("checked",true);
+      }
+      if((shareSetting&10)==10){
+        $('input[name="shareRange2"]').prop("checked",true);
+      }
+    }
   });
 }
 
 function setContentsRange(e){
   var contentsR = e.target.getAttribute('data-nono');
-  alert(contentsR);
   //socket.emit('tekitou',contentsR);
 }
 
 function setPhoneShare(){
-
+  shareSetting ^=01;
+  localStorage.setting=shareSetting;
 }
 
 function setMailShare(){
-
+  shareSetting ^=10;
+  localStorage.setting=shareSetting;
 }
