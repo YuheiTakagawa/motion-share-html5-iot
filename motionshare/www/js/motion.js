@@ -2,7 +2,9 @@ var makeMotionBool = false;
 
 (function () {
 
-  var geoData = localStorage.getItem('geoData');
+  var geoData=function(){
+    return localStorage.getItem('geoData');
+};
   //var whoAmI = 0;
 
   var SensorValueLoad = true;
@@ -36,8 +38,8 @@ var makeMotionBool = false;
 
   $(function () {
     //選択されているデバイスによって読み込む関数を変更
-      window.addEventListener("devicemotion", devicemotionHandler);
-      window.addEventListener("deviceorientation", deviceorientationHandler);
+    window.addEventListener("devicemotion", devicemotionHandler);
+    window.addEventListener("deviceorientation", deviceorientationHandler);
   });
 
 
@@ -124,7 +126,7 @@ var makeMotionBool = false;
 
       //握手ー加速度・ジャイロによる判定
       if(handshakeCnt > 3){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
         audioPlay(0);
         handshakeCnt = 0;
         handshakeBool = false;
@@ -135,7 +137,7 @@ var makeMotionBool = false;
 
       //グータッチー加速度・ジャイロによる判定
       if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
         audioPlay(1);
         gooTouchCnt = 0;
         rotationalphaCnt = 0;
@@ -148,7 +150,7 @@ var makeMotionBool = false;
 
       //ハイタッチー加速度・ジャイロによる判定
       if(highTouchCnt >= 1 && highTouchBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
         audioPlay(2);
         highTouchCnt = 0;
         highTouchBool = false;
