@@ -49,6 +49,7 @@ function showUserMenu(){
 
 function loadRangeSetting(){
   $(function(){
+    $('#rangeContents').on('click',setContentsRange);
     $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -59,5 +60,19 @@ function loadRangeSetting(){
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
     $('input[name="shareRange"]').prop("checked",true);
-});
+  });
+}
+
+function setContentsRange(e){
+  var contentsR = e.target.getAttribute('data-nono');
+  alert(contentsR);
+  //socket.emit('tekitou',contentsR);
+}
+
+function setPhoneShare(){
+
+}
+
+function setMailShare(){
+
 }
