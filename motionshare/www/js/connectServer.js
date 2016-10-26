@@ -49,11 +49,11 @@ function sendContact(socketID){
   sendingContact[2]=befferContact.Phone;
   sendingContact[3]=befferContact.Mail;
 
-  if((shareSetting&01)==01){
-    sendingcontact[2]="unknown";
+  if((shareSetting&01)==00){
+    sendingContact[2]="0000000000";
   }
-  if((shareSetting&10)==10){
-    sendingcontact[3]="unknown";
+  if((shareSetting&10)==00){
+    sendingContact[3]="unknown";
   }
 
   sendingContact=sendingContact.toString();

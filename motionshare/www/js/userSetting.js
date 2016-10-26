@@ -1,4 +1,4 @@
-var shareSetting=11;
+shareSetting=11;
 
 function setUserInfo(){
   $(function(){
