@@ -328,7 +328,7 @@ var makeMotionBool = false;
       if(x > 1) downCnt++;
       if(x < -1) upCnt++;
 
-      if((downCnt > 2 && upCnt > 2) && (yg > 0 && yg < 60) && (xg > -100 && xg < -75)){
+      if((downCnt > 2 && upCnt > 2) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
         audioPlay(0);
         alert('Handshake');
