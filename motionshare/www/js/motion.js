@@ -1,4 +1,6 @@
 var makeMotionBool = false;
+var createMotionArray=[];
+var motionJSON={};
 
 (function () {
 
@@ -178,31 +180,39 @@ var makeMotionBool = false;
       /********         motion作成  判別  処理                  ***********/
       /******************************************************************/
       function createMotion(val){
-        if (x > val && yg > 5) { // 左
-          //alert("left");
+
+        if (x > val) { // 右
+          audioPlay(5);
           SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
+          alert("right");
+          createMotionArray.push(3);
+          //SensorValueLoadControl();
+          //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
         }
-        else if (x < -val && yg > 5) { // 右
-          //alert("right");
+        else if (x < -val) { // 左
+          audioPlay(5);
           SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-right"></i></li>').appendTo('ul.makeMotion');
+          alert("left");
+          createMotionArray.push(4);
         }
         else if (y > val-8) { // 上
-          //alert("up");
+          audioPlay(5);
           SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-up"></i></li>').appendTo('ul.makeMotion');
+          alert("up");
+          createMotionArray.push(5);
         }
         else if (y < -val) { // 下
-          //alert("down");
+          audioPlay(5);
           SensorValueLoadControl();
-          $('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-down"></i></li>').appendTo('ul.makeMotion');
+          alert("down");
+          createMotionArray.push(6);
         }
         else return;
+        alert(createMotionArray);
       }
 
       if(makeMotionBool == true){
-        createMotion(20);
+        createMotion(14);
       }
     }// !.deviceNum();
   }
@@ -373,3 +383,21 @@ var makeMotionBool = false;
   }
 
 })();
+
+
+//作成モーションを保存する
+
+function saveMotion(){
+var motionName=$("#createMotionName").val();
+motionJSON=JSON.parse(localStorage.createMotion);
+motionJSON[motionName]={
+"motion":createMotionArray
+};
+
+localStorage.createMotion=JSON.stringify(motionJSON);
+alert(localStorage.createMotion);
+alert("Successful Create New Motion");
+PageControll(0);
+createMotionArray="";
+
+}
