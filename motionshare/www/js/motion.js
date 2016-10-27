@@ -349,6 +349,7 @@ var makeMotionBool = false;
     //モーション 2 ハイタッチ 判別処理
     function highTouch(){
       if(z < -1 && xg < 150){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
         audioPlay(2);
         alert('highTouch');
       }
