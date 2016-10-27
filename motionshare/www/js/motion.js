@@ -299,6 +299,7 @@ var makeMotionBool = false;
     /******************************************************************/
     /********                  debug用                      ***********/
     /******************************************************************/
+    /*
     document.getElementById("x").innerHTML = "X: " + x;
     document.getElementById("y").innerHTML = "Y: " + y;
     document.getElementById("z").innerHTML = "Z: " + z;
@@ -310,6 +311,7 @@ var makeMotionBool = false;
     document.getElementById("ra").innerHTML = "Ra: " + a;
     document.getElementById("rb").innerHTML = "Rb: " + b;
     document.getElementById("rg").innerHTML = "Rg: " + g;
+    */
 
     /******************************************************************/
     /********           モーション判別機能 呼出                 ***********/
