@@ -21,6 +21,9 @@ var makeMotionBool = false;
   var gooTouchRotaBool = false;
   var highTouchBool = false;
 
+  var upCnt = 0;
+  var downCnt = 0
+
   var now = {
     time : function(){
       var now = new Date();
@@ -275,7 +278,9 @@ var makeMotionBool = false;
 
   }
 
-  //専用デバイスからの数値を扱う関数
+  /******************************************************************/
+  /********              専用デバイス処理                    ***********/
+  /******************************************************************/
   function deviceNum(){
     // 加速度
     var x = dNum[0];
@@ -288,11 +293,15 @@ var makeMotionBool = false;
     var zg = dNum[5]; //前後
 
     //回転速度
-    var rotationalpha = dNum[6];
-    var rotationbeta = dNum[7];
-    var rotationgamma = dNum[8];
+    var a = Math.round(dNum[6] * 10 )  / 100;
+    var b = Math.round(dNum[7] * 10 )  / 100;
+    var g = Math.round(dNum[8] * 10 ) / 100;
 
 
+    /******************************************************************/
+    /********                  debug用                      ***********/
+    /******************************************************************/
+    /*
     document.getElementById("x").innerHTML = "X: " + x;
     document.getElementById("y").innerHTML = "Y: " + y;
     document.getElementById("z").innerHTML = "Z: " + z;
@@ -301,9 +310,64 @@ var makeMotionBool = false;
     document.getElementById("yg").innerHTML = "Yg: " + yg;
     document.getElementById("zg").innerHTML = "Zg: " + zg;
 
-    document.getElementById("ra").innerHTML = "Ra: " + rotationalpha;
-    document.getElementById("rb").innerHTML = "Rb: " + rotationbeta;
-    document.getElementById("rg").innerHTML = "Rg: " + rotationgamma;
+    document.getElementById("ra").innerHTML = "Ra: " + a;
+    document.getElementById("rb").innerHTML = "Rb: " + b;
+    document.getElementById("rg").innerHTML = "Rg: " + g;
+    */
+
+    /******************************************************************/
+    /********           モーション判別機能 呼出                 ***********/
+    /******************************************************************/
+    handshake();
+    gooTouch();
+    highTouch();
+    changeMotion();
+
+
+    /******************************************************************/
+    /********     3種ベースモーション判別(専用デバイスから)       ***********/
+    /******************************************************************/
+    //モーション 0 握手 判別処理
+    function handshake(){
+      if(x > 1) downCnt++;
+      if(x < -1) upCnt++;
+
+      if((downCnt > 2 && upCnt > 2) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        audioPlay(0);
+        alert('Handshake');
+        downCnt = 0;
+        upCnt = 0;
+      }
+    }
+
+    //モーション 1 グータッチ 判別処理
+    function gooTouch(){
+      if(y > 1.5 && Math.abs(xg) < 20){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+        audioPlay(1);
+        alert('gooTouch');
+      }
+    }
+
+    //モーション 2 ハイタッチ 判別処理
+    function highTouch(){
+      if(z < -1 && xg < 150){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+        audioPlay(2);
+        alert('highTouch');
+      }
+    }
+
+    //モーション 0000 チェンジモーション 判別処理
+    function changeMotion(){
+      if(Math.abs(g) > 20 && Math.abs(xg) < 20){
+        audioPlay(3);
+        modeChange(); //モード切り替え処理 modeChange.js
+        alert("Mode Change");
+      }
+    }
+
 
 
   }
