@@ -356,7 +356,13 @@ var makeMotionBool = false;
     }
 
     //モーション 0000 チェンジモーション 判別処理
-    function changeMotion(){}
+    function changeMotion(){
+      if(Math.abs(g) > 20 && Math.abs(xg) < 20){
+        audioPlay(3);
+        modeChange(); //モード切り替え処理 modeChange.js
+        alert("Mode Change");
+      }
+    }
 
 
 
