@@ -57,7 +57,7 @@ function homeScheIni(){
 
 var audio=[];
 function audioInitialize(){
-  for(var i=0;i<5;i++){
+  for(var i=0;i<6;i++){
     audio[i]=new Audio();
   }
   audio[0].src="audio/whip-gesture2.mp3";
@@ -65,6 +65,7 @@ function audioInitialize(){
   audio[2].src="audio/jump1.mp3";
   audio[3].src="audio/ta_ta_suraido01.mp3";
   audio[4].src="audio/ta_ta_kira08.mp3";
+  audio[5].src="audio/cncl07.mp3";
 }
 
 function audioPlay(num){
