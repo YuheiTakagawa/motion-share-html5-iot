@@ -338,7 +338,14 @@ var makeMotionBool = false;
     }
 
     //モーション 1 グータッチ 判別処理
-    function gooTouch(){}
+    function gooTouch(){
+      if(y > 1.5 && Math.abs(xg) < 20){
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+        audioPlay(1);
+        alert('gooTouch');
+
+      }
+    }
 
     //モーション 2 ハイタッチ 判別処理
     function highTouch(){}
