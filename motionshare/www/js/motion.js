@@ -1,4 +1,6 @@
 var makeMotionBool = false;
+var createMotionArray=[];
+var motionJSON={};
 
 (function () {
 
@@ -19,7 +21,6 @@ var makeMotionBool = false;
   var gooTouchRotaBool = false;
   var highTouchBool = false;
 
-  var createMotionArray=[];
 
   var now = {
     time : function(){
@@ -38,8 +39,8 @@ var makeMotionBool = false;
 
   $(function () {
     //選択されているデバイスによって読み込む関数を変更
-      window.addEventListener("devicemotion", devicemotionHandler);
-      window.addEventListener("deviceorientation", deviceorientationHandler);
+    window.addEventListener("devicemotion", devicemotionHandler);
+    window.addEventListener("deviceorientation", deviceorientationHandler);
   });
 
 
@@ -317,3 +318,21 @@ var makeMotionBool = false;
   }
 
 })();
+
+
+//作成モーションを保存する
+
+function saveMotion(){
+var motionName=$("#createMotionName").val();
+motionJSON=JSON.parse(localStorage.createMotion);
+motionJSON[motionName]={
+"motion":createMotionArray
+};
+
+localStorage.createMotion=JSON.stringify(motionJSON);
+alert(localStorage.createMotion);
+alert("Successful Create New Motion");
+PageControll(0);
+createMotionArray="";
+
+}
