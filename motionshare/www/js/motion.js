@@ -343,12 +343,16 @@ var makeMotionBool = false;
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
         audioPlay(1);
         alert('gooTouch');
-
       }
     }
 
     //モーション 2 ハイタッチ 判別処理
-    function highTouch(){}
+    function highTouch(){
+      if(z < -1 && xg < 150){
+        audioPlay(2);
+        alert('highTouch');
+      }
+    }
 
     //モーション 0000 チェンジモーション 判別処理
     function changeMotion(){}
