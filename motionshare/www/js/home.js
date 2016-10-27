@@ -11,6 +11,15 @@ function homeInitilize(){
       }
     },60*1000);
     homeScheIni();
+
+    $("#file_01").change(function(){
+      $("#mask_file_01").val($("#file_01").val());
+      $("#fileName").html($("#mask_file_01").val());
+    });
+    $("#mask_file_01").click(function(){
+      $("#file_01").click();
+    });
+
   });
 }
 
