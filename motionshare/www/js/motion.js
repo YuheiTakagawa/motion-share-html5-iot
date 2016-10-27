@@ -19,6 +19,8 @@ var makeMotionBool = false;
   var gooTouchRotaBool = false;
   var highTouchBool = false;
 
+  var createMotionArray=[];
+
   var now = {
     time : function(){
       var now = new Date();
@@ -178,6 +180,7 @@ var makeMotionBool = false;
           audioPlay(5);
           SensorValueLoadControl();
           alert("right");
+          createMotionArray.push(3);
           //SensorValueLoadControl();
           //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
         }
@@ -185,18 +188,22 @@ var makeMotionBool = false;
           audioPlay(5);
           SensorValueLoadControl();
           alert("left");
+          createMotionArray.push(4);
         }
         else if (y > val-8) { // 上
           audioPlay(5);
           SensorValueLoadControl();
           alert("up");
+          createMotionArray.push(5);
         }
         else if (y < -val) { // 下
           audioPlay(5);
           SensorValueLoadControl();
           alert("down");
+          createMotionArray.push(6);
         }
         else return;
+        alert(createMotionArray);
       }
 
       if(makeMotionBool == true){
