@@ -56,7 +56,8 @@ var app = {
             }
           };
           if(dNum[3]>0){
-            socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+            //background処理
+            //socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
           }
         },1000);
       }
