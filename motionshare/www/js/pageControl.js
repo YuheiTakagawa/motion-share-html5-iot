@@ -82,6 +82,16 @@ function PageControll(val){
       $(".brand-logo").html("Public Range Setting");
       menuValue=0;
       break;
+      case 7:
+      $("#view").innerHTML = "<div id='friendList'></div>";
+      $("#view").load("friendList.html",function(){
+        $('.fixed-action-btn').closeFAB();
+        loadRangeSetting();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Public Range Setting");
+      menuValue=0;
+      break;
     }
 
     $("nav ul li").click(function () {
