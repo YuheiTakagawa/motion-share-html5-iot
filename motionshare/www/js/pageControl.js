@@ -87,6 +87,7 @@ function PageControll(val){
       $("#view").load("friendList.html",function(){
         $('.fixed-action-btn').closeFAB();
         loadRangeSetting();
+        friend.initialize();
       });
       removeAnimationClass();
       $(".brand-logo").html("Public Range Setting");
