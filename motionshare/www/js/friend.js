@@ -12,6 +12,7 @@ var friend={
       ["Yuki","00000001"]
     ];
     this.makeFriend(friendTest);
+    this.bindEvents();
   },
 
   //友達リストを作成
@@ -36,17 +37,19 @@ var friend={
   //イベントの管理
   bindEvents: function() {
     $(function(){
-      $("#friendLists").on("click",".badge", deleteFriend);
+      $("#friendLists").on("click",".badge", friend.deleteFriend);
     });
   },
 
   //友達リストから指定したフレンドを削除する
   deleteFriend:function(e){
+    if(confirm("delete this friend?")==1){
     //JSONで扱う処理 インデックスの変更とJSONからの削除
-    friendId=$(this).parent().val();
+    var friendId=$(this).parent().val();
     $(this).parent().remove();
     //サーバに削除要求
     //socket.emit("",friendId);
     e.stopPropagation();
+  }
   }
 };
