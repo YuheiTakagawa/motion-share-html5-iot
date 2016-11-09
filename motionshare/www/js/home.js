@@ -19,10 +19,28 @@ function homeInitilize(){
     $("#mask_file_01").click(function(){
       $("#file_01").click();
     });
+/*
+    var peer = new Peer(socket.id, {key: PEERJS_ID});
+    var conn = peer.connect("858", {'serialization': 'binary-utf8'});
 
+    conn.on('open', function(){
+      $("#modeStatus").on('click',function(){
+        $.each(peer.connections, function(_id, _conn) {
+          _conn[0].send({
+            message: localStorage.getItem('imageData'),
+            ids: [socket.id]
+          });
+        });
+      });
+      conn.on('data', function(data){
+        var message = data.message;
+        localStorage.setItem('imageData', message);
+        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + message);
+      });
+    });
+    */
   });
 }
-
 
 //画像をlocalに保存する
 function savePhoto(){
