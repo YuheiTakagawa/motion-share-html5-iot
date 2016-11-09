@@ -1,3 +1,38 @@
+var PEERJS_ID = 'eikjpf55l9olmcxr';
+var myId = socket.id;
+var peer = new Peer(myId, {key: PEERJS_ID});
+
+var p2pConnect = function(conn) {
+  //P2P送信
+    myId = socket.id;
+    peer = new Peer(myId, {key: PEERJS_ID});
+  $('#modeStatus').click(function() {
+    conn.send({
+      message: "hello",
+      ids: [myId]
+    });
+  });
+
+  //P2P受信
+  conn.on('data', function(data){
+    var message = data.message;
+    alert(message);
+  });
+};
+
+function p2pInitialize(){
+  var conn = peer.connect("858", {'serialization': 'binary-utf8'});
+  conn.on('open', function(){
+    p2pConnect(conn);
+  });
+
+  peer.on('connection', function(conn) {
+    p2pConnect(conn);
+  });
+}
+
+
+/*
 $(function() {
   var PEERJS_ID = 'eikjpf55l9olmcxr';
   var myId = String(Math.ceil( Math.random()*1000 + 100 ));
@@ -64,3 +99,4 @@ $(function() {
     connect(conn);
   });
 });
+*/
