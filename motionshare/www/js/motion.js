@@ -342,7 +342,8 @@ var motionJSON={};
       if(x > 1) downCnt++;
       if(x < -1) upCnt++;
 
-      if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
+      //if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
+      if(downCnt > 1 && upCnt > 1){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
         audioPlay(0);
         alert('Handshake');
@@ -354,6 +355,8 @@ var motionJSON={};
     //モーション 1 グータッチ 判別処理
     function gooTouch(){
       if(y > 1.5){
+        downCnt = 0;
+        upCnt = 0;
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
         audioPlay(1);
         alert('gooTouch');
@@ -363,6 +366,8 @@ var motionJSON={};
     //モーション 2 ハイタッチ 判別処理
     function highTouch(){
       if(z < -1.2 && zg > 20){
+        downCnt = 0;
+        upCnt = 0;
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
         audioPlay(2);
         alert('highTouch');
@@ -370,6 +375,7 @@ var motionJSON={};
     }
 
     //モーション 0000 チェンジモーション 判別処理
+    /*
     function changeMotion(){
       if(Math.abs(g) > 20 && Math.abs(xg) < 20){
         audioPlay(3);
@@ -377,6 +383,7 @@ var motionJSON={};
         alert("Mode Change");
       }
     }
+    */
 
 
 
