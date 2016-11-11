@@ -1,10 +1,9 @@
 var PEERJS_ID = 'eikjpf55l9olmcxr';
-var myId = socket.id;
+var myId = String(Math.ceil( Math.random()*1000 + 100 ));
 var peer = new Peer(myId, {key: PEERJS_ID});
 
 var p2pConnect = function(conn) {
   //P2P送信
-    myId = socket.id;
     peer = new Peer(myId, {key: PEERJS_ID});
   $('#modeStatus').click(function() {
     conn.send({
@@ -21,7 +20,8 @@ var p2pConnect = function(conn) {
 };
 
 function p2pInitialize(){
-  var conn = peer.connect("858", {'serialization': 'binary-utf8'});
+  alert(myId);
+  var conn = peer.connect("165", {'serialization': 'binary-utf8'});
   conn.on('open', function(){
     p2pConnect(conn);
   });
