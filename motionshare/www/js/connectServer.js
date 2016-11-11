@@ -112,6 +112,12 @@ function sendSchedule(socketID){
   }
 }
 
+function sendPhotoData(socketId){
+  conn.send({
+    message: localStorage.getItem("imageData"),
+    ids: [myId]
+  });
+}
 /*
 //  contentID:2 画像 送信処理
 function sendPhotoData(socketID){

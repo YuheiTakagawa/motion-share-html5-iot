@@ -1,5 +1,24 @@
 function homeInitilize(){
   $(function(){
+     var now = {
+      time : function(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+        var time = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
+        return time;
+      }
+    }
+
+
+    $('#modeStatus').click(function() {
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + '41.8419553, 140.7668473');
+
+    });
     //ホーム画面でのスケジュール自動削除　スケジュール画面にも適用できる
     setInterval(function(){
       if(autoScheduleDelete()=="1"){

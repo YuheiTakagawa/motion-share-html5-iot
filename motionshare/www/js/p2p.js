@@ -7,26 +7,37 @@ var id = "";
 var p2pConnect = function(conn) {
   //P2P送信
   peer = new Peer(myId, {key: PEERJS_ID});
-  $('#modeStatus').click(function() {
-    conn.send({
-      message: localStorage.getItem("imageData"),
-      ids: [myId]
-    });
-  });
+  //ただデータを送る
+  /*    conn.send({
+  message: localStorage.getItem("imageData"),
+  ids: [myId]
+});
+*/
 
-  //P2P受信
-  conn.on('data', function(data){
-    var message = data.message;
-    localStorage.setItem("imageData",message);
-    $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + message);
-  });
+//ボタンでデータを送る
+/*
+$('#modeStatus').click(function() {
+conn.send({
+message: localStorage.getItem("imageData"),
+ids: [myId]
+});
+});
+*/
+//P2P受信
+conn.on('data', function(data){
+  var message = data.message;
+  localStorage.setItem("imageData",message);
+
+  $('.card-image').removeClass('loadingWidth');
+  $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + message);
+});
 };
 
 function p2pInitialize(){
   //alert(myId);
   localStorage.setItem('p2pMyId', myId);
   id = localStorage.getItem("p2pId");
-  var conn = peer.connect(id, {'serialization': 'binary-utf8'});
+  conn = peer.connect(id, {'serialization': 'binary-utf8'});
   conn.on('open', function(){
     p2pConnect(conn);
   });
