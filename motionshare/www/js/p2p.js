@@ -23,8 +23,8 @@ var p2pConnect = function(conn) {
 
 function p2pInitialize(){
   //alert(myId);
-  localStorage.setItem('myId', myId);
-  id = localStorage.getItem("id");
+  localStorage.setItem('p2pMyId', myId);
+  id = localStorage.getItem("p2pId");
   var conn = peer.connect(id, {'serialization': 'binary-utf8'});
   conn.on('open', function(){
     p2pConnect(conn);

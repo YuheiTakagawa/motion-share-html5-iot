@@ -13,15 +13,15 @@
 </div>
 
 <script>
-id = localStorage.getItem('id');
-var showMyId = localStorage.getItem('myId');
+id = localStorage.getItem('p2pId');
+var showMyId = localStorage.getItem('p2pMyId');
 $("#myId").text(showMyId);
 
 $("#connect").val(id);
 $('#connectButton').click(function() {
   id = $('#connect').val();
-  localStorage.setItem('id', id);
-  id= localStorage.getItem("id");
+  localStorage.setItem('p2pId', id);
+  id= localStorage.getItem("p2pId");
 
 
   if(id == "") alert("IDを入力してください");
