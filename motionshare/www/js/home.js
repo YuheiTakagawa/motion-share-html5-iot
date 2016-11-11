@@ -1,5 +1,24 @@
 function homeInitilize(){
   $(function(){
+     var now = {
+      time : function(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+        var time = year + ',' +  month + ',' + date + ',' + h + ',' + m + ',' + s;
+        return time;
+      }
+    }
+
+
+    $('#modeStatus').click(function() {
+      socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + '41.8419553, 140.7668473');
+
+    });
     //ホーム画面でのスケジュール自動削除　スケジュール画面にも適用できる
     setInterval(function(){
       if(autoScheduleDelete()=="1"){
@@ -19,10 +38,28 @@ function homeInitilize(){
     $("#mask_file_01").click(function(){
       $("#file_01").click();
     });
+/*
+    var peer = new Peer(socket.id, {key: PEERJS_ID});
+    var conn = peer.connect("858", {'serialization': 'binary-utf8'});
 
+    conn.on('open', function(){
+      $("#modeStatus").on('click',function(){
+        $.each(peer.connections, function(_id, _conn) {
+          _conn[0].send({
+            message: localStorage.getItem('imageData'),
+            ids: [socket.id]
+          });
+        });
+      });
+      conn.on('data', function(data){
+        var message = data.message;
+        localStorage.setItem('imageData', message);
+        $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + message);
+      });
+    });
+    */
   });
 }
-
 
 //画像をlocalに保存する
 function savePhoto(){

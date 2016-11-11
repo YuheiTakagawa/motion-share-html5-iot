@@ -18,6 +18,12 @@ var disconnect = function(){
 }
 
 
+//var PEERJS_ID = 'eikjpf55l9olmcxr';
+//var myId = socket.id;
+//var peer = new Peer(socket.id, {key: PEERJS_ID});
+//$('#myId').text(myId);
+
+
 
 /******************************************************************/
 /********              送信処理                          ***********/
@@ -106,16 +112,22 @@ function sendSchedule(socketID){
   }
 }
 
-
+function sendPhotoData(socketId){
+  conn.send({
+    message: localStorage.getItem("imageData"),
+    ids: [myId]
+  });
+}
+/*
 //  contentID:2 画像 送信処理
 function sendPhotoData(socketID){
-  var data = localStorage.getItem('imageData');
-  socket.emit("send real data to server", [ 2 , socketID , data ]);
-  disconnect();
-  alert("PHOTO GO TO SERVER");
-  modeChange();
+var data = localStorage.getItem('imageData');
+socket.emit("send real data to server", [ 2 , socketID , data ]);
+disconnect();
+alert("PHOTO GO TO SERVER");
+modeChange();
 }
-
+*/
 
 /******************************************************************/
 /********              受信処理                          ***********/

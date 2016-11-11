@@ -1,6 +1,7 @@
 $(function() {
   $("#view").load("home.html",function(){
     homeInitilize();
+    p2pInitialize();
     setPhotoDATA();
   });
 });
@@ -19,6 +20,7 @@ function PageControll(val){
         homeInitilize();
         setPhotoDATA();
         animated();
+        p2pInitialize();
         $('.fixed-action-btn').closeFAB();
       });
       removeAnimationClass();
@@ -80,6 +82,16 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Public Range Setting");
+      menuValue=0;
+      break;
+      case 7:
+      $("#view").innerHTML = "<div id='p2p'></div>";
+      $("#view").load("p2p.html",function(){
+        $('.fixed-action-btn').closeFAB();
+        loadRangeSetting();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("P2P Connect Setting");
       menuValue=0;
       break;
     }
