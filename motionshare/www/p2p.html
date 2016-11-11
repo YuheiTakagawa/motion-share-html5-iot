@@ -1,0 +1,27 @@
+<!-- p2p.html -->
+<div id="p2pContent" class="left">
+
+  <div id="myId"></div>
+  <div class="connects">
+    <input id="connect"></input>
+    <span id="connectButton" class="btn btn-primary">Connect</span>
+  </div>
+  <div class="connected"></div>
+</div>
+
+<script>
+id = localStorage.getItem('p2pId');
+var showMyId = localStorage.getItem('myId');
+$("#myId").text(showMyId);
+
+$("#connect").val(id);
+$('#connectButton').click(function() {
+  id = $('#connect').val();
+  localStorage.setItem('id', id);
+  id= localStorage.getItem("id");
+
+
+  if(id == "") alert("IDを入力してください");
+  else alert("接続先を "+ id +" に設定しました");
+});
+</script>

@@ -82,6 +82,16 @@ function PageControll(val){
       $(".brand-logo").html("Public Range Setting");
       menuValue=0;
       break;
+      case 7:
+      $("#view").innerHTML = "<div id='p2p'></div>";
+      $("#view").load("p2p.html",function(){
+        $('.fixed-action-btn').closeFAB();
+        loadRangeSetting();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("P2P Connect Setting");
+      menuValue=0;
+      break;
     }
 
     $("nav ul li").click(function () {
