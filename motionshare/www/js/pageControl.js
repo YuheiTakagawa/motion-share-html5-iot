@@ -1,6 +1,7 @@
 $(function() {
   $("#view").load("home.html",function(){
     homeInitilize();
+    p2pInitialize();
     setPhotoDATA();
   });
 });
@@ -19,6 +20,7 @@ function PageControll(val){
         homeInitilize();
         setPhotoDATA();
         animated();
+        p2pInitialize();
         $('.fixed-action-btn').closeFAB();
       });
       removeAnimationClass();
