@@ -9,7 +9,7 @@ var p2pConnect = function(conn) {
   peer = new Peer(myId, {key: PEERJS_ID});
   $('#modeStatus').click(function() {
     conn.send({
-      message: "hello",
+      message: localStorage.getItem("imageData"),
       ids: [myId]
     });
   });
@@ -17,7 +17,8 @@ var p2pConnect = function(conn) {
   //P2P受信
   conn.on('data', function(data){
     var message = data.message;
-    alert(message);
+    localStorage.setItem("imageData",message);
+    $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + message);
   });
 };
 
