@@ -311,7 +311,7 @@ var motionJSON={};
     /******************************************************************/
     /********                  debug用                      ***********/
     /******************************************************************/
-    /*
+
     document.getElementById("x").innerHTML = "X: " + x;
     document.getElementById("y").innerHTML = "Y: " + y;
     document.getElementById("z").innerHTML = "Z: " + z;
@@ -323,7 +323,7 @@ var motionJSON={};
     document.getElementById("ra").innerHTML = "Ra: " + a;
     document.getElementById("rb").innerHTML = "Rb: " + b;
     document.getElementById("rg").innerHTML = "Rg: " + g;
-    */
+
 
     /******************************************************************/
     /********           モーション判別機能 呼出                 ***********/
@@ -342,7 +342,7 @@ var motionJSON={};
       if(x > 1) downCnt++;
       if(x < -1) upCnt++;
 
-      if((downCnt > 2 && upCnt > 2) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
+      if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
         audioPlay(0);
         alert('Handshake');
@@ -353,7 +353,7 @@ var motionJSON={};
 
     //モーション 1 グータッチ 判別処理
     function gooTouch(){
-      if(y > 1.5 && Math.abs(xg) < 20){
+      if(y > 1.5){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
         audioPlay(1);
         alert('gooTouch');
@@ -362,7 +362,7 @@ var motionJSON={};
 
     //モーション 2 ハイタッチ 判別処理
     function highTouch(){
-      if(z < -1 && xg < 150){
+      if(z < -1.2 && zg > 20){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
         audioPlay(2);
         alert('highTouch');
