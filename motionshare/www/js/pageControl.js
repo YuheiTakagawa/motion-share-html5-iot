@@ -1,8 +1,13 @@
 $(function() {
+  $("#view").load("login.html",function(){
+    
+  });
+  /*
   $("#view").load("home.html",function(){
     homeInitilize();
     setPhotoDATA();
   });
+  */
 });
 //パーツ読み込み
 function PageControll(val){
