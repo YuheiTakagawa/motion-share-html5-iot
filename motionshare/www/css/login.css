@@ -12,6 +12,11 @@
 .logo img{
   margin-top: 150px;
   margin-bottom: 20px;
-  margin-left: 30%;
   width: 40%;
+}
+
+.loginBtn{
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 77%;
 }
