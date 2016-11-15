@@ -17,12 +17,35 @@
 
 .loginBtn{
   margin-top: 20px;
-  margin-left: 10px;
-  width: 77%;
+  width: 75%;
+}
+
+.inputArea{
+  margin-left: 20px;
+  width: 80%;
 }
 
 .catchCopy{
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 30px;
+}
+
+.createAccountBtnArea{
+  margin-top: 20px;
+  margin-left: 12%;
+}
+
+#loginContent
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:before,
+[type="radio"].with-gap:checked+label:after {
+    border: 2px solid #00bcd4;
+}
+
+#loginContent
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:before,
+[type="radio"].with-gap:checked+label:after {
+    border: 2px solid #00bcd4;
 }
