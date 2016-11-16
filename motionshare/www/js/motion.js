@@ -1,5 +1,5 @@
 var makeMotionBool = false;
-var createMotionArray=[];
+var createMotionArray="";
 var motionJSON={};
 
 (function () {
@@ -344,7 +344,7 @@ var motionJSON={};
 
       //if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
       if(downCnt > 1 && upCnt > 1){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
         audioPlay(0);
         alert('Handshake');
         downCnt = 0;
@@ -357,7 +357,7 @@ var motionJSON={};
       if(y > 1.5){
         downCnt = 0;
         upCnt = 0;
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
         audioPlay(1);
         alert('gooTouch');
       }
@@ -368,7 +368,7 @@ var motionJSON={};
       if(z < -1.2 && zg > 20){
         downCnt = 0;
         upCnt = 0;
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
         audioPlay(2);
         alert('highTouch');
       }
