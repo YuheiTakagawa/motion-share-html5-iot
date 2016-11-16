@@ -137,7 +137,8 @@ var motionJSON={};
         handshakeBool = false;
         SensorValueLoad = false;
         SensorValueLoadControl();
-        alert('握手');
+        //alert('握手');
+        Materialize.toast('HandShake', 2000);
       }
 
       //グータッチー加速度・ジャイロによる判定
@@ -150,7 +151,8 @@ var motionJSON={};
         gooTouchRotaBool = false;
         SensorValueLoad = false;
         SensorValueLoadControl();
-        alert("グータッチ");
+        //alert("グータッチ");
+        Materialize.toast('GooTouch', 2000);
       }
 
       //ハイタッチー加速度・ジャイロによる判定
@@ -161,7 +163,8 @@ var motionJSON={};
         highTouchBool = false;
         SensorValueLoad = false;
         SensorValueLoadControl();
-        alert("ハイタッチ");
+        //alert("ハイタッチ");
+        Materialize.toast('HighTouch', 2000);
       }
 
 
@@ -172,7 +175,8 @@ var motionJSON={};
         changeBool = false;
         SensorValueLoad = false;
         SensorValueLoadControl();
-        alert("Mode Change");
+        //alert("Mode Change");
+        Materialize.toast('Mode Change', 2000);
         modeChange(); //モード切り替え処理 modeChange.js
       }
 
@@ -184,28 +188,32 @@ var motionJSON={};
         if (x > val) { // 右
           audioPlay(5);
           SensorValueLoadControl();
-          alert("right");
+          //alert("right");
           createMotionArray.push(3);
+          Materialize.toast('Right', 2000);
           //SensorValueLoadControl();
           //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
         }
         else if (x < -val) { // 左
           audioPlay(5);
           SensorValueLoadControl();
-          alert("left");
+          //alert("left");
           createMotionArray.push(4);
+          Materialize.toast('Left', 2000);
         }
         else if (y > val-8) { // 上
           audioPlay(5);
           SensorValueLoadControl();
-          alert("up");
+          //alert("up");
           createMotionArray.push(5);
+          Materialize.toast('Up', 2000);
         }
         else if (y < -val) { // 下
           audioPlay(5);
           SensorValueLoadControl();
-          alert("down");
+          //alert("down");
           createMotionArray.push(6);
+          Materialize.toast('Down', 2000);
         }
         else return;
         alert(createMotionArray);
@@ -346,7 +354,8 @@ var motionJSON={};
       if(downCnt > 1 && upCnt > 1){
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
         audioPlay(0);
-        alert('Handshake');
+        //alert('Handshake');
+        Materialize.toast('Handshake', 2000);
         downCnt = 0;
         upCnt = 0;
       }
@@ -359,7 +368,8 @@ var motionJSON={};
         upCnt = 0;
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
         audioPlay(1);
-        alert('gooTouch');
+        //alert('gooTouch');
+        Materialize.toast('GooTouch', 2000);
       }
     }
 
@@ -370,7 +380,8 @@ var motionJSON={};
         upCnt = 0;
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
         audioPlay(2);
-        alert('highTouch');
+        //alert('highTouch');
+        Materialize.toast('HighTouch', 2000);
       }
     }
 
