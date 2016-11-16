@@ -190,7 +190,7 @@ var motionJSON={};
           SensorValueLoadControl();
           //alert("right");
           createMotionArray.push(3);
-          Materialize.toast('Right', 2000);
+          Materialize.toast('3 Right', 2000);
           //SensorValueLoadControl();
           //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
         }
@@ -199,24 +199,25 @@ var motionJSON={};
           SensorValueLoadControl();
           //alert("left");
           createMotionArray.push(4);
-          Materialize.toast('Left', 2000);
+          Materialize.toast('4 Left', 2000);
         }
         else if (y > val-8) { // 上
           audioPlay(5);
           SensorValueLoadControl();
           //alert("up");
           createMotionArray.push(5);
-          Materialize.toast('Up', 2000);
+          Materialize.toast('5 Up', 2000);
         }
         else if (y < -val) { // 下
           audioPlay(5);
           SensorValueLoadControl();
           //alert("down");
           createMotionArray.push(6);
-          Materialize.toast('Down', 2000);
+          Materialize.toast('6 Down', 2000);
         }
         else return;
-        alert(createMotionArray);
+
+         //alert(createMotionArray);
       }
 
       if(makeMotionBool == true){
