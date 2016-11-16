@@ -14,4 +14,13 @@ function requestLogin(){
   //alert(id + ':' + pass);
 
   socket.emit("request log in", [ id , pass]);
+
+  socket.on('verify log in', function(id){
+    if(id == 1){
+      PageControll(0);
+    }else{
+      alert("failed");
+    }
+  });
+
 }
