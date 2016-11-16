@@ -1,5 +1,5 @@
 var makeMotionBool = false;
-var createMotionArray=[];
+var createMotionArray="";
 var motionJSON={};
 
 (function () {
@@ -188,32 +188,28 @@ var motionJSON={};
         if (x > val) { // 右
           audioPlay(5);
           SensorValueLoadControl();
-          //alert("right");
-          createMotionArray.push(3);
           Materialize.toast('3 Right', 2000);
+          createMotionArray+="3";
           //SensorValueLoadControl();
           //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
         }
         else if (x < -val) { // 左
           audioPlay(5);
           SensorValueLoadControl();
-          //alert("left");
-          createMotionArray.push(4);
           Materialize.toast('4 Left', 2000);
+          createMotionArray+="4";
         }
         else if (y > val-8) { // 上
           audioPlay(5);
           SensorValueLoadControl();
-          //alert("up");
-          createMotionArray.push(5);
           Materialize.toast('5 Up', 2000);
+          createMotionArray+="5";
         }
         else if (y < -val) { // 下
           audioPlay(5);
           SensorValueLoadControl();
-          //alert("down");
-          createMotionArray.push(6);
           Materialize.toast('6 Down', 2000);
+          createMotionArray+="6";
         }
         else return;
 
@@ -353,7 +349,7 @@ var motionJSON={};
 
       //if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
       if(downCnt > 1 && upCnt > 1){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
         audioPlay(0);
         //alert('Handshake');
         Materialize.toast('Handshake', 2000);
@@ -367,7 +363,7 @@ var motionJSON={};
       if(y > 1.5){
         downCnt = 0;
         upCnt = 0;
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
         audioPlay(1);
         //alert('gooTouch');
         Materialize.toast('GooTouch', 2000);
@@ -379,7 +375,7 @@ var motionJSON={};
       if(z < -1.2 && zg > 20){
         downCnt = 0;
         upCnt = 0;
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
         audioPlay(2);
         //alert('highTouch');
         Materialize.toast('HighTouch', 2000);
