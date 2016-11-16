@@ -55,28 +55,112 @@ var app = {
               return time;
             }
           };
+
+          /*
           if(dNum[3]>0){
-            //background処理
-            //socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
-          }
-        },1000);
-      }
-    });
-    document.addEventListener('resume',function(){
-      clearInterval(intervalTime);
-    });
+          //background
+          socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+        }
+        */    // 加速度
+            var x = dNum[0];
+            var y = dNum[1];
+            var z = dNum[2];
 
-    app.receivedEvent('deviceready');
-  },
-  // Update DOM on a Received Event
-  receivedEvent: function(id) {
-    var parentElement = document.getElementById(id);
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
+            //傾き
+            var xg = dNum[3]; //左右
+            var yg = dNum[4]; //上下
+            var zg = dNum[5]; //前後
 
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
+            //回転速度
+            var a = Math.round(dNum[6] * 10 )  / 100;
+            var b = Math.round(dNum[7] * 10 )  / 100;
+            var g = Math.round(dNum[8] * 10 ) / 100;
 
-    console.log('Received Event: ' + id);
-  }
+
+            /******************************************************************/
+            /********                  debug?                      ***********/
+            /******************************************************************/
+            /*
+            document.getElementById("x").innerHTML = "X: " + x;
+            document.getElementById("y").innerHTML = "Y: " + y;
+            document.getElementById("z").innerHTML = "Z: " + z;
+
+            document.getElementById("xg").innerHTML = "Xg: " + xg
+            document.getElementById("yg").innerHTML = "Yg: " + yg;
+            document.getElementById("zg").innerHTML = "Zg: " + zg;
+
+            document.getElementById("ra").innerHTML = "Ra: " + a;
+            document.getElementById("rb").innerHTML = "Rb: " + b;
+            document.getElementById("rg").innerHTML = "Rg: " + g;
+            */
+
+            /******************************************************************/
+            /********           ????????? ??                 ***********/
+            /******************************************************************/
+            handshake();
+            gooTouch();
+            highTouch();
+            changeMotion();
+
+
+            /******************************************************************/
+            /********     3???????????(????????)       ***********/
+            /******************************************************************/
+            //????? 0 ?? ????
+            function handshake(){
+              if(x > 1) downCnt++;
+              if(x < -1) upCnt++;
+
+              //if((downCnt > 1 && upCnt > 1) && (yg > -140 && yg < 5) && (xg > -100 && xg < -75)){
+              if(downCnt > 1 && upCnt > 1){
+                socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData);
+                audioPlay(0);
+                alert('Handshake');
+                downCnt = 0;
+                upCnt = 0;
+              }
+            }
+
+            //????? 1 ????? ????
+            function gooTouch(){
+              if(y > 1.5){
+                downCnt = 0;
+                upCnt = 0;
+                socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData);
+                audioPlay(1);
+                alert('gooTouch');
+              }
+            }
+
+            //????? 2 ????? ????
+            function highTouch(){
+              if(z < -1.2 && zg > 20){
+                downCnt = 0;
+                upCnt = 0;
+                socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData);
+                audioPlay(2);
+                alert('highTouch');
+              }
+            }
+
+      },1000);
+    }
+  });
+  document.addEventListener('resume',function(){
+    clearInterval(intervalTime);
+  });
+
+  app.receivedEvent('deviceready');
+},
+// Update DOM on a Received Event
+receivedEvent: function(id) {
+  var parentElement = document.getElementById(id);
+  var listeningElement = parentElement.querySelector('.listening');
+  var receivedElement = parentElement.querySelector('.received');
+
+  listeningElement.setAttribute('style', 'display:none;');
+  receivedElement.setAttribute('style', 'display:block;');
+
+  console.log('Received Event: ' + id);
+}
 };
