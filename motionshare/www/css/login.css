@@ -49,3 +49,18 @@
 [type="radio"].with-gap:checked+label:after {
     border: 2px solid #00bcd4;
 }
+
+#loginContent
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly])
+{
+  border-bottom: 1px solid #00bcd4;
+  box-shadow: 0 1px 0 0 #00bcd4;
+}
+
+#loginContent
+input[type=text]:focus:not([readonly])+label,
+input[type=password]:focus:not([readonly])+label
+{
+  color: #00bcd4;
+}
