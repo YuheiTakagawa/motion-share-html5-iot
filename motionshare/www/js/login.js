@@ -1,4 +1,18 @@
 //ログイン処理
+
+var openLoginPageBool = "";
+localStorage.setItem('openLoginPage', openLoginPageBool);
+var openLoginPage = localStorage.getItem('openLoginPage');
+
+
+
+function getLoginPage(bool){
+  //alert(bool);
+  if(bool == true || bool == "") $("#view").load("login.html");
+  else if(bool == false) $("#view").load("home.html");
+}
+
+
 function setAccountInfo(){
   $(function(){
     var users={
@@ -44,6 +58,7 @@ function requestLogin(){
   socket.on('verify log in', function(data){
     if(data == 4649){
       alert("success");
+      localStorage.setItem('openLoginPage', false);
       PageControll(0);
     }else{
       alert("failed");
