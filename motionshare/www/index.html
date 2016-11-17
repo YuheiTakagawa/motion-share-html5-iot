@@ -31,6 +31,7 @@
 <link rel="stylesheet" type="text/css" href="css/page1.css" />
 <link rel="stylesheet" type="text/css" href="css/page2.css" />
 <link rel="stylesheet" type="text/css" href="css/scheduleList.css" />
+<link rel="stylesheet" type="text/css" href="css/login.css" />
 
 <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="lib/jquery/jquery-ui.min.js"></script>
@@ -53,6 +54,7 @@
 <script type="text/javascript" src="js/userSetting.js"></script>
 <script type="text/javascript" src="js/saveBase64PhotoData.js"></script>
 <script type="text/javascript" src="js/tapPosition.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 
 
 
@@ -101,7 +103,13 @@
 
             <div class="switch ml10">
               <label>SEND MODE<input type="checkbox" name="modeChangeBtn" onclick="modeChange();"><span class="lever"></label>
-              </div>
+            </div>
+            <div class="logoutBtnArea" onClick="logout();">
+              <p>
+                <input class="with-gap cyan animsition-link" name="group3" type="radio" id="test5" checked />
+                <label for="test5">Logout</label>
+              </p>
+            </div>
 
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
@@ -135,6 +143,7 @@
       </script>
       <script type="text/javascript" src="cordova.js"></script>
       <script>
+      getLoginPage(openLoginPage);
       audioInitialize();
       showUserMenu();
       bluetoothFanc.onDeviceReady();

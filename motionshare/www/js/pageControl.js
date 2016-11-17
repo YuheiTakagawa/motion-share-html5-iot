@@ -1,9 +1,3 @@
-$(function() {
-  $("#view").load("home.html",function(){
-    homeInitilize();
-    setPhotoDATA();
-  });
-});
 //パーツ読み込み
 function PageControll(val){
   if(val==3) $('#fab').addClass('fab');
@@ -80,6 +74,15 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Public Range Setting");
+      menuValue=0;
+      break;
+      case 7:
+      $("#view").innerHTML = "<div id='createAccount'></div>";
+      $("#view").load("createAccount.html",function(){
+        $('.fixed-action-btn').closeFAB();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Create an Account");
       menuValue=0;
       break;
     }
