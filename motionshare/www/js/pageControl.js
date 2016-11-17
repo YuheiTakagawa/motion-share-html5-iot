@@ -1,6 +1,6 @@
 $(function() {
   $("#view").load("login.html",function(){
-    
+
   });
   /*
   $("#view").load("home.html",function(){
@@ -85,6 +85,15 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Public Range Setting");
+      menuValue=0;
+      break;
+      case 7:
+      $("#view").innerHTML = "<div id='createAccount'></div>";
+      $("#view").load("createAccount.html",function(){
+        $('.fixed-action-btn').closeFAB();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Create an Account");
       menuValue=0;
       break;
     }
