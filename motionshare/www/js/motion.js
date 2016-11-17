@@ -306,7 +306,6 @@ var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','Lef
         motionNum(9);
         return 0;
       }else if(rad>=-60&&rad<=-30){
-        audioPlay(5);
         motionNum(8);
         return 0;
       }
