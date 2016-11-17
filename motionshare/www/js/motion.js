@@ -26,6 +26,8 @@ var motionJSON={};
   var upCnt = 0;
   var downCnt = 0
 
+var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','LeftUp'];
+
   var now = {
     time : function(){
       var now = new Date();
@@ -186,34 +188,16 @@ var motionJSON={};
 
         if(vector(x,y)){
           if (x > val) { // 右
-            audioPlay(5);
-            SensorValueLoad = false;
-            SensorValueLoadControl();
-            Materialize.toast('3 Right', 2000);
-            createMotionArray+="3";
-            //SensorValueLoadControl();
-            //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
+            motionNum(6);
           }
           else if (x < -val) { // 左
-            audioPlay(5);
-            SensorValueLoad = false;
-            SensorValueLoadControl();
-            Materialize.toast('4 Left', 2000);
-            createMotionArray+="4";
-          }
+            motionNum(5);
+            }
           else if (y > val-8) { // 上
-            audioPlay(5);
-            SensorValueLoad = false;
-            SensorValueLoadControl();
-            Materialize.toast('5 Up', 2000);
-            createMotionArray+="5";
+            motionNum(3);
           }
           else if (y < -val) { // 下
-            audioPlay(5);
-            SensorValueLoad = false;
-            SensorValueLoadControl();
-            Materialize.toast('6 Down', 2000);
-            createMotionArray+="6";
+            motionNum(4);
           }
           else return;
         }
@@ -296,6 +280,14 @@ var motionJSON={};
     }
 
   }
+  function motionNum(num){
+    audioPlay(5);
+    createMotionArray+=num;
+    num = parseInt(num, 16);
+    Materialize.toast(num+' '+motionUDLR[num-3],2000);
+    SensorValueLoad = false;
+    SensorValueLoadControl();
+  }
   //加速度からベクトル計算をして斜めの加速度を検出する
   function vector(x, y){
     var rad=0;
@@ -305,32 +297,17 @@ var motionJSON={};
     sca=Math.sqrt(x*x+y*y);
     if(sca>10){
       if(rad>=30&&rad<=60){
-        audioPlay(5);
-        Materialize.toast('7 RightUp', 2000);
-        createMotionArray+="7";
-        SensorValueLoad = false;
-        SensorValueLoadControl();
+        motionNum(7);
         return 0;
       }else if(rad>=120&&rad<=150){
-        audioPlay(5);
-        Materialize.toast('8 LeftUp', 2000);
-        createMotionArray+="8";
-        SensorValueLoad = false;
-        SensorValueLoadControl();
+        motionNum('a');
         return 0;
       }else if(rad>=-150&&rad<=-120){
-        audioPlay(5);
-        Materialize.toast('9 LeftDown', 2000);
-        createMotionArray+="9";
-        SensorValueLoad = false;
-        SensorValueLoadControl();
+        motionNum(9);
         return 0;
       }else if(rad>=-60&&rad<=-30){
         audioPlay(5);
-        Materialize.toast('a RightDown', 2000);
-        createMotionArray+="a";
-        SensorValueLoad = false;
-        SensorValueLoadControl();
+        motionNum(8);
         return 0;
       }
     }
