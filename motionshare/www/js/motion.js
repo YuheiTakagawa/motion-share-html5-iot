@@ -26,7 +26,8 @@ var motionJSON={};
   var upCnt = 0;
   var downCnt = 0
 
-var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','LeftUp'];
+  var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','LeftUp'];
+  var gyro=0;
 
   var now = {
     time : function(){
@@ -185,6 +186,10 @@ var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','Lef
       /********         motion作成  判別  処理                  ***********/
       /******************************************************************/
       function createMotion(val){
+        gyro=0;
+        if(highTouchBool) gyro="0";
+        else if(changeBool) gyro="1";
+        else if(gooTouchBool) gyro="2";
 
         if(vector(x,y)){
           if (x > val) { // 右
@@ -192,7 +197,7 @@ var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','Lef
           }
           else if (x < -val) { // 左
             motionNum(5);
-            }
+          }
           else if (y > val-8) { // 上
             motionNum(3);
           }
@@ -282,9 +287,9 @@ var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','Lef
   }
   function motionNum(num){
     audioPlay(5);
-    createMotionArray+=num;
+    createMotionArray+=gyro+num;
     num = parseInt(num, 16);
-    Materialize.toast(num+' '+motionUDLR[num-3],2000);
+    Materialize.toast(gyro+num+' '+motionUDLR[num-3],2000);
     SensorValueLoad = false;
     SensorValueLoadControl();
   }
