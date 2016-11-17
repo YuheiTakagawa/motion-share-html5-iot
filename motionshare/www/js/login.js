@@ -3,10 +3,10 @@
 var openLoginPage = localStorage.getItem('openLoginPage');
 
 function getLoginPage(bool){
-  if(bool == true || bool == ""){
+  if(bool != "false"){
     $("#view").load("login.html");
-  }else{
-    $("#view").load("home.html");
+  }else if(bool == "false"){
+    PageControll(0);
   }
 }
 
@@ -63,5 +63,12 @@ function requestLogin(){
       alert("failed");
     }
   });
+}
 
+
+function logout(){
+  localStorage.setItem('openLoginPage', true);
+  var bool = localStorage.getItem('openLoginPage');
+  getLoginPage(bool);
+  $('.button-collapse').sideNav('hide');
 }
