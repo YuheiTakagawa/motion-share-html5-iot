@@ -73,6 +73,28 @@ function loadRangeSetting(){
   });
 }
 
+function searchUser(){
+  $(function(){
+    navigator.contacts.pickContact(function(contact){
+      //alert('The following contact has been selected:' + JSON.stringify(contact));
+      $("#userName").val(contact.displayName);
+      if(contact.phoneNumbers!=null){
+        $("#userPhone").val(contact.phoneNumbers[0].value);
+      }else{
+        $("#userPhone").val("");
+      }
+      if(contact.emails!=null){
+        $("#userMail").val(contact.emails[0].value);
+      }else{
+        $("#userMail").val("");
+      }
+      //alert('The following contact has been selected:' + JSON.stringify(contact));
+    },function(err){
+      alert('Error: ' + err);
+    });
+  });
+}
+
 function setContentsRange(e){
   var contentsR = e.target.getAttribute('data-nono');
   //socket.emit('tekitou',contentsR);
