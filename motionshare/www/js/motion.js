@@ -190,6 +190,7 @@ var motionJSON={};
         if(highTouchBool) gyro="0";
         else if(changeBool) gyro="1";
         else if(gooTouchBool) gyro="2";
+        else  gyro="0";
 
         if(vector(x,y)){
           if (x > val) { // 右
