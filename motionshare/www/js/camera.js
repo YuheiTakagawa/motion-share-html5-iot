@@ -2,7 +2,6 @@
 function getCameraBase64(){
   navigator.camera.getPicture(
     function(imageData){
-      alert(imageData);
       // cameraSuccess
       localStorage.setItem('imageData', imageData);
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
