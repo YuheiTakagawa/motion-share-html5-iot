@@ -430,7 +430,9 @@ var motionJSON={};
 
 function saveMotion(){
   var motionName=$("#createMotionName").val();
-  motionJSON=JSON.parse(localStorage.createMotion);
+  if(!(localStorage.createMotion=== void 0)){
+    motionJSON=JSON.parse(localStorage.createMotion);
+  }
   motionJSON[motionName]={
     "motion":createMotionArray
   };
