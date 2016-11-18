@@ -112,3 +112,13 @@ body {
   #file_01,#mask_file_01{
 	display:none;
 }
+
+.showUserIcon{
+    background: #cfd8dc;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}

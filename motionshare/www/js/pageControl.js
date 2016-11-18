@@ -107,6 +107,17 @@ function fabCon(){
   $('.fixed-action-btn').openFAB();
 }
 
+$(function(){
+  $("#setting").hover(
+    function(){
+      $('.dropdown-button').dropdown('open');
+    },
+    function(){
+      $('.dropdown-button').dropdown('close');
+    }
+  );
+});
+
 
 
 //ページ遷移アニメーションのコントロール
