@@ -6,7 +6,7 @@ var motionJSON={};
 
   var geoData=function(){
     return localStorage.getItem('geoData');
-};
+  };
   //var whoAmI = 0;
 
   var SensorValueLoad = true;
@@ -25,6 +25,9 @@ var motionJSON={};
 
   var upCnt = 0;
   var downCnt = 0
+
+  var motionUDLR=['Up','Down','Left','Right','RightUp','RightDown','LeftDown','LeftUp'];
+  var gyro=0;
 
   var now = {
     time : function(){
@@ -94,7 +97,6 @@ var motionJSON={};
       document.getElementById('highTouchCnt').innerHTML = highTouchCnt;
       document.getElementById('rotationalphaCnt').innerHTML = rotationalphaCnt;
       */
-
       //x軸方向 加速度カウンター処理
       var l = 24; //握手用
       if(x > l || x < -l){
@@ -184,36 +186,28 @@ var motionJSON={};
       /********         motion作成  判別  処理                  ***********/
       /******************************************************************/
       function createMotion(val){
+        gyro=0;
+        if(highTouchBool) gyro="0";
+        else if(changeBool) gyro="1";
+        else if(gooTouchBool) gyro="2";
+        else  gyro="0";
 
-        if (x > val) { // 右
-          audioPlay(5);
-          SensorValueLoadControl();
-          Materialize.toast('3 Right', 2000);
-          createMotionArray+="3";
-          //SensorValueLoadControl();
-          //$('<li><i class="fa fa-fw fa-4x fa-cyan fa-chevron-circle-left"></i></li>').appendTo('ul.makeMotion');
+        if(vector(x,y)){
+          if (x > val) { // 右
+            motionNum(6);
+          }
+          else if (x < -val) { // 左
+            motionNum(5);
+          }
+          else if (y > val-8) { // 上
+            motionNum(3);
+          }
+          else if (y < -val) { // 下
+            motionNum(4);
+          }
+          else return;
         }
-        else if (x < -val) { // 左
-          audioPlay(5);
-          SensorValueLoadControl();
-          Materialize.toast('4 Left', 2000);
-          createMotionArray+="4";
-        }
-        else if (y > val-8) { // 上
-          audioPlay(5);
-          SensorValueLoadControl();
-          Materialize.toast('5 Up', 2000);
-          createMotionArray+="5";
-        }
-        else if (y < -val) { // 下
-          audioPlay(5);
-          SensorValueLoadControl();
-          Materialize.toast('6 Down', 2000);
-          createMotionArray+="6";
-        }
-        else return;
-
-         //alert(createMotionArray);
+        //alert(createMotionArray);
       }
 
       if(makeMotionBool == true){
@@ -288,9 +282,41 @@ var motionJSON={};
     if(SensorValueLoad == false){
       setTimeout(function(){
         SensorValueLoad = true;
-      }, 500);
+      }, 250);
     }
 
+  }
+  function motionNum(num){
+    audioPlay(5);
+    createMotionArray+=gyro+num;
+    num = parseInt(num, 16);
+    Materialize.toast(gyro+num+' '+motionUDLR[num-3],2000);
+    SensorValueLoad = false;
+    SensorValueLoadControl();
+  }
+  //加速度からベクトル計算をして斜めの加速度を検出する
+  function vector(x, y){
+    var rad=0;
+    var sca=0;
+    rad=Math.atan2(y,x);
+    rad=rad*180 / 3.1415;
+    sca=Math.sqrt(x*x+y*y);
+    if(sca>10){
+      if(rad>=30&&rad<=60){
+        motionNum(7);
+        return 0;
+      }else if(rad>=120&&rad<=150){
+        motionNum('a');
+        return 0;
+      }else if(rad>=-150&&rad<=-120){
+        motionNum(9);
+        return 0;
+      }else if(rad>=-60&&rad<=-30){
+        motionNum(8);
+        return 0;
+      }
+    }
+    return 1;
   }
 
   /******************************************************************/
@@ -385,17 +411,17 @@ var motionJSON={};
     //モーション 0000 チェンジモーション 判別処理
     /*
     function changeMotion(){
-      if(Math.abs(g) > 20 && Math.abs(xg) < 20){
-        audioPlay(3);
-        modeChange(); //モード切り替え処理 modeChange.js
-        alert("Mode Change");
-      }
-    }
-    */
-
-
-
+    if(Math.abs(g) > 20 && Math.abs(xg) < 20){
+    audioPlay(3);
+    modeChange(); //モード切り替え処理 modeChange.js
+    alert("Mode Change");
   }
+}
+*/
+
+
+
+}
 
 })();
 
@@ -403,16 +429,16 @@ var motionJSON={};
 //作成モーションを保存する
 
 function saveMotion(){
-var motionName=$("#createMotionName").val();
-motionJSON=JSON.parse(localStorage.createMotion);
-motionJSON[motionName]={
-"motion":createMotionArray
-};
+  var motionName=$("#createMotionName").val();
+  motionJSON=JSON.parse(localStorage.createMotion);
+  motionJSON[motionName]={
+    "motion":createMotionArray
+  };
 
-localStorage.createMotion=JSON.stringify(motionJSON);
-alert(localStorage.createMotion);
-alert("Successful Create New Motion");
-PageControll(0);
-createMotionArray="";
+  localStorage.createMotion=JSON.stringify(motionJSON);
+  alert(localStorage.createMotion);
+  alert("Successful Create New Motion");
+  PageControll(0);
+  createMotionArray="";
 
 }
