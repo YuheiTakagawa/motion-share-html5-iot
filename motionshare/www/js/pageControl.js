@@ -107,6 +107,8 @@ function fabCon(){
   $('.fixed-action-btn').openFAB();
 }
 
+
+/*
 $(function(){
   $("#setting").hover(
     function(){
@@ -117,6 +119,7 @@ $(function(){
     }
   );
 });
+*/
 
 
 

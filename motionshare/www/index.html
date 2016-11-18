@@ -93,16 +93,16 @@
               <a href="#!tel"><span id="userPhoneM" class="tel">000-0000-0000</span></a>
               <a href="#!email"><span id="userMailM" class="email">mirai@fun.ac.jp</span></a>
             </div>
-            <li><a class="animsition-link" onClick="PageControll(0)" href="#">Home</a></li>
-            <li><a class="animsition-link" onClick="PageControll(3)" href="#">Schedule</a></li>
-            <li><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
-            <li><a class="animsition-link" onClick="PageControll(5)" href="#">Making Motion</a></li>
+            <li id="link"><a class="animsition-link" onClick="PageControll(0)" href="#">Home</a></li>
+            <li id="link"><a class="animsition-link" onClick="PageControll(3)" href="#">Schedule</a></li>
+            <li id="link"><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
+            <li id="link"><a class="animsition-link" onClick="PageControll(5)" href="#">Making Motion</a></li>
             <li id="setting">
               <a class="dropdown-button" data-activates="dropdown2" href="#">Setting</a>
               <ul id='dropdown2' class='dropdown-content settingMenu'>
-                <li><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
-                <li><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
-                <li><a class="animsition-link" onClick="PageControll(6)" href="#">Public Range</a></li>
+                <li id="link"><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
+                <li id="link"><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
+                <li id="link"><a class="animsition-link" onClick="PageControll(6)" href="#">Public Range</a></li>
               </ul>
             </li>
 
@@ -143,7 +143,11 @@
       <script>
       $('.button-collapse').sideNav({
         menuWidth: 210, // Default is 240
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      });
+
+      $("#link").click(function(){
+        $('.button-collapse').sideNav("hide");
       });
 
 
