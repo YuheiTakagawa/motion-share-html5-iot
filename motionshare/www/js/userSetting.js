@@ -75,7 +75,14 @@ function loadRangeSetting(){
 
 function setContentsRange(e){
   var contentsR = e.target.getAttribute('data-nono');
-  //socket.emit('tekitou',contentsR);
+  localStorage.rangeSetting=contentsR;
+  if(whoAmI!="0"){
+    if(contentsR==0)
+    whoAmI = "11";
+    else
+    whoAmI = "1";
+  }
+
 }
 
 function setPhoneShare(){
