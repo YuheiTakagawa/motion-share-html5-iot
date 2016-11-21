@@ -444,3 +444,21 @@ function saveMotion(){
   createMotionArray="";
 
 }
+
+function showMotion(){
+  if(!(localStorage.createMotion=== void 0)){
+    motionJSON=JSON.parse(localStorage.createMotion);
+  }
+  for(var i in motionJSON){
+    var item=document.createElement('li');
+    var nameSpan = "<span class='cyan-text scheTitle'>"+i+"</span>";
+    var numberSpan = "<p class='text-col scheAbout'>"+motionJSON[i].motion+"</p>";
+    var deleteSpan = "<a class='secondary-content badge'><i class='fa fa-cyan fa-close list-close'></i></a>";
+
+    var html = "<a>"+ nameSpan+numberSpan+deleteSpan+"</a>";
+    item.innerHTML = html;
+
+    $(item).addClass("collection-item avatar");
+    $("#createMotionList").append(item);
+  }
+}

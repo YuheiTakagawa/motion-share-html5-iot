@@ -59,6 +59,7 @@ function PageControll(val){
       case 5:
       $("#view").innerHTML = "<div id='makeMotion'></div>";
       $("#view").load("makeMotion.html",function(){
+        showMotion();
         $('.fixed-action-btn').closeFAB();
       });
       makeMotionBool = true;
