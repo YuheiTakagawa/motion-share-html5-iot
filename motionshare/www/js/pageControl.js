@@ -82,9 +82,9 @@ function PageControll(val){
       $(".brand-logo").html("Public Range Setting");
       menuValue=0;
       break;
-      case 7:
+      case 8:
       $("#view").innerHTML = "<div id='friendList'></div>";
-      $("#view").load("friendList.html",function(){
+      $("#view").load("FriendList.html",function(){
         $('.fixed-action-btn').closeFAB();
         loadRangeSetting();
         friend.initialize();
