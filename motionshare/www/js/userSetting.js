@@ -11,6 +11,7 @@ function setUserInfo(){
       "Pass2":$("#userPass2").val()
     };
     localStorage.contact=JSON.stringify(users);
+    localStorage.setItem("userId", users["Id"]);
     alert("Saved user information");
     var index=2;
     var order = "nth-child("+index+")";

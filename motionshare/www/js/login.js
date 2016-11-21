@@ -52,6 +52,7 @@ function requestLogin(){
   //alert(id + ':' + pass);
 
   socket.emit("request log in", [ id , pass ]);
+  localStorage.setItem("userId", id);
 
   socket.on('verify log in', function(data){
     if(data == 4649){
