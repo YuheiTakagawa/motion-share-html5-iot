@@ -140,6 +140,8 @@ function receiveContact(rcvCtt){
   var mail=rcvCttString[3];
 
   alert("Received contact of "+ name);
+  //サーバに自分のuserIDと相手のuserIDを送信する
+  socket.emit("create relation",[localStorage.getItem("userId"),rcvCttString[1]]);
   var newContact=navigator.contacts.create({"displayName":name});
   var phoneNumbers=[];
   phoneNumbers[0] = new ContactField('mobile', phone, true); // preferred number
