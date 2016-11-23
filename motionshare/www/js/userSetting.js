@@ -3,12 +3,12 @@ shareSetting=11;
 function setUserInfo(){
   $(function(){
     var users={
-      "Name":$("#userName").val(),
-      "Id":$("#userId").val(),
-      "Phone":$("#userPhone").val(),
-      "Mail":$("#userMail").val(),
-      "Pass1":$("#userPass1").val(),
-      "Pass2":$("#userPass2").val()
+      "Name":$("#userChangeName").val(),
+      //"Id":$("#userId").val(),
+      "Phone":$("#userChangePhone").val(),
+      "Mail":$("#userChangeMail").val(),
+      //"Pass1":$("#userPass1").val(),
+      //"Pass2":$("#userPass2").val()
     };
     localStorage.contact=JSON.stringify(users);
     alert("Saved user information");
@@ -28,12 +28,12 @@ function showUserInfo(){
   $(function(){
     if(!(localStorage.contact===void 0)){
       var users=JSON.parse(localStorage.contact);
-      $("#userName").val(users["Name"]);
-      $("#userId").val(users["Id"]);
-      $("#userPhone").val(users["Phone"]);
-      $("#userMail").val(users["Mail"]);
-      $("#userPass1").val(users["Pass1"]);
-      $("#userPass2").val(users["Pass2"]);
+      $("#userChangeName").val(users["Name"]);
+      //$("#userId").val(users["Id"]);
+      $("#userChangePhone").val(users["Phone"]);
+      $("#userChangeMail").val(users["Mail"]);
+      //$("#userPass1").val(users["Pass1"]);
+      //$("#userPass2").val(users["Pass2"]);
     }
   });
 }
@@ -77,16 +77,16 @@ function searchUser(){
   $(function(){
     navigator.contacts.pickContact(function(contact){
       //alert('The following contact has been selected:' + JSON.stringify(contact));
-      $("#userName").val(contact.displayName);
+      $(".userName").val(contact.displayName);
       if(contact.phoneNumbers!=null){
-        $("#userPhone").val(contact.phoneNumbers[0].value);
+        $(".userPhone").val(contact.phoneNumbers[0].value);
       }else{
-        $("#userPhone").val("");
+        $(".userPhone").val("");
       }
       if(contact.emails!=null){
-        $("#userMail").val(contact.emails[0].value);
+        $(".userMail").val(contact.emails[0].value);
       }else{
-        $("#userMail").val("");
+        $(".userMail").val("");
       }
       //alert('The following contact has been selected:' + JSON.stringify(contact));
     },function(err){

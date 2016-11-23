@@ -1,14 +1,19 @@
 <!-- page5.html -->
 <div id="page5Content">
-  <label class="text-col">Name：<input id="userName" type="text" placeholder="NAME" required></label>
+  <label class="text-col">Name：<input id="userChangeName" type="text" placeholder="NAME" required class="userName"></label>
+  <!--
   <label class="text-col">ID：<input id="userId" type="text" placeholder="ID" required></label>
-  <label class="text-col">Tel：<input id="userPhone" type="tel" pattern="\d{1,5}\d{1,4}\d{4,5}" title="not (-)" placeholder="PHONE NUMBER"></label>
-  <label class="text-col">Mail：<input id="userMail" type="email" placeholder="MAIL"></label>
-  <label class="text-col">Password：<input id="userPass1" type="password" placeholder="PASS"></label>
-  <label class="text-col">Password-Confirmation：<input id="userPass2" type="password" placeholder="PASS"></label>
-  <div class="center">
-    <a onClick="setUserInfo();showUserMenu()" href="#" class="btn-large deviceBtn mt cyan">save</a>
-    <a onClick="searchUser()" href="#" class="btn-large deviceBtn mt cyan">search</a>
-  </div>
+-->
+<label class="text-col">Tel：<input id="userChangePhone" type="tel" pattern="\d{1,5}\d{1,4}\d{4,5}" title="not (-)" placeholder="PHONE NUMBER" class="userPhone"></label>
+<label class="text-col">Mail：<input id="userChangeMail" type="email" placeholder="MAIL" class="userMail"></label>
+<!--
+<label class="text-col">Password：<input id="userPass1" type="password" placeholder="PASS"></label>
+<label class="text-col">Password-Confirmation：<input id="userPass2" type="password" placeholder="PASS"></label>
+
+-->
+<div class="center">
+  <a onClick="setUserInfo();showUserMenu()" href="#" class="btn-large deviceBtn mt cyan">save</a>
+  <a onClick="searchUser()" href="#" class="btn-large deviceBtn mt cyan">search</a>
+</div>
 </div>
 <!-- #Page5Content -->
