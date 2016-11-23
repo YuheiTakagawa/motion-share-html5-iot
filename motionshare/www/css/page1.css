@@ -10,3 +10,8 @@ padding: 14px 16px;
 .mt{
   margin-top: 20px;
 }
+
+#DeviceSelectContent
+*, *:before, *:after {
+  box-sizing: content-box;
+}
