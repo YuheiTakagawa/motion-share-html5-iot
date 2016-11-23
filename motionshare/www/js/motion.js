@@ -133,7 +133,8 @@ var motionJSON={};
 
       //握手ー加速度・ジャイロによる判定
       if(handshakeCnt > 3){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
+        var userId = localStorage.getItem("userId");
+        socket.emit("send motion data", userId + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
         audioPlay(0);
         handshakeCnt = 0;
         handshakeBool = false;
@@ -145,7 +146,8 @@ var motionJSON={};
 
       //グータッチー加速度・ジャイロによる判定
       if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
+        var userId = localStorage.getItem("userId");
+        socket.emit("send motion data", userId + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
         audioPlay(1);
         gooTouchCnt = 0;
         rotationalphaCnt = 0;
@@ -159,7 +161,8 @@ var motionJSON={};
 
       //ハイタッチー加速度・ジャイロによる判定
       if(highTouchCnt >= 1 && highTouchBool == true){
-        socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
+        var userId = localStorage.getItem("userId");
+        socket.emit("send motion data", userId + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
         audioPlay(2);
         highTouchCnt = 0;
         highTouchBool = false;
