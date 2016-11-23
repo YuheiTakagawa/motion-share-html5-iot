@@ -73,6 +73,7 @@ function getCameraBase64(){
       var n = 2;//ここは10
       canvas.width = width / n;
       canvas.height = height / n;
+      if(canvas.width*canvas.height>10^6){
       canvas.getContext("2d").drawImage(image, 0, 0, width / n, height / n);
 
       var data=canvas.toDataURL("image/jpeg",1.0);
@@ -81,6 +82,7 @@ function getCameraBase64(){
       //alert(data);
       $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
       localStorage.setItem('imageData',data);
+    }
       // JPEG形式のほうが良い圧縮率が得られると思われます。
       // 第2引数は品質レベルで、0.0~1.0の間の数値です。高いほど高品質。
       // return canvas.toDataURL("image/jpeg", 0.5);
