@@ -73,7 +73,7 @@ function getCameraBase64(){
       var n = 2;//ここは10
       canvas.width = width / n;
       canvas.height = height / n;
-      if(canvas.width*canvas.height>10^6){
+      if(canvas.width*canvas.height>921600){
       canvas.getContext("2d").drawImage(image, 0, 0, width / n, height / n);
 
       var data=canvas.toDataURL("image/jpeg",1.0);

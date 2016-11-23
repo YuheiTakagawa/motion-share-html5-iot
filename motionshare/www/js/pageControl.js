@@ -84,6 +84,15 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Create an Account");
+      case 8:
+      $("#view").innerHTML = "<div id='friendList'></div>";
+      $("#view").load("FriendList.html",function(){
+        $('.fixed-action-btn').closeFAB();
+        loadRangeSetting();
+        friend.initialize();
+      });
+      removeAnimationClass();
+      $(".brand-logo").html("Friend List");
       menuValue=0;
       break;
     }

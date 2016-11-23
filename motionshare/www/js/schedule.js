@@ -205,15 +205,15 @@ function sortObject(obj,callback){
 //スケジュールをリスト化する関数
 function scheduleAuto(index,datetime,note){
   var listItem = document.createElement('li');
-  var dateSpan = "<span class='cyan-text scheTitle'>"+datetime.replace(/T/g," ")+"</span>";
-  var noteSpan = "<p class='text-col scheAbout'>"+note+"</p>";
+  var dateSpan = "<span class='cyan-text listTitle'>"+datetime.replace(/T/g," ")+"</span>";
+  var noteSpan = "<p class='text-col listAbout'>"+note+"</p>";
   var deleteSpan = "<a class='secondary-content badge'><i class='fa fa-cyan fa-close list-close'></i></a>";
 
   var html = "<a>"+ dateSpan+noteSpan+deleteSpan+"</a>";
   listItem.innerHTML = html;
 
   $(listItem).val(index);
-  $(listItem).addClass("collection-item avatar");
+  $(listItem).addClass("collection-item avatar list-li");
   $("#scheduleLists").append(listItem);
 }
 
