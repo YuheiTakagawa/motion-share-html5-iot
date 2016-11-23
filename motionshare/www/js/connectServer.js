@@ -45,7 +45,7 @@ function sendContact(socketID){
   //配列形式
   var sendingContact=[];
   sendingContact[0]=befferContact.Name;
-  sendingContact[1]=befferContact.Id;
+  sendingContact[1]=localStorage.getItem("userId");
   sendingContact[2]=befferContact.Phone;
   sendingContact[3]=befferContact.Mail;
 
