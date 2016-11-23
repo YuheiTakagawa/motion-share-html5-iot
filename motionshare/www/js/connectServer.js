@@ -148,6 +148,8 @@ function receiveContact(rcvCtt){
   newContact.phoneNumbers=phoneNumbers;
   newContact.emails=emails;
   newContact.save();
+  disconnect();
+  connect();
 }
 
 
@@ -191,6 +193,8 @@ function receiveSchedule(rcvMsg){
   $("#view").load('scheduleList.html',function(){
     scheduleFanc.initialize();
   });
+  disconnect();
+  connect();
 }
 
 
@@ -203,4 +207,6 @@ function receivePhotoData(imageData){
   $('.card-image').removeClass('loadingWidth');
   $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
   //saveBase64PhotoData(data);
+  disconnect();
+  connect();
 }
