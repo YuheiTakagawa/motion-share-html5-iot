@@ -60,7 +60,7 @@ bindEvents: function() {
 
 //友達リストから指定したフレンドを削除する
 deleteFriend:function(e){
-  if(confirm("delete this friend?")==1){
+  if(confirm("remove this friend?")==1){
     //JSONで扱う処理 インデックスの変更とJSONからの削除
     var friendId=$(this).parent().val();
     $(this).parent().remove();

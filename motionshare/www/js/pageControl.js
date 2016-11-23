@@ -90,7 +90,7 @@ function PageControll(val){
         friend.initialize();
       });
       removeAnimationClass();
-      $(".brand-logo").html("Public Range Setting");
+      $(".brand-logo").html("Friend List");
       menuValue=0;
       break;
     }
