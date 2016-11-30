@@ -3,8 +3,9 @@ function getCameraBase64(){
   navigator.camera.getPicture(
     function(imageData){
       // cameraSuccess
-      localStorage.setItem('imageData', imageData);
+      //localStorage.setItem('imageData', imageData);
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+      makeSmall();
     },
     function(message){
       // cameraError
@@ -25,8 +26,9 @@ function getCameraBase64(){
     navigator.camera.getPicture(
       function(imageData){
         // cameraSuccess
-        localStorage.setItem('imageData', imageData);
+        //localStorage.setItem('imageData', imageData);
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+        makeSmall();
       },
       function(message){
         // cameraError
@@ -58,9 +60,8 @@ function getCameraBase64(){
     }
 
 
-    function makeSmall(data) {
+    function makeSmall() {
       // 画像データの縦横サイズを取得する
-      //var image = document.createElement("image");
       var image = new Image();
       image.src = $("#camera_pic").attr("src");
       var width = $("#camera_pic").get(0).naturalWidth;
@@ -71,7 +72,6 @@ function getCameraBase64(){
       // 縮小する。今回は縦横それぞれ1/2
       var canvas = document.createElement("canvas");
       var n = 3;//ここは10
-//ばぐ
       while(width > 1000 && height >1000){
         width=2*width/n;
         height=2*height/n;
@@ -86,7 +86,6 @@ function getCameraBase64(){
         $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
         localStorage.setItem('imageData',data);
         }
-
       // JPEG形式のほうが良い圧縮率が得られると思われます。
       // 第2引数は品質レベルで、0.0~1.0の間の数値です。高いほど高品質。
       // return canvas.toDataURL("image/jpeg", 0.5);
