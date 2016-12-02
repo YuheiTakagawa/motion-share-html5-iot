@@ -32,6 +32,7 @@
 <link rel="stylesheet" type="text/css" href="css/page2.css" />
 <link rel="stylesheet" type="text/css" href="css/scheduleList.css" />
 <link rel="stylesheet" type="text/css" href="css/login.css" />
+<link rel="stylesheet" type="text/css" href="css/pure-drawer.min.css" />
 
 <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="lib/jquery/jquery-ui.min.js"></script>
@@ -84,85 +85,129 @@
 
 
       <div id="wrap">
+
+        <!--
         <nav class="grey lighten-5">
-          <a href="#" class="brand-logo center cyan-text">Home</a>
-          <a href="#" class="right black-text" id="modeStatus" onclick="modeChange()"></a>
-          <ul id="slide-out" class="side-nav blue-grey lighten-5">
-            <div class="userView bottom-line">
-              <div class="chip"><a href="#!name"><i class="fa fa-fw fa-2x fa-cyan fa-user showUserIcon"></i><span class="info-mt">your infomation</span></a></div>
-              <a href="#!name"><span id="userNameM" class="name">watanabe takagawa</span></a>
-              <a href="#!tel"><span id="userPhoneM" class="tel">000-0000-0000</span></a>
-              <a href="#!email"><span id="userMailM" class="email">mirai@fun.ac.jp</span></a>
-            </div>
-            <li id="link"><a class="animsition-link" onClick="PageControll(0)" href="#">Home</a></li>
-            <li id="link"><a class="animsition-link" onClick="PageControll(3)" href="#">Schedule</a></li>
-            <li id="link"><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
-            <li id="link"><a class="animsition-link" onClick="PageControll(5)" href="#">Making Motion</a></li>
-            <li id="link"><a class="animsition-link" onClick="PageControll(8)" href="#">Friend List</a></li>
-            <li id="setting">
-              <a class="dropdown-button" data-activates="dropdown2" href="#">Setting</a>
-              <ul id='dropdown2' class='dropdown-content settingMenu'>
-                <li id="link"><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
-                <li id="link"><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
-                <li id="link"><a class="animsition-link" onClick="PageControll(6)" href="#">Public Range</a></li>
-              </ul>
-            </li>
+        <a href="#" class="brand-logo center cyan-text">Home</a>
+        <a href="#" class="right black-text" id="modeStatus" onclick="modeChange()"></a>
+        <ul id="slide-out" class="side-nav blue-grey lighten-5">
+        <div class="userView bottom-line">
+        <div class="chip"><a href="#!name"><i class="fa fa-fw fa-2x fa-cyan fa-user showUserIcon"></i><span class="info-mt">your infomation</span></a></div>
+        <a href="#!name"><span id="userNameM" class="name">watanabe takagawa</span></a>
+        <a href="#!tel"><span id="userPhoneM" class="tel">000-0000-0000</span></a>
+        <a href="#!email"><span id="userMailM" class="email">mirai@fun.ac.jp</span></a>
+      </div>
+      <li id="link"><a class="animsition-link" onClick="PageControll(0)" href="#">Home</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(3)" href="#">Schedule</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(5)" href="#">Making Motion</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(8)" href="#">Friend List</a></li>
+      <li id="setting">
+      <a class="dropdown-button" data-activates="dropdown2" href="#">Setting</a>
+      <ul id='dropdown2' class='dropdown-content settingMenu'>
+      <li id="link"><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
+      <li id="link"><a class="animsition-link" onClick="PageControll(6)" href="#">Public Range</a></li>
+    </ul>
+  </li>
 
-            <div class="switch ml10">
-              <label>SEND MODE<input type="checkbox" name="modeChangeBtn" onclick="modeChange();"><span class="lever"></label>
-              </div>
-              <div class="logoutBtnArea">
-                <p>
-                  <input class="with-gap cyan animsition-link" name="group3" type="radio" id="test5" checked />
-                  <label for="test5" onClick="logout();">Logout</label>
-                </p>
-              </div>
+  <div class="switch ml10">
+  <label>SEND MODE<input type="checkbox" name="modeChangeBtn" onclick="modeChange();"><span class="lever"></label>
+</div>
+<div class="logoutBtnArea">
+<p>
+<input class="with-gap cyan animsition-link" name="group3" type="radio" id="test5" checked />
+<label for="test5" onClick="logout();">Logout</label>
+</p>
+</div>
 
-            </ul>
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
-          </nav>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
+</nav>
 
-          <div class="container" style="margin-top:20px;">
-            <div id="view"></div>
-
-            <div id="fab" onclick="fabCon();" class="fixed-action-btn">
-              <a class="btn-floating btn-large l-white"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
-              <ul>
-                <li><a class="btn-floating l-white animsition-link" onClick="PageControll(0)"><i class="fa fa-fw fa-cyan fa-home"></i></a></li>
-                <li><a class="btn-floating l-white animsition-link" onClick="PageControll(1)"><i class="fa fa-fw fa-cyan fa-tablet"></i></a></li>
-                <li><a class="btn-floating l-white animsition-link" onClick="PageControll(3)"><i class="fa fa-fw fa-cyan fa-calendar-o"></i></a></li>
-                <li><a class="btn-floating l-white animsition-link" onClick="PageControll(4)"><i class="fa fa-fw fa-cyan fa-user"></i></a></li>
-                <li><a class="btn-floating l-white animsition-link" onClick="PageControll(5)"><i class="fa fa-fw fa-cyan fa-plus-circle"></i></a></li>
-              </ul>
-            </div>
+-->
 
 
-          </div>
-        </div><!-- /#wrap -->
-      </div><!-- /.app -->
+<div class="pure-container" data-effect="pure-effect-scaleRotate">
+  <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"/>
+  <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
+
+  <nav class="pure-drawer" data-position="left">
+      <ul>
+　　　　　<!-- ここがドロワーメニュー -->
+        <li>リスト1</li>
+        <li>リスト2</li>
+        <li>リスト3</li>
+        <li>リスト4</li>
+        <li>リスト5</li>
+        <li>リスト6</li>
+        <li>リスト7</li>
+        <li>リスト8</li>
+        <li>リスト9</li>
+        <li>リスト10</li>
+        <li>リスト11</li>
+        <li>リスト12</li>
+        <li>リスト13</li>
+        <li>リスト14</li>
+        <li>リスト15</li>
+      </ul>
+  </nav>
 
 
-      <script>
-      $('.button-collapse').sideNav({
-        menuWidth: 210, // Default is 240
-        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      });
 
-      $("#link").click(function(){
-        $('.button-collapse').sideNav("hide");
-      });
+<div class="pure-pusher-container">
+  <div class="pure-pusher">
+    <div class="inner">
+
+      <div class="container" style="margin-top:20px;">
+        <div id="view"></div>
+        <div id="fab" onclick="fabCon();" class="fixed-action-btn">
+          <a class="btn-floating btn-large l-white"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
+          <ul>
+            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(0)"><i class="fa fa-fw fa-cyan fa-home"></i></a></li>
+            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(1)"><i class="fa fa-fw fa-cyan fa-tablet"></i></a></li>
+            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(3)"><i class="fa fa-fw fa-cyan fa-calendar-o"></i></a></li>
+            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(4)"><i class="fa fa-fw fa-cyan fa-user"></i></a></li>
+            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(5)"><i class="fa fa-fw fa-cyan fa-plus-circle"></i></a></li>
+          </ul>
+        </div>
+      </div><!-- /.container -->
+
+    </div><!-- /.inner -->
+  </div><!-- /.pure-pusher-container -->
+</div><!-- /.pure-pusher -->
+
+<label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
+</div>
 
 
-    </script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script>
-    getLoginPage(openLoginPage);
-    audioInitialize();
-    showUserMenu();
-    bluetoothFanc.onDeviceReady();
-    setPhotoDATA();
-    modeChange();
-    getGeoStart();
-    </script>
-  </body>
-  </html>
+
+
+</div><!-- /#wrap -->
+</div><!-- /.app -->
+
+
+<script>
+$('.button-collapse').sideNav({
+  menuWidth: 210, // Default is 240
+  closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+});
+
+$("#link").click(function(){
+  $('.button-collapse').sideNav("hide");
+});
+
+
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+getLoginPage(openLoginPage);
+audioInitialize();
+showUserMenu();
+bluetoothFanc.onDeviceReady();
+setPhotoDATA();
+modeChange();
+getGeoStart();
+</script>
+</body>
+</html>
