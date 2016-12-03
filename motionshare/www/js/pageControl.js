@@ -84,6 +84,7 @@ function PageControll(val){
       });
       removeAnimationClass();
       $(".brand-logo").html("Create an Account");
+      break;
       case 8:
       $("#view").innerHTML = "<div id='friendList'></div>";
       $("#view").load("FriendList.html",function(){
