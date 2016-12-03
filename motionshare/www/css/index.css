@@ -217,11 +217,11 @@ body {
 /* --------------------------------------------------- hamburger */
 .hamburger-btn {
 	position: fixed;
-	top: 20px;
-	left: 20px;
+	top: 13px;
+	left: 15px;
 	display: block;
 	width: 40px;
-	font-size: 10px;
+	font-size: 5px;
 	text-align: center;
 	cursor: pointer;
 	z-index: 1;
@@ -229,7 +229,7 @@ body {
 
 .hamburger-btn__inner {
 	position: relative;
-	width: 40px;
+	width: 20px;
 	height: 30px;
 }
 
@@ -238,7 +238,7 @@ body {
 	top: 0;
 	left: 0;
 	display: block;
-	width: 40px;
+	width: 30px;
 	height: 5px;
 	background: #00bcd4;
 }
