@@ -175,7 +175,10 @@ body {
 	width: 150px;
 	height: 100%;
 	padding: 100px 0;
+  /*
 	background: #57DDDD;
+  */
+  background: #00bcd4;
 	-webkit-transition: all;
 	transition: all;
 	-webkit-transition-duration: .5s;
@@ -191,13 +194,14 @@ body {
 }
 
 .side-menu li {
-	text-align: center;
+	text-align: left;
 	opacity: 0;
 }
 
 .side-menu li a {
 	display: block;
 	height: 50px;
+  width: 150px;
 	line-height: 50px;
 	font-size: 12px;
 	color: #fff;
@@ -236,7 +240,7 @@ body {
 	display: block;
 	width: 40px;
 	height: 1px;
-	background: #fff;
+	background: #00bcd4;
 }
 
 .bar.patty {
@@ -249,7 +253,7 @@ body {
 
 .hamburger-btn__text {
 	margin-top: 8px;
-	color: #fff;
+	color: #00bcd4;
 }
 
 /* --------------------------------------------------- hover */
@@ -302,6 +306,18 @@ body {
 
 .hamburger-btn:hover ~ .side-menu li:nth-child(5),
 .side-menu:hover li:nth-child(5) {
+	-webkit-transition: opacity .8s linear 1.2s;
+	transition: opacity .8s linear 1.2s;
+	opacity: 1;
+}
+
+.hamburger-btn:hover ~ .side-menu li:nth-child(6),
+.hamburger-btn:hover ~ .side-menu li:nth-child(7),
+.hamburger-btn:hover ~ .side-menu li:nth-child(8),
+.side-menu:hover li:nth-child(6),
+.side-menu:hover li:nth-child(7),
+.side-menu:hover li:nth-child(8)
+ {
 	-webkit-transition: opacity .8s linear 1.2s;
 	transition: opacity .8s linear 1.2s;
 	opacity: 1;
