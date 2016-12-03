@@ -20,7 +20,6 @@
 ## Required ##
 *************/
 html, body {
-  height: 100%;
 }
 
 body {
@@ -32,7 +31,6 @@ body {
 **************/
 .pure-container {
   position: relative;
-  height: 100%;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -192,11 +190,11 @@ body {
   background-color: #374c5d;
   -webkit-transition-property: all;
           transition-property: all;
-  -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
   -webkit-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
-  width: 100%;
+  width: 50%;
 }
 
 @media only screen and (min-width: 40.063em) {
@@ -238,7 +236,6 @@ body {
 *********************/
 .pure-pusher-container {
   position: relative;
-  height: 100%;
   overflow: hidden;
 }
 
@@ -251,11 +248,11 @@ body {
   overflow-y: auto;
   left: 0;
   z-index: 2;
-  background-color: #fff;
+  background-color: #cfd8dc;
   -webkit-transition-property: -webkit-transform;
           transition-property: transform;
-  -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
   -webkit-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
 }
@@ -271,7 +268,7 @@ body {
   width: 0;
   height: 0;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 20);
   -webkit-transition-property: opacity;
           transition-property: opacity;
   -webkit-transition-duration: 500ms;

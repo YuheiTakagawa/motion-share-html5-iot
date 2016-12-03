@@ -32,7 +32,6 @@
 <link rel="stylesheet" type="text/css" href="css/page2.css" />
 <link rel="stylesheet" type="text/css" href="css/scheduleList.css" />
 <link rel="stylesheet" type="text/css" href="css/login.css" />
-<link rel="stylesheet" type="text/css" href="css/pure-drawer.css" />
 
 <script type="text/javascript" src="lib/jquery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="lib/jquery/jquery-ui.min.js"></script>
@@ -127,58 +126,42 @@
 
 -->
 
-
-<div class="pure-container" data-effect="pure-effect-scaleRotate">
-  <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"/>
-  <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
-
-  <nav class="pure-drawer" data-position="left">
-      <ul>
-　　　　　<!-- ここがドロワーメニュー -->
-        <li>リスト1</li>
-        <li>リスト2</li>
-        <li>リスト3</li>
-        <li>リスト4</li>
-        <li>リスト5</li>
-        <li>リスト6</li>
-        <li>リスト7</li>
-        <li>リスト8</li>
-        <li>リスト9</li>
-        <li>リスト10</li>
-        <li>リスト11</li>
-        <li>リスト12</li>
-        <li>リスト13</li>
-        <li>リスト14</li>
-        <li>リスト15</li>
-      </ul>
-  </nav>
-
-
-
-<div class="pure-pusher-container">
-  <div class="pure-pusher">
-    <div class="inner">
-
-      <div class="container" style="margin-top:20px;">
-        <div id="view"></div>
-        <div id="fab" onclick="fabCon();" class="fixed-action-btn">
-          <a class="btn-floating btn-large l-white"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
-          <ul>
-            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(0)"><i class="fa fa-fw fa-cyan fa-home"></i></a></li>
-            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(1)"><i class="fa fa-fw fa-cyan fa-tablet"></i></a></li>
-            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(3)"><i class="fa fa-fw fa-cyan fa-calendar-o"></i></a></li>
-            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(4)"><i class="fa fa-fw fa-cyan fa-user"></i></a></li>
-            <li><a class="btn-floating l-white animsition-link" onClick="PageControll(5)"><i class="fa fa-fw fa-cyan fa-plus-circle"></i></a></li>
-          </ul>
-        </div>
-      </div><!-- /.container -->
-
-    </div><!-- /.inner -->
-  </div><!-- /.pure-pusher-container -->
-</div><!-- /.pure-pusher -->
-
-<label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
+<div class="hamburger-btn">
+  <div class="hamburger-btn__inner">
+    <span class="bar crown"></span>
+    <span class="bar patty"></span>
+    <span class="bar heel"></span>
+  </div>
+  <p class="hamburger-btn__text">MENU</p>
 </div>
+<nav class="side-menu">
+  <ul>
+    <li><a href="#">Side Menu Title</a></li>
+    <li><a href="#">Side Menu Title</a></li>
+    <li><a href="#">Side Menu Title</a></li>
+    <li><a href="#">Side Menu Title</a></li>
+    <li><a href="#">Side Menu Title</a></li>
+  </ul>
+</nav>
+
+
+
+<div class="wrapper">
+  <div class="container" style="margin-top:20px;">
+    <div id="view"></div>
+    <div id="fab" onclick="fabCon();" class="fixed-action-btn">
+      <a class="btn-floating btn-large l-white"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
+      <ul>
+        <li><a class="btn-floating l-white animsition-link" onClick="PageControll(0)"><i class="fa fa-fw fa-cyan fa-home"></i></a></li>
+        <li><a class="btn-floating l-white animsition-link" onClick="PageControll(1)"><i class="fa fa-fw fa-cyan fa-tablet"></i></a></li>
+        <li><a class="btn-floating l-white animsition-link" onClick="PageControll(3)"><i class="fa fa-fw fa-cyan fa-calendar-o"></i></a></li>
+        <li><a class="btn-floating l-white animsition-link" onClick="PageControll(4)"><i class="fa fa-fw fa-cyan fa-user"></i></a></li>
+        <li><a class="btn-floating l-white animsition-link" onClick="PageControll(5)"><i class="fa fa-fw fa-cyan fa-plus-circle"></i></a></li>
+      </ul>
+    </div>
+  </div><!-- /.container -->
+</div>
+
 
 
 
