@@ -198,9 +198,17 @@ body {
 	opacity: 0;
 }
 
-.sideUserInfo li a{
+.mtSideListArea{
+  margin-top: 120px;
+}
+
+.sideUserInfoTitle{
+  margin-bottom: -20px;
+}
+.sideUserInfo li{
 	height: 30px;
 }
+
 
 .side-menu li a {
 	display: block;
