@@ -69,7 +69,11 @@ body {
     border-left: 7px solid #00bcd4;
   }
 
-  .card .card-image{margin-top: 24px;}
+  .card .card-image{
+    margin-top: 24px;
+    height: 200px;
+    overflow: hidden;
+  }
   .card .card-content { padding: 10px;}
   .card .card-image img{ border-radius: 0 0 0 0; }
 
