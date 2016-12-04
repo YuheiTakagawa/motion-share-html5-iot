@@ -174,7 +174,7 @@ body {
 	left: 0;
 	width: 150px;
 	height: 100%;
-	padding: 100px 0;
+	padding: 20px 0;
   /*
 	background: #57DDDD;
   */
@@ -196,6 +196,10 @@ body {
 .side-menu li {
 	text-align: left;
 	opacity: 0;
+}
+
+.sideUserInfo li a{
+	height: 30px;
 }
 
 .side-menu li a {
