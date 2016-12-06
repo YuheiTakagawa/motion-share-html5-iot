@@ -96,7 +96,7 @@ function PageControll(val){
       menuValue=0;
       break;
     }
-
+/*
     $("nav ul li").click(function () {
       var index = $("nav ul li").index(this);
       index += 2;
@@ -108,6 +108,7 @@ function PageControll(val){
       $("nav ul li:"+order+" a").css("color", "#fff");//選択された項目のtxt色を白に変更
       $("nav ul li:not(:"+order+") a").css("color", "#616161");//選択された項目のtxt色を黒に変更
     });
+    */
 
 
   });

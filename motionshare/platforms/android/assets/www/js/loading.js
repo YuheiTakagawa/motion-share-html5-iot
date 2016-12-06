@@ -6,10 +6,20 @@ $(function() {
 });
 
 $(window).load(function () { //全ての読み込みが完了したら実行
-  $('#loader-bg').delay(2200).fadeOut(800);
-  $('#loader').delay(2000).fadeOut(300);
+  $('#loader-bg').delay(2400).fadeOut(800);
+  $('#loader').delay(2100).fadeOut(300);
   $('#wrap').css('display', 'block');
+
+  setTimeout('animated()',2400);
+  setTimeout(function(){
+    $('#fab').addClass('animated bounce');
+  }, 2500);
 });
+
+function animated(){
+  $('.card').addClass('animated zoomInUp');
+  $('#cameraBtn').addClass('animated zoomInUp');
+}
 
 //10秒たったら強制的にロード画面を非表示
 $(function(){

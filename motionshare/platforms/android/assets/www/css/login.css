@@ -36,6 +36,11 @@
   margin-left: 12%;
 }
 
+.logoutBtnArea{
+  margin-top: -20px;
+  margin-left: 3%;
+}
+
 #loginContent
 [type="radio"]:checked+label:after,
 [type="radio"].with-gap:checked+label:before,

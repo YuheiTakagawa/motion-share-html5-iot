@@ -3,8 +3,9 @@ function getCameraBase64(){
   navigator.camera.getPicture(
     function(imageData){
       // cameraSuccess
-      localStorage.setItem('imageData', imageData);
+      //localStorage.setItem('imageData', imageData);
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+      makeSmall();
     },
     function(message){
       // cameraError
@@ -12,7 +13,7 @@ function getCameraBase64(){
     },
     {
       //option
-      quality : 75,
+      quality : 18,
       destinationType : Camera.DestinationType.DATA_URL,
       sourceType : Camera.PictureSourceType.CAMERA, // 0:Photo Library, 1=Camera, 2=Saved Album
       saveToPhotoAlbum: true,
@@ -25,15 +26,16 @@ function getCameraBase64(){
     navigator.camera.getPicture(
       function(imageData){
         // cameraSuccess
-        localStorage.setItem('imageData', imageData);
+        //localStorage.setItem('imageData', imageData);
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
+        makeSmall();
       },
       function(message){
         // cameraError
         alert(message);
       },
       {
-        quality : 75,
+        quality : 18,
         destinationType : Camera.DestinationType.DATA_URL,
         sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
       });
@@ -55,4 +57,36 @@ function getCameraBase64(){
       if(data == 'img/img.jpg'){
         $('#camera_pic').attr('src', data);
       }
+    }
+
+
+    function makeSmall() {
+      // 画像データの縦横サイズを取得する
+      var image = new Image();
+      image.src = $("#camera_pic").attr("src");
+      var width = $("#camera_pic").get(0).naturalWidth;
+      var height = $("#camera_pic").get(0).naturalHeight;
+
+      alert(width+","+height);
+
+      // 縮小する。今回は縦横それぞれ1/2
+      var canvas = document.createElement("canvas");
+      var n = 3;//ここは10
+      while(width > 1000 && height >1000){
+        width=2*width/n;
+        height=2*height/n;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0, width, height);
+
+        var data=canvas.toDataURL("image/jpeg",1.0);
+        // データURLにして返す。他にバイナリを返す toBlob() メソッドもあります。
+        data=data.replace(/data:image[\/]jpeg;base64,/g,"");
+        //alert(data);
+        $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
+        localStorage.setItem('imageData',data);
+        }
+      // JPEG形式のほうが良い圧縮率が得られると思われます。
+      // 第2引数は品質レベルで、0.0~1.0の間の数値です。高いほど高品質。
+      // return canvas.toDataURL("image/jpeg", 0.5);
     }

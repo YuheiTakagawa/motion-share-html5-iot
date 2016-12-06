@@ -209,7 +209,7 @@ function receivePhotoData(imageData){
   $('.card-image').removeClass('loadingWidth');
   $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
   //saveBase64PhotoData(data);
-  savePhoto();
   disconnect();
   connect();
+  savePhoto();
 }

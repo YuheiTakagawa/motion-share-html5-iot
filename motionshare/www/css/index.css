@@ -36,10 +36,19 @@ body {
   .fa-white:before{color: white;}
 
 
-  .side-nav a { color: #616161; }
+  .side-nav a { color: #b0bec5; }
   .side-nav a:hover {
     background-color: #00bcd4;
     color: #fff;
+  }
+
+  .sideFont{
+    font-size: 12px;
+    margin-top: -20px;
+  }
+
+  .mtm20{
+    margin-top: -20px;
   }
 
 
@@ -70,12 +79,24 @@ body {
   }
 
   .card .card-image{
-    margin-top: 24px;
-    height: 200px;
+    /*
     overflow: hidden;
+    */
+    overflow: hidden;
+    height: 180px;/* トリミングしたい枠の高さ */
+
+
   }
   .card .card-content { padding: 10px;}
-  .card .card-image img{ border-radius: 0 0 0 0; }
+  .card .card-image img{
+    border-radius: 0 0 0 0;
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
 
 
   .btn-circle{
@@ -114,16 +135,16 @@ body {
   }
 
   #file_01,#mask_file_01{
-	display:none;
-}
-/*
-.showUserIcon{
-    background: #cfd8dc;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
+    display:none;
+  }
+  /*
+  .showUserIcon{
+  background: #cfd8dc;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 */

@@ -1,4 +1,4 @@
-var accgyr=[];
+dNum=[0,0,0,0,0,0,0,0,0];
 
 var bluetoothFanc = {
   //初期化
@@ -44,8 +44,8 @@ var bluetoothFanc = {
     var deviceName=deviceInfo.getDeviceName();
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
-        alert("自動接続成功:"+deviceName);
-        bluetoothSerial.receiveData();
+        alert("success:"+deviceName);
+        bluetoothFanc.receiveData();
       },this.onError);
     }else{
       //alert("本体を設定しています。");
@@ -78,7 +78,7 @@ var bluetoothFanc = {
     deviceInfo.setDeviceName("");
     bluetoothSerial.disconnect(
       function(){
-        alert("ペアリング解除成功");
+        alert("connecting success");
         tmpBtnTrigger(1);
       }, bluetoothFanc.onError);
     },
@@ -99,9 +99,8 @@ var bluetoothFanc = {
     //受信した文字列を整数に変換する
     splitString: function(data){
       var strings=data.split(",");
-
       for(var i=0;i<strings.length;i++){
-        accgyr[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ
+        dNum[i]=Number(strings[i]);    //accX,accY,accZ,gyrX,gryY,gryZ 重力加速度も対応化
       }
     },
 
@@ -120,7 +119,7 @@ var bluetoothFanc = {
       deviceInfo.setDeviceName("");
       tmpBtnTrigger(1);
       bluetoothSerial.disconnect(function(){
-        alert("本体に設定しました。");
+        alert("Setting Smart phone");
       },bluetoothFanc.onError);
     }
   };
@@ -150,7 +149,7 @@ var bluetoothFanc = {
       //ドロップダウンのDevicesの表示名を変更
       devices.innerHTML=name;
       //専用デバイスボタンの表示名を変更
-      deviceButton.innerHTML="<p>専用デバイス<br>"+name+"</p>";
+      deviceButton.innerHTML="<p>device<br>"+name+"</p>";
     },
   };
 
