@@ -23,6 +23,7 @@ body {
 .mt30 { margin-top: 30px; }
 .mr10 { margin-right: 10px;}
 .ml10 { margin-left: 10px; }
+.ml30 { margin-left: 30px; }
 .b30 {
   position: relative;
   margin-top:-10%;
@@ -118,6 +119,10 @@ body {
 }
 .pb30{
   padding-bottom: 30%;
+}
+
+.text-trans{
+  text-transform: capitalize!important;
 }
 /*
 .showUserIcon{
