@@ -112,6 +112,9 @@ body {
   #file_01,#mask_file_01{
 	display:none;
 }
+.pb30{
+  padding-bottom: 30%;
+}
 /*
 .showUserIcon{
     background: #cfd8dc;
