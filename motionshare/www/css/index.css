@@ -13,6 +13,10 @@ body {
   width:70%;
 }
 
+.btn-middle{
+  width:47%;
+}
+
 .text-col{ color: #616161;}
 
 .mt10 { margin-top: 10px; }
