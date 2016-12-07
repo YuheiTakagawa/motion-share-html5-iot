@@ -6,6 +6,7 @@ function getCameraBase64(){
       //localStorage.setItem('imageData', imageData);
       $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
       makeSmall();
+      senderMode();
     },
     function(message){
       // cameraError
@@ -29,6 +30,7 @@ function getCameraBase64(){
         //localStorage.setItem('imageData', imageData);
         $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + imageData);
         makeSmall();
+        senderMode();
       },
       function(message){
         // cameraError
