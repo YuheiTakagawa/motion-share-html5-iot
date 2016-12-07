@@ -9,7 +9,7 @@ function getCameraBase64(){
     },
     function(message){
       // cameraError
-      alert(message);
+      Materialize.toast(message, 2000);
     },
     {
       //option
@@ -32,7 +32,7 @@ function getCameraBase64(){
       },
       function(message){
         // cameraError
-        alert(message);
+        Materialize.toast(message, 2000);
       },
       {
         quality : 18,
@@ -67,7 +67,7 @@ function getCameraBase64(){
       var width = $("#camera_pic").get(0).naturalWidth;
       var height = $("#camera_pic").get(0).naturalHeight;
 
-      alert(width+","+height);
+      //Materialize.toast(width+","+height, 2000);
 
       // 縮小する。今回は縦横それぞれ1/2
       var canvas = document.createElement("canvas");

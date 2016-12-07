@@ -9,7 +9,8 @@ function saveBase64PhotoData(data) {
         },
 
         function(path) {
-            alert("Saved photo:"+path);
+            //alert("Saved photo:"+path);
+            Materialize.toast('Saved Photo:\n'+path, 2000);
             var photoname=path.match(".+/(.+?)$")[1];
             $("#photoName").html(photoname);
         },

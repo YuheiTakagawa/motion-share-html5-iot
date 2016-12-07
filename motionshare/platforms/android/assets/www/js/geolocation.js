@@ -25,7 +25,7 @@ $(function () {
         // onError Callback receives a PositionError object
         //
         function onError(error) {
-            alert('code: '    + error.code    + '\n' +
-                  'message: ' + error.message + '\n');
+            Materialize.toast('code: '    + error.code    + '\n' +
+                              'message: ' + error.message + '\n', 2000);
         }
 });
