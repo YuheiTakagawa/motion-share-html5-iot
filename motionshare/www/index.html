@@ -120,7 +120,8 @@
               </div>
 
             </ul>
-            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
+            <a id="menubar" href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
+            <a id="menubar-back" href="#" style="display:none;" class="cyan-text"><i class="fa fa-fw fa-cyan fa-chevron-left"></i>Back</a>
           </nav>
 
           <div class="container" style="margin-top:30px;">
@@ -155,17 +156,25 @@
       });
 
 
+      $("#menubar-back").click(function(){
+        if(menuValue==0){
+          PageControll(0);
+        }else if(menuValue==2){
+          scheduleList();
+        }
+      });
 
-    </script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script>
-    getLoginPage(openLoginPage);
-    audioInitialize();
-    showUserMenu();
-    bluetoothFanc.onDeviceReady();
-    setPhotoDATA();
-    modeChange();
-    getGeoStart();
-    </script>
-  </body>
-  </html>
+
+      </script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script>
+      getLoginPage(openLoginPage);
+      audioInitialize();
+      showUserMenu();
+      bluetoothFanc.onDeviceReady();
+      setPhotoDATA();
+      modeChange();
+      getGeoStart();
+      </script>
+    </body>
+    </html>
