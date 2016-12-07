@@ -141,7 +141,7 @@ var motionJSON={};
         SensorValueLoad = false;
         SensorValueLoadControl();
         //alert('握手');
-        Materialize.toast('HandShake', 2000);
+        Materialize.toast('Handshake', 2000);
       }
 
       //グータッチー加速度・ジャイロによる判定
@@ -169,7 +169,7 @@ var motionJSON={};
         SensorValueLoad = false;
         SensorValueLoadControl();
         //alert("ハイタッチ");
-        Materialize.toast('HighTouch', 2000);
+        Materialize.toast('Hi-Five', 2000);
       }
 
 

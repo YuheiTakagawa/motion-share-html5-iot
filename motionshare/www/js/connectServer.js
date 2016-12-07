@@ -62,7 +62,7 @@ function sendContact(socketID){
   sendingContact=btoa(unescape(encodeURIComponent(sendingContact)));
   socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
   disconnect();
-  alert("CONTACT GO TO SERVER");
+  Materialize.toast('Contact Data go to server', 2000);
   modeChange();
 }
 }
@@ -96,11 +96,11 @@ function sendSchedule(socketID){
       socket.emit("send real data to server", [ 1 , socketID , sendingSche ]);
       //socket.emit("html5_test", sendingSche);
       disconnect();
-      alert("SCHEDULE GO TO SERVER");
+      Materialize.toast('Schedule go to Server', 2000);
       modeChange();
     }else{
       disconnect();
-      alert("There are not sharable schedule");
+      Materialize.toast('There are not sharable schedule', 2000);
       modeChange();
     }
   }
@@ -112,7 +112,7 @@ function sendPhotoData(socketID){
   var data = localStorage.getItem('imageData');
   socket.emit("send real data to server", [ 2 , socketID , data ]);
   disconnect();
-  alert("PHOTO GO TO SERVER");
+  Materialize.toast('Photo go to Server', 2000);
   modeChange();
 }
 
@@ -140,6 +140,7 @@ function receiveContact(rcvCtt){
   var mail=rcvCttString[3];
 
   alert("Received contact of "+ name);
+  Materialize.toast('Received contact of'+ name, 2000);
   //サーバに自分のuserIDと相手のuserIDを送信する
   socket.emit("create relation",[localStorage.getItem("userId"),rcvCttString[1]]);
   var newContact=navigator.contacts.create({"displayName":name});
@@ -203,7 +204,7 @@ function receiveSchedule(rcvMsg){
 //  contentID:2 画像 受信処理
 function receivePhotoData(imageData){
   localStorage.setItem('imageData', imageData);
-  alert("Received photo");
+  Materialize.toast('Received Photo', 2000);
   var data = localStorage.getItem('imageData');
 
   $('.card-image').removeClass('loadingWidth');
