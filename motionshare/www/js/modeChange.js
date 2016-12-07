@@ -32,7 +32,7 @@ function senderMode(){
   whoAmI = "1";
 
   //alert(whoAmI);
-  $("#modeStatus").html("<label>SEND</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
+  $("#modeStatus").html("<label>Send</label><i class='fa fa-fw fa-cyan fa-angle-double-up'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",true);
   changeMotionBool = true;
   socket.off('data request');
@@ -68,7 +68,7 @@ function senderMode(){
 function receiverMode(){
   connect();
   whoAmI = 0;
-  $("#modeStatus").html("<label>RECEIVE</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
+  $("#modeStatus").html("<label>Receive</label><i class='fa fa-fw fa-cyan fa-angle-double-down'></i>");
   $('input[name="modeChangeBtn"]').prop("checked",false);
 
   changeMotionBool = false;

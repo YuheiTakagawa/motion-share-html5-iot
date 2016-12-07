@@ -80,7 +80,9 @@ function searchUser(){
       //alert('The following contact has been selected:' + JSON.stringify(contact));
       $(".userName").val(contact.displayName);
       if(contact.phoneNumbers!=null){
-        $(".userPhone").val(contact.phoneNumbers[0].value);
+        var phone = contact.phoneNumbers[0].value.replace(/-/g,"");
+        alert(phone);
+        $(".userPhone").val(phone);
       }else{
         $(".userPhone").val("");
       }
