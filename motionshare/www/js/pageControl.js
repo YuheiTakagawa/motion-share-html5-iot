@@ -138,7 +138,8 @@ $(function(){
 //ページ遷移アニメーションのコントロール
 function removeAnimationClass(){
 
-  var type = "animated fadeIn";
+  //var type = "animated fadeIn";
+  var type = "animated flipInY";
 
   $("nav ul li").click(function(){
     $("#view").addClass(type);

@@ -101,8 +101,7 @@
             <li id="link"><a class="animsition-link" onClick="PageControll(4)" href="#">User Information</a></li>
             <li id="link"><a class="animsition-link" onClick="PageControll(5)" href="#">Making Motion</a></li>
             <li id="link"><a class="animsition-link" onClick="PageControll(8)" href="#">Friend List</a></li>
-            <li id="setting">
-              <a class="dropdown-button" data-activates="dropdown2" href="#">Setting</a>
+            <li id="setting" class="dropdown-button" data-activates="dropdown2" href="#">Setting</li>
               <ul id='dropdown2' class='dropdown-content settingMenu'>
                 <li id="link"><a class="animsition-link" onClick="PageControll(1)" href="#">Select Sensing Device</a></li>
                 <li id="link"><a class="animsition-link" onClick="PageControll(2)" href="#">Motion Debag</a></li>
@@ -127,6 +126,7 @@
           <div class="container" style="margin-top:30px;">
             <div id="view"></div>
 
+            <!--
             <div id="fab" onclick="fabCon();" class="fixed-action-btn">
               <a class="btn-floating btn-large l-white"><i class="fa fa-fw fa-cyan fa-bars"></i></a>
               <ul>
@@ -137,7 +137,11 @@
                 <li><a class="btn-floating l-white animsition-link" onClick="PageControll(5)"><i class="fa fa-fw fa-cyan fa-plus-circle"></i></a></li>
               </ul>
             </div>
+          -->
 
+          <div id="fab" onclick="fabCon();" class="fixed-action-btn">
+            <a class="btn-floating btn-large l-white animsition-link" onClick="PageControll(0)"><i class="fa fa-fw fa-cyan fa-home"></i></a>
+          </div>
 
           </div>
         </div><!-- /#wrap -->
@@ -147,12 +151,9 @@
       <script>
       $('.button-collapse').sideNav({
         menuWidth: 210, // Default is 240
-        closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
       });
 
-      $("#link").click(function(){
-        $('.button-collapse').sideNav("hide");
-      });
 
 
     </script>
