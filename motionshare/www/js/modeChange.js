@@ -2,7 +2,7 @@ var changeMotionBool = new Boolean(false);
 changeMotionBool = true; //true: 送信者 / false:受信者
 
 var whoAmI = "0";
-var menuValue=1;
+var menuValue=-1;
 
 
 /******************************************************************/
