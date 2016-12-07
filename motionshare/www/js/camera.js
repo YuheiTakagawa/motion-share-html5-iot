@@ -89,7 +89,7 @@ function getCameraBase64(){
       }
       $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
       localStorage.setItem('imageData',data);
-      alert(width+","+height);
+      //alert(width+","+height);
       // JPEG形式のほうが良い圧縮率が得られると思われます。
       // 第2引数は品質レベルで、0.0~1.0の間の数値です。高いほど高品質。
       // return canvas.toDataURL("image/jpeg", 0.5);
