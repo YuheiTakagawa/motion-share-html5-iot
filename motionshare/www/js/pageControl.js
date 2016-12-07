@@ -3,7 +3,7 @@ function PageControll(val){
   if(val==3) $('#fab').addClass('fab');
   else $('#fab').removeClass('fab');
 
-  if(val == !5) makeMotionBool = false;
+  if(val != 5) makeMotionBool = false;
 
   $(function() {
     switch(val){
