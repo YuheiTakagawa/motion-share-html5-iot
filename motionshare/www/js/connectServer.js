@@ -152,7 +152,7 @@ function receiveContact(rcvCtt){
   newContact.emails=emails;
   newContact.save();
   disconnect();
-  connect();
+  receiverMode();
 }
 
 
@@ -197,7 +197,7 @@ function receiveSchedule(rcvMsg){
     scheduleFanc.initialize();
   });
   disconnect();
-  connect();
+  receiverMode();
 }
 
 
@@ -211,6 +211,6 @@ function receivePhotoData(imageData){
   $('#camera_pic').attr('src', 'data:image/jpeg;charset=utf-8;base64,' + data);
   //saveBase64PhotoData(data);
   disconnect();
-  connect();
+  receiverMode();
   savePhoto();
 }
