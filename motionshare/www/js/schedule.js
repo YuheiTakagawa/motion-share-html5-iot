@@ -229,6 +229,7 @@ function scheduleShow(){
 
 function scheduleCreate(){
   $(function(){
+    menuValue=2;
     $("#scheduleCreate").show();
     $("#scheduleList").hide();
     $(".brand-logo").html("new Schedule");
@@ -237,6 +238,7 @@ function scheduleCreate(){
 
 function scheduleList(){
   $(function(){
+    menuValue=0;
     $("#scheduleCreate").hide();
     $("#scheduleList").show();
     $(".brand-logo").html("Schedule");
