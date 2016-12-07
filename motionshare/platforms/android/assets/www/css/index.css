@@ -13,12 +13,17 @@ body {
   width:70%;
 }
 
+.btn-middle{
+  width:47%;
+}
+
 .text-col{ color: #616161;}
 
 .mt10 { margin-top: 10px; }
 .mt30 { margin-top: 30px; }
 .mr10 { margin-right: 10px;}
 .ml10 { margin-left: 10px; }
+.ml30 { margin-left: 30px; }
 .b30 {
   position: relative;
   margin-top:-10%;
@@ -102,10 +107,10 @@ body {
   .btn-circle{
     width: 25%;
     height: 50px;
-    padding: 15px 15px;
+    padding: 25px 25px;
     font-size: 20px;
     line-height: 2.33;
-    border-radius: 35px;
+    border-radius: 45px;
     background-color: #eceff1;
     /*opacity: 0.2;*/
     border: 2px solid #00bcd4;
@@ -135,6 +140,7 @@ body {
   }
 
   #file_01,#mask_file_01{
+<<<<<<< HEAD
     display:none;
   }
   /*
@@ -146,5 +152,13 @@ body {
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
+	display:none;
 }
 */
+.pb30{
+  padding-bottom: 30%;
+}
+
+.text-trans{
+  text-transform: capitalize!important;
+}
