@@ -5,18 +5,24 @@ var scheIndex=-1;     //スケジュールのリストの要素番号を管理�
 /********              スケジュール 初期化系処理        ***********/
 /******************************************************************/
 
+$(function(){
+  if(!(localStorage.schedule===void 0)){
+    scheduleJson=JSON.parse(localStorage.schedule);
+  }
+
+});
 var scheduleFanc = {
 
   //初期化
   initialize: function() {
-      //スケジュール一覧画面の更新
-      $("#scheduleCreate").hide();
-      //ローカルストレージに保存されているスケジュール用のJSONを格納する
-      if(!(localStorage.schedule===void 0)){
-        scheduleJson=JSON.parse(localStorage.schedule);
-        this.readySchedule();
-      }
-      this.bindEvents();
+    //スケジュール一覧画面の更新
+    $("#scheduleCreate").hide();
+    //ローカルストレージに保存されているスケジュール用のJSONを格納する
+    if(!(localStorage.schedule===void 0)){
+      scheduleJson=JSON.parse(localStorage.schedule);
+      this.readySchedule();
+    }
+    this.bindEvents();
   },
 
   //ソートとローカル保存処理
@@ -75,7 +81,7 @@ function autoScheduleDelete(){
   //過ぎたスケジュールを削除する
   for(var key in scheduleJson){
     if(getTimestamp(scheduleJson[key].date)<$.now()){
-      alert("Deleted:"+scheduleJson[key].note+" at "+scheduleJson[key].date);
+      Materialize.toast("Deleted:"+scheduleJson[key].note+" at "+scheduleJson[key].date,2000);
       delete scheduleJson[key];
       rea="1";
     }
@@ -118,13 +124,13 @@ function addSchedule(){
 
 //スケジュールをJSONに変換して保存する関数
 function scheduleToJson(date,note){
-    scheduleJson[scheIndex]={
-      "date":date,
-      "note":note
-    };
-    localStorage.schedule=JSON.stringify(scheduleJson);
-    //削除コマンド デバッグ用
-    //localStorage.removeItem("schedule");
+  scheduleJson[scheIndex]={
+    "date":date,
+    "note":note
+  };
+  localStorage.schedule=JSON.stringify(scheduleJson);
+  //削除コマンド デバッグ用
+  //localStorage.removeItem("schedule");
 };
 
 /******************************************************************/
@@ -256,6 +262,7 @@ function scheduleIndexChild(e){
 //リスト自体のタッチイベントに対応
 function scheduleIndex(e){
   sessionStorage.scheduleIndex=$(this).val();
-  alert("Changed schedule");
+  Materialize.toast("Changed schedule",2000);
   PageControll(0);
+  senderMode();
 }

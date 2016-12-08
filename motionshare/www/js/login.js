@@ -13,34 +13,43 @@ function getLoginPage(bool){
 
 function setAccountInfo(){
   $(function(){
-    var users={
-      "Name":$("#userName").val(),
-      "Id":$("#userId").val(),
-      "Phone":$("#userPhone").val(),
-      "Mail":$("#userMail").val(),
-      "Pass1":$("#userPass1").val(),
-      "Pass2":$("#userPass2").val()
-    };
-    localStorage.contact=JSON.stringify(users);
+    if($("#userId").val()!=""){
+      if(($("#userPass").val()==$("#userPass2").val())&&$("#userPass").val()!=""){
+        var users={
+          "Name":$("#userName").val(),
+          "Id":$("#userId").val(),
+          "Phone":$("#userPhone").val(),
+          "Mail":$("#userMail").val(),
+          "Pass1":$("#userPass").val(),
+          "Pass2":$("#userPass2").val()
+        };
+        localStorage.contact=JSON.stringify(users);
+        sendAccountInfo();
+      }else{
+        Materialize.toast("Password is false.",2000,'red');
+      }
+    }else{
+      Materialize.toast("Enter user id.",2000,'red');
+    }
   });
 }
 
 
 function sendAccountInfo(){
   var id = $("#userId").val();
-  var pass = $("#userPass1").val();
-  alert(id + "," + pass);
+  var pass = $("#userPass").val();
+  Materialize.toast(id + "," + pass,2000);
 
   socket.emit("check sign up", id);
 
   socket.on("verify sign up", function(data){
     if(data == 1){
-      alert("success");
+      Materialize.toast("success",2000);
       $("#view").load("login.html",function(){
         socket.emit("finalize sign up", [ id , pass ]);
       });
     }else{
-      alert("failed");
+      Materialize.toast("failed",2000,'red');
     }
   });
 }
@@ -56,12 +65,12 @@ function requestLogin(){
 
   socket.on('verify log in', function(data){
     if(data == 4649){
-      alert("success");
+      Materialize.toast("success",2000,'blue');
       localStorage.setItem('openLoginPage', false);
       //alert(data);
       PageControll(0);
     }else{
-      alert("failed");
+      Materialize.toast("failed",2000,'red');
     }
   });
 }

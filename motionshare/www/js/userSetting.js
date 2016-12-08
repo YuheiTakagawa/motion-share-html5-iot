@@ -12,7 +12,7 @@ function setUserInfo(){
     };
     localStorage.contact=JSON.stringify(users);
     localStorage.setItem("userId", users["Id"]);
-    alert("Saved user information");
+    Materialize.toast("Saved user information",2000);
     var index=2;
     var order = "nth-child("+index+")";
     $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更
@@ -81,7 +81,7 @@ function searchUser(){
       $(".userName").val(contact.displayName);
       if(contact.phoneNumbers!=null){
         var phone = contact.phoneNumbers[0].value.replace(/-/g,"");
-        alert(phone);
+        //Materialize.toast(phone,2000);
         $(".userPhone").val(phone);
       }else{
         $(".userPhone").val("");
@@ -93,7 +93,7 @@ function searchUser(){
       }
       //alert('The following contact has been selected:' + JSON.stringify(contact));
     },function(err){
-      alert('Error: ' + err);
+      Materialize.toast('Error: ' + err,2000,'red');
     });
   });
 }

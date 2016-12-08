@@ -26,6 +26,6 @@ $(function () {
         //
         function onError(error) {
             Materialize.toast('code: '    + error.code    + '\n' +
-                              'message: ' + error.message + '\n', 2000);
+                              'message: ' + error.message + '\n', 2000,'red');
         }
 });
