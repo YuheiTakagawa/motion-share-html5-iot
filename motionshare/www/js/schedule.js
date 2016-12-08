@@ -5,6 +5,12 @@ var scheIndex=-1;     //スケジュールのリストの要素番号を管理�
 /********              スケジュール 初期化系処理        ***********/
 /******************************************************************/
 
+$(function(){
+  if(!(localStorage.schedule===void 0)){
+  scheduleJson=JSON.parse(localStorage.schedule);
+}
+
+});
 var scheduleFanc = {
 
   //初期化
