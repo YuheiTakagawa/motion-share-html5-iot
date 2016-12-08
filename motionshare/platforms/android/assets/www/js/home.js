@@ -66,7 +66,7 @@ function homeScheIni(){
 
 var audio=[];
 function audioInitialize(){
-  for(var i=0;i<6;i++){
+  for(var i=0;i<10;i++){
     audio[i]=new Audio();
   }
   audio[0].src="audio/handshaking.mp3";
@@ -75,8 +75,24 @@ function audioInitialize(){
   audio[3].src="audio/change.mp3";
   audio[4].src="audio/ta_ta_kira08.mp3"; //受信音
   audio[5].src="audio/cncl07.mp3"; //モーション作成音
+  audio[6].src="audio/ppap/PineApplePen.mp3";
+  audio[7].src="audio/ppap/PPAP.mp3";
+  audio[8].src="audio/ppap/ApplePen.mp3";
+  audio[9].src="audio/ppap/Nmmm.mp3";
 }
 
 function audioPlay(num){
   audio[num].play();
+}
+
+var ppapBool = new Boolean(false);
+ppapBool = false; //true: 送信者 / false:受信者
+function ppap(){
+  ppapBool = !ppapBool;
+
+  if(ppapBool == false){
+    Materialize.toast('nomal audio', 2000);
+  }else{
+    Materialize.toast('ppap audio', 2000);
+  }
 }

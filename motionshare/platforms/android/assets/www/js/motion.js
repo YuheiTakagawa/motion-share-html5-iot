@@ -135,7 +135,10 @@ var motionJSON={};
       if(handshakeCnt > 3){
         var userId = localStorage.getItem("userId");
         socket.emit("send motion data", userId + ',' + whoAmI + ',' + 0 + ',' + now.time() + ',' + geoData());
-        audioPlay(0);
+
+        if(ppapBool == false) audioPlay(0);
+        else audioPlay(6);
+
         handshakeCnt = 0;
         handshakeBool = false;
         SensorValueLoad = false;
@@ -148,7 +151,10 @@ var motionJSON={};
       if(gooTouchCnt >= 1 && gooTouchBool == true && gooTouchRotaBool == true){
         var userId = localStorage.getItem("userId");
         socket.emit("send motion data", userId + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
-        audioPlay(1);
+
+        if(ppapBool == false) audioPlay(1);
+        else audioPlay(7);
+
         gooTouchCnt = 0;
         rotationalphaCnt = 0;
         gooTouchBool = false;
@@ -163,7 +169,10 @@ var motionJSON={};
       if(highTouchCnt >= 1 && highTouchBool == true){
         var userId = localStorage.getItem("userId");
         socket.emit("send motion data", userId + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
-        audioPlay(2);
+
+        if(ppapBool == false) audioPlay(2);
+        else audioPlay(8);
+
         highTouchCnt = 0;
         highTouchBool = false;
         SensorValueLoad = false;
@@ -175,7 +184,10 @@ var motionJSON={};
 
       //チェンジー加速度・ジャイロによる判定
       if(changeCnt > 1){
-        audioPlay(3);
+
+        if(ppapBool == false) audioPlay(3);
+        else audioPlay(9);
+        
         changeCnt = 0;
         changeBool = false;
         SensorValueLoad = false;

@@ -89,7 +89,7 @@
         <nav class="grey lighten-5">
           <a href="#" class="brand-logo center cyan-text text-trans">Home</a>
           <a href="#" class="right black-text" id="modeStatus" onclick="modeChange()"></a>
-          <ul id="slide-out" class="side-nav blue-grey darken-4">
+          <ul id="slide-out" class="side-nav blue-grey darken-4" style="margin-top: -20px;">
             <div class="userView bottom-line">
               <div><a href="#!name"><span class="info-mt">your infomation</span></a></div>
               <a href="#!name" style="margin-top: -10px"><span id="userNameM" class="name">watanabe takagawa</span></a>
@@ -112,7 +112,10 @@
             <div class="switch ml10">
               <label>Send Mode<input type="checkbox" name="modeChangeBtn" onclick="modeChange();"><span class="lever"></label>
               </div>
-              <div class="logoutBtnArea">
+              <div class="switch ml10" style="margin-top: -20px">
+                <label>PPAP<input type="checkbox" name="" onclick="ppap();"><span class="lever"></label>
+                </div>
+              <div class="logoutBtnArea" style="margin-top: -20px">
                 <p>
                   <input class="with-gap cyan animsition-link" name="group3" type="radio" id="test5" checked />
                   <label for="test5" onClick="logout();">Logout</label>
