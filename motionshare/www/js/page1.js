@@ -49,7 +49,7 @@ var bluetoothFanc = {
       },this.onError);
     }else{
       //alert("本体を設定しています。");
-      $(".info2").text('<br>sensor from this device ...OK');
+      $(".info2").text('sensor from this device ...OK');
 
     }
   },
@@ -66,6 +66,7 @@ var bluetoothFanc = {
 
     bluetoothSerial.connect(deviceId, function(){
       Materialize.toast("success:"+deviceName, 2000);
+      $("#deviceStatus").html("<i class='fa fa-fw fa-cyan fa-bluetooth'></i>");
       bluetoothFanc.receiveData();
       tmpBtnTrigger(0);
     }, bluetoothFanc.onError);
@@ -80,6 +81,7 @@ var bluetoothFanc = {
       function(){
         //alert("connecting success");
         Materialize.toast("connecting success", 2000);
+        $("#deviceStatus").html("");
         tmpBtnTrigger(1);
       }, bluetoothFanc.onError);
     },
