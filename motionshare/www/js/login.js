@@ -26,10 +26,10 @@ function setAccountInfo(){
         localStorage.contact=JSON.stringify(users);
         sendAccountInfo();
       }else{
-        Materialize.toast("Password is false.",2000);
+        Materialize.toast("Password is false.",2000,'red');
       }
     }else{
-      Materialize.toast("Enter user id.",2000);
+      Materialize.toast("Enter user id.",2000,'red');
     }
   });
 }
@@ -49,7 +49,7 @@ function sendAccountInfo(){
         socket.emit("finalize sign up", [ id , pass ]);
       });
     }else{
-      Materialize.toast("failed",2000);
+      Materialize.toast("failed",2000,'red');
     }
   });
 }
@@ -65,12 +65,12 @@ function requestLogin(){
 
   socket.on('verify log in', function(data){
     if(data == 4649){
-      Materialize.toast("success",2000);
+      Materialize.toast("success",2000,'blue');
       localStorage.setItem('openLoginPage', false);
       //alert(data);
       PageControll(0);
     }else{
-      Materialize.toast("failed",2000);
+      Materialize.toast("failed",2000,'red');
     }
   });
 }

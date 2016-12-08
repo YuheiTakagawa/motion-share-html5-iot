@@ -44,7 +44,7 @@ var bluetoothFanc = {
     var deviceName=deviceInfo.getDeviceName();
     if(deviceId!=""){
       bluetoothSerial.connect(deviceId,function(){
-        Materialize.toast("success:"+deviceName, 2000);
+        Materialize.toast("success:"+deviceName, 2000,'blue');
         bluetoothFanc.receiveData();
       },this.onError);
     }else{
@@ -65,7 +65,7 @@ var bluetoothFanc = {
     deviceInfo.setDeviceName(deviceName);
 
     bluetoothSerial.connect(deviceId, function(){
-      Materialize.toast("success:"+deviceName, 2000);
+      Materialize.toast("success:"+deviceName, 2000,'blue');
       bluetoothFanc.receiveData();
       tmpBtnTrigger(0);
     }, bluetoothFanc.onError);
@@ -79,7 +79,7 @@ var bluetoothFanc = {
     bluetoothSerial.disconnect(
       function(){
         //alert("connecting success");
-        Materialize.toast("connecting success", 2000);
+        Materialize.toast("connecting success", 2000,'blue');
         tmpBtnTrigger(1);
       }, bluetoothFanc.onError);
     },
@@ -107,7 +107,7 @@ var bluetoothFanc = {
 
 
     onError: function(reason) {
-      Materialize.toast("ERROR: " + reason,2000);
+      Materialize.toast("ERROR: " + reason,2000,'red');
       // エラーが発生したら，本体に自動で切り替え
       bluetoothFanc.chooseSmart();
     },
@@ -120,7 +120,7 @@ var bluetoothFanc = {
       deviceInfo.setDeviceName("");
       tmpBtnTrigger(1);
       bluetoothSerial.disconnect(function(){
-        Materialize.toast("setting Smart phone", 2000);
+        Materialize.toast("setting Smart phone", 2000,'blue');
       },bluetoothFanc.onError);
     }
   };

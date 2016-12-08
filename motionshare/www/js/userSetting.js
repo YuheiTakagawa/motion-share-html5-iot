@@ -93,7 +93,7 @@ function searchUser(){
       }
       //alert('The following contact has been selected:' + JSON.stringify(contact));
     },function(err){
-      Materialize.toast('Error: ' + err,2000);
+      Materialize.toast('Error: ' + err,2000,'red');
     });
   });
 }

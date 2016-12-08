@@ -62,7 +62,7 @@ function sendContact(socketID){
   sendingContact=btoa(unescape(encodeURIComponent(sendingContact)));
   socket.emit("send real data to server", [ 0 , socketID , sendingContact ]);
   disconnect();
-  Materialize.toast('Contact Data go to server', 2000);
+  Materialize.toast('Contact Data go to server', 2000,'blue');
   modeChange();
 }
 }
@@ -96,11 +96,11 @@ function sendSchedule(socketID){
       socket.emit("send real data to server", [ 1 , socketID , sendingSche ]);
       //socket.emit("html5_test", sendingSche);
       disconnect();
-      Materialize.toast('Schedule go to Server', 2000);
+      Materialize.toast('Schedule go to Server', 2000,'blue');
       modeChange();
     }else{
       disconnect();
-      Materialize.toast('There are not sharable schedule', 2000);
+      Materialize.toast('There are not sharable schedule', 2000,'red');
       modeChange();
     }
   }
@@ -112,7 +112,7 @@ function sendPhotoData(socketID){
   var data = localStorage.getItem('imageData');
   socket.emit("send real data to server", [ 2 , socketID , data ]);
   disconnect();
-  Materialize.toast('Photo go to Server', 2000);
+  Materialize.toast('Photo go to Server', 2000,'blue');
   modeChange();
 }
 
@@ -139,8 +139,7 @@ function receiveContact(rcvCtt){
   var phone=rcvCttString[2];
   var mail=rcvCttString[3];
 
-  Materialize.toast("Received contact of "+ name,2000);
-  Materialize.toast('Received contact of'+ name, 2000);
+  Materialize.toast("Received contact of "+ name,2000,'blue');
   //サーバに自分のuserIDと相手のuserIDを送信する
   socket.emit("create relation",[localStorage.getItem("userId"),rcvCttString[1]]);
   var newContact=navigator.contacts.create({"displayName":name});
@@ -162,7 +161,7 @@ function receiveContact(rcvCtt){
 
 //  contentID:1 スケジュール 受信処理
 function receiveSchedule(rcvMsg){
-  Materialize.toast("Received schedule",2000);
+  Materialize.toast("Received schedule",2000,'blue');
   //Base64デコード
   rcvMsg=decodeURIComponent(escape(atob(rcvMsg)));
   //JSON形式
@@ -204,7 +203,7 @@ function receiveSchedule(rcvMsg){
 //  contentID:2 画像 受信処理
 function receivePhotoData(imageData){
   localStorage.setItem('imageData', imageData);
-  Materialize.toast('Received Photo', 2000);
+  Materialize.toast('Received Photo', 2000,'blue');
   var data = localStorage.getItem('imageData');
 
   $('.card-image').removeClass('loadingWidth');

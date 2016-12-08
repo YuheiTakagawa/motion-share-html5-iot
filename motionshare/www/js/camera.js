@@ -10,7 +10,7 @@ function getCameraBase64(){
     },
     function(message){
       // cameraError
-      Materialize.toast(message, 2000);
+      Materialize.toast(message, 2000,'red');
     },
     {
       //option
@@ -34,7 +34,7 @@ function getCameraBase64(){
       },
       function(message){
         // cameraError
-        Materialize.toast(message, 2000);
+        Materialize.toast(message, 2000,'red');
       },
       {
         quality : 18,

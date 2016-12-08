@@ -10,13 +10,13 @@ function saveBase64PhotoData(data) {
 
         function(path) {
             //alert("Saved photo:"+path);
-            Materialize.toast('Saved Photo:\n'+path, 2000);
+            Materialize.toast('Saved Photo:\n'+path, 2000,'blue');
             var photoname=path.match(".+/(.+?)$")[1];
             $("#photoName").html(photoname);
         },
 
         function(err) {
-            Materialize.toast(err,2000);
+            Materialize.toast(err,2000,'red');
         }
     );
 }

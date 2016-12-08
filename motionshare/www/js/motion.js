@@ -442,7 +442,7 @@ function saveMotion(){
 
   localStorage.createMotion=JSON.stringify(motionJSON);
   Materialize.toast(localStorage.createMotion,2000);
-  Materialize.toast("Successful Create New Motion",2000);
+  Materialize.toast("Successful Create New Motion",2000,'info');
   PageControll(0);
   createMotionArray="";
 
