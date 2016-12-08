@@ -264,4 +264,5 @@ function scheduleIndex(e){
   sessionStorage.scheduleIndex=$(this).val();
   alert("Changed schedule");
   PageControll(0);
+  senderMode();
 }
