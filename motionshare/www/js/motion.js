@@ -441,8 +441,8 @@ function saveMotion(){
   };
 
   localStorage.createMotion=JSON.stringify(motionJSON);
-  alert(localStorage.createMotion);
-  alert("Successful Create New Motion");
+  Materialize.toast(localStorage.createMotion,2000);
+  Materialize.toast("Successful Create New Motion",2000);
   PageControll(0);
   createMotionArray="";
 

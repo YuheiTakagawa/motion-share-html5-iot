@@ -29,18 +29,18 @@ function setAccountInfo(){
 function sendAccountInfo(){
   var id = $("#userId").val();
   var pass = $("#userPass1").val();
-  alert(id + "," + pass);
+  Materialize.toast(id + "," + pass,2000);
 
   socket.emit("check sign up", id);
 
   socket.on("verify sign up", function(data){
     if(data == 1){
-      alert("success");
+      Materialize.toast("success",2000);
       $("#view").load("login.html",function(){
         socket.emit("finalize sign up", [ id , pass ]);
       });
     }else{
-      alert("failed");
+      Materialize.toast("failed",2000);
     }
   });
 }
@@ -56,12 +56,12 @@ function requestLogin(){
 
   socket.on('verify log in', function(data){
     if(data == 4649){
-      alert("success");
+      Materialize.toast("success",2000);
       localStorage.setItem('openLoginPage', false);
       //alert(data);
       PageControll(0);
     }else{
-      alert("failed");
+      Materialize.toast("failed",2000);
     }
   });
 }

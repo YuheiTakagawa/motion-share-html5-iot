@@ -107,7 +107,7 @@ var bluetoothFanc = {
 
 
     onError: function(reason) {
-      alert("ERROR: " + reason);
+      Materialize.toast("ERROR: " + reason,2000);
       // エラーが発生したら，本体に自動で切り替え
       bluetoothFanc.chooseSmart();
     },

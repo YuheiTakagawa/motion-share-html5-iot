@@ -16,7 +16,7 @@ function saveBase64PhotoData(data) {
         },
 
         function(err) {
-            alert(err);
+            Materialize.toast(err,2000);
         }
     );
 }

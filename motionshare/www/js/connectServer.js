@@ -139,7 +139,7 @@ function receiveContact(rcvCtt){
   var phone=rcvCttString[2];
   var mail=rcvCttString[3];
 
-  alert("Received contact of "+ name);
+  Materialize.toast("Received contact of "+ name,2000);
   Materialize.toast('Received contact of'+ name, 2000);
   //サーバに自分のuserIDと相手のuserIDを送信する
   socket.emit("create relation",[localStorage.getItem("userId"),rcvCttString[1]]);
@@ -162,7 +162,7 @@ function receiveContact(rcvCtt){
 
 //  contentID:1 スケジュール 受信処理
 function receiveSchedule(rcvMsg){
-  alert("Received schedule");
+  Materialize.toast("Received schedule",2000);
   //Base64デコード
   rcvMsg=decodeURIComponent(escape(atob(rcvMsg)));
   //JSON形式
