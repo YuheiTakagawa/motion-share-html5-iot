@@ -19,6 +19,12 @@ body {
 
 .text-col{ color: #616161;}
 
+#setting{
+  margin-left: 17px;
+  color: #b0bec5;
+}
+
+
 .mt10 { margin-top: 10px; }
 .mt30 { margin-top: 30px; }
 .mr10 { margin-right: 10px;}

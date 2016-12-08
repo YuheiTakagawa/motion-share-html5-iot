@@ -68,7 +68,7 @@ function getCameraBase64(){
       image.src = $("#camera_pic").attr("src");
       var width = $("#camera_pic").get(0).naturalWidth;
       var height = $("#camera_pic").get(0).naturalHeight;
-
+      var data=image.src.replace(/data:image[\/]jpeg;charset=utf-8;base64,/g,"");
 
       //Materialize.toast(width+","+height, 2000);
 
@@ -82,13 +82,13 @@ function getCameraBase64(){
         canvas.height = height;
         canvas.getContext("2d").drawImage(image, 0, 0, width, height);
 
-        var data=canvas.toDataURL("image/jpeg",1.0);
+        data=canvas.toDataURL("image/jpeg",1.0);
         // データURLにして返す。他にバイナリを返す toBlob() メソッドもあります。
         data=data.replace(/data:image[\/]jpeg;base64,/g,"");
         //alert(data);
-        $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
-        localStorage.setItem('imageData',data);
       }
+      $("#camera_pic").attr("src",'data:image/jpeg;charset=utf-8;base64,'+data);
+      localStorage.setItem('imageData',data);
       //alert(width+","+height);
       // JPEG形式のほうが良い圧縮率が得られると思われます。
       // 第2引数は品質レベルで、0.0~1.0の間の数値です。高いほど高品質。

@@ -156,7 +156,7 @@ var motionJSON={};
         SensorValueLoad = false;
         SensorValueLoadControl();
         //alert("グータッチ");
-        Materialize.toast('GooTouch', 2000);
+        Materialize.toast('Fistbump', 2000);
       }
 
       //ハイタッチー加速度・ジャイロによる判定
@@ -395,7 +395,7 @@ var motionJSON={};
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 1 + ',' + now.time() + ',' + geoData());
         audioPlay(1);
         //alert('gooTouch');
-        Materialize.toast('GooTouch', 2000);
+        Materialize.toast('Fistbump', 2000);
       }
     }
 
@@ -407,7 +407,7 @@ var motionJSON={};
         socket.emit("send motion data", 1000 + ',' + whoAmI + ',' + 2 + ',' + now.time() + ',' + geoData());
         audioPlay(2);
         //alert('highTouch');
-        Materialize.toast('HighTouch', 2000);
+        Materialize.toast('Hi-Five', 2000);
       }
     }
 

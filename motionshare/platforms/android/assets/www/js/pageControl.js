@@ -3,7 +3,7 @@ function PageControll(val){
   if(val==3) $('#fab').addClass('fab');
   else $('#fab').removeClass('fab');
 
-  if(val == !5) makeMotionBool = false;
+  if(val != 5) makeMotionBool = false;
 
   $(function() {
     switch(val){
@@ -18,6 +18,7 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("home");
       menuValue=1;
+      changeBackButton();
       break;
       case 1:
       $("#view").innerHTML = "<div id='page1'></div>";
@@ -28,6 +29,7 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("Select Sensing Device");
       menuValue=0;
+      changeBackButton();
       break;
       case 2:
       $("#view").innerHTML = "<div id='page2'></div>";
@@ -36,6 +38,7 @@ function PageControll(val){
       $('.fixed-action-btn').closeFAB();
       $(".brand-logo").html("Motion Debug");
       menuValue=0;
+      changeBackButton();
       break;
       case 3:
       $("#view").innerHTML = "<div id='schedulePage'></div>";
@@ -45,6 +48,7 @@ function PageControll(val){
       });
       $(".brand-logo").html("Schedule");
       menuValue=0;
+      changeBackButton();
       break;
       case 4:
       $("#view").innerHTML = "<div id='page5'></div>";
@@ -55,6 +59,7 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("User Information");
       menuValue=0;
+      changeBackButton();
       break;
       case 5:
       $("#view").innerHTML = "<div id='makeMotion'></div>";
@@ -66,6 +71,7 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("Maiking Motion");
       menuValue=0;
+      changeBackButton();
       break;
       case 6:
       $("#view").innerHTML = "<div id='publicSet'></div>";
@@ -76,6 +82,7 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("Public Range Setting");
       menuValue=0;
+      changeBackButton();
       break;
       case 7:
       $("#view").innerHTML = "<div id='createAccount'></div>";
@@ -95,24 +102,25 @@ function PageControll(val){
       removeAnimationClass();
       $(".brand-logo").html("Friend List");
       menuValue=0;
+      changeBackButton();
       break;
     }
-/*
+    /*
     $("nav ul li").click(function () {
-      var index = $("nav ul li").index(this);
-      index += 2;
-      var order = "nth-child("+index+")";
+    var index = $("nav ul li").index(this);
+    index += 2;
+    var order = "nth-child("+index+")";
 
-      $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更
-      $("nav ul li:not(:"+order+")").css("background-color", "#eceff1"); //選択外項目の色をサイドバー背景色にする
+    $("nav ul li:"+order).css("background-color", "#00bcd4"); //選択された項目の背景色をcyanに変更
+    $("nav ul li:not(:"+order+")").css("background-color", "#eceff1"); //選択外項目の色をサイドバー背景色にする
 
-      $("nav ul li:"+order+" a").css("color", "#fff");//選択された項目のtxt色を白に変更
-      $("nav ul li:not(:"+order+") a").css("color", "#616161");//選択された項目のtxt色を黒に変更
-    });
-    */
-
-
+    $("nav ul li:"+order+" a").css("color", "#fff");//選択された項目のtxt色を白に変更
+    $("nav ul li:not(:"+order+") a").css("color", "#616161");//選択された項目のtxt色を黒に変更
   });
+  */
+
+
+});
 }
 
 function fabCon(){
@@ -122,14 +130,14 @@ function fabCon(){
 
 /*
 $(function(){
-  $("#setting").hover(
-    function(){
-      $('.dropdown-button').dropdown('open');
-    },
-    function(){
-      $('.dropdown-button').dropdown('close');
-    }
-  );
+$("#setting").hover(
+function(){
+$('.dropdown-button').dropdown('open');
+},
+function(){
+$('.dropdown-button').dropdown('close');
+}
+);
 });
 */
 
@@ -138,7 +146,8 @@ $(function(){
 //ページ遷移アニメーションのコントロール
 function removeAnimationClass(){
 
-  var type = "animated fadeIn";
+  //var type = "animated fadeIn";
+  var type = "animated flipInY";
 
   $("nav ul li").click(function(){
     $("#view").addClass(type);
@@ -151,4 +160,14 @@ function removeAnimationClass(){
   $(".fixed-action-btn ul li").click(function(){
     $("#view").addClass(type);
   });
+}
+
+function changeBackButton(){
+  if(menuValue==0){
+    $("#menubar").hide();
+    $("#menubar-back").show();
+  }else if(menuValue==1){
+    $("#menubar-back").hide();
+    $("#menubar").show();
+  }
 }

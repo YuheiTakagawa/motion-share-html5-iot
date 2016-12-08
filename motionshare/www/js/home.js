@@ -69,12 +69,12 @@ function audioInitialize(){
   for(var i=0;i<6;i++){
     audio[i]=new Audio();
   }
-  audio[0].src="audio/whip-gesture2.mp3";
-  audio[1].src="audio/slap1.mp3";
-  audio[2].src="audio/jump1.mp3";
-  audio[3].src="audio/ta_ta_suraido01.mp3";
-  audio[4].src="audio/ta_ta_kira08.mp3";
-  audio[5].src="audio/cncl07.mp3";
+  audio[0].src="audio/handshaking.mp3";
+  audio[1].src="audio/fistbump.mp3";
+  audio[2].src="audio/hifive.mp3";
+  audio[3].src="audio/change.mp3";
+  audio[4].src="audio/ta_ta_kira08.mp3"; //受信音
+  audio[5].src="audio/cncl07.mp3"; //モーション作成音
 }
 
 function audioPlay(num){
