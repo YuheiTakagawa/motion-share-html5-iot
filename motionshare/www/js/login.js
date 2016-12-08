@@ -13,22 +13,31 @@ function getLoginPage(bool){
 
 function setAccountInfo(){
   $(function(){
-    var users={
-      "Name":$("#userName").val(),
-      "Id":$("#userId").val(),
-      "Phone":$("#userPhone").val(),
-      "Mail":$("#userMail").val(),
-      "Pass1":$("#userPass1").val(),
-      "Pass2":$("#userPass2").val()
-    };
-    localStorage.contact=JSON.stringify(users);
+    if($("#userId").val()!=""){
+      if(($("#userPass").val()==$("#userPass2").val())&&$("#userPass").val()!=""){
+        var users={
+          "Name":$("#userName").val(),
+          "Id":$("#userId").val(),
+          "Phone":$("#userPhone").val(),
+          "Mail":$("#userMail").val(),
+          "Pass1":$("#userPass").val(),
+          "Pass2":$("#userPass2").val()
+        };
+        localStorage.contact=JSON.stringify(users);
+        sendAccountInfo();
+      }else{
+        Materialize.toast("Password is false.",2000);
+      }
+    }else{
+      Materialize.toast("Enter user id.",2000);
+    }
   });
 }
 
 
 function sendAccountInfo(){
   var id = $("#userId").val();
-  var pass = $("#userPass1").val();
+  var pass = $("#userPass").val();
   Materialize.toast(id + "," + pass,2000);
 
   socket.emit("check sign up", id);
